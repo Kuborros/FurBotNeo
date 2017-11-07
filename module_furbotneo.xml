@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="module_furbotneo" default="compile.module.furbotneo">
+  <dirname property="module.furbotneo.basedir" file="${ant.file.module_furbotneo}"/>
+  
+  <property name="module.jdk.home.furbotneo" value="${project.jdk.home}"/>
+  <property name="module.jdk.bin.furbotneo" value="${project.jdk.bin}"/>
+  <property name="module.jdk.classpath.furbotneo" value="${project.jdk.classpath}"/>
+  
+  <property name="compiler.args.furbotneo" value="-encoding UTF-8 -source 1.8 -target 1.8 ${compiler.args}"/>
+  
+  <property name="furbotneo.output.dir" value="${module.furbotneo.basedir}/target/classes"/>
+  <property name="furbotneo.testoutput.dir" value="${module.furbotneo.basedir}/target/test-classes"/>
+  
+  <path id="furbotneo.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="furbotneo.module.production.classpath">
+    <path refid="${module.jdk.classpath.furbotneo}"/>
+    <path refid="library.maven:_com.sedmelluq:lavaplayer:1.2.43.classpath"/>
+    <path refid="library.maven:_com.sedmelluq:jda-nas:1.0.5.classpath"/>
+    <path refid="library.maven:_net.dv8tion:jda:3.3.1_299.classpath"/>
+    <path refid="library.maven:_com.google.code.findbugs:jsr305:3.0.2.classpath"/>
+    <path refid="library.maven:_org.apache.commons:commons-collections4:4.1.classpath"/>
+    <path refid="library.maven:_org.json:json:20160810.classpath"/>
+    <path refid="library.maven:_net.sf.trove4j:trove4j:3.0.3.classpath"/>
+    <path refid="library.maven:_net.java.dev.jna:jna:4.4.0.classpath"/>
+    <path refid="library.maven:_com.neovisionaries:nv-websocket-client:2.2.classpath"/>
+    <path refid="library.maven:_com.squareup.okhttp3:okhttp:3.8.1.classpath"/>
+    <path refid="library.maven:_com.squareup.okio:okio:1.13.0.classpath"/>
+    <path refid="library.maven:_com.jagrosh:jda-utilities:1.8.classpath"/>
+    <path refid="library.maven:_commons-io:commons-io:2.5.classpath"/>
+    <path refid="library.maven:_org.apache.commons:commons-lang3:3.5.classpath"/>
+    <path refid="library.maven:_org.slf4j:slf4j-api:1.7.25.classpath"/>
+    <path refid="library.maven:_org.xerial:sqlite-jdbc:3.20.1.classpath"/>
+  </path>
+  
+  <path id="furbotneo.runtime.production.module.classpath">
+    <pathelement location="${furbotneo.output.dir}"/>
+    <path refid="library.maven:_com.sedmelluq:lavaplayer:1.2.43.classpath"/>
+    <path refid="library.maven:_com.sedmelluq:lavaplayer-common:1.0.5.classpath"/>
+    <path refid="library.maven:_org.apache.httpcomponents:httpclient:4.5.2.classpath"/>
+    <path refid="library.maven:_org.apache.httpcomponents:httpcore:4.4.4.classpath"/>
+    <path refid="library.maven:_commons-logging:commons-logging:1.2.classpath"/>
+    <path refid="library.maven:_commons-codec:commons-codec:1.9.classpath"/>
+    <path refid="library.maven:_com.fasterxml.jackson.core:jackson-core:2.8.5.classpath"/>
+    <path refid="library.maven:_com.fasterxml.jackson.core:jackson-databind:2.8.5.classpath"/>
+    <path refid="library.maven:_com.fasterxml.jackson.core:jackson-annotations:2.8.0.classpath"/>
+    <path refid="library.maven:_org.jsoup:jsoup:1.10.1.classpath"/>
+    <path refid="library.maven:_net.iharder:base64:2.3.9.classpath"/>
+    <path refid="library.maven:_com.sedmelluq:jda-nas:1.0.5.classpath"/>
+    <path refid="library.maven:_com.sedmelluq:udp-queue:1.0.6.classpath"/>
+    <path refid="library.maven:_net.dv8tion:jda:3.3.1_299.classpath"/>
+    <path refid="library.maven:_com.google.code.findbugs:jsr305:3.0.2.classpath"/>
+    <path refid="library.maven:_org.apache.commons:commons-collections4:4.1.classpath"/>
+    <path refid="library.maven:_org.json:json:20160810.classpath"/>
+    <path refid="library.maven:_net.sf.trove4j:trove4j:3.0.3.classpath"/>
+    <path refid="library.maven:_net.java.dev.jna:jna:4.4.0.classpath"/>
+    <path refid="library.maven:_com.neovisionaries:nv-websocket-client:2.2.classpath"/>
+    <path refid="library.maven:_com.squareup.okhttp3:okhttp:3.8.1.classpath"/>
+    <path refid="library.maven:_com.squareup.okio:okio:1.13.0.classpath"/>
+    <path refid="library.maven:_com.jagrosh:jda-utilities:1.8.classpath"/>
+    <path refid="library.maven:_commons-io:commons-io:2.5.classpath"/>
+    <path refid="library.maven:_org.apache.commons:commons-lang3:3.5.classpath"/>
+    <path refid="library.maven:_ch.qos.logback:logback-classic:1.2.3.classpath"/>
+    <path refid="library.maven:_ch.qos.logback:logback-core:1.2.3.classpath"/>
+    <path refid="library.maven:_org.slf4j:slf4j-api:1.7.25.classpath"/>
+    <path refid="library.maven:_org.xerial:sqlite-jdbc:3.20.1.classpath"/>
+  </path>
+  
+  <path id="furbotneo.module.classpath">
+    <path refid="${module.jdk.classpath.furbotneo}"/>
+    <pathelement location="${furbotneo.output.dir}"/>
+    <path refid="library.maven:_com.sedmelluq:lavaplayer:1.2.43.classpath"/>
+    <path refid="library.maven:_com.sedmelluq:lavaplayer-common:1.0.5.classpath"/>
+    <path refid="library.maven:_org.apache.httpcomponents:httpclient:4.5.2.classpath"/>
+    <path refid="library.maven:_org.apache.httpcomponents:httpcore:4.4.4.classpath"/>
+    <path refid="library.maven:_commons-logging:commons-logging:1.2.classpath"/>
+    <path refid="library.maven:_commons-codec:commons-codec:1.9.classpath"/>
+    <path refid="library.maven:_com.fasterxml.jackson.core:jackson-core:2.8.5.classpath"/>
+    <path refid="library.maven:_com.fasterxml.jackson.core:jackson-databind:2.8.5.classpath"/>
+    <path refid="library.maven:_com.fasterxml.jackson.core:jackson-annotations:2.8.0.classpath"/>
+    <path refid="library.maven:_org.jsoup:jsoup:1.10.1.classpath"/>
+    <path refid="library.maven:_net.iharder:base64:2.3.9.classpath"/>
+    <path refid="library.maven:_com.sedmelluq:jda-nas:1.0.5.classpath"/>
+    <path refid="library.maven:_com.sedmelluq:udp-queue:1.0.6.classpath"/>
+    <path refid="library.maven:_net.dv8tion:jda:3.3.1_299.classpath"/>
+    <path refid="library.maven:_com.google.code.findbugs:jsr305:3.0.2.classpath"/>
+    <path refid="library.maven:_org.apache.commons:commons-collections4:4.1.classpath"/>
+    <path refid="library.maven:_org.json:json:20160810.classpath"/>
+    <path refid="library.maven:_net.sf.trove4j:trove4j:3.0.3.classpath"/>
+    <path refid="library.maven:_net.java.dev.jna:jna:4.4.0.classpath"/>
+    <path refid="library.maven:_com.neovisionaries:nv-websocket-client:2.2.classpath"/>
+    <path refid="library.maven:_com.squareup.okhttp3:okhttp:3.8.1.classpath"/>
+    <path refid="library.maven:_com.squareup.okio:okio:1.13.0.classpath"/>
+    <path refid="library.maven:_com.jagrosh:jda-utilities:1.8.classpath"/>
+    <path refid="library.maven:_commons-io:commons-io:2.5.classpath"/>
+    <path refid="library.maven:_org.apache.commons:commons-lang3:3.5.classpath"/>
+    <path refid="library.maven:_ch.qos.logback:logback-classic:1.2.3.classpath"/>
+    <path refid="library.maven:_ch.qos.logback:logback-core:1.2.3.classpath"/>
+    <path refid="library.maven:_org.slf4j:slf4j-api:1.7.25.classpath"/>
+    <path refid="library.maven:_org.xerial:sqlite-jdbc:3.20.1.classpath"/>
+  </path>
+  
+  <path id="furbotneo.runtime.module.classpath">
+    <pathelement location="${furbotneo.testoutput.dir}"/>
+    <pathelement location="${furbotneo.output.dir}"/>
+    <path refid="library.maven:_com.sedmelluq:lavaplayer:1.2.43.classpath"/>
+    <path refid="library.maven:_com.sedmelluq:lavaplayer-common:1.0.5.classpath"/>
+    <path refid="library.maven:_org.apache.httpcomponents:httpclient:4.5.2.classpath"/>
+    <path refid="library.maven:_org.apache.httpcomponents:httpcore:4.4.4.classpath"/>
+    <path refid="library.maven:_commons-logging:commons-logging:1.2.classpath"/>
+    <path refid="library.maven:_commons-codec:commons-codec:1.9.classpath"/>
+    <path refid="library.maven:_com.fasterxml.jackson.core:jackson-core:2.8.5.classpath"/>
+    <path refid="library.maven:_com.fasterxml.jackson.core:jackson-databind:2.8.5.classpath"/>
+    <path refid="library.maven:_com.fasterxml.jackson.core:jackson-annotations:2.8.0.classpath"/>
+    <path refid="library.maven:_org.jsoup:jsoup:1.10.1.classpath"/>
+    <path refid="library.maven:_net.iharder:base64:2.3.9.classpath"/>
+    <path refid="library.maven:_com.sedmelluq:jda-nas:1.0.5.classpath"/>
+    <path refid="library.maven:_com.sedmelluq:udp-queue:1.0.6.classpath"/>
+    <path refid="library.maven:_net.dv8tion:jda:3.3.1_299.classpath"/>
+    <path refid="library.maven:_com.google.code.findbugs:jsr305:3.0.2.classpath"/>
+    <path refid="library.maven:_org.apache.commons:commons-collections4:4.1.classpath"/>
+    <path refid="library.maven:_org.json:json:20160810.classpath"/>
+    <path refid="library.maven:_net.sf.trove4j:trove4j:3.0.3.classpath"/>
+    <path refid="library.maven:_net.java.dev.jna:jna:4.4.0.classpath"/>
+    <path refid="library.maven:_com.neovisionaries:nv-websocket-client:2.2.classpath"/>
+    <path refid="library.maven:_com.squareup.okhttp3:okhttp:3.8.1.classpath"/>
+    <path refid="library.maven:_com.squareup.okio:okio:1.13.0.classpath"/>
+    <path refid="library.maven:_com.jagrosh:jda-utilities:1.8.classpath"/>
+    <path refid="library.maven:_commons-io:commons-io:2.5.classpath"/>
+    <path refid="library.maven:_org.apache.commons:commons-lang3:3.5.classpath"/>
+    <path refid="library.maven:_ch.qos.logback:logback-classic:1.2.3.classpath"/>
+    <path refid="library.maven:_ch.qos.logback:logback-core:1.2.3.classpath"/>
+    <path refid="library.maven:_org.slf4j:slf4j-api:1.7.25.classpath"/>
+    <path refid="library.maven:_org.xerial:sqlite-jdbc:3.20.1.classpath"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.furbotneo">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.furbotneo">
+    <patternset refid="excluded.from.module.furbotneo"/>
+  </patternset>
+  
+  <path id="furbotneo.module.sourcepath">
+    <dirset dir="${module.furbotneo.basedir}">
+      <include name="src/main/java"/>
+      <include name="src/main/resources"/>
+    </dirset>
+  </path>
+  
+  <path id="furbotneo.module.test.sourcepath">
+    <dirset dir="${module.furbotneo.basedir}">
+      <include name="src/test/java"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.furbotneo" depends="compile.module.furbotneo.production,compile.module.furbotneo.tests" description="Compile module FurBotNeo"/>
+  
+  <target name="compile.module.furbotneo.production" depends="register.custom.compilers" description="Compile module FurBotNeo; production classes">
+    <mkdir dir="${furbotneo.output.dir}"/>
+    <javac2 destdir="${furbotneo.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.furbotneo}/javac">
+      <compilerarg line="${compiler.args.furbotneo}"/>
+      <bootclasspath refid="furbotneo.module.bootclasspath"/>
+      <classpath refid="furbotneo.module.production.classpath"/>
+      <src refid="furbotneo.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.furbotneo"/>
+    </javac2>
+    
+    <copy todir="${furbotneo.output.dir}">
+      <fileset dir="${module.furbotneo.basedir}/src/main/java">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+      <fileset dir="${module.furbotneo.basedir}/src/main/resources">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.furbotneo.tests" depends="register.custom.compilers,compile.module.furbotneo.production" description="compile module FurBotNeo; test classes" unless="skip.tests">
+    <mkdir dir="${furbotneo.testoutput.dir}"/>
+    <javac2 destdir="${furbotneo.testoutput.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.furbotneo}/javac">
+      <compilerarg line="${compiler.args.furbotneo}"/>
+      <bootclasspath refid="furbotneo.module.bootclasspath"/>
+      <classpath refid="furbotneo.module.classpath"/>
+      <src refid="furbotneo.module.test.sourcepath"/>
+      <patternset refid="excluded.from.compilation.furbotneo"/>
+    </javac2>
+    
+    <copy todir="${furbotneo.testoutput.dir}">
+      <fileset dir="${module.furbotneo.basedir}/src/test/java">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="clean.module.furbotneo" description="cleanup module">
+    <delete dir="${furbotneo.output.dir}"/>
+    <delete dir="${furbotneo.testoutput.dir}"/>
+  </target>
+</project>

@@ -1,0 +1,26 @@
+/*
+ * Here comes the text of your license
+ * Each line should be prefixed with  * 
+ */
+package com.kuborros.FurBotNeo.commands.MusicCommands;
+
+import com.jagrosh.jdautilities.commandclient.CommandEvent;
+
+/**
+ *
+ * @author Kuborros
+ */
+public class MusicSkipCmd extends MusicCommand{
+    
+    public MusicSkipCmd()
+    {
+        this.name = "skip";
+        this.help = "skips songs";
+        this.guildOnly = true;
+        this.category = new Category("Music");          
+}
+    @Override
+    public void doCommand(CommandEvent event){
+                forceSkipTrack(guild);        
+    }
+}
