@@ -8,6 +8,10 @@ import com.kuborros.FurBotNeo.commands.AdminCommands.InfoCommand;
 import com.kuborros.FurBotNeo.commands.AdminCommands.ShutdownCommand;
 import com.kuborros.FurBotNeo.commands.AdminCommands.StatsCommand;
 import com.kuborros.FurBotNeo.commands.AdminCommands.VoteCommand;
+import com.kuborros.FurBotNeo.commands.GeneralCommands.BadJokeCmd;
+import com.kuborros.FurBotNeo.commands.GeneralCommands.DiceCmd;
+import com.kuborros.FurBotNeo.commands.GeneralCommands.ProfPicCmd;
+import com.kuborros.FurBotNeo.commands.GeneralCommands.R8BallCmd;
 import com.kuborros.FurBotNeo.commands.MusicCommands.MusicInfoCmd;
 import com.kuborros.FurBotNeo.commands.MusicCommands.MusicPauseCmd;
 import com.kuborros.FurBotNeo.commands.MusicCommands.MusicQueueCmd;
@@ -74,9 +78,10 @@ public class BotMain {
                                         Permission.VOICE_MUTE_OTHERS, Permission.NICKNAME_CHANGE, Permission.NICKNAME_MANAGE),
                 //General
 
-                
-
-                
+                new R8BallCmd(),
+                new ProfPicCmd(),
+                new DiceCmd(),
+                new BadJokeCmd(),
                 
                 
                 // Imageboards

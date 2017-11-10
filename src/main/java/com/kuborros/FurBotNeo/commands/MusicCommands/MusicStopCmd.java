@@ -24,7 +24,6 @@ public class MusicStopCmd extends MusicCommand{
         
         getTrackManager(guild).purgeQueue();
         forceSkipTrack(guild);
-        guild.getAudioManager().closeAudioConnection();
         event.getTextChannel().getManager().setTopic("Music stopped.").queue(); 
     }
 }

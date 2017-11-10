@@ -46,7 +46,7 @@ private Logger LOG = LoggerFactory.getLogger("VoteCommand");
     protected void execute(CommandEvent event) {
         String[] args;
         if (event.getArgs().isEmpty()) {
-            event.reply("y u do dis");
+            event.replyWarning("Votes need to contain <time> and <topic>!");
             event.getMessage().delete().queue();   
             return;
         }
@@ -90,96 +90,7 @@ private Logger LOG = LoggerFactory.getLogger("VoteCommand");
                
         
     }
-                  
-    /*
-    private void waitForTime(CommandEvent event, TextChannel tchan)
-    {
-        waiter.waitForEvent(GuildMessageReceivedEvent.class, 
-                e -> e.getAuthor().equals(event.getAuthor()) && e.getChannel().equals(event.getChannel()), 
-                e -> {
-                    if(e.getMessage().getRawContent().equalsIgnoreCase("cancel"))
-                    {
-                        event.replyWarning("Alright, I guess we're not having a vote after all...");
-                        event.getMessage().delete().queue();
-                        e.getMessage().delete().queue();
-                    }
-                    else
-                    {
-                        String val = e.getMessage().getRawContent().toUpperCase().trim();
-                        boolean min = false;
-                        if(val.endsWith("M"))
-                        {
-                            min=true;
-                            val=val.substring(0,val.length()-1).trim();
-                        }
-                        else if(val.endsWith("S"))
-                        {
-                            val=val.substring(0,val.length()-1).trim();
-                        }
-                        int seconds;
-                        try {
-                            seconds = (min?60:1)*Integer.parseInt(val);
-                            if(seconds<10 || seconds>60*60*24*7)
-                            {
-                                event.replyWarning("Sorry! Votes need to be at least 10 seconds long, and can't be _too_ long.");
-                                event.getMessage().delete().queue();
-                                e.getMessage().delete().queue();
-                                waitForTime(event, tchan);
-                            }
-                            else
-                            {
-                                event.replySuccess("This vote will last "+secondsToTime(seconds)+"! Now, what is it going to be about?");
-                                event.getMessage().delete().queue();
-                                e.getMessage().delete().queue();
-                                waitForTopic(event, tchan, seconds);
-                            }
-                        } catch(NumberFormatException ex) {
-                            event.replyWarning("Hm. I can't seem to get a number from that.");
-                            e.getMessage().delete().queue();
-                            waitForTime(event, tchan);
-                        }
-                    }
-                }, 
-                2, TimeUnit.MINUTES, () -> event.replyWarning("You took longer than 2 minutes to respond, "+event.getAuthor().getAsMention()+"!"));
-}
 
-      private void waitForTopic(CommandEvent event, TextChannel tchan, int seconds)
-    {
-        waiter.waitForEvent(GuildMessageReceivedEvent.class, 
-                e -> e.getAuthor().equals(event.getAuthor()) && e.getChannel().equals(event.getChannel()), 
-                e -> {
-                    if(e.getMessage().getRawContent().equalsIgnoreCase("cancel"))
-                    {
-                        event.replyWarning("Alright, I guess we're not having a vote after all...");
-                        e.getMessage().delete().queue();
-                    }
-                    else
-                    {
-                        String prize = e.getMessage().getRawContent();
-                        if(prize.length()>500)
-                        {
-                            event.replyWarning("That topic is too long. Can you shorten it a bit?");
-                            e.getMessage().delete().queue();
-                            waitForTopic(event, tchan, seconds);
-                        }
-                        else
-                        {
-                            Instant now = Instant.now();
-                            if(startVote(tchan, now, seconds, prize))
-                            {
-                                e.getMessage().delete().queue();
-                            }
-                            else
-                            {
-                                event.replyError("Uh oh. Something went wrong and I wasn't able to start the vote.");
-                                e.getMessage().delete().queue();
-                            }
-                        }
-                    }
-                }, 
-                2, TimeUnit.MINUTES, () -> event.replyWarning("You took longer than 2 minutes to respond, "+event.getAuthor().getAsMention()+"!"));
-}
- */
 
 private boolean startVote(TextChannel channel, Instant now, int seconds, String prize){
             MessageEmbed msg = new EmbedBuilder().setTitle("**Vote**").setDescription(prize).setTimestamp(now).setColor(Color.BLUE).addField("", "Vote will end in: " + secondsToTime(seconds) + "!", false).build();

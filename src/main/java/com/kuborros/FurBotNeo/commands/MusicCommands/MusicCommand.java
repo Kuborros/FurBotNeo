@@ -28,7 +28,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 import net.dv8tion.jda.core.EmbedBuilder;
-import net.dv8tion.jda.core.entities.ChannelType;
 import net.dv8tion.jda.core.entities.Guild;
 import net.dv8tion.jda.core.entities.Member;
 import net.dv8tion.jda.core.entities.Message;
@@ -39,11 +38,12 @@ import net.dv8tion.jda.core.entities.Message;
  */
 public abstract class MusicCommand extends Command{
     
-    protected final String NOTE = ":musical_note:  ";
+    protected final static String NOTE = ":musical_note:  ";
     
     protected static Guild guild;
     protected static ChannelFinder finder;
     protected String input;
+    protected static AudioEventListener audioEventListener;
     
     protected final int PLAYLIST_LIMIT = 40;
     protected static AudioPlayerManager myManager = new DefaultAudioPlayerManager();
@@ -51,6 +51,28 @@ public abstract class MusicCommand extends Command{
 
         
     public MusicCommand() {
+        this.audioEventListener = new AudioEventAdapter() {
+            @Override
+            public void onTrackStart(AudioPlayer player, AudioTrack track) {
+                
+                Set<AudioInfo> queue = getTrackManager(guild).getQueuedTracks();
+                ArrayList<AudioInfo> tracks = new ArrayList<>();
+                queue.forEach(audioInfo -> tracks.add(audioInfo));
+                
+                finder.FindBotChat().getManager().setTopic("Last track: " + track.getInfo().title).queue();
+                
+                EmbedBuilder eb = new EmbedBuilder()
+                        .setColor(Color.CYAN)
+                        .setDescription(NOTE + "   **Now Playing**   ")
+                        .addField("Current Track", "`(" + getTimestamp(track.getDuration()) + ")`  " + track.getInfo().title, false);
+                if (tracks.size() > 1){
+                    eb.addField("Next Track", "`(" + getTimestamp(tracks.get(1).getTrack().getDuration()) + ")`  " + tracks.get(1).getTrack().getInfo().title, false);
+                }
+                finder.FindBotChat().sendMessage(
+                        eb.build()
+                ).queue();
+            }
+        };
         AudioSourceManagers.registerRemoteSources(myManager);
     }
 
@@ -231,31 +253,6 @@ public abstract class MusicCommand extends Command{
         return s.isEmpty() ? "N/A" : s;
     }
     
-        protected AudioEventListener audioEventListener = new AudioEventAdapter() {
-        @Override
-        public void onTrackStart(AudioPlayer player, AudioTrack track) {
-
-                Set<AudioInfo> queue = getTrackManager(guild).getQueuedTracks();
-                ArrayList<AudioInfo> tracks = new ArrayList<>();
-                queue.forEach(audioInfo -> tracks.add(audioInfo));
-                
-                finder.FindBotChat().getManager().setTopic("Last track: " + track.getInfo().title).queue();
-
-                EmbedBuilder eb = new EmbedBuilder()
-                        .setColor(Color.CYAN)
-                        .setDescription(NOTE + "   **Now Playing**   ")
-                        .addField("Current Track", "`(" + getTimestamp(track.getDuration()) + ")`  " + track.getInfo().title, false);
-                        if (tracks.size() > 1){
-                        eb.addField("Next Track", "`(" + getTimestamp(tracks.get(1).getTrack().getDuration()) + ")`  " + tracks.get(1).getTrack().getInfo().title, false);
-                        }
-                finder.FindBotChat().sendMessage(
-                        eb.build()
-                ).queue();
-            }      
-    };
-    
-    
-
         @Override
         protected void execute(CommandEvent event) {
             guild = event.getGuild();
