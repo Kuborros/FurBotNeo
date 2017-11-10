@@ -105,7 +105,7 @@ public class BotMain {
                 
                 
                 //Admin
-                new VoteCommand(waiter),
+                new VoteCommand(),
                 new InfoCommand(),
                 new StatsCommand(),
                 new EvalCommand(),

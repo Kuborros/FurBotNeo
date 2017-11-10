@@ -6,7 +6,6 @@ package com.kuborros.FurBotNeo.commands.AdminCommands;
 
 import com.jagrosh.jdautilities.commandclient.Command;
 import com.jagrosh.jdautilities.commandclient.CommandEvent;
-import com.jagrosh.jdautilities.waiter.EventWaiter;
 import java.awt.Color;
 import java.time.Instant;
 import java.util.List;
@@ -18,7 +17,6 @@ import net.dv8tion.jda.core.Permission;
 import net.dv8tion.jda.core.entities.MessageEmbed;
 import net.dv8tion.jda.core.entities.MessageReaction;
 import net.dv8tion.jda.core.entities.TextChannel;
-import net.dv8tion.jda.core.events.message.guild.GuildMessageReceivedEvent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -28,28 +26,72 @@ import org.slf4j.LoggerFactory;
  */
 public class VoteCommand extends Command{
     
-private final EventWaiter waiter;
 private Logger LOG = LoggerFactory.getLogger("VoteCommand");    
 
         
-        public VoteCommand(EventWaiter waiter)         
+        public VoteCommand()         
     {
         this.name = "vote";
-        this.waiter = waiter;
-        this.help = "Shows info about specific user";
+        this.help = "Creates a vote";
+        this.arguments = "<time> <topic>";
         this.guildOnly = true;
         this.ownerCommand = false;
+        this.cooldown = 10;
+        this.cooldownScope = CooldownScope.GUILD;
         this.category = new Command.Category("Moderation");
         this.userPermissions = new Permission[]{Permission.KICK_MEMBERS};
     }
 
     @Override
     protected void execute(CommandEvent event) {
-        event.replySuccess("Alright! Let's set up your vote! Type in how long the vote should last!");
-        waitForTime(event, event.getTextChannel());
+        String[] args;
+        if (event.getArgs().isEmpty()) {
+            event.reply("y u do dis");
+            event.getMessage().delete().queue();   
+            return;
+        }
+        args = event.getArgs().split(" ");
+        String val = args[0].toUpperCase().trim();
+                        boolean min = false;
+                        if(val.endsWith("M"))
+                        {
+                            min=true;
+                            val=val.substring(0,val.length()-1).trim();
+                        }
+                        else if(val.endsWith("S"))
+                        {
+                            val=val.substring(0,val.length()-1).trim();
+                        }
+                        int seconds;
+                        try {
+                            seconds = (min?60:1)*Integer.parseInt(val);
+                            if(seconds<10 || seconds>60*60*24*7){
+                                event.replyWarning("Sorry! Votes need to be at least 10 seconds long, and can't be _too_ long.");
+                                event.getMessage().delete().queue();                                
+                            }
+                            else {
+                                String topic = event.getArgs().replaceFirst(args[0], "");
+                                if(topic.length()>500){
+                                    event.replyWarning("That topic is too long. Can you shorten it a bit?");
+                                } else {
+                                    Instant now = Instant.now();
+                                    if(startVote(event.getTextChannel(), now, seconds, topic)){
+                                        event.getMessage().delete().queue();
+                                    }
+                                    else {
+                                        event.replyError("Uh oh. Something went wrong and I wasn't able to start the vote.");
+                                        event.getMessage().delete().queue();
+                                    }    
+                                }
+                            }
+                        } catch (NumberFormatException ex) {
+                            event.replyWarning("Hm. I can't seem to get a number from that.");
+                        }
+               
+        
     }
                   
-    
+    /*
     private void waitForTime(CommandEvent event, TextChannel tchan)
     {
         waiter.waitForEvent(GuildMessageReceivedEvent.class, 
@@ -137,7 +179,8 @@ private Logger LOG = LoggerFactory.getLogger("VoteCommand");
                 }, 
                 2, TimeUnit.MINUTES, () -> event.replyWarning("You took longer than 2 minutes to respond, "+event.getAuthor().getAsMention()+"!"));
 }
-    
+ */
+
 private boolean startVote(TextChannel channel, Instant now, int seconds, String prize){
             MessageEmbed msg = new EmbedBuilder().setTitle("**Vote**").setDescription(prize).setTimestamp(now).setColor(Color.BLUE).addField("", "Vote will end in: " + secondsToTime(seconds) + "!", false).build();
             channel.sendMessage(msg).queue(m -> {
