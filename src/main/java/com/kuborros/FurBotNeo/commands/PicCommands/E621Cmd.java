@@ -36,6 +36,11 @@ public class E621Cmd extends Command{
         E621Api api;
         List<String> result;
         EmbedSender emb = new EmbedSender(event);
+
+        if (!event.getTextChannel().isNSFW()){
+            event.replyWarning("This command works only on NSFW channels! (For obvious reasons)");
+            return;
+        }
         
          if (!event.getArgs().isEmpty()){
                 api = new E621Api("https://e621.net/post/index.json?tags=" + event.getArgs().replaceAll(" ", "+") + "+order:random+-type:webm" + "&limit=1");

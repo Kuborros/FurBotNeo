@@ -2,7 +2,7 @@
  * Here comes the text of your license
  * Each line should be prefixed with  * 
  */
-package com.kuborros.FurBotNeo.commands.AdminCommands;
+package com.kuborros.FurBotNeo.commands.GeneralCommands;
 
 import com.jagrosh.jdautilities.commandclient.Command;
 import com.jagrosh.jdautilities.commandclient.CommandEvent;
@@ -13,12 +13,9 @@ import java.util.Timer;
 import java.util.TimerTask;
 import java.util.concurrent.TimeUnit;
 import net.dv8tion.jda.core.EmbedBuilder;
-import net.dv8tion.jda.core.Permission;
 import net.dv8tion.jda.core.entities.MessageEmbed;
 import net.dv8tion.jda.core.entities.MessageReaction;
 import net.dv8tion.jda.core.entities.TextChannel;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  *
@@ -26,7 +23,7 @@ import org.slf4j.LoggerFactory;
  */
 public class VoteCommand extends Command{
     
-private Logger LOG = LoggerFactory.getLogger("VoteCommand");    
+//private Logger LOG = LoggerFactory.getLogger("VoteCommand");    
 
         
         public VoteCommand()         
@@ -36,10 +33,9 @@ private Logger LOG = LoggerFactory.getLogger("VoteCommand");
         this.arguments = "<time> <topic>";
         this.guildOnly = true;
         this.ownerCommand = false;
-        this.cooldown = 10;
+        this.cooldown = 60;
         this.cooldownScope = CooldownScope.GUILD;
-        this.category = new Command.Category("Moderation");
-        this.userPermissions = new Permission[]{Permission.KICK_MEMBERS};
+        this.category = new Command.Category("Basic");
     }
 
     @Override
@@ -65,7 +61,7 @@ private Logger LOG = LoggerFactory.getLogger("VoteCommand");
                         int seconds;
                         try {
                             seconds = (min?60:1)*Integer.parseInt(val);
-                            if(seconds<10 || seconds>60*60*24*7){
+                            if(seconds<10 || seconds>60*60*24){
                                 event.replyWarning("Sorry! Votes need to be at least 10 seconds long, and can't be _too_ long.");
                                 event.getMessage().delete().queue();                                
                             }

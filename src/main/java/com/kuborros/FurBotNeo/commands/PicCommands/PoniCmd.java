@@ -37,6 +37,11 @@ public class PoniCmd extends Command{
         PoniApi api;
         String result;
         EmbedSender emb = new EmbedSender(event);
+
+        if (!event.getTextChannel().isNSFW()){
+            event.replyWarning("This command works only on NSFW channels! (For obvious reasons)");
+            return;
+        }
         
          if (!event.getArgs().isEmpty()){
                 api = new PoniApi("https://derpibooru.org/search.json?q=" + event.getArgs().replaceAll(" ", ",") + "&sf=random&filter_id=37432");

@@ -13,9 +13,9 @@ import java.util.Random;
  * @author Kuborros
  */
 public class DiceCmd extends Command{
-StringBuilder rolls = new StringBuilder();
-    int numSides;
-    int numDices;
+    StringBuilder rolls = new StringBuilder();
+    int numSides = 20;
+    int numDices = 1;
     Random rand = new Random();
     
     
@@ -30,34 +30,37 @@ StringBuilder rolls = new StringBuilder();
     @Override
     public void execute(CommandEvent event){  
         String dice = event.getArgs().toLowerCase();
-        if (dice.isEmpty()) return; //add stuff
         if (dice.contains("d")){
             String[] aDice = dice.split("d");
             try {
                 numDices = Integer.parseInt(aDice[0]);
+                if (numDices > 20) numDices = 20;
                 numSides = Integer.parseInt(aDice[1]);
+                if (numSides > 255) numSides = 255;
             }
             catch (NumberFormatException e) {
-                event.replyError("stuff");
+                event.replyError("Please enter a valid set of numbers!");
                 return;                
             }
             int i = 0;
-            while (i <= numDices) {
-                int side = rand.nextInt(numSides);
+            do {
+                int side = rand.nextInt(numSides) + 1;
                 rolls.append(Integer.toString(side)).append(",");
                 i++;
-            }
-            event.reply("You rolled:" + rolls.toString());
+            } while (i < numDices);
+            event.reply("You rolled: " + rolls.toString());
+            rolls.delete(0, rolls.length());
         }
         else {
             try {
                 numSides = Integer.parseInt(dice);
+                if (numSides > 255) numSides = 255;
             } catch (NumberFormatException e) {
-                event.replyError("stuff");
+                event.replyError("Please enter a valid number!");
                 return;
             }
             int roll = rand.nextInt(numSides) + 1;
-            event.reply("You rolled :" + roll); 
+            event.reply("You rolled: " + roll); 
         }
         
     }    

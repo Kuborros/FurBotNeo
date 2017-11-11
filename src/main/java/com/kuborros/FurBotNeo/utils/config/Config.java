@@ -8,8 +8,8 @@ public class Config {
     private Properties properties;
     private String BOT_TOKEN = "";
     private String OWNER_ID = "";
-    private String PREFIX = "!!";
-    private String VERSION = "V2.0B";
+    private String PREFIX = "!";
+    private String VERSION = "V2.0";
     private boolean FILE_LOGGING = true;
     private boolean GUILD_MSGS = true;
 

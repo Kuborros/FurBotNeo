@@ -37,6 +37,11 @@ public class R34Cmd extends Command{
         GelEngine api;
         String result;
         EmbedSender emb = new EmbedSender(event);
+
+        if (!event.getTextChannel().isNSFW()){
+            event.replyWarning("This command works only on NSFW channels! (For obvious reasons)");
+            return;
+        }
         
          if (!event.getArgs().isEmpty()){
                 api = new GelEngine("https://rule34.xxx/index.php?page=dapi&s=post&q=index&tags=" + event.getArgs().replaceAll(" ", "+") + "&limit=100");

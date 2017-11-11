@@ -36,6 +36,11 @@ public class PokeCmd  extends Command{
         PokemonApi api;
         String result;
         EmbedSender emb = new EmbedSender(event);
+
+        if (!event.getTextChannel().isNSFW()){
+            event.replyWarning("This command works only on NSFW channels! (For obvious reasons)");
+            return;
+        }
         
          if (!event.getArgs().isEmpty()){
                 api = new PokemonApi("http://gallerhy.agn.ph/gallery/post/?search=" + event.getArgs().replaceAll(" ", "+") + "+order:random" + "&api=xml");

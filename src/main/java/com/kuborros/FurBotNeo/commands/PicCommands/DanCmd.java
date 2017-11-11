@@ -38,6 +38,11 @@ public class DanCmd extends Command{
         DanApi api;
         List<String> result;
         EmbedSender emb = new EmbedSender(event);
+
+        if (!event.getTextChannel().isNSFW()){
+            event.replyWarning("This command works only on NSFW channels! (For obvious reasons)");
+            return;
+        }
         
          if (!event.getArgs().isEmpty()){
                 api = new DanApi("https://danbooru.donmai.us/posts.json?tags=" + event.getArgs().replaceAll(" ", "+") + "&random=true&limit=1");
