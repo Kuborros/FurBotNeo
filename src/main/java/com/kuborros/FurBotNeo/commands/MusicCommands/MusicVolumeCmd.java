@@ -16,7 +16,7 @@ public class MusicVolumeCmd extends MusicCommand{
     {
         this.name = "volume";
         this.arguments = "<Volume>";
-        this.help = "sets the volume";
+        this.help = "Sets the playback volume";
         this.guildOnly = true;        
         this.category = new Category("Music");  
 }

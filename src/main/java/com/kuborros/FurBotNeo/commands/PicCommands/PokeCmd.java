@@ -22,7 +22,7 @@ public class PokeCmd  extends Command{
     
     public PokeCmd(){
         this.name = "poke";
-        this.help = "Furry stuff";
+        this.help = "Searches for _pictures_ on AGNPH";
         this.arguments = "<Tags>";
         this.guildOnly = true;
         this.ownerCommand = false;

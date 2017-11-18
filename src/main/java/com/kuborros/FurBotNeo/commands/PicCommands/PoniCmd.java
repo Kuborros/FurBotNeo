@@ -23,7 +23,7 @@ public class PoniCmd extends Command{
     
     public PoniCmd(){
         this.name = "poni";
-        this.help = "Pony stuff";
+        this.help = "Searches for _pictures_ on DerpiBooru";
         this.arguments = "<Tags>";
         this.guildOnly = true;
         this.ownerCommand = false;

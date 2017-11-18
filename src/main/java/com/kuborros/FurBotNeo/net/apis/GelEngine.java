@@ -73,9 +73,11 @@ public class GelEngine {
               urls.remove(i);
             }   
         }
+        /*
         if (urls.isEmpty()){
             throw new WebmPostException();
         }
+        */
         ur = rand.nextInt(urls.size());
         
         if (urls.get(ur).startsWith("https:")) {

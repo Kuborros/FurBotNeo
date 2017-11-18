@@ -25,7 +25,7 @@ public class EvalCommand extends Command {
     public EvalCommand()
     {
         this.name = "eval";
-        this.help = "evaluates nashorn code";
+        this.help = "Evaluates nashorn code";
         this.ownerCommand = true;
         this.guildOnly = true;
         this.arguments = "<code>";

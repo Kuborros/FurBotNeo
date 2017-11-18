@@ -15,7 +15,7 @@ public class MusicSkipCmd extends MusicCommand{
     public MusicSkipCmd()
     {
         this.name = "skip";
-        this.help = "skips songs";
+        this.help = "Skips song";
         this.guildOnly = true;
         this.category = new Category("Music");          
 }

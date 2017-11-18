@@ -82,7 +82,7 @@ public class BotMain {
                 new ProfPicCmd(),
                 new DiceCmd(),
                 new BadJokeCmd(),
-                
+                new VoteCommand(),                
                 
                 // Imageboards
                 new E621Cmd(),
@@ -110,7 +110,6 @@ public class BotMain {
                 
                 
                 //Admin
-                new VoteCommand(),
                 new InfoCommand(),
                 new StatsCommand(),
                 new EvalCommand(),

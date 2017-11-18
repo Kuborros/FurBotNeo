@@ -22,7 +22,7 @@ public class MusicQueueCmd extends MusicCommand{
     {
         this.name = "queue";
         this.aliases = new String[]{"playlist"};
-        this.help = "shows playlist";
+        this.help = "Shows current playlist";
         this.category = new Category("Music");         
 }
     @Override

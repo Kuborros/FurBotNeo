@@ -23,7 +23,7 @@ public class R34Cmd extends Command{
     
     public R34Cmd(){
         this.name = "r34";
-        this.help = "Animu stuff";
+        this.help = "Searches for _pictures_ on R34";
         this.arguments = "<Tags>";
         this.guildOnly = true;
         this.ownerCommand = false;

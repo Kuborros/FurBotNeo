@@ -16,7 +16,7 @@ public class PlayShuffleCmd extends MusicCommand{
     {
         this.name = "playshuffle";
         this.arguments = "<title|URL>";
-        this.help = "plays the provided song";
+        this.help = "Adds song to playlist then shuffles it";
         this.guildOnly = true;        
         this.category = new Category("Music");  
 }

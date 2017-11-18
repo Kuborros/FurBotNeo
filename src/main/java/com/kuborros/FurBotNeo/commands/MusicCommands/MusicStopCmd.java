@@ -15,7 +15,7 @@ public class MusicStopCmd extends MusicCommand{
     public MusicStopCmd()
     {
         this.name = "stop";
-        this.help = "stops the provided song";
+        this.help = "Completely stops music playback";
         this.guildOnly = true;
         this.category = new Category("Music");          
 }

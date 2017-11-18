@@ -17,7 +17,7 @@ public class PlayCommand extends MusicCommand{
     {
         this.name = "play";
         this.arguments = "<title|URL|subcommand>";
-        this.help = "plays the provided song";
+        this.help = "Adds the song to current music queue";
         this.guildOnly = true;
         this.category = new Category("Music");  
 }

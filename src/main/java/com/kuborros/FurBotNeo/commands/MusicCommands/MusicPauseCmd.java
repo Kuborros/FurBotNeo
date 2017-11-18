@@ -16,9 +16,10 @@ public class MusicPauseCmd extends MusicCommand{
     public MusicPauseCmd()
     {
         this.name = "pause";
-        this.help = "pauses playback";
+        this.aliases = new String[]{"resume"};
+        this.help = "Pauses music playback";
         this.guildOnly = true;       
-        this.userPermissions = new Permission[]{Permission.KICK_MEMBERS};
+        this.userPermissions = new Permission[]{Permission.MESSAGE_READ};
         this.category = new Category("Music");  
        
 }

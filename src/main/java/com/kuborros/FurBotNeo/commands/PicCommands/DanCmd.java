@@ -24,7 +24,7 @@ public class DanCmd extends Command{
     
     public DanCmd(){
         this.name = "dan";
-        this.help = "Anime stuff";
+        this.help = "Searches for _pictures_ on DanBooru";
         this.arguments = "<2 Tags>";
         this.guildOnly = true;
         this.ownerCommand = false;

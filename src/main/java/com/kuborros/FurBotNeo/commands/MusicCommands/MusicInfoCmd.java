@@ -20,7 +20,7 @@ public class MusicInfoCmd extends MusicCommand{
     {
         this.name = "music";
         this.aliases = new String[]{"current","musicinfo"};
-        this.help = "info about playback";
+        this.help = "Shows info about current song";
         this.guildOnly = true;        
         this.category = new Category("Music"); 
 }

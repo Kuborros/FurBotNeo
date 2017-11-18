@@ -23,7 +23,7 @@ public class SafeCmd  extends Command{
     
     public SafeCmd(){
         this.name = "safe";
-        this.help = "Animu stuff";
+        this.help = "Searches for pics on SafeBooru";
         this.arguments = "<Tags>";
         this.guildOnly = true;
         this.ownerCommand = false;

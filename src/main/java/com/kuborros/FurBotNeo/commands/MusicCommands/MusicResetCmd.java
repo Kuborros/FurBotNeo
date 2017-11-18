@@ -16,7 +16,7 @@ public class MusicResetCmd extends MusicCommand{
     public MusicResetCmd()
     {
         this.name = "mreset";
-        this.help = "resets the player";
+        this.help = "Performs a full player reset";
         this.ownerCommand = true;
         this.guildOnly = true;        
         this.userPermissions = new Permission[]{Permission.KICK_MEMBERS};

@@ -22,7 +22,7 @@ public class E621Cmd extends Command{
     
     public E621Cmd(){
         this.name = "e621";
-        this.help = "Furry stuff";
+        this.help = "Searches for _pictures_ on E621";
         this.arguments = "<Tags>";
         this.guildOnly = true;
         this.ownerCommand = false;

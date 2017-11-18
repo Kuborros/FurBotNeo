@@ -16,7 +16,7 @@ public class PlayNextCmd extends MusicCommand{
     {
         this.name = "playnext";
         this.arguments = "<title|URL>";
-        this.help = "plays the provided song";
+        this.help = "Add song to playlist and makes it the next song";
         this.guildOnly = true;        
         this.category = new Category("Music");  
 }

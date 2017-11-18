@@ -15,7 +15,7 @@ public class MusicShuffleCmd extends MusicCommand{
     public MusicShuffleCmd()
     {
         this.name = "shuffle";
-        this.help = "shuffles the playlist";
+        this.help = "Shuffles the playlist";
         this.guildOnly = true;        
         this.category = new Category("Music");         
 }

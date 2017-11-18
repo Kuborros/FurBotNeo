@@ -23,7 +23,7 @@ public class GelCmd extends Command{
     
     public GelCmd(){
         this.name = "gel";
-        this.help = "Animu stuff";
+        this.help = "Searches for _pictures_ on GelBooru";
         this.arguments = "<Tags>";
         this.guildOnly = true;
         this.ownerCommand = false;
