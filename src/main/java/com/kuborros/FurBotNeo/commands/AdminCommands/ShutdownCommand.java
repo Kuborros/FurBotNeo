@@ -2,6 +2,7 @@ package com.kuborros.FurBotNeo.commands.AdminCommands;
 
 import com.jagrosh.jdautilities.commandclient.Command;
 import com.jagrosh.jdautilities.commandclient.CommandEvent;
+import static com.kuborros.FurBotNeo.BotMain.db;
 import net.dv8tion.jda.core.Permission;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,6 +24,7 @@ public class ShutdownCommand extends Command {
     protected void execute(CommandEvent event) {
         Logger LOG = LoggerFactory.getLogger("CommandExec");
         event.reply("If you say so... \n" + event.getSelfMember().getEffectiveName() + " shutting down!");
+        db.close();
         event.getJDA().shutdown();
         LOG.info("Bot shutting down");
         System.exit(0);

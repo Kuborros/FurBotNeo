@@ -25,6 +25,8 @@ package com.kuborros.FurBotNeo.listeners;
 
 
 import static com.kuborros.FurBotNeo.BotMain.cfg;
+import static com.kuborros.FurBotNeo.BotMain.db;
+import net.dv8tion.jda.core.entities.Game;
 import net.dv8tion.jda.core.entities.Guild;
 import net.dv8tion.jda.core.events.ReadyEvent;
 import net.dv8tion.jda.core.events.ReconnectedEvent;
@@ -49,10 +51,12 @@ public class BotEventListener extends ListenerAdapter{
     public void onReady(ReadyEvent event) {
         ClearConsole();
         LOG.info("FurryBot {} - Startup completed!", cfg.getVERSION());
+        //event.getJDA().getPresence().setGame(Game.watching(" furry porn"));
         
         if (cfg.getOWNER_ID().equals("0")) {
            LOG.warn("Please set your own user ID in config.cfg! This gives you sudo powers in bot commands!");
         }
+    db.setGuilds(event.getJDA());
     }
     
     @Override

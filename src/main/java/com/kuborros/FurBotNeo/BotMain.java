@@ -34,6 +34,7 @@ import com.kuborros.FurBotNeo.listeners.BotEventListener;
 import com.kuborros.FurBotNeo.listeners.LogListener;
 import com.kuborros.FurBotNeo.listeners.MemberEventListener;
 import com.kuborros.FurBotNeo.utils.config.Config;
+import com.kuborros.FurBotNeo.utils.config.Database;
 import com.sedmelluq.discord.lavaplayer.jdaudp.NativeAudioSendFactory;
 import java.awt.*;
 import javax.security.auth.login.LoginException;
@@ -41,7 +42,6 @@ import net.dv8tion.jda.core.AccountType;
 import net.dv8tion.jda.core.JDABuilder;
 import net.dv8tion.jda.core.OnlineStatus;
 import net.dv8tion.jda.core.Permission;
-import net.dv8tion.jda.core.entities.Game;
 import net.dv8tion.jda.core.exceptions.RateLimitedException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -50,6 +50,7 @@ public class BotMain {
 
     static final Logger LOG = LoggerFactory.getLogger("Main");
     public static Config cfg;
+    public static Database db;
 
     public static void main(String args[]) {
 
@@ -57,11 +58,13 @@ public class BotMain {
             LOG.warn("Not running in UTF-8 mode! This ~might~ end badly for us!");
         }
         EventWaiter waiter = new EventWaiter();
+        
+        db = new Database();
+        db.createTables();
 
         cfg = new Config();
 
         CommandClientBuilder client = new CommandClientBuilder();
-        client.useDefaultGame();
         client.setOwnerId(cfg.getOWNER_ID());
         client.setEmojis("\u2705", "\u2757", "\u274C");
         client.setPrefix(cfg.getPREFIX());
@@ -71,7 +74,7 @@ public class BotMain {
 
                 new AboutCommand(Color.CYAN, "and im here to make this server a better place!", 
                                         new String[]{"Picture commands!","Music player!","Cute furry mascot!"},
-                                        Permission.ADMINISTRATOR, Permission.BAN_MEMBERS, Permission.KICK_MEMBERS, Permission.MANAGE_ROLES,
+                                        Permission.ADMINISTRATOR, Permission.MANAGE_ROLES,
                                         Permission.MANAGE_SERVER, Permission.MESSAGE_ADD_REACTION, Permission.MESSAGE_ATTACH_FILES, Permission.MESSAGE_READ,
                                         Permission.MESSAGE_WRITE,Permission.MESSAGE_EMBED_LINKS, Permission.MESSAGE_HISTORY, Permission.MESSAGE_EXT_EMOJI,
                                         Permission.MESSAGE_MANAGE, Permission.VOICE_CONNECT, Permission.VOICE_MOVE_OTHERS, Permission.VOICE_DEAF_OTHERS, 
@@ -127,7 +130,6 @@ public class BotMain {
             new JDABuilder(AccountType.BOT)
                     .setToken(cfg.getBOT_TOKEN())
                     .setStatus(OnlineStatus.DO_NOT_DISTURB)
-                    .setGame(Game.of("Now loading..."))
                     .addEventListener(waiter)
                     .addEventListener(client.build())
                     .addEventListener(new LogListener())
@@ -157,6 +159,5 @@ public class BotMain {
             System.exit(210);
         }
     }
-     
     
 }

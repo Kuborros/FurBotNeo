@@ -24,7 +24,7 @@ public class ChannelFinder {
             if (channel.getName().contains("bot"))
                 return channel;
         }
-        return null;
+        return guild.getDefaultChannel();
     }
     
     public VoiceChannel FindMusicChannel() {

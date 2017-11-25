@@ -49,7 +49,6 @@ public class DanCmd extends Command{
                 try {
                 result = api.getDanPic();
                 } catch (JSONException e){
-                    e.printStackTrace();
                     event.reply("No results found!");
                     return;
                 } catch (WebmPostException e){

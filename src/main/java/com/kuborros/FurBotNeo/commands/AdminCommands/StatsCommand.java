@@ -21,7 +21,7 @@ public class StatsCommand extends Command {
     public StatsCommand()
     {
         this.name = "stats";
-        this.help = "shows some statistics on the bot";
+        this.help = "Shows some statistics on the bot";
         this.ownerCommand = true;
         this.guildOnly = false;
         this.category = new Category("Moderation");

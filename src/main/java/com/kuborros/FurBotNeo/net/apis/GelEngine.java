@@ -12,6 +12,7 @@ import java.util.Random;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
+import org.json.JSONException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.w3c.dom.Document;
@@ -37,7 +38,7 @@ public class GelEngine {
        this.url = url;         
     }
    
-    public String getGelPic() throws WebmPostException, IllegalArgumentException{
+    public String getGelPic() throws WebmPostException, IllegalArgumentException, JSONException{
 
        try {     
 

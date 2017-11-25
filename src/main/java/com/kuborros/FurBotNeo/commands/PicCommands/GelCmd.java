@@ -48,7 +48,6 @@ public class GelCmd extends Command{
                 try {
                 result = api.getGelPic();
                 } catch (JSONException e){
-                    e.printStackTrace();
                     event.reply("No results found!");
                     return;
                 } catch (WebmPostException e){
