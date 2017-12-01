@@ -51,6 +51,7 @@ public class BotMain {
     static final Logger LOG = LoggerFactory.getLogger("Main");
     public static Config cfg;
     public static Database db;
+    
 
     public static void main(String args[]) {
 
@@ -68,7 +69,6 @@ public class BotMain {
         client.setOwnerId(cfg.getOWNER_ID());
         client.setEmojis("\u2705", "\u2757", "\u274C");
         client.setPrefix(cfg.getPREFIX());
-
 
         client.addCommands(
 
@@ -117,10 +117,6 @@ public class BotMain {
                 new StatsCommand(),
                 new EvalCommand(),
                 new ShutdownCommand());
-
-
-
-
 
 
 

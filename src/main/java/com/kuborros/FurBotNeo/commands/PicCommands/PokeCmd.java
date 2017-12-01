@@ -6,6 +6,7 @@ package com.kuborros.FurBotNeo.commands.PicCommands;
 
 import com.jagrosh.jdautilities.commandclient.Command;
 import com.jagrosh.jdautilities.commandclient.CommandEvent;
+import static com.kuborros.FurBotNeo.BotMain.db;
 import com.kuborros.FurBotNeo.net.apis.PokemonApi;
 import com.kuborros.FurBotNeo.net.apis.WebmPostException;
 import com.kuborros.FurBotNeo.utils.msg.EmbedSender;
@@ -28,7 +29,8 @@ public class PokeCmd  extends Command{
         this.ownerCommand = false;
         this.cooldown = 5;
         this.botPermissions = perms;
-        this.category = new Category("ImageBoards");         
+        this.category = new Category("ImageBoards"); 
+        db.registerCommand(this.name);        
     }
     
     @Override
@@ -36,6 +38,7 @@ public class PokeCmd  extends Command{
         PokemonApi api;
         String result;
         EmbedSender emb = new EmbedSender(event);
+        db.updateCommandStats(event.getAuthor().getId(), this.name);        
 
         if (!event.getTextChannel().isNSFW()){
             event.replyWarning("This command works only on NSFW channels! (For obvious reasons)");

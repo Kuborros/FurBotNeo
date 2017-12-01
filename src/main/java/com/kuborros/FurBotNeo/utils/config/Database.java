@@ -1,5 +1,7 @@
 package com.kuborros.FurBotNeo.utils.config;
 
+import com.jagrosh.jdautilities.commandclient.CommandEvent;
+import com.kuborros.FurBotNeo.BotMain;
 import com.kuborros.FurBotNeo.utils.msg.ChannelFinder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -10,10 +12,13 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.List;
 
 import net.dv8tion.jda.core.JDA;
 import net.dv8tion.jda.core.entities.Guild;
+import net.dv8tion.jda.core.entities.Member;
+import net.dv8tion.jda.core.entities.User;
 import net.dv8tion.jda.core.events.guild.member.GuildMemberJoinEvent;
 import net.dv8tion.jda.core.events.guild.member.GuildMemberLeaveEvent;
 
@@ -98,13 +103,11 @@ public class Database {
 
           stat.executeUpdate(game);
           
-          String snek = "CREATE TABLE IF NOT EXISTS RageQuits " +
+          String count = "CREATE TABLE IF NOT EXISTS CommandStats " +
 
-                  "(counter INTEGER," +
+                  "(user_id TEXT UNIQUE PRIMARY KEY NOT NULL) ";
 
-                  " date TEXT DEFAULT CURRENT_TIMESTAMP) ";
-
-          stat.executeUpdate(snek);          
+          stat.executeUpdate(count);          
           
       } catch (SQLException e){
           LOG.error(e.getMessage());
@@ -151,5 +154,31 @@ public class Database {
         } catch (SQLException e){
             LOG.error(e.getLocalizedMessage());
         }
-    }    
+    }
+    
+    public void setCommandStats(JDA jda) {
+        List<User> users = jda.getUsers();
+        try {    
+            stat = conn.createStatement();
+            for (User user : users) {
+                stat.addBatch("INSERT OR IGNORE INTO CommandStats (user_id) VALUES (" + user.getId() + ")");
+            }
+            stat.executeBatch();
+        } catch (SQLException e) {}                
+    }
+    
+    public void registerCommand(String command) {
+        try {    
+            stat = conn.createStatement();
+            stat.executeUpdate("ALTER TABLE CommandStats ADD COLUMN " + command + " INTEGER DEFAULT 0");            
+        } catch (SQLException e) {}
+    }
+    
+    public void updateCommandStats(String memberID, String command) {
+       try {    
+            stat = conn.createStatement();
+            stat.executeUpdate("UPDATE CommandStats SET " + command + "=" + command + " + 1 WHERE user_id=" + memberID);            
+        } catch (SQLException e) {}
+    }        
+
 }

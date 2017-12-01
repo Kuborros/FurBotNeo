@@ -22,7 +22,7 @@ public class DiceCmd extends Command{
     public DiceCmd()
     {
         this.name = "roll";
-        this.help = "Shows profile pic of mentioned user!";
+        this.help = "Rolls a dice!";
         this.arguments = "Basic: <number of sides> Advanced: <how many>d<sides>";
         this.guildOnly = true;        
         this.category = new Command.Category("Basic"); 

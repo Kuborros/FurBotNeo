@@ -57,6 +57,7 @@ public class BotEventListener extends ListenerAdapter{
            LOG.warn("Please set your own user ID in config.cfg! This gives you sudo powers in bot commands!");
         }
     db.setGuilds(event.getJDA());
+    db.setCommandStats(event.getJDA());
     }
     
     @Override
