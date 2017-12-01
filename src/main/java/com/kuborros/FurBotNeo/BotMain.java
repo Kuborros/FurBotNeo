@@ -8,6 +8,7 @@ import com.kuborros.FurBotNeo.commands.AdminCommands.InfoCommand;
 import com.kuborros.FurBotNeo.commands.AdminCommands.ShutdownCommand;
 import com.kuborros.FurBotNeo.commands.AdminCommands.StatsCommand;
 import com.kuborros.FurBotNeo.commands.GeneralCommands.BadJokeCmd;
+import com.kuborros.FurBotNeo.commands.GeneralCommands.CommandStatCmd;
 import com.kuborros.FurBotNeo.commands.GeneralCommands.DiceCmd;
 import com.kuborros.FurBotNeo.commands.GeneralCommands.ProfPicCmd;
 import com.kuborros.FurBotNeo.commands.GeneralCommands.R8BallCmd;
@@ -85,7 +86,8 @@ public class BotMain {
                 new ProfPicCmd(),
                 new DiceCmd(),
                 new BadJokeCmd(),
-                new VoteCommand(),                
+                new VoteCommand(),
+                new CommandStatCmd(),
                 
                 // Imageboards
                 new E621Cmd(),

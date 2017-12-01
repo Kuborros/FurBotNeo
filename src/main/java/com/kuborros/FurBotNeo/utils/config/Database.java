@@ -10,10 +10,13 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import net.dv8tion.jda.core.JDA;
 import net.dv8tion.jda.core.entities.Guild;
@@ -180,5 +183,27 @@ public class Database {
             stat.executeUpdate("UPDATE CommandStats SET " + command + "=" + command + " + 1 WHERE user_id=" + memberID);            
         } catch (SQLException e) {}
     }        
-
+    
+    public Map<String, String> getCommandStats(String memberID) throws SQLException{
+  
+            Map<String, String> map = new HashMap<>();
+            int counter;
+            stat = conn.createStatement();
+            rs = stat.executeQuery("SELECT * FROM CommandStats WHERE user_id=" + memberID);
+            ResultSetMetaData rsmd = rs.getMetaData();
+            int columnCount = rsmd.getColumnCount();  
+            List<String> names = new ArrayList<>();
+            for (int i = 1; i <= columnCount; i++ ) {
+                names.add(rsmd.getColumnName(i));
+            }
+            names.remove(0);
+            while (rs.next()) {
+                for (String name : names) {
+                    counter = rs.getInt(name);
+                    map.put(name, Integer.toString(counter));
+                }
+            }
+            return map;
+        
+    }
 }
