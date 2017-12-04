@@ -70,7 +70,6 @@ public class BotMain {
         client.setOwnerId(cfg.getOWNER_ID());
         client.setEmojis("\u2705", "\u2757", "\u274C");
         client.setPrefix(cfg.getPREFIX());
-
         client.addCommands(
 
                 new AboutCommand(Color.CYAN, "and im here to make this server a better place!", 
