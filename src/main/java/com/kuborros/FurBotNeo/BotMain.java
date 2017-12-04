@@ -7,38 +7,15 @@ import com.kuborros.FurBotNeo.commands.AdminCommands.EvalCommand;
 import com.kuborros.FurBotNeo.commands.AdminCommands.InfoCommand;
 import com.kuborros.FurBotNeo.commands.AdminCommands.ShutdownCommand;
 import com.kuborros.FurBotNeo.commands.AdminCommands.StatsCommand;
-import com.kuborros.FurBotNeo.commands.GeneralCommands.BadJokeCmd;
-import com.kuborros.FurBotNeo.commands.GeneralCommands.CommandStatCmd;
-import com.kuborros.FurBotNeo.commands.GeneralCommands.DiceCmd;
-import com.kuborros.FurBotNeo.commands.GeneralCommands.ProfPicCmd;
-import com.kuborros.FurBotNeo.commands.GeneralCommands.R8BallCmd;
-import com.kuborros.FurBotNeo.commands.GeneralCommands.VoteCommand;
-import com.kuborros.FurBotNeo.commands.MusicCommands.MusicInfoCmd;
-import com.kuborros.FurBotNeo.commands.MusicCommands.MusicPauseCmd;
-import com.kuborros.FurBotNeo.commands.MusicCommands.MusicQueueCmd;
-import com.kuborros.FurBotNeo.commands.MusicCommands.MusicResetCmd;
-import com.kuborros.FurBotNeo.commands.MusicCommands.MusicShuffleCmd;
-import com.kuborros.FurBotNeo.commands.MusicCommands.MusicSkipCmd;
-import com.kuborros.FurBotNeo.commands.MusicCommands.MusicStopCmd;
-import com.kuborros.FurBotNeo.commands.MusicCommands.MusicVolumeCmd;
-import com.kuborros.FurBotNeo.commands.MusicCommands.PlayCommand;
-import com.kuborros.FurBotNeo.commands.MusicCommands.PlayNextCmd;
-import com.kuborros.FurBotNeo.commands.MusicCommands.PlayShuffleCmd;
-import com.kuborros.FurBotNeo.commands.PicCommands.DanCmd;
-import com.kuborros.FurBotNeo.commands.PicCommands.E621Cmd;
-import com.kuborros.FurBotNeo.commands.PicCommands.GelCmd;
-import com.kuborros.FurBotNeo.commands.PicCommands.PokeCmd;
-import com.kuborros.FurBotNeo.commands.PicCommands.PoniCmd;
-import com.kuborros.FurBotNeo.commands.PicCommands.R34Cmd;
-import com.kuborros.FurBotNeo.commands.PicCommands.SafeCmd;
+import com.kuborros.FurBotNeo.commands.GeneralCommands.*;
+import com.kuborros.FurBotNeo.commands.MusicCommands.*;
+import com.kuborros.FurBotNeo.commands.PicCommands.*;
 import com.kuborros.FurBotNeo.listeners.BotEventListener;
 import com.kuborros.FurBotNeo.listeners.LogListener;
 import com.kuborros.FurBotNeo.listeners.MemberEventListener;
 import com.kuborros.FurBotNeo.utils.config.Config;
 import com.kuborros.FurBotNeo.utils.config.Database;
 import com.sedmelluq.discord.lavaplayer.jdaudp.NativeAudioSendFactory;
-import java.awt.*;
-import javax.security.auth.login.LoginException;
 import net.dv8tion.jda.core.AccountType;
 import net.dv8tion.jda.core.JDABuilder;
 import net.dv8tion.jda.core.OnlineStatus;
@@ -46,6 +23,9 @@ import net.dv8tion.jda.core.Permission;
 import net.dv8tion.jda.core.exceptions.RateLimitedException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import javax.security.auth.login.LoginException;
+import java.awt.*;
 
 public class BotMain {
 
@@ -96,6 +76,7 @@ public class BotMain {
                 new SafeCmd(),
                 new R34Cmd(),
                 new PoniCmd(),
+                new Dan2Cmd(waiter),
                 
                 //Music
 
