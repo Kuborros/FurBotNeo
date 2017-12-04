@@ -24,9 +24,6 @@
 package com.kuborros.FurBotNeo.listeners;
 
 
-import static com.kuborros.FurBotNeo.BotMain.cfg;
-import static com.kuborros.FurBotNeo.BotMain.db;
-import net.dv8tion.jda.core.entities.Game;
 import net.dv8tion.jda.core.entities.TextChannel;
 import net.dv8tion.jda.core.events.guild.member.GuildMemberJoinEvent;
 import net.dv8tion.jda.core.events.guild.member.GuildMemberLeaveEvent;
@@ -34,10 +31,9 @@ import net.dv8tion.jda.core.hooks.ListenerAdapter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-/**
- *
- * @author Kuborros
- */
+import static com.kuborros.FurBotNeo.BotMain.cfg;
+import static com.kuborros.FurBotNeo.BotMain.db;
+
 public class MemberEventListener extends ListenerAdapter{
    
     static final Logger LOG = LoggerFactory.getLogger("MemberInfo");
@@ -69,7 +65,7 @@ public class MemberEventListener extends ListenerAdapter{
           pub.sendMessage("Bye, " + event.getMember().getEffectiveName() + "! it was nice (or not) having you with us!").queue();
         }
         if (event.getMember().getUser().getId().equals("348186098951913473")) {
-          pub.sendMessage("**He did it agaaain!**  Snek has left the server.").queue();
+          pub.sendMessage("**He did it agaaain!**").queue();
         }
         LOG.info("{} has left the {} server!", event.getMember().getEffectiveName(), event.getGuild().getName());    
         db.updateGuildMembers(event);

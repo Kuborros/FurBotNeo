@@ -33,7 +33,7 @@
     <orderEntry type="library" name="Maven: com.neovisionaries:nv-websocket-client:2.2" level="project" />
     <orderEntry type="library" name="Maven: com.squareup.okhttp3:okhttp:3.8.1" level="project" />
     <orderEntry type="library" name="Maven: com.squareup.okio:okio:1.13.0" level="project" />
-    <orderEntry type="library" name="Maven: com.jagrosh:JDA-Utilities:1.8" level="project" />
+    <orderEntry type="library" name="Maven: com.github.JDA-Applications:JDA-Utilities:version-major~2.0-1.8-g7358527-54" level="project" />
     <orderEntry type="library" name="Maven: commons-io:commons-io:2.5" level="project" />
     <orderEntry type="library" name="Maven: org.apache.commons:commons-lang3:3.5" level="project" />
     <orderEntry type="library" scope="RUNTIME" name="Maven: ch.qos.logback:logback-classic:1.2.3" level="project" />

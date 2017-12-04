@@ -2,12 +2,7 @@
 package com.kuborros.FurBotNeo.listeners;
 
 
-import net.dv8tion.jda.client.entities.Group;
-import net.dv8tion.jda.core.entities.ChannelType;
-import net.dv8tion.jda.core.entities.Member;
-import net.dv8tion.jda.core.entities.Message;
-import net.dv8tion.jda.core.entities.TextChannel;
-import net.dv8tion.jda.core.entities.User;
+import net.dv8tion.jda.core.entities.*;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.core.hooks.ListenerAdapter;
 import org.slf4j.Logger;
@@ -38,13 +33,11 @@ static final Logger LOG = LoggerFactory.getLogger("ChatLogs");
             if (message.isWebhookMessage()) name = author.getName();               
             else name = member.getEffectiveName();     
 
-            String msgr ='[' + textChannel.getName() + "] "+ '(' + name + ')' + ": " + msg;
-            LOG.info(msgr);
+            LOG.info("[{}] "+ "({}): {}",textChannel.getName(), name, msg);
         }
         else if (event.isFromType(ChannelType.PRIVATE))
         {
-            String msgr ="[PRIV] (" + author.getName() + "): " + msg;
-            LOG.info(msgr);
+            LOG.info("[PRIV] ({}): {}", author.getName(), msg);
         }
     }
 }

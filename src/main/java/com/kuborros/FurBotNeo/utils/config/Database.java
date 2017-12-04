@@ -1,29 +1,19 @@
 package com.kuborros.FurBotNeo.utils.config;
 
-import com.jagrosh.jdautilities.commandclient.CommandEvent;
-import com.kuborros.FurBotNeo.BotMain;
 import com.kuborros.FurBotNeo.utils.msg.ChannelFinder;
+import net.dv8tion.jda.core.JDA;
+import net.dv8tion.jda.core.entities.Guild;
+import net.dv8tion.jda.core.entities.User;
+import net.dv8tion.jda.core.events.guild.member.GuildMemberJoinEvent;
+import net.dv8tion.jda.core.events.guild.member.GuildMemberLeaveEvent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import net.dv8tion.jda.core.JDA;
-import net.dv8tion.jda.core.entities.Guild;
-import net.dv8tion.jda.core.entities.Member;
-import net.dv8tion.jda.core.entities.User;
-import net.dv8tion.jda.core.events.guild.member.GuildMemberJoinEvent;
-import net.dv8tion.jda.core.events.guild.member.GuildMemberLeaveEvent;
 
 public class Database {
 
@@ -58,7 +48,7 @@ public class Database {
         try{
         conn.close();
         stat.close();
-        }catch (SQLException e){}
+        }catch (SQLException ignored){}
     }
     
     public void createTables() {
