@@ -6,13 +6,17 @@ package com.kuborros.FurBotNeo.commands.PicCommands;
 
 import com.jagrosh.jdautilities.commandclient.Command;
 import com.jagrosh.jdautilities.commandclient.CommandEvent;
-import static com.kuborros.FurBotNeo.BotMain.db;
+import com.jagrosh.jdautilities.menu.Slideshow;
+import com.jagrosh.jdautilities.waiter.EventWaiter;
 import com.kuborros.FurBotNeo.net.apis.GelEngine;
-import com.kuborros.FurBotNeo.net.apis.WebmPostException;
-import com.kuborros.FurBotNeo.utils.msg.EmbedSender;
-import java.awt.Color;
 import net.dv8tion.jda.core.Permission;
 import org.json.JSONException;
+
+import java.awt.*;
+import java.util.List;
+import java.util.concurrent.TimeUnit;
+
+import static com.kuborros.FurBotNeo.BotMain.db;
 
 /**
  *
@@ -21,14 +25,16 @@ import org.json.JSONException;
 public class SafeCmd  extends Command{
    
     private Permission[] perms = {Permission.MESSAGE_EMBED_LINKS};
+    private EventWaiter waiter;
     
-    public SafeCmd(){
+    public SafeCmd(EventWaiter waiter){
         this.name = "safe";
         this.help = "Searches for pics on SafeBooru";
         this.arguments = "<Tags>";
         this.guildOnly = true;
         this.ownerCommand = false;
         this.cooldown = 5;
+        this.waiter = waiter;
         this.botPermissions = perms;
         this.category = new Category("ImageBoards");  
         db.registerCommand(this.name);
@@ -37,42 +43,39 @@ public class SafeCmd  extends Command{
     @Override
     protected void execute(CommandEvent event) {
         GelEngine api;
-        String result;
-        EmbedSender emb = new EmbedSender(event);
+        List<String> result;
+        Slideshow.Builder builder = new Slideshow.Builder();
         db.updateCommandStats(event.getAuthor().getId(), this.name);
         
         if (!event.getTextChannel().isNSFW()){
             event.replyWarning("This command works only on NSFW channels!");
             return;
         }
-        
-         if (!event.getArgs().isEmpty()){
-                api = new GelEngine("http://safebooru.org/index.php?page=dapi&s=post&q=index&tags=" + event.getArgs().replaceAll(" ", "+") + "&limit=100");
-                try {
-                result = api.getGelPic();
-                } catch (JSONException e){
-                    e.printStackTrace();
-                    event.reply("No results found!");
-                    return;
-                } catch (WebmPostException e){
-                    event.reply("Only results are webms!");                    
-                    return;
-                }
-                emb.sendPicEmbed("SafeBooru", result , Color.PINK);
+
+        builder.allowTextInput(false)
+                .setBulkSkipNumber(5)
+                .waitOnSinglePage(false)
+                .setColor(Color.PINK)
+                .setEventWaiter(waiter)
+                .setText("")
+                .setDescription("Danbooru")
+                .setTimeout(5, TimeUnit.MINUTES);
+
+
+
+        if (!event.getArgs().isEmpty()){
+                api = new GelEngine("http://safebooru.org/index.php?page=dapi&s=post&q=index&tags=" + event.getArgs().replaceAll(" ", "+") + "&limit=20");
                 } else {
-                api = new GelEngine("http://safebooru.org/index.php?page=dapi&s=post&q=index&limit=100");
+                 api = new GelEngine("http://safebooru.org/index.php?page=dapi&s=post&q=index&limit=20");
+                }
                 try {
                 result = api.getGelPic();
+                builder.setUrls(result.toArray(new String[result.size()]));
                 } catch (JSONException e){
                     event.reply("No results found!");                    
                     return;
-                } catch (WebmPostException e){
-                    event.reply("Only results are webms!");                    
-                    return;
                 }
-                emb.sendPicEmbed("SafeBooru", result , Color.PINK);
-                }  
-        
+                builder.build().display(event.getTextChannel());
     }
     
 }

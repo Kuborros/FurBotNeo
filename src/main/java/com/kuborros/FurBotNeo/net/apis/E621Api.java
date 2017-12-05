@@ -23,6 +23,12 @@
  */
 package com.kuborros.FurBotNeo.net.apis;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
@@ -30,11 +36,6 @@ import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 
 /**
@@ -51,7 +52,7 @@ public E621Api(String url){
     this.url = url;
 }
     
-public List<String> getFurryPic() throws JSONException,WebmPostException{
+public List<String> getFurryPic() throws JSONException,IOException {
      
         try {
             
@@ -67,21 +68,18 @@ public List<String> getFurryPic() throws JSONException,WebmPostException{
                     str += scan.nextLine();
                 }
             }
-            JSONArray arr = new JSONArray(str);          
-            JSONObject obj = arr.getJSONObject(0);                               
-            String ext = obj.getString("file_ext");
-            String picUrl = obj.getString("file_url");
-            String author = obj.getString("author");
-            if (!ext.equals("webm")){
-                result.add(picUrl);
-                result.add(author);
-                return result;
-            } else {
-                throw new WebmPostException();                
+            JSONArray arr = new JSONArray(str);
+            int i = 0;
+            while (i < arr.length()) {
+                JSONObject obj = arr.getJSONObject(i);
+                result.add(obj.getString("file_url"));
+                i++;
             }
+
+            return result;
         } catch (IOException ex) {
             LOG.error(ex.getLocalizedMessage());
-            return null;
+            throw ex;
         }
     
     } 

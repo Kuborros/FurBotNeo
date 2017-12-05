@@ -24,6 +24,14 @@
 package com.kuborros.FurBotNeo.net.apis;
 
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.w3c.dom.*;
+import org.xml.sax.SAXException;
+
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
@@ -31,17 +39,6 @@ import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.w3c.dom.DOMException;
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
-import org.xml.sax.SAXException;
 
 
 /**
@@ -58,7 +55,7 @@ public PokemonApi(String url){
     this.url = url;
 }
 
-public String PokeXml() throws IllegalArgumentException, WebmPostException{
+public List<String> PokeXml() throws IllegalArgumentException, WebmPostException{
     try {
         
         Random rand = new Random();
@@ -68,7 +65,7 @@ public String PokeXml() throws IllegalArgumentException, WebmPostException{
         UC.setRequestProperty ( "User-agent", "DiscordBot/1.0");
         InputStream r = UC.getInputStream();
         
-        DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+    DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
 	DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
 	Document doc = dBuilder.parse(r);
 
@@ -94,13 +91,7 @@ public String PokeXml() throws IllegalArgumentException, WebmPostException{
               urls.remove(i);
             }   
         }
-        if (urls.isEmpty()){
-            throw new WebmPostException();
-        }
-         
-        
-       int randint = rand.nextInt(urls.size());
-       return urls.get(randint);
+       return urls;
     } catch (IOException | ParserConfigurationException | DOMException | SAXException ex) {
        LOG.error(ex.getLocalizedMessage());
        return null;

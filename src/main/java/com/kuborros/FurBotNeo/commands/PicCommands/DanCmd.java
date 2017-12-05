@@ -6,24 +6,31 @@ package com.kuborros.FurBotNeo.commands.PicCommands;
 
 import com.jagrosh.jdautilities.commandclient.Command;
 import com.jagrosh.jdautilities.commandclient.CommandEvent;
-import static com.kuborros.FurBotNeo.BotMain.db;
+import com.jagrosh.jdautilities.menu.Slideshow;
+import com.jagrosh.jdautilities.waiter.EventWaiter;
 import com.kuborros.FurBotNeo.net.apis.DanApi;
-import com.kuborros.FurBotNeo.net.apis.WebmPostException;
 import com.kuborros.FurBotNeo.utils.msg.EmbedSender;
-import java.awt.Color;
-import java.util.List;
 import net.dv8tion.jda.core.Permission;
 import org.json.JSONException;
+
+import java.awt.*;
+import java.io.IOException;
+import java.util.Arrays;
+import java.util.List;
+import java.util.concurrent.TimeUnit;
+
+import static com.kuborros.FurBotNeo.BotMain.db;
 
 /**
  *
  * @author Kuborros
  */
-public class DanCmd extends Command{
-   
-    private Permission[] perms = {Permission.MESSAGE_EMBED_LINKS};
-    
-    public DanCmd(){
+public class DanCmd extends Command {
+
+    private Permission[] perms = {Permission.MESSAGE_EMBED_LINKS,Permission.MANAGE_EMOTES};
+    private EventWaiter waiter;
+
+    public DanCmd(EventWaiter waiter) {
         this.name = "dan";
         this.help = "Searches for _pictures_ on DanBooru";
         this.arguments = "<2 Tags>";
@@ -31,47 +38,57 @@ public class DanCmd extends Command{
         this.ownerCommand = false;
         this.cooldown = 5;
         this.botPermissions = perms;
-        this.category = new Category("ImageBoards"); 
-        db.registerCommand(this.name);        
+        this.category = new Category("ImageBoards");
+        this.hidden = true;
+        this.waiter = waiter;
+        db.registerCommand(this.name);
     }
-    
+
     @Override
     protected void execute(CommandEvent event) {
+        Slideshow.Builder builder = new Slideshow.Builder();
         DanApi api;
         List<String> result;
+        String[] arr;
         EmbedSender emb = new EmbedSender(event);
-        db.updateCommandStats(event.getAuthor().getId(), this.name);        
+        db.updateCommandStats(event.getAuthor().getId(), this.name);
 
-        if (!event.getTextChannel().isNSFW()){
+        if (!event.getTextChannel().isNSFW()) {
             event.replyWarning("This command works only on NSFW channels! (For obvious reasons)");
             return;
         }
-        
-         if (!event.getArgs().isEmpty()){
-                api = new DanApi("https://danbooru.donmai.us/posts.json?tags=" + event.getArgs().replaceAll(" ", "+") + "&random=true&limit=1");
-                try {
+
+        List<String> tags = Arrays.asList(event.getArgs().split(" "));
+        if (tags.size() > 2) {
+            tags = tags.subList(0, 2);
+        }
+
+        builder.allowTextInput(false)
+            .setBulkSkipNumber(5)
+            .waitOnSinglePage(false)
+            .setColor(Color.PINK)
+            .setEventWaiter(waiter)
+            .setText("")
+            .setDescription("Danbooru")
+            .setTimeout(5, TimeUnit.MINUTES);
+
+
+
+        if (!event.getArgs().isEmpty()) {
+            api = new DanApi("https://danbooru.donmai.us/posts.json?tags=" + String.join("+", tags) + "&random=true&limit=20");
+        } else {
+            api = new DanApi("https://danbooru.donmai.us/posts.json?random=true&limit=20");
+        }
+            try {
                 result = api.getDanPic();
-                } catch (JSONException e){
-                    event.reply("No results found!");
-                    return;
-                } catch (WebmPostException e){
-                    event.reply("Only results are webms!");                    
-                    return;
-                }
-                emb.sendPicEmbed("DanBooru", result.get(0) , "Author: " + result.get(1) , Color.PINK);
-                } else {
-                api = new DanApi("https://danbooru.donmai.us/posts.json?random=true&limit=1");
-                try {
-                result = api.getDanPic();
-                } catch (JSONException e){
-                    event.reply("No results found!");                    
-                    return;
-                } catch (WebmPostException e){
-                    event.reply("Only results are webms!");                    
-                    return;
-                }
-                emb.sendPicEmbed("DanBooru", result.get(0) , "Author: " + result.get(1) , Color.PINK);
-                }  
-        
+                builder.setUrls(result.toArray(new String[result.size()]));
+            } catch (JSONException e) {
+                event.reply("No results found!");
+                return;
+            } catch (IOException e) {
+                event.replyError(e.getLocalizedMessage());
+            }
+            Slideshow show = builder.build();
+            show.display(event.getTextChannel());
     }
 }

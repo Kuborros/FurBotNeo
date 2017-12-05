@@ -69,14 +69,12 @@ public class BotMain {
                 new CommandStatCmd(),
                 
                 // Imageboards
-                new E621Cmd(),
-                new PokeCmd(),
-                new DanCmd(),
-                new GelCmd(),
-                new SafeCmd(),
-                new R34Cmd(),
-                new PoniCmd(),
-                new Dan2Cmd(waiter),
+                new E621Cmd(waiter),
+                new PokeCmd(waiter),
+                new DanCmd(waiter),
+                new GelCmd(waiter),
+                new SafeCmd(waiter),
+                new R34Cmd(waiter),
                 
                 //Music
 

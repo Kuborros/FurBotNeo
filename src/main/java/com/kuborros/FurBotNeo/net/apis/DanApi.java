@@ -23,6 +23,12 @@
  */
 package com.kuborros.FurBotNeo.net.apis;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
@@ -30,35 +36,30 @@ import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  *
  * @author Kuborros
  */
 public class DanApi {
-    
+
     private String url;
     Logger LOG = LoggerFactory.getLogger("ImageBoardApi");
-    List<String> result = new ArrayList<>();
+    List<String> results = new ArrayList<>();
 
-public DanApi(String url){
-    this.url = url;
-}
-    
-public List<String> getDanPic() throws JSONException,WebmPostException{
-     
+    public DanApi(String url) {
+        this.url = url;
+    }
+
+    public List<String> getDanPic() throws JSONException, IOException {
+
         try {
-            
+
             URL u = new URL(url);
             URLConnection UC = u.openConnection();
-            UC.setRequestProperty ( "User-agent", "DiscordBot/1.0");
+            UC.setRequestProperty("User-agent", "DiscordBot/1.0");
             InputStream r = UC.getInputStream();
-            
+
             String str;
             try (Scanner scan = new Scanner(r)) {
                 str = new String();
@@ -66,27 +67,26 @@ public List<String> getDanPic() throws JSONException,WebmPostException{
                     str += scan.nextLine();
                 }
             }
-            
+
             JSONArray arr = new JSONArray(str);
-            JSONObject obj = arr.getJSONObject(0);
-                                
-            String ext = obj.getString("file_ext");
-            String picUrl = obj.getString("file_url");
-            String author = obj.getString("tag_string_artist");
-            if (!ext.equals("webm")){
-                result.add("https://danbooru.donmai.us" + picUrl);
-                result.add(author);
-                return result;
-            } else {
-                throw new WebmPostException();                
+
+            int i = 0;
+            while (i < arr.length()) {
+                JSONObject obj = arr.getJSONObject(i);
+                String picUrl = obj.getString("file_url");
+                results.add("https://danbooru.donmai.us" + picUrl);
+                i++;
             }
-        } catch (IOException ex) {
+
+            return results;
+        } catch (Exception ex) {
             LOG.error(ex.getLocalizedMessage());
-            return null;
+            throw ex;
         }
-    
     }
-    
-    
 }
+
+    
+    
+
 

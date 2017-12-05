@@ -6,12 +6,17 @@ package com.kuborros.FurBotNeo.commands.PicCommands;
 
 import com.jagrosh.jdautilities.commandclient.Command;
 import com.jagrosh.jdautilities.commandclient.CommandEvent;
-import static com.kuborros.FurBotNeo.BotMain.db;
+import com.jagrosh.jdautilities.menu.Slideshow;
+import com.jagrosh.jdautilities.waiter.EventWaiter;
 import com.kuborros.FurBotNeo.net.apis.PokemonApi;
 import com.kuborros.FurBotNeo.net.apis.WebmPostException;
-import com.kuborros.FurBotNeo.utils.msg.EmbedSender;
-import java.awt.Color;
 import net.dv8tion.jda.core.Permission;
+
+import java.awt.*;
+import java.util.List;
+import java.util.concurrent.TimeUnit;
+
+import static com.kuborros.FurBotNeo.BotMain.db;
 
 /**
  *
@@ -20,14 +25,16 @@ import net.dv8tion.jda.core.Permission;
 public class PokeCmd  extends Command{
    
     private Permission[] perms = {Permission.MESSAGE_EMBED_LINKS};
+    private EventWaiter waiter;
     
-    public PokeCmd(){
+    public PokeCmd(EventWaiter waiter){
         this.name = "poke";
         this.help = "Searches for _pictures_ on AGNPH";
         this.arguments = "<Tags>";
         this.guildOnly = true;
         this.ownerCommand = false;
         this.cooldown = 5;
+        this.waiter = waiter;
         this.botPermissions = perms;
         this.category = new Category("ImageBoards"); 
         db.registerCommand(this.name);        
@@ -36,32 +43,35 @@ public class PokeCmd  extends Command{
     @Override
     protected void execute(CommandEvent event) {
         PokemonApi api;
-        String result;
-        EmbedSender emb = new EmbedSender(event);
+        List<String> result;
+        Slideshow.Builder builder = new Slideshow.Builder();
         db.updateCommandStats(event.getAuthor().getId(), this.name);        
 
         if (!event.getTextChannel().isNSFW()){
             event.replyWarning("This command works only on NSFW channels! (For obvious reasons)");
             return;
         }
-        
-         if (!event.getArgs().isEmpty()){
-                api = new PokemonApi("http://gallerhy.agn.ph/gallery/post/?search=" + event.getArgs().replaceAll(" ", "+") + "+order:random" + "&api=xml");
+
+        builder.allowTextInput(false)
+                .setBulkSkipNumber(5)
+                .waitOnSinglePage(false)
+                .setColor(Color.PINK)
+                .setEventWaiter(waiter)
+                .setText("")
+                .setDescription("Danbooru")
+                .setTimeout(5, TimeUnit.MINUTES);
+
+
+
+
+        if (!event.getArgs().isEmpty()){
+            api = new PokemonApi("http://gallerhy.agn.ph/gallery/post/?search=" + event.getArgs().replaceAll(" ", "+") + "+order:random" + "&api=xml");
+         } else {
+            api = new PokemonApi("http://gallerhy.agn.ph/gallery/post/?api=xml");
+         }
                 try {
                 result = api.PokeXml();
-                } catch (IllegalArgumentException e){
-                    e.printStackTrace();
-                    event.reply("No results found!");
-                    return;
-                } catch (WebmPostException e){
-                    event.reply("Only results are webms!");                    
-                    return;
-                }
-                emb.sendPicEmbed("AGNPH", result , Color.PINK);
-                } else {
-                api = new PokemonApi("http://gallerhy.agn.ph/gallery/post/?api=xml");
-                try {
-                result = api.PokeXml();
+                builder.setUrls(result.toArray(new String[result.size()]));
                 } catch (IllegalArgumentException e){
                     event.reply("No results found!");                    
                     return;
@@ -69,10 +79,9 @@ public class PokeCmd  extends Command{
                     event.reply("Only results are webms!");                    
                     return;
                 }
-                emb.sendPicEmbed("AGNPH", result , Color.PINK);
-                }  
-        
-    }
+        builder.build().display(event.getTextChannel());
+        }
+}
 
     
-}
+
