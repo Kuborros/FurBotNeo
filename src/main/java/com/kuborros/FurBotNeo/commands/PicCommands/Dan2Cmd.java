@@ -69,10 +69,12 @@ public class Dan2Cmd extends Command {
         builder.setEventWaiter(waiter);
         builder.setText("");
         builder.setDescription("Danbooru");
+        
 
 
         if (!event.getArgs().isEmpty()) {
             api = new Dan2Api("https://danbooru.donmai.us/posts.json?tags=" + String.join("+", tags) + "&random=true");
+            event.reply("Processing...");
             try {
                 result = api.getDanPic();
                 builder.setUrls(arr = result.toArray(new String[result.size()]));
@@ -88,16 +90,15 @@ public class Dan2Cmd extends Command {
             api = new Dan2Api("https://danbooru.donmai.us/posts.json?random=true");
             try {
                 result = api.getDanPic();
-
-
+                builder.setUrls(arr = result.toArray(new String[result.size()]));
             } catch (JSONException e) {
                 event.reply("No results found!");
                 return;
-                //emb.sendPicEmbed("DanBooru", result.get(0) , "Author: " + result.get(1) , Color.PINK);
             } catch (IOException e) {
-                e.printStackTrace();
+                event.replyError(e.getLocalizedMessage());
             }
-
+            Slideshow show = builder.build();
+            show.display(event.getTextChannel());
         }
     }
 }
