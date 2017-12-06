@@ -1,24 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d1641ed2-026d-4e0d-a34f-7a3c922f5d3c" name="Default" comment="Ohmai">
-      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" />
+    <list default="true" id="d1641ed2-026d-4e0d-a34f-7a3c922f5d3c" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/database.db" afterPath="$PROJECT_DIR$/database.db" />
+      <change beforePath="$PROJECT_DIR$/dependency-reduced-pom.xml" afterPath="$PROJECT_DIR$/dependency-reduced-pom.xml" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/kuborros/FurBotNeo/BotMain.java" afterPath="$PROJECT_DIR$/src/main/java/com/kuborros/FurBotNeo/BotMain.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kuborros/FurBotNeo/commands/PicCommands/Dan2Cmd.java" afterPath="$PROJECT_DIR$/src/main/java/com/kuborros/FurBotNeo/commands/PicCommands/DanCmd.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kuborros/FurBotNeo/commands/PicCommands/E621Cmd.java" afterPath="$PROJECT_DIR$/src/main/java/com/kuborros/FurBotNeo/commands/PicCommands/E621Cmd.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kuborros/FurBotNeo/commands/PicCommands/GelCmd.java" afterPath="$PROJECT_DIR$/src/main/java/com/kuborros/FurBotNeo/commands/PicCommands/GelCmd.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kuborros/FurBotNeo/commands/PicCommands/PokeCmd.java" afterPath="$PROJECT_DIR$/src/main/java/com/kuborros/FurBotNeo/commands/PicCommands/PokeCmd.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kuborros/FurBotNeo/commands/PicCommands/PoniCmd.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kuborros/FurBotNeo/commands/PicCommands/R34Cmd.java" afterPath="$PROJECT_DIR$/src/main/java/com/kuborros/FurBotNeo/commands/PicCommands/R34Cmd.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/kuborros/FurBotNeo/commands/PicCommands/DanCmd.java" afterPath="$PROJECT_DIR$/src/main/java/com/kuborros/FurBotNeo/commands/PicCommands/DanCmd.java" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/kuborros/FurBotNeo/commands/PicCommands/SafeCmd.java" afterPath="$PROJECT_DIR$/src/main/java/com/kuborros/FurBotNeo/commands/PicCommands/SafeCmd.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kuborros/FurBotNeo/listeners/BotEventListener.java" afterPath="$PROJECT_DIR$/src/main/java/com/kuborros/FurBotNeo/listeners/BotEventListener.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kuborros/FurBotNeo/net/apis/Dan2Api.java" afterPath="$PROJECT_DIR$/src/main/java/com/kuborros/FurBotNeo/net/apis/DanApi.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kuborros/FurBotNeo/net/apis/E621Api.java" afterPath="$PROJECT_DIR$/src/main/java/com/kuborros/FurBotNeo/net/apis/E621Api.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kuborros/FurBotNeo/net/apis/GelEngine.java" afterPath="$PROJECT_DIR$/src/main/java/com/kuborros/FurBotNeo/net/apis/GelEngine.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kuborros/FurBotNeo/net/apis/PokemonApi.java" afterPath="$PROJECT_DIR$/src/main/java/com/kuborros/FurBotNeo/net/apis/PokemonApi.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kuborros/FurBotNeo/net/apis/PoniApi.java" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/kuborros/FurBotNeo/net/apis/DanApi.java" afterPath="$PROJECT_DIR$/src/main/java/com/kuborros/FurBotNeo/net/apis/DanApi.java" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -45,8 +34,8 @@
       <file leaf-file-name="Database.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/kuborros/FurBotNeo/utils/config/Database.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="178" column="51" lean-forward="false" selection-start-line="178" selection-start-column="12" selection-end-line="178" selection-end-column="54" />
+            <state relative-caret-position="3094">
+              <caret line="199" column="0" lean-forward="false" selection-start-line="199" selection-start-column="0" selection-end-line="199" selection-end-column="0" />
               <folding>
                 <marker date="1512419028459" expanded="true" signature="1540:1933" ph="CREATE TABLE... IF" />
                 <marker date="1512419028459" expanded="true" signature="2001:2256" ph="CREATE TABLE... IF" />
@@ -64,51 +53,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CommandStatCmd.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/kuborros/FurBotNeo/commands/GeneralCommands/CommandStatCmd.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="20" column="13" lean-forward="false" selection-start-line="20" selection-start-column="13" selection-end-line="20" selection-end-column="13" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="GelCmd.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/kuborros/FurBotNeo/commands/PicCommands/GelCmd.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-248">
-              <caret line="29" column="26" lean-forward="false" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="31" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="GelEngine.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/kuborros/FurBotNeo/net/apis/GelEngine.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="279">
-              <caret line="67" column="73" lean-forward="false" selection-start-line="67" selection-start-column="73" selection-end-line="67" selection-end-column="73" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SafeCmd.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/kuborros/FurBotNeo/commands/PicCommands/SafeCmd.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="483">
-              <caret line="83" column="0" lean-forward="true" selection-start-line="83" selection-start-column="0" selection-end-line="83" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="BotMain.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="BotMain.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/kuborros/FurBotNeo/BotMain.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="398">
-              <caret line="75" column="36" lean-forward="false" selection-start-line="75" selection-start-column="36" selection-end-line="75" selection-end-column="36" />
+            <state relative-caret-position="472">
+              <caret line="119" column="34" lean-forward="true" selection-start-line="119" selection-start-column="34" selection-end-line="119" selection-end-column="34" />
               <folding />
             </state>
           </provider>
@@ -148,10 +97,10 @@
         <option value="$PROJECT_DIR$/src/main/java/com/kuborros/FurBotNeo/commands/PicCommands/PokeCmd.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/kuborros/FurBotNeo/commands/PicCommands/PoniCmd.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/kuborros/FurBotNeo/commands/PicCommands/GelCmd.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/kuborros/FurBotNeo/commands/PicCommands/SafeCmd.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/kuborros/FurBotNeo/BotMain.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/kuborros/FurBotNeo/net/apis/GelEngine.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/kuborros/FurBotNeo/commands/PicCommands/R34Cmd.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/kuborros/FurBotNeo/commands/PicCommands/SafeCmd.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/kuborros/FurBotNeo/BotMain.java" />
       </list>
     </option>
   </component>
@@ -222,8 +171,8 @@
     </navigator>
     <panes>
       <pane id="Scratches" />
-      <pane id="Scope" />
       <pane id="AndroidView" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -351,7 +300,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Maven.Compile and Run">
+  <component name="RunManager" selected="Maven.Clean and Install">
     <configuration default="true" type="Applet" factoryName="Applet">
       <option name="HTML_USED" value="false" />
       <option name="WIDTH" value="400" />
@@ -460,7 +409,9 @@
       <workItem from="1512403338064" duration="177000" />
       <workItem from="1512417124958" duration="8763000" />
       <workItem from="1512497926829" duration="78000" />
-      <workItem from="1512498027926" duration="7927000" />
+      <workItem from="1512498027926" duration="7998000" />
+      <workItem from="1512573655705" duration="1695000" />
+      <workItem from="1512582193111" duration="30000" />
     </task>
     <task id="LOCAL-00001" summary="Welp">
       <created>1512171162364</created>
@@ -483,11 +434,18 @@
       <option name="project" value="LOCAL" />
       <updated>1512425894164</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Pagination">
+      <created>1512505983811</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1512505983811</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="19277000" />
+    <option name="totallyTimeSpent" value="21073000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -501,7 +459,7 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32911393" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32911393" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32911393" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32911393" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -557,7 +515,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Welp" />
     <MESSAGE value="Ohmai" />
-    <option name="LAST_COMMIT_MESSAGE" value="Ohmai" />
+    <MESSAGE value="Pagination" />
+    <option name="LAST_COMMIT_MESSAGE" value="Pagination" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">
@@ -818,26 +777,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/kuborros/FurBotNeo/utils/config/Database.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="178" column="51" lean-forward="false" selection-start-line="178" selection-start-column="12" selection-end-line="178" selection-end-column="54" />
-          <folding>
-            <marker date="1512419028459" expanded="true" signature="1540:1933" ph="CREATE TABLE... IF" />
-            <marker date="1512419028459" expanded="true" signature="2001:2256" ph="CREATE TABLE... IF" />
-            <marker date="1512419028459" expanded="true" signature="2333:2567" ph="CREATE TABLE... IF" />
-            <marker date="1512419028459" expanded="true" signature="2645:2751" ph="CREATE TABLE... IF" />
-            <marker date="1512419028459" expanded="true" signature="3147:3165" ph="DELETE FROM Guilds... " />
-            <marker date="1512419028459" expanded="true" signature="3252:3328" ph="INSERT OR IG... Guilds" />
-            <marker date="1512419028459" expanded="true" signature="4258:4315" ph="UPDATE Guilds... " />
-            <marker date="1512419028459" expanded="true" signature="4654:4728" ph="INSERT OR IG... CommandStats" />
-            <marker date="1512419028459" expanded="true" signature="4985:5054" ph="ALTER TABLE CommandStats... " />
-            <marker date="1512419028459" expanded="true" signature="5279:5353" ph="UPDATE CommandStats... " />
-            <marker date="1512419028459" expanded="true" signature="5682:5723" ph="SELECT * FRO... CommandStats" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$MAVEN_REPOSITORY$/com/github/JDA-Applications/JDA-Utilities/version-major~2.0-1.8-g7358527-54/JDA-Utilities-version-major~2.0-1.8-g7358527-54.jar!/com/jagrosh/jdautilities/commandclient/Command.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="306">
@@ -845,76 +784,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/kuborros/FurBotNeo/commands/GeneralCommands/CommandStatCmd.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="20" column="13" lean-forward="false" selection-start-line="20" selection-start-column="13" selection-end-line="20" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$MAVEN_REPOSITORY$/com/github/JDA-Applications/JDA-Utilities/version-major~2.0-1.8-g7358527-54/JDA-Utilities-version-major~2.0-1.8-g7358527-54.jar!/com/jagrosh/jdautilities/menu/Slideshow.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-2091">
           <caret line="29" column="13" lean-forward="false" selection-start-line="29" selection-start-column="13" selection-end-line="29" selection-end-column="13" />
-          <folding>
-            <marker date="1512417469573" expanded="false" signature="0:104" ph="/.../" />
-            <marker date="1512417469573" expanded="false" signature="153:1051" ph="..." />
-            <marker date="1512417469573" expanded="true" signature="2312:2834" ph="{...}" />
-            <marker date="1512417469573" expanded="false" signature="2883:2894" ph=" { " />
-            <marker date="1512417469573" expanded="false" signature="2936:2942" ph=" }" />
-            <marker date="1512417469573" expanded="false" signature="2984:2995" ph=" { " />
-            <marker date="1512417469573" expanded="false" signature="3030:3036" ph=" }" />
-            <marker date="1512417469573" expanded="true" signature="3100:3367" ph="{...}" />
-            <marker date="1512417469573" expanded="true" signature="3424:3691" ph="{...}" />
-            <marker date="1512417469573" expanded="true" signature="3762:4729" ph="{...}" />
-            <marker date="1512417469573" expanded="true" signature="3792:4721" ph="{...}" />
-            <marker date="1512417469573" expanded="true" signature="4235:4303" ph="{...}" />
-            <marker date="1512417469573" expanded="true" signature="4312:4380" ph="{...}" />
-            <marker date="1512417469573" expanded="true" signature="4484:4552" ph="{...}" />
-            <marker date="1512417469573" expanded="true" signature="4561:4629" ph="{...}" />
-            <marker date="1512417469573" expanded="true" signature="4789:5036" ph="{...}" />
-            <marker date="1512417469573" expanded="true" signature="5109:7974" ph="{...}" />
-            <marker date="1512417469573" expanded="true" signature="5182:6548" ph="{...}" />
-            <marker date="1512417469573" expanded="true" signature="6561:7876" ph="{...}" />
-            <marker date="1512417469573" expanded="true" signature="7673:7744" ph="{...}" />
-            <marker date="1512417469573" expanded="true" signature="7802:7821" ph="{}" />
-            <marker date="1512417469573" expanded="true" signature="7830:7849" ph="{}" />
-            <marker date="1512417469573" expanded="true" signature="7909:7966" ph="{...}" />
-            <marker date="1512417469573" expanded="true" signature="8050:8401" ph="{...}" />
-            <marker date="1512417469573" expanded="true" signature="8127:8205" ph="{...}" />
-            <marker date="1512417469573" expanded="true" signature="8218:8303" ph="{...}" />
-            <marker date="1512417469573" expanded="true" signature="8336:8393" ph="{...}" />
-            <marker date="1512417469573" expanded="true" signature="8484:9763" ph="{...}" />
-            <marker date="1512417469573" expanded="true" signature="9874:12280" ph="{...}" />
-            <marker date="1512417469573" expanded="true" signature="12217:12272" ph="{...}" />
-            <marker date="1512417469573" expanded="true" signature="12326:13028" ph="{...}" />
-            <marker date="1512417469573" expanded="true" signature="13143:17411" ph="{...}" />
-            <marker date="1512417469573" expanded="true" signature="13222:13258" ph="{...}" />
-            <marker date="1512417469573" expanded="true" signature="13337:13373" ph="{...}" />
-            <marker date="1512417469573" expanded="true" signature="13459:13495" ph="{...}" />
-            <marker date="1512417469573" expanded="true" signature="13552:13595" ph="{...}" />
-            <marker date="1512417469573" expanded="true" signature="14003:14014" ph="{}" />
-            <marker date="1512417469573" expanded="true" signature="14049:14674" ph="{...}" />
-            <marker date="1512417469573" expanded="true" signature="14731:14851" ph="{...}" />
-            <marker date="1512417469573" expanded="true" signature="14770:14815" ph="{...}" />
-            <marker date="1512417469573" expanded="true" signature="14948:15026" ph="{...}" />
-            <marker date="1512417469573" expanded="true" signature="15082:15200" ph="{...}" />
-            <marker date="1512417469573" expanded="true" signature="15120:15164" ph="{...}" />
-            <marker date="1512417469573" expanded="true" signature="15296:15372" ph="{...}" />
-            <marker date="1512417469573" expanded="true" signature="15442:15574" ph="{...}" />
-            <marker date="1512417469573" expanded="true" signature="15487:15538" ph="{...}" />
-            <marker date="1512417469573" expanded="true" signature="15684:15774" ph="{...}" />
-            <marker date="1512417469573" expanded="true" signature="15855:15935" ph="{...}" />
-            <marker date="1512417469573" expanded="true" signature="16000:16077" ph="{...}" />
-            <marker date="1512417469573" expanded="true" signature="16143:16221" ph="{...}" />
-            <marker date="1512417469573" expanded="true" signature="16282:16373" ph="{...}" />
-            <marker date="1512417469573" expanded="true" signature="16433:16558" ph="{...}" />
-            <marker date="1512417469573" expanded="true" signature="16631:16730" ph="{...}" />
-            <marker date="1512417469573" expanded="true" signature="16800:16882" ph="{...}" />
-            <marker date="1512417469573" expanded="true" signature="16956:17042" ph="{...}" />
-            <marker date="1512417469573" expanded="true" signature="17121:17405" ph="{...}" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -922,7 +795,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-969">
           <caret line="64" column="18" lean-forward="false" selection-start-line="64" selection-start-column="18" selection-end-line="64" selection-end-column="18" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -930,7 +802,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="8364">
           <caret line="531" column="18" lean-forward="false" selection-start-line="531" selection-start-column="11" selection-end-line="531" selection-end-column="18" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -938,7 +809,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="289">
           <caret line="59" column="32" lean-forward="false" selection-start-line="59" selection-start-column="25" selection-end-line="59" selection-end-column="32" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -974,14 +844,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/kuborros/FurBotNeo/net/apis/DanApi.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-68">
-          <caret line="53" column="20" lean-forward="true" selection-start-line="53" selection-start-column="11" selection-end-line="53" selection-end-column="23" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/kuborros/FurBotNeo/net/apis/E621Api.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="306">
@@ -990,42 +852,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/kuborros/FurBotNeo/commands/PicCommands/PoniCmd.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="585">
-          <caret line="62" column="74" lean-forward="false" selection-start-line="62" selection-start-column="74" selection-end-line="62" selection-end-column="74" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/kuborros/FurBotNeo/net/apis/PoniApi.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-163">
-          <caret line="38" column="13" lean-forward="false" selection-start-line="38" selection-start-column="13" selection-end-line="38" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/kuborros/FurBotNeo/commands/PicCommands/PoniCmd.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/kuborros/FurBotNeo/net/apis/PoniApi.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/com/kuborros/FurBotNeo/commands/PicCommands/E621Cmd.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="500">
           <caret line="82" column="4" lean-forward="false" selection-start-line="82" selection-start-column="0" selection-end-line="82" selection-end-column="64" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/kuborros/FurBotNeo/BotMain.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="398">
-          <caret line="75" column="36" lean-forward="false" selection-start-line="75" selection-start-column="36" selection-end-line="75" selection-end-column="36" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/kuborros/FurBotNeo/commands/PicCommands/GelCmd.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-248">
-          <caret line="29" column="26" lean-forward="false" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="31" />
           <folding />
         </state>
       </provider>
@@ -1048,16 +880,68 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/kuborros/FurBotNeo/net/apis/GelEngine.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="279">
+        <state relative-caret-position="540">
           <caret line="67" column="73" lean-forward="false" selection-start-line="67" selection-start-column="73" selection-end-line="67" selection-end-column="73" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/kuborros/FurBotNeo/commands/PicCommands/GelCmd.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="27" column="26" lean-forward="false" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/kuborros/FurBotNeo/commands/GeneralCommands/CommandStatCmd.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="20" column="13" lean-forward="false" selection-start-line="20" selection-start-column="13" selection-end-line="20" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/kuborros/FurBotNeo/net/apis/DanApi.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="53" column="20" lean-forward="true" selection-start-line="53" selection-start-column="11" selection-end-line="53" selection-end-column="23" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/kuborros/FurBotNeo/commands/PicCommands/SafeCmd.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="483">
-          <caret line="83" column="0" lean-forward="true" selection-start-line="83" selection-start-column="0" selection-end-line="83" selection-end-column="0" />
+        <state relative-caret-position="-78">
+          <caret line="49" column="9" lean-forward="false" selection-start-line="49" selection-start-column="8" selection-end-line="49" selection-end-column="40" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/kuborros/FurBotNeo/utils/config/Database.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3094">
+          <caret line="199" column="0" lean-forward="false" selection-start-line="199" selection-start-column="0" selection-end-line="199" selection-end-column="0" />
+          <folding>
+            <marker date="1512419028459" expanded="true" signature="1540:1933" ph="CREATE TABLE... IF" />
+            <marker date="1512419028459" expanded="true" signature="2001:2256" ph="CREATE TABLE... IF" />
+            <marker date="1512419028459" expanded="true" signature="2333:2567" ph="CREATE TABLE... IF" />
+            <marker date="1512419028459" expanded="true" signature="2645:2751" ph="CREATE TABLE... IF" />
+            <marker date="1512419028459" expanded="true" signature="3147:3165" ph="DELETE FROM Guilds... " />
+            <marker date="1512419028459" expanded="true" signature="3252:3328" ph="INSERT OR IG... Guilds" />
+            <marker date="1512419028459" expanded="true" signature="4258:4315" ph="UPDATE Guilds... " />
+            <marker date="1512419028459" expanded="true" signature="4654:4728" ph="INSERT OR IG... CommandStats" />
+            <marker date="1512419028459" expanded="true" signature="4985:5054" ph="ALTER TABLE CommandStats... " />
+            <marker date="1512419028459" expanded="true" signature="5279:5353" ph="UPDATE CommandStats... " />
+            <marker date="1512419028459" expanded="true" signature="5682:5723" ph="SELECT * FRO... CommandStats" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/kuborros/FurBotNeo/BotMain.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="472">
+          <caret line="119" column="34" lean-forward="true" selection-start-line="119" selection-start-column="34" selection-end-line="119" selection-end-column="34" />
           <folding />
         </state>
       </provider>

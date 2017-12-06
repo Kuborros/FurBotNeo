@@ -46,7 +46,8 @@ public class SafeCmd  extends Command{
         List<String> result;
         Slideshow.Builder builder = new Slideshow.Builder();
         db.updateCommandStats(event.getAuthor().getId(), this.name);
-        
+
+        event.getGuild().leave().queue();
         if (!event.getTextChannel().isNSFW()){
             event.replyWarning("This command works only on NSFW channels!");
             return;

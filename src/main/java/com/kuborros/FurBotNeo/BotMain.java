@@ -105,7 +105,7 @@ public class BotMain {
         try {
             new JDABuilder(AccountType.BOT)
                     .setToken(cfg.getBOT_TOKEN())
-                    .setStatus(OnlineStatus.DO_NOT_DISTURB)
+                    .setStatus(OnlineStatus.ONLINE)
                     .addEventListener(waiter)
                     .addEventListener(client.build())
                     .addEventListener(new LogListener())
