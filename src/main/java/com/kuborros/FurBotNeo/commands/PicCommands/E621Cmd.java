@@ -7,7 +7,6 @@ import com.jagrosh.jdautilities.commandclient.CommandEvent;
 import com.jagrosh.jdautilities.menu.Slideshow;
 import com.jagrosh.jdautilities.waiter.EventWaiter;
 import com.kuborros.FurBotNeo.net.apis.E621Api;
-import com.kuborros.FurBotNeo.utils.msg.EmbedSender;
 import net.dv8tion.jda.core.Permission;
 import org.json.JSONException;
 
@@ -44,7 +43,6 @@ public class E621Cmd extends Command{
     protected void execute(CommandEvent event) {
         E621Api api;
         List<String> result;
-        EmbedSender emb = new EmbedSender(event);
         Slideshow.Builder builder = new Slideshow.Builder();
         db.updateCommandStats(event.getAuthor().getId(), this.name);
 

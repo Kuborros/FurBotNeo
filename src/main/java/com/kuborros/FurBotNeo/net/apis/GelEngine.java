@@ -26,11 +26,11 @@ import java.util.List;
  * @author Kuborros
  */
 public class GelEngine {
-    
 
-    List<String> urls = new ArrayList<>();
+
+    private List<String> urls = new ArrayList<>();
     private String url;
-    Logger LOG = LoggerFactory.getLogger("ImageBoardApi");    
+    private Logger LOG = LoggerFactory.getLogger("ImageBoardApi");
     
     public GelEngine (String url) {
        this.url = url;         

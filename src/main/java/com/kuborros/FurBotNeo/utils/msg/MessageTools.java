@@ -10,6 +10,7 @@ import net.dv8tion.jda.core.entities.User;
  *
  * @author Kuborros
  */
+@SuppressWarnings("WeakerAccess")
 public class MessageTools {
    
     private String filter(String msgContent) {
@@ -21,6 +22,7 @@ public class MessageTools {
     public String userDiscrimSet(User u) {
         return stripFormatting(u.getName()) + "#" + u.getDiscriminator();
     }
+
 
     public String stripFormatting(String s) {
         return s.replace("*", "\\*")

@@ -6,9 +6,10 @@ import org.slf4j.LoggerFactory;
 import java.io.*;
 import java.util.Properties;
 
+@SuppressWarnings("ResultOfMethodCallIgnored")
 public class ConFile {
-    static final Logger LOG = LoggerFactory.getLogger(ConFile.class);
-    static File CONFIG;
+    private static final Logger LOG = LoggerFactory.getLogger(ConFile.class);
+    private static File CONFIG;
 
     public static void ConFileCheck() {
 

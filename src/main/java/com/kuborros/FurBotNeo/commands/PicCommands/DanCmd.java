@@ -9,7 +9,6 @@ import com.jagrosh.jdautilities.commandclient.CommandEvent;
 import com.jagrosh.jdautilities.menu.Slideshow;
 import com.jagrosh.jdautilities.waiter.EventWaiter;
 import com.kuborros.FurBotNeo.net.apis.DanApi;
-import com.kuborros.FurBotNeo.utils.msg.EmbedSender;
 import net.dv8tion.jda.core.Permission;
 import org.json.JSONException;
 
@@ -49,8 +48,6 @@ public class DanCmd extends Command {
         Slideshow.Builder builder = new Slideshow.Builder();
         DanApi api;
         List<String> result;
-        String[] arr;
-        EmbedSender emb = new EmbedSender(event);
         db.updateCommandStats(event.getAuthor().getId(), this.name);
 
         if (!event.getTextChannel().isNSFW()) {

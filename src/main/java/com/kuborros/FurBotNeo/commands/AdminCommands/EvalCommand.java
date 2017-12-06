@@ -6,11 +6,12 @@ package com.kuborros.FurBotNeo.commands.AdminCommands;
 
 import com.jagrosh.jdautilities.commandclient.Command;
 import com.jagrosh.jdautilities.commandclient.CommandEvent;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import javax.script.ScriptEngine;
 import javax.script.ScriptEngineManager;
 import javax.script.ScriptException;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  *
@@ -18,8 +19,8 @@ import org.slf4j.LoggerFactory;
  */
 public class EvalCommand extends Command {
     
-    private ScriptEngine engine; 
-    Logger LOG = LoggerFactory.getLogger("CommandExec");
+    private ScriptEngine engine;
+    private Logger LOG = LoggerFactory.getLogger("CommandExec");
     
 
     public EvalCommand()

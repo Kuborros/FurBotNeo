@@ -30,21 +30,19 @@ import com.sedmelluq.discord.lavaplayer.track.AudioTrackEndReason;
 import net.dv8tion.jda.core.entities.Guild;
 import net.dv8tion.jda.core.entities.Member;
 import net.dv8tion.jda.core.entities.VoiceChannel;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.*;
 import java.util.concurrent.LinkedBlockingQueue;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 
 public class TrackManager extends AudioEventAdapter {
     
     static final Logger LOG = LoggerFactory.getLogger(TrackManager.class);
 
-    private final AudioPlayer player;
-    private final Queue<AudioInfo> queue;
-    AudioTrack lastTrack;
-    private boolean repeating = false;
+    private AudioPlayer player;
+    private Queue<AudioInfo> queue;
 
     public TrackManager(AudioPlayer player) {
         this.player = player;
@@ -104,15 +102,5 @@ public class TrackManager extends AudioEventAdapter {
 
     public AudioInfo getTrackInfo(AudioTrack track) {
         return queue.stream().filter(audioInfo -> audioInfo.getTrack().equals(track)).findFirst().orElse(null);
-    }
-    
-        public boolean isRepeating()
-    {
-        return repeating;
-    }
-
-    public void setRepeating(boolean repeating)
-    {
-        this.repeating = repeating;
     }
 }

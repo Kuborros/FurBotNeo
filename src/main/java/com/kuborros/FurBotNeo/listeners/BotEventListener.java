@@ -43,8 +43,8 @@ import static com.kuborros.FurBotNeo.BotMain.db;
  * @author Kuborros
  */
 public class BotEventListener extends ListenerAdapter{
-    
-    static final Logger LOG = LoggerFactory.getLogger("BotInfo");
+
+    private static final Logger LOG = LoggerFactory.getLogger("BotInfo");
 
     
     @Override
@@ -101,8 +101,8 @@ public class BotEventListener extends ListenerAdapter{
     public void onGuildAvailable(GuildAvailableEvent event) {
        LOG.debug("Connected to guild: {}", event.getGuild().getName());
     }
-       
-    public static void ClearConsole(){
+
+    private static void ClearConsole() {
        System.out.print("\033[H\033[2J");  
        System.out.flush(); 
    } 

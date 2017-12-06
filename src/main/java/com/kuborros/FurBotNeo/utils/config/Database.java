@@ -17,10 +17,10 @@ import java.util.Map;
 
 public class Database {
 
-    static final Logger LOG = LoggerFactory.getLogger(Database.class);
+    private static final Logger LOG = LoggerFactory.getLogger(Database.class);
 
-    static final String DRIVER = "org.sqlite.JDBC";
-    static final String DB = "jdbc:sqlite:database.db";
+    private static final String DRIVER = "org.sqlite.JDBC";
+    private static final String DB = "jdbc:sqlite:database.db";
 
     private Connection conn;
     private Statement stat;
@@ -157,21 +157,24 @@ public class Database {
                 stat.addBatch("INSERT OR IGNORE INTO CommandStats (user_id) VALUES (" + user.getId() + ")");
             }
             stat.executeBatch();
-        } catch (SQLException e) {}                
+        } catch (SQLException ignored) {
+        }
     }
     
     public void registerCommand(String command) {
         try {    
             stat = conn.createStatement();
-            stat.executeUpdate("ALTER TABLE CommandStats ADD COLUMN " + command + " INTEGER DEFAULT 0");            
-        } catch (SQLException e) {}
+            stat.executeUpdate("ALTER TABLE CommandStats ADD COLUMN " + command + " INTEGER DEFAULT 0");
+        } catch (SQLException ignored) {
+        }
     }
     
     public void updateCommandStats(String memberID, String command) {
        try {    
             stat = conn.createStatement();
-            stat.executeUpdate("UPDATE CommandStats SET " + command + "=" + command + " + 1 WHERE user_id=" + memberID);            
-        } catch (SQLException e) {}
+            stat.executeUpdate("UPDATE CommandStats SET " + command + "=" + command + " + 1 WHERE user_id=" + memberID);
+       } catch (SQLException ignored) {
+       }
     }        
     
     public Map<String, String> getCommandStats(String memberID) throws SQLException{

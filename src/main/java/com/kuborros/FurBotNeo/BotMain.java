@@ -29,7 +29,7 @@ import java.awt.*;
 
 public class BotMain {
 
-    static final Logger LOG = LoggerFactory.getLogger("Main");
+    private static final Logger LOG = LoggerFactory.getLogger("Main");
     public static Config cfg;
     public static Database db;
     

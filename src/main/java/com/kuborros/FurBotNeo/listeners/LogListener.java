@@ -13,8 +13,8 @@ import org.slf4j.LoggerFactory;
  * @author Kuborros
  */
 public class LogListener extends ListenerAdapter{
-    
-static final Logger LOG = LoggerFactory.getLogger("ChatLogs");
+
+    private static final Logger LOG = LoggerFactory.getLogger("ChatLogs");
     
     @Override
     public void onMessageReceived(MessageReceivedEvent event)

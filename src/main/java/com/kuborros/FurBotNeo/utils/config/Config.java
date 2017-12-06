@@ -3,15 +3,16 @@ package com.kuborros.FurBotNeo.utils.config;
 import java.util.Properties;
 
 
+@SuppressWarnings("FieldCanBeLocal")
 public class Config {
 
     private Properties properties;
-    private String BOT_TOKEN = "";
-    private String OWNER_ID = "";
+    private String BOT_TOKEN;
+    private String OWNER_ID;
     private String PREFIX = "!";
     private String VERSION = "V2.1";
-    private boolean FILE_LOGGING = true;
-    private boolean GUILD_MSGS = true;
+    private boolean FILE_LOGGING;
+    private boolean GUILD_MSGS;
 
 
     public Properties getProperties() {

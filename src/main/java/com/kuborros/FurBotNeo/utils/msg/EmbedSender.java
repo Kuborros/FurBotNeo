@@ -4,12 +4,13 @@
 package com.kuborros.FurBotNeo.utils.msg;
 
 import com.jagrosh.jdautilities.commandclient.CommandEvent;
-import java.awt.Color;
 import net.dv8tion.jda.core.EmbedBuilder;
 import net.dv8tion.jda.core.MessageBuilder;
 import net.dv8tion.jda.core.entities.Message;
 import net.dv8tion.jda.core.entities.MessageChannel;
 import net.dv8tion.jda.core.entities.MessageEmbed;
+
+import java.awt.*;
 
 /**
  *
@@ -45,7 +46,7 @@ public class EmbedSender {
                 try {
                     buildMessage(new EmbedBuilder().setTitle(title, null).setImage(imgUrl).setColor(color).build(), event.getChannel());
                 } catch (IllegalArgumentException e) {
-                    sendMessage("Invalid input or something went horribly wrong.");
+                    sendErrorMessage();
                 }
         }
 
@@ -53,7 +54,7 @@ public class EmbedSender {
                 try {
                     buildMessage(new EmbedBuilder().setTitle(title, null).setImage(imgUrl).setColor(color).setFooter(footer, null).build(), event.getChannel());
                 } catch (IllegalArgumentException e) {
-                    sendMessage("Invalid input or something went horribly wrong.");
+                    sendErrorMessage();
                 }
         }
                    
@@ -62,12 +63,12 @@ public class EmbedSender {
         }
         
         private void sendMessage(Message message, MessageChannel channel) {
-            channel.sendMessage(message).queue();      
+            channel.sendMessage(message).queue();
         }
-        
-        private void sendMessage(String message) {
+
+    private void sendErrorMessage() {
             MessageChannel channel = event.getChannel();
-            channel.sendMessage(message).queue();      
+        channel.sendMessage("Invalid input or something went horribly wrong.").queue();
         }
 }
     

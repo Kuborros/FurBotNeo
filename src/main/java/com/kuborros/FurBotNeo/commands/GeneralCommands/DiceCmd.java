@@ -6,6 +6,7 @@ package com.kuborros.FurBotNeo.commands.GeneralCommands;
 
 import com.jagrosh.jdautilities.commandclient.Command;
 import com.jagrosh.jdautilities.commandclient.CommandEvent;
+
 import java.util.Random;
 
 /**
@@ -13,10 +14,10 @@ import java.util.Random;
  * @author Kuborros
  */
 public class DiceCmd extends Command{
-    StringBuilder rolls = new StringBuilder();
-    int numSides = 20;
-    int numDices = 1;
-    Random rand = new Random();
+    private StringBuilder rolls = new StringBuilder();
+    private int numSides = 20;
+    private int numDices = 1;
+    private Random rand = new Random();
     
     
     public DiceCmd()

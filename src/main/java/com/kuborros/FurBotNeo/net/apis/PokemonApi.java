@@ -38,7 +38,6 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 
 /**
@@ -49,17 +48,16 @@ public class PokemonApi {
     
 private List<String> urls = new ArrayList<>();
 private String url;
-Logger LOG = LoggerFactory.getLogger("ImageBoardApi");
+    private Logger LOG = LoggerFactory.getLogger("ImageBoardApi");
 
 public PokemonApi(String url){
     this.url = url;
 }
 
-public List<String> PokeXml() throws IllegalArgumentException, WebmPostException{
+    public List<String> PokeXml() throws IllegalArgumentException {
     try {
-        
-        Random rand = new Random();
-        
+
+
         URL u = new URL(url);
         URLConnection UC = u.openConnection();
         UC.setRequestProperty ( "User-agent", "DiscordBot/1.0");

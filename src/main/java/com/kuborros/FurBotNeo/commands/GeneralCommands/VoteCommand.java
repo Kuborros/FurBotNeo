@@ -6,16 +6,17 @@ package com.kuborros.FurBotNeo.commands.GeneralCommands;
 
 import com.jagrosh.jdautilities.commandclient.Command;
 import com.jagrosh.jdautilities.commandclient.CommandEvent;
-import java.awt.Color;
+import net.dv8tion.jda.core.EmbedBuilder;
+import net.dv8tion.jda.core.entities.MessageEmbed;
+import net.dv8tion.jda.core.entities.MessageReaction;
+import net.dv8tion.jda.core.entities.TextChannel;
+
+import java.awt.*;
 import java.time.Instant;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.concurrent.TimeUnit;
-import net.dv8tion.jda.core.EmbedBuilder;
-import net.dv8tion.jda.core.entities.MessageEmbed;
-import net.dv8tion.jda.core.entities.MessageReaction;
-import net.dv8tion.jda.core.entities.TextChannel;
 
 /**
  *
@@ -88,37 +89,38 @@ public class VoteCommand extends Command{
     }
 
 
+    @SuppressWarnings("SameReturnValue")
 private boolean startVote(TextChannel channel, Instant now, int seconds, String prize){
-            MessageEmbed msg = new EmbedBuilder().setTitle("**Vote**").setDescription(prize).setTimestamp(now).setColor(Color.BLUE).addField("", "Vote will end in: " + secondsToTime(seconds) + "!", false).build();
-            channel.sendMessage(msg).queue(m -> {
+        MessageEmbed msg = new EmbedBuilder().setTitle("**Vote**").setDescription(prize).setTimestamp(now).setColor(Color.BLUE).addField("", "Vote will end in: " + secondsToTime(seconds) + "!", false).build();
+        channel.sendMessage(msg).queue(m -> {
             m.addReaction("\u2705").queue();
-            m.addReaction("\u274E").queue(); 
+            m.addReaction("\u274E").queue();
             Timer timer = new Timer("VoteTimer");
             TimerTask timerTask = new TimerTask() {
-            @Override
-            public void run() {
-                String mID = m.getId();
-                List<MessageReaction> ayy = channel.getMessageById(mID).complete().getReactions();
-                int check = ayy.get(0).getCount() - 1;
-                int cross = ayy.get(1).getCount() - 1;
-                Color col = (check >= cross ? Color.GREEN : Color.RED);
-                MessageEmbed msg = new EmbedBuilder().setTitle("**Vote results!**").setDescription(
-                          "The results are: \n"
-                        + "\u2705 :  **" + check + "**\n"
-                        + "\u274E :  **" + cross + "**\n"
-                ).addField("", "Vote's topic was: \"" + prize + "\" !", false).setColor(col).build();
-                channel.sendMessage(msg).complete();
-                channel.getMessageById(mID).complete().delete().complete();
-                timer.cancel();
-            }
-        };
+                @Override
+                public void run() {
+                    String mID = m.getId();
+                    List<MessageReaction> ayy = channel.getMessageById(mID).complete().getReactions();
+                    int check = ayy.get(0).getCount() - 1;
+                    int cross = ayy.get(1).getCount() - 1;
+                    Color col = (check >= cross ? Color.GREEN : Color.RED);
+                    MessageEmbed msg = new EmbedBuilder().setTitle("**Vote results!**").setDescription(
+                            "The results are: \n"
+                                    + "\u2705 :  **" + check + "**\n"
+                                    + "\u274E :  **" + cross + "**\n"
+                    ).addField("", "Vote's topic was: \"" + prize + "\" !", false).setColor(col).build();
+                    channel.sendMessage(msg).complete();
+                    channel.getMessageById(mID).complete().delete().complete();
+                    timer.cancel();
+                }
+            };
 
-        timer.schedule(timerTask, TimeUnit.SECONDS.toMillis(seconds));
-            });
+            timer.schedule(timerTask, TimeUnit.SECONDS.toMillis(seconds));
+        });
         return true;    
-}    
-        
- static String secondsToTime(long timeseconds) {
+}
+
+    private static String secondsToTime(long timeseconds) {
         StringBuilder builder = new StringBuilder();
         int years = (int)(timeseconds / (60*60*24*365));
         if(years>0){

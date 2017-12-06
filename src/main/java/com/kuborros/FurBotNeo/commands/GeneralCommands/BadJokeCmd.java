@@ -6,11 +6,6 @@ package com.kuborros.FurBotNeo.commands.GeneralCommands;
 
 import com.jagrosh.jdautilities.commandclient.Command;
 import com.jagrosh.jdautilities.commandclient.CommandEvent;
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.URL;
-import java.net.URLConnection;
-import java.util.Scanner;
 import net.dv8tion.jda.core.entities.Message;
 import net.dv8tion.jda.core.entities.TextChannel;
 import org.json.JSONException;
@@ -18,13 +13,19 @@ import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.URL;
+import java.net.URLConnection;
+import java.util.Scanner;
+
 /**
  *
  * @author Kuborros
  */
 public class BadJokeCmd extends Command{
-    
-    Logger LOG = LoggerFactory.getLogger("CommandExec");  
+
+    private Logger LOG = LoggerFactory.getLogger("CommandExec");
     
     public BadJokeCmd()
     {
@@ -47,7 +48,7 @@ public class BadJokeCmd extends Command{
             
             String str;
             try (Scanner scan = new Scanner(r)) {
-                str = new String();
+                str = "";
                 while (scan.hasNext()) {
                     str += scan.nextLine();
                 }

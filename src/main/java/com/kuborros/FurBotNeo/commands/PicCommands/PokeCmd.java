@@ -9,7 +9,6 @@ import com.jagrosh.jdautilities.commandclient.CommandEvent;
 import com.jagrosh.jdautilities.menu.Slideshow;
 import com.jagrosh.jdautilities.waiter.EventWaiter;
 import com.kuborros.FurBotNeo.net.apis.PokemonApi;
-import com.kuborros.FurBotNeo.net.apis.WebmPostException;
 import net.dv8tion.jda.core.Permission;
 
 import java.awt.*;
@@ -72,11 +71,8 @@ public class PokeCmd  extends Command{
                 try {
                 result = api.PokeXml();
                 builder.setUrls(result.toArray(new String[result.size()]));
-                } catch (IllegalArgumentException e){
-                    event.reply("No results found!");                    
-                    return;
-                } catch (WebmPostException e){
-                    event.reply("Only results are webms!");                    
+                } catch (IllegalArgumentException e) {
+                    event.reply("No results found!");
                     return;
                 }
         builder.build().display(event.getTextChannel());

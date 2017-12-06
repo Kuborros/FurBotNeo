@@ -6,11 +6,12 @@ package com.kuborros.FurBotNeo.commands.MusicCommands;
 
 import com.jagrosh.jdautilities.commandclient.CommandEvent;
 import com.kuborros.FurBotNeo.utils.audio.AudioInfo;
-import java.awt.Color;
+import net.dv8tion.jda.core.EmbedBuilder;
+
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
-import net.dv8tion.jda.core.EmbedBuilder;
 
 /**
  *
@@ -49,7 +50,7 @@ public class MusicQueueCmd extends MusicCommand{
             else
                 tracksSublist = tracks;
 
-            tracksSublist.forEach(s -> sb.append(s));
+            tracksSublist.forEach(sb::append);
             int sideNumbAll = tracks.size() >= 20 ? tracks.size() / 20 : 1;
             int sideNumb = SideNumbInput;
 

@@ -44,8 +44,8 @@ import java.util.Scanner;
 public class DanApi {
 
     private String url;
-    Logger LOG = LoggerFactory.getLogger("ImageBoardApi");
-    List<String> results = new ArrayList<>();
+    private Logger LOG = LoggerFactory.getLogger("ImageBoardApi");
+    private List<String> results = new ArrayList<>();
 
     public DanApi(String url) {
         this.url = url;
@@ -62,7 +62,7 @@ public class DanApi {
 
             String str;
             try (Scanner scan = new Scanner(r)) {
-                str = new String();
+                str = "";
                 while (scan.hasNext()) {
                     str += scan.nextLine();
                 }
