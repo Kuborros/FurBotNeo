@@ -45,8 +45,8 @@ import java.util.Scanner;
 public class E621Api {
     
     private String url;
-    Logger LOG = LoggerFactory.getLogger("ImageBoardApi");
-    List<String> result = new ArrayList<>();
+    private Logger LOG = LoggerFactory.getLogger("ImageBoardApi");
+    private List<String> result = new ArrayList<>();
 
 public E621Api(String url){
     this.url = url;

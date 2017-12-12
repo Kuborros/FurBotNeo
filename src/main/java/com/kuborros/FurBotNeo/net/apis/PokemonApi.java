@@ -55,7 +55,7 @@ public PokemonApi(String url){
     this.url = url;
 }
 
-public List<String> PokeXml() throws IllegalArgumentException, WebmPostException{
+public List<String> PokeXml() throws IllegalArgumentException {
     try {
         
         Random rand = new Random();
