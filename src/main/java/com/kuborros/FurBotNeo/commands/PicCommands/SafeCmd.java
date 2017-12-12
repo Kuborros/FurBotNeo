@@ -59,7 +59,7 @@ public class SafeCmd  extends Command{
                 .setColor(Color.PINK)
                 .setEventWaiter(waiter)
                 .setText("")
-                .setDescription("Danbooru")
+                .setDescription("Safebooru")
                 .setTimeout(5, TimeUnit.MINUTES);
 
 

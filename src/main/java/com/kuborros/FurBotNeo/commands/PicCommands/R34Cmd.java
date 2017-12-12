@@ -58,7 +58,7 @@ public class R34Cmd extends Command{
                 .setColor(Color.PINK)
                 .setEventWaiter(waiter)
                 .setText("")
-                .setDescription("Danbooru")
+                .setDescription("R34")
                 .setTimeout(5, TimeUnit.MINUTES);
 
 

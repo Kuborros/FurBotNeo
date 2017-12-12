@@ -58,7 +58,7 @@ public class GelCmd extends Command{
                 .setColor(Color.PINK)
                 .setEventWaiter(waiter)
                 .setText("")
-                .setDescription("Danbooru")
+                .setDescription("Gelbooru")
                 .setTimeout(5, TimeUnit.MINUTES);
 
 

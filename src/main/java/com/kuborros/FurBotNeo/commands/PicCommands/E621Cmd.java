@@ -59,7 +59,7 @@ public class E621Cmd extends Command{
                 .setColor(Color.PINK)
                 .setEventWaiter(waiter)
                 .setText("")
-                .setDescription("Danbooru")
+                .setDescription("E621")
                 .setTimeout(5, TimeUnit.MINUTES);
 
 
