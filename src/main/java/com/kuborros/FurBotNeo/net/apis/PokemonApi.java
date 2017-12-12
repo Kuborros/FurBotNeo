@@ -54,7 +54,7 @@ public PokemonApi(String url){
     this.url = url;
 }
 
-    public List<String> PokeXml() throws IllegalArgumentException {
+public List<String> PokeXml() throws IllegalArgumentException {
     try {
 
 

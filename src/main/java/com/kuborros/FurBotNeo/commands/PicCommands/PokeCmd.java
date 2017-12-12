@@ -57,7 +57,7 @@ public class PokeCmd  extends Command{
                 .setColor(Color.PINK)
                 .setEventWaiter(waiter)
                 .setText("")
-                .setDescription("Danbooru")
+                .setDescription("AGNPH")
                 .setTimeout(5, TimeUnit.MINUTES);
 
 

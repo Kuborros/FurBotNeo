@@ -2,7 +2,6 @@
 package com.kuborros.FurBotNeo.net.apis;
 
 
-import org.json.JSONException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.w3c.dom.Document;
@@ -36,7 +35,7 @@ public class GelEngine {
        this.url = url;         
     }
    
-    public List<String> getGelPic() throws IllegalArgumentException, JSONException{
+    public List<String> getGelPic() throws IllegalArgumentException, ParserConfigurationException, SAXException, IOException {
 
        try {     
 
@@ -77,7 +76,7 @@ public class GelEngine {
        }
        catch (IOException | ParserConfigurationException | SAXException  ex) {
           LOG.error(ex.getLocalizedMessage()); 
-          return null; 
-       }  
+          throw ex;
+       }
     }
 }

@@ -11,8 +11,11 @@ import com.jagrosh.jdautilities.waiter.EventWaiter;
 import com.kuborros.FurBotNeo.net.apis.GelEngine;
 import net.dv8tion.jda.core.Permission;
 import org.json.JSONException;
+import org.xml.sax.SAXException;
 
+import javax.xml.parsers.ParserConfigurationException;
 import java.awt.*;
+import java.io.IOException;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -58,7 +61,7 @@ public class GelCmd extends Command{
                 .setColor(Color.PINK)
                 .setEventWaiter(waiter)
                 .setText("")
-                .setDescription("Danbooru")
+                .setDescription("Gelbooru")
                 .setTimeout(5, TimeUnit.MINUTES);
 
 
@@ -74,8 +77,11 @@ public class GelCmd extends Command{
                 } catch (JSONException e){
                     event.reply("No results found!");                    
                     return;
+                } catch (ParserConfigurationException | IOException | SAXException e) {
+                    event.replyError(e.getLocalizedMessage());
+                    return;
                 }
-         builder.build().display(event.getTextChannel());
+        builder.build().display(event.getTextChannel());
     }
 
     
