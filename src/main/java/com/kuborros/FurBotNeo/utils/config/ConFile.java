@@ -7,7 +7,7 @@ import java.io.*;
 import java.util.Properties;
 
 @SuppressWarnings("ResultOfMethodCallIgnored")
-public class ConFile {
+class ConFile {
     private static final Logger LOG = LoggerFactory.getLogger(ConFile.class);
     private static File CONFIG;
 

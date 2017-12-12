@@ -18,10 +18,10 @@ public class LogListener extends ListenerAdapter{
     
     @Override
     public void onMessageReceived(MessageReceivedEvent event)
-    {          
-        User author = event.getAuthor();               
-        Message message = event.getMessage();           
-        String msg = message.getContent();       
+    {
+        User author = event.getAuthor();
+        Message message = event.getMessage();
+        String msg = message.getContentDisplay();
         if (msg.isEmpty()) return;
         
         if (event.isFromType(ChannelType.TEXT))

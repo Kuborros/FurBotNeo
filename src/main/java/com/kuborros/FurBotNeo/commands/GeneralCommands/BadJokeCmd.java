@@ -59,7 +59,7 @@ public class BadJokeCmd extends Command{
                 }
             
                 String joke = object.getJSONObject("value").getString("joke");
-                String remainder = message.getContent().replaceFirst("!joke", "");
+                String remainder = message.getContentDisplay().replaceFirst("!joke", "");
             
                 if(message.getMentionedUsers().size() > 0){
                     joke = joke.replaceAll("Chuck Norris", "<@"+message.getMentionedUsers().get(0).getId()+">");

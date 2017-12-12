@@ -7,14 +7,15 @@ package com.kuborros.FurBotNeo.commands.AdminCommands;
 import com.jagrosh.jdautilities.commandclient.Command;
 import com.jagrosh.jdautilities.commandclient.CommandEvent;
 import com.kuborros.FurBotNeo.utils.msg.EmbedSender;
-import java.awt.Color;
-import java.time.format.DateTimeFormatter;
-import java.util.List;
 import net.dv8tion.jda.core.OnlineStatus;
 import net.dv8tion.jda.core.Permission;
 import net.dv8tion.jda.core.entities.Member;
 import net.dv8tion.jda.core.entities.Role;
 import net.dv8tion.jda.core.entities.User;
+
+import java.awt.*;
+import java.time.format.DateTimeFormatter;
+import java.util.List;
 
 /**
  *
@@ -23,7 +24,7 @@ import net.dv8tion.jda.core.entities.User;
 public class InfoCommand extends Command{
     
     //Emotes start
-    private static final String PAWS = "\ud83d\udc3e";
+    //private static final String PAWS = "\ud83d\udc3e";
     private static final String NAMETAG = "\ud83d\udcdb";
     private static final String IDBADGE = "\ud83c\udd94";
     private static final String TIMER1 = "\u23f0";
