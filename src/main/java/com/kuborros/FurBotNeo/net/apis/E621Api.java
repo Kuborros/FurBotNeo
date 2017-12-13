@@ -51,8 +51,8 @@ public class E621Api {
 public E621Api(String url){
     this.url = url;
 }
-    
-public List<String> getFurryPic() throws JSONException,IOException {
+
+    public List<String> getFurryPic() throws IOException, NoImgException {
      
         try {
             
@@ -71,9 +71,16 @@ public List<String> getFurryPic() throws JSONException,IOException {
             JSONArray arr = new JSONArray(str);
             int i = 0;
             while (i < arr.length()) {
-                JSONObject obj = arr.getJSONObject(i);
-                result.add(obj.getString("file_url"));
+                try {
+                    JSONObject obj = arr.getJSONObject(i);
+                    result.add(obj.getString("file_url"));
+                } catch (JSONException e) {
+                    LOG.debug("Picture was missing its file_url");
+                }
                 i++;
+            }
+            if (result.isEmpty()) {
+                throw new NoImgException();
             }
 
             return result;

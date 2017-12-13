@@ -45,21 +45,21 @@ public class BadJokeCmd extends Command{
             URLConnection UC = u.openConnection();
             UC.setRequestProperty ( "User-agent", "DiscordBot/1.0");
             InputStream r = UC.getInputStream();
-            
-            String str;
+
+                StringBuilder str;
             try (Scanner scan = new Scanner(r)) {
-                str = "";
+                str = new StringBuilder();
                 while (scan.hasNext()) {
-                    str += scan.nextLine();
+                    str.append(scan.nextLine());
                 }
             }
-              JSONObject object = new JSONObject(str);
+                JSONObject object = new JSONObject(str.toString());
                 if (!"success".equals(object.getString("type"))) {
                     LOG.error("Joke code fucked up");
                 }
             
                 String joke = object.getJSONObject("value").getString("joke");
-                String remainder = message.getContentDisplay().replaceFirst("!joke", "");
+                String remainder = message.getContent().replaceFirst("!joke ", "");
             
                 if(message.getMentionedUsers().size() > 0){
                     joke = joke.replaceAll("Chuck Norris", "<@"+message.getMentionedUsers().get(0).getId()+">");

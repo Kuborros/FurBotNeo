@@ -9,8 +9,8 @@ import com.jagrosh.jdautilities.commandclient.CommandEvent;
 import com.jagrosh.jdautilities.menu.Slideshow;
 import com.jagrosh.jdautilities.waiter.EventWaiter;
 import com.kuborros.FurBotNeo.net.apis.GelEngine;
+import com.kuborros.FurBotNeo.net.apis.NoImgException;
 import net.dv8tion.jda.core.Permission;
-import org.json.JSONException;
 import org.xml.sax.SAXException;
 
 import javax.xml.parsers.ParserConfigurationException;
@@ -62,6 +62,9 @@ public class R34Cmd extends Command{
                 .setEventWaiter(waiter)
                 .setText("")
                 .setDescription("R34")
+                .setFinalAction(message -> {
+                    message.clearReactions().queue();
+                })
                 .setTimeout(5, TimeUnit.MINUTES);
 
 
@@ -74,7 +77,7 @@ public class R34Cmd extends Command{
                 try {
                 result = api.getGelPic();
                 builder.setUrls(result.toArray(new String[result.size()]));
-                } catch (JSONException e) {
+                } catch (NoImgException e) {
                     event.reply("No results found!");
                     return;
                 } catch (ParserConfigurationException | IOException | SAXException e) {

@@ -26,7 +26,10 @@ package com.kuborros.FurBotNeo.net.apis;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.w3c.dom.*;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -54,7 +57,7 @@ public PokemonApi(String url){
     this.url = url;
 }
 
-public List<String> PokeXml() throws IllegalArgumentException {
+    public List<String> PokeXml() throws IllegalArgumentException, NoImgException, ParserConfigurationException, SAXException, IOException {
     try {
 
 
@@ -81,7 +84,7 @@ public List<String> PokeXml() throws IllegalArgumentException {
 
 			Element eElement = (Element) nNode;
 			urls.add(eElement.getElementsByTagName("file_url").item(0).getTextContent());
-                }
+        }
         }
        
        for (int i = 0; i < urls.size(); i++) {
@@ -89,10 +92,13 @@ public List<String> PokeXml() throws IllegalArgumentException {
               urls.remove(i);
             }   
         }
+        if (urls.isEmpty()) {
+            throw new NoImgException();
+        }
        return urls;
-    } catch (IOException | ParserConfigurationException | DOMException | SAXException ex) {
+    } catch (IOException | ParserConfigurationException | SAXException ex) {
        LOG.error(ex.getLocalizedMessage());
-       return null;
+        throw ex;
     }
 }
 }

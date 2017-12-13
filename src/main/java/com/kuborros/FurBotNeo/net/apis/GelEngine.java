@@ -34,8 +34,8 @@ public class GelEngine {
     public GelEngine (String url) {
        this.url = url;         
     }
-   
-    public List<String> getGelPic() throws IllegalArgumentException, ParserConfigurationException, SAXException, IOException {
+
+    public List<String> getGelPic() throws IllegalArgumentException, ParserConfigurationException, SAXException, IOException, NoImgException {
 
        try {     
 
@@ -72,6 +72,9 @@ public class GelEngine {
               urls.remove(i);
             }   
         }
+           if (urls.isEmpty()) {
+               throw new NoImgException();
+           }
         return urls;
        }
        catch (IOException | ParserConfigurationException | SAXException  ex) {

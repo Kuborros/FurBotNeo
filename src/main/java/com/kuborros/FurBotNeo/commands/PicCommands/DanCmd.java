@@ -9,8 +9,8 @@ import com.jagrosh.jdautilities.commandclient.CommandEvent;
 import com.jagrosh.jdautilities.menu.Slideshow;
 import com.jagrosh.jdautilities.waiter.EventWaiter;
 import com.kuborros.FurBotNeo.net.apis.DanApi;
+import com.kuborros.FurBotNeo.net.apis.NoImgException;
 import net.dv8tion.jda.core.Permission;
-import org.json.JSONException;
 
 import java.awt.*;
 import java.io.IOException;
@@ -67,7 +67,11 @@ public class DanCmd extends Command {
             .setEventWaiter(waiter)
             .setText("")
             .setDescription("Danbooru")
+                .setFinalAction(message -> {
+                    message.clearReactions().queue();
+                })
             .setTimeout(5, TimeUnit.MINUTES);
+
 
 
 
@@ -79,7 +83,7 @@ public class DanCmd extends Command {
             try {
                 result = api.getDanPic();
                 builder.setUrls(result.toArray(new String[result.size()]));
-            } catch (JSONException e) {
+            } catch (NoImgException e) {
                 event.reply("No results found!");
                 return;
             } catch (IOException e) {

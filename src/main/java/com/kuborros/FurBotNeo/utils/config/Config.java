@@ -10,7 +10,7 @@ public class Config {
     private String BOT_TOKEN;
     private String OWNER_ID;
     private String PREFIX = "!";
-    private String VERSION = "V2.1";
+    private String VERSION = "V2.3";
     private boolean FILE_LOGGING;
     private boolean GUILD_MSGS;
 

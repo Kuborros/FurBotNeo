@@ -8,10 +8,14 @@ import com.jagrosh.jdautilities.commandclient.Command;
 import com.jagrosh.jdautilities.commandclient.CommandEvent;
 import com.jagrosh.jdautilities.menu.Slideshow;
 import com.jagrosh.jdautilities.waiter.EventWaiter;
+import com.kuborros.FurBotNeo.net.apis.NoImgException;
 import com.kuborros.FurBotNeo.net.apis.PokemonApi;
 import net.dv8tion.jda.core.Permission;
+import org.xml.sax.SAXException;
 
+import javax.xml.parsers.ParserConfigurationException;
 import java.awt.*;
+import java.io.IOException;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -58,6 +62,9 @@ public class PokeCmd  extends Command{
                 .setEventWaiter(waiter)
                 .setText("")
                 .setDescription("AGNPH")
+                .setFinalAction(message -> {
+                    message.clearReactions().queue();
+                })
                 .setTimeout(5, TimeUnit.MINUTES);
 
 
@@ -71,9 +78,11 @@ public class PokeCmd  extends Command{
                 try {
                 result = api.PokeXml();
                 builder.setUrls(result.toArray(new String[result.size()]));
-                } catch (IllegalArgumentException e) {
+                } catch (NoImgException e) {
                     event.reply("No results found!");
                     return;
+                } catch (IOException | ParserConfigurationException | SAXException ex) {
+                    event.replyError(ex.getLocalizedMessage());
                 }
         builder.build().display(event.getTextChannel());
         }

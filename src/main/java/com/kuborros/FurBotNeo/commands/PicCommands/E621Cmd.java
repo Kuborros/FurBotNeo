@@ -7,8 +7,8 @@ import com.jagrosh.jdautilities.commandclient.CommandEvent;
 import com.jagrosh.jdautilities.menu.Slideshow;
 import com.jagrosh.jdautilities.waiter.EventWaiter;
 import com.kuborros.FurBotNeo.net.apis.E621Api;
+import com.kuborros.FurBotNeo.net.apis.NoImgException;
 import net.dv8tion.jda.core.Permission;
-import org.json.JSONException;
 
 import java.awt.*;
 import java.io.IOException;
@@ -58,6 +58,9 @@ public class E621Cmd extends Command{
                 .setEventWaiter(waiter)
                 .setText("")
                 .setDescription("E621")
+                .setFinalAction(message -> {
+                    message.clearReactions().queue();
+                })
                 .setTimeout(5, TimeUnit.MINUTES);
 
 
@@ -69,8 +72,7 @@ public class E621Cmd extends Command{
                 try {
                 result = api.getFurryPic();
                 builder.setUrls(result.toArray(new String[result.size()]));
-                } catch (JSONException e){
-                    e.printStackTrace();
+                } catch (NoImgException e) {
                     event.reply("No results found!");
                     return;
                 } catch (IOException e){
