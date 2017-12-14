@@ -60,15 +60,15 @@ public E621Api(String url){
             URLConnection UC = u.openConnection();
             UC.setRequestProperty ( "User-agent", "DiscordBot/1.0");
             InputStream r = UC.getInputStream();
-            
-            String str;
+
+            StringBuilder str;
             try (Scanner scan = new Scanner(r)) {
-                str = "";
+                str = new StringBuilder();
                 while (scan.hasNext()) {
-                    str += scan.nextLine();
+                    str.append(scan.nextLine());
                 }
             }
-            JSONArray arr = new JSONArray(str);
+            JSONArray arr = new JSONArray(str.toString());
             int i = 0;
             while (i < arr.length()) {
                 try {

@@ -62,9 +62,7 @@ public class PokeCmd  extends Command{
                 .setEventWaiter(waiter)
                 .setText("")
                 .setDescription("AGNPH")
-                .setFinalAction(message -> {
-                    message.clearReactions().queue();
-                })
+                .setFinalAction(message -> message.clearReactions().queue())
                 .setTimeout(5, TimeUnit.MINUTES);
 
 

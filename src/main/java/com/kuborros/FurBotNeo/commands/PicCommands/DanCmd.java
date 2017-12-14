@@ -67,9 +67,7 @@ public class DanCmd extends Command {
             .setEventWaiter(waiter)
             .setText("")
             .setDescription("Danbooru")
-                .setFinalAction(message -> {
-                    message.clearReactions().queue();
-                })
+                .setFinalAction(message -> message.clearReactions().queue())
             .setTimeout(5, TimeUnit.MINUTES);
 
 

@@ -62,9 +62,7 @@ public class GelCmd extends Command{
                 .setEventWaiter(waiter)
                 .setText("")
                 .setDescription("Gelbooru")
-                .setFinalAction(message -> {
-                    message.clearReactions().queue();
-                })
+                .setFinalAction(message -> message.clearReactions().queue())
                 .setTimeout(5, TimeUnit.MINUTES);
 
 

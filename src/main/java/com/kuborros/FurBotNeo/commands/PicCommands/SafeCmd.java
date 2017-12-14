@@ -63,9 +63,7 @@ public class SafeCmd  extends Command{
                 .setEventWaiter(waiter)
                 .setText("")
                 .setDescription("Safebooru")
-                .setFinalAction(message -> {
-                    message.clearReactions().queue();
-                })
+                .setFinalAction(message -> message.clearReactions().queue())
                 .setTimeout(5, TimeUnit.MINUTES);
 
 

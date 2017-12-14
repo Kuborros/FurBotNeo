@@ -58,14 +58,12 @@ public class E621Cmd extends Command{
                 .setEventWaiter(waiter)
                 .setText("")
                 .setDescription("E621")
-                .setFinalAction(message -> {
-                    message.clearReactions().queue();
-                })
+                .setFinalAction(message -> message.clearReactions().queue())
                 .setTimeout(5, TimeUnit.MINUTES);
 
 
         if (!event.getArgs().isEmpty()){
-             api = new E621Api("https://e621.net/post/index.json?tags=" + event.getArgs().replaceAll(" ", "+") + "+order:random+-type:webm+-flash&limit=20");
+            api = new E621Api("https://e621.net/post/index.json?tags=" + event.getArgs().replaceAll(" ", "+") + "+order:random&limit=20");
          } else {
              api = new E621Api("https://e621.net/post/index.json?tags=" + "rating:a+order:random+-type:webm+-flash&limit=20");
          }

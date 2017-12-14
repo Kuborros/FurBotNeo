@@ -62,9 +62,7 @@ public class R34Cmd extends Command{
                 .setEventWaiter(waiter)
                 .setText("")
                 .setDescription("R34")
-                .setFinalAction(message -> {
-                    message.clearReactions().queue();
-                })
+                .setFinalAction(message -> message.clearReactions().queue())
                 .setTimeout(5, TimeUnit.MINUTES);
 
 
