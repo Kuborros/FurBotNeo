@@ -14,6 +14,9 @@ public class MusicTimeCommand extends MusicCommand {
 
     @Override
     public void doCommand(CommandEvent event) {
+
+        if (isIdle(guild, event)) return;
+
         String val = event.getArgs().toUpperCase().trim();
         boolean min = false;
         if (val.endsWith("M")) {
