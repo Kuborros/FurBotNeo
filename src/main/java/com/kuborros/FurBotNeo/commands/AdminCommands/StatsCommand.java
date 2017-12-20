@@ -6,9 +6,10 @@ package com.kuborros.FurBotNeo.commands.AdminCommands;
 
 import com.jagrosh.jdautilities.commandclient.Command;
 import com.jagrosh.jdautilities.commandclient.CommandEvent;
+import net.dv8tion.jda.core.Permission;
+
 import java.time.OffsetDateTime;
 import java.time.format.DateTimeFormatter;
-import net.dv8tion.jda.core.Permission;
 
 /**
  *
@@ -36,6 +37,7 @@ public class StatsCommand extends Command {
                 + "\nLast Startup: "+start.format(DateTimeFormatter.RFC_1123_DATE_TIME)
                 + "\nGuilds: "+event.getJDA().getGuilds().size()
                 + "\nMemory: "+usedMb+"Mb / "+totalMb+"Mb"
+                + "\nCurrent ping: " + event.getJDA().getPing()
                 + "\nResponse Total: "+event.getJDA().getResponseTotal());
     }
     

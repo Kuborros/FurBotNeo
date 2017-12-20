@@ -57,7 +57,27 @@ public class TrackManager extends AudioEventAdapter {
             player.playTrack(track);
         }
     }
-    
+
+    public void queueTimed(AudioTrack track, Member author, Long milis) {
+
+        if (track.isSeekable()) {
+            track.setPosition(milis);
+        }
+        AudioInfo info = new AudioInfo(track, author);
+        queue.add(info);
+
+        if (player.getPlayingTrack() == null) {
+            player.playTrack(track);
+        }
+    }
+
+    public void skipToTime(Long milis) {
+        AudioTrack track = player.getPlayingTrack();
+        if (track.isSeekable()) {
+            track.setPosition(milis);
+        }
+
+    }
 
     @Override
     public void onTrackStart(AudioPlayer player, AudioTrack track) {
@@ -76,7 +96,7 @@ public class TrackManager extends AudioEventAdapter {
     public void onTrackEnd(AudioPlayer player, AudioTrack track, AudioTrackEndReason endReason) {
         Guild g = queue.poll().getAuthor().getGuild();
         if (queue.isEmpty()) {
-                new Thread(() -> g.getAudioManager().closeAudioConnection()).start(); 
+            new Thread(() -> g.getAudioManager().closeAudioConnection()).start();
         } else {
             player.playTrack(queue.element().getTrack());
         }

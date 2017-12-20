@@ -6,6 +6,7 @@ package com.kuborros.FurBotNeo.commands.MusicCommands;
 
 import com.jagrosh.jdautilities.commandclient.Command;
 import com.jagrosh.jdautilities.commandclient.CommandEvent;
+import com.jagrosh.jdautilities.waiter.EventWaiter;
 import com.kuborros.FurBotNeo.utils.audio.AudioInfo;
 import com.kuborros.FurBotNeo.utils.audio.AudioPlayerSendHandler;
 import com.kuborros.FurBotNeo.utils.audio.TrackManager;
@@ -46,6 +47,7 @@ public abstract class MusicCommand extends Command{
     protected final int PLAYLIST_LIMIT = 40;
     protected static AudioPlayerManager myManager = new DefaultAudioPlayerManager();
     protected static Map<String, Map.Entry<AudioPlayer, TrackManager>> players = new HashMap<>();
+    protected EventWaiter waiter;
 
         
     public MusicCommand() {
@@ -102,6 +104,7 @@ public abstract class MusicCommand extends Command{
 
     protected AudioPlayer createPlayer(Guild guild) {
         AudioPlayer nPlayer = myManager.createPlayer();
+        nPlayer.checkCleanup(10000);
         TrackManager manager = new TrackManager(nPlayer);
         nPlayer.addListener(manager);
         guild.getAudioManager().setSendingHandler(new AudioPlayerSendHandler(nPlayer));
@@ -124,8 +127,7 @@ public abstract class MusicCommand extends Command{
 
         guild = author.getGuild();
         getPlayer(guild);
-
-        myManager.setFrameBufferDuration(100);
+        myManager.setFrameBufferDuration(1000);
         myManager.loadItemOrdered(guild, identifier, new AudioLoadResultHandler() {
 
             @Override
@@ -183,7 +185,8 @@ public abstract class MusicCommand extends Command{
         getPlayer(guild);
 
 
-        myManager.setFrameBufferDuration(5000);
+        myManager.setFrameBufferDuration(1000);
+        myManager.enableGcMonitoring();
         myManager.loadItemOrdered(guild, identifier, new AudioLoadResultHandler() {
             @Override
             public void trackLoaded(AudioTrack track) {
@@ -211,10 +214,47 @@ public abstract class MusicCommand extends Command{
 
             @Override
             public void loadFailed(FriendlyException exception) {
-               if(!exception.severity.equals(FriendlyException.Severity.FAULT)) {
+                if (!exception.severity.equals(FriendlyException.Severity.FAULT)) {
                     msg.getChannel().sendMessage("\u274C Error while fetching music: " + exception.getMessage()).queue();
-        }
+                }
+            }
+        });
     }
+
+    protected void loadTrackTimed(String identifier, Member author, Message msg, Long milis) {
+        if (author.getVoiceState().getChannel() == null) {
+            msg.getChannel().sendMessage("You are not in a Voice Channel!").queue();
+            return;
+        }
+
+        guild = author.getGuild();
+        getPlayer(guild);
+
+
+        myManager.setFrameBufferDuration(5000);
+        myManager.enableGcMonitoring();
+        myManager.loadItemOrdered(guild, identifier, new AudioLoadResultHandler() {
+            @Override
+            public void trackLoaded(AudioTrack track) {
+                track.setPosition(milis);
+                getTrackManager(guild).queue(track, author);
+            }
+
+            @Override
+            public void playlistLoaded(AudioPlaylist playlist) {
+            }
+
+            @Override
+            public void noMatches() {
+                msg.getChannel().sendMessage("\u26A0 No playable tracks were found.").queue();
+            }
+
+            @Override
+            public void loadFailed(FriendlyException exception) {
+                if (!exception.severity.equals(FriendlyException.Severity.FAULT)) {
+                    msg.getChannel().sendMessage("\u274C Error while fetching music: " + exception.getMessage()).queue();
+                }
+            }
         });
     }
 

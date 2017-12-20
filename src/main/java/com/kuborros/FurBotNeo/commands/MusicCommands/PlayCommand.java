@@ -12,7 +12,8 @@ import com.jagrosh.jdautilities.commandclient.CommandEvent;
  * @author Kuborros
  */
 public class PlayCommand extends MusicCommand{
-    
+
+
     public PlayCommand()
     {
         this.name = "play";
@@ -32,7 +33,7 @@ public class PlayCommand extends MusicCommand{
             loadTrack(input, event.getMember(), event.getMessage());
             if (getPlayer(guild).isPaused())
                 getPlayer(guild).setPaused(false);
-             }        
+        }
     }
     
 }

@@ -81,6 +81,7 @@ public class BotMain {
                 new PlayCommand(),
                 new PlayNextCmd(),
                 new PlayShuffleCmd(),
+                new MusicTimeCommand(),
                 new MusicInfoCmd(),
                 new MusicPauseCmd(),
                 new MusicQueueCmd(),
