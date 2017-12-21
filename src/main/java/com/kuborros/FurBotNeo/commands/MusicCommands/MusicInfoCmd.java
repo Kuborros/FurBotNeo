@@ -4,11 +4,12 @@
  */
 package com.kuborros.FurBotNeo.commands.MusicCommands;
 
-import com.jagrosh.jdautilities.commandclient.CommandEvent;
+import com.jagrosh.jdautilities.command.CommandEvent;
 import com.sedmelluq.discord.lavaplayer.track.AudioTrack;
 import com.sedmelluq.discord.lavaplayer.track.AudioTrackInfo;
-import java.awt.Color;
 import net.dv8tion.jda.core.EmbedBuilder;
+
+import java.awt.*;
 
 /**
  *

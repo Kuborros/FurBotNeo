@@ -4,8 +4,8 @@
  */
 package com.kuborros.FurBotNeo.commands.GeneralCommands;
 
-import com.jagrosh.jdautilities.commandclient.Command;
-import com.jagrosh.jdautilities.commandclient.CommandEvent;
+import com.jagrosh.jdautilities.command.Command;
+import com.jagrosh.jdautilities.command.CommandEvent;
 import net.dv8tion.jda.core.entities.Message;
 import net.dv8tion.jda.core.entities.TextChannel;
 import org.json.JSONException;
@@ -59,7 +59,7 @@ public class BadJokeCmd extends Command{
                 }
             
                 String joke = object.getJSONObject("value").getString("joke");
-                String remainder = message.getContent().replaceFirst("!joke ", "");
+                String remainder = message.getContentDisplay().replaceFirst("!joke ", "");
             
                 if(message.getMentionedUsers().size() > 0){
                     joke = joke.replaceAll("Chuck Norris", "<@"+message.getMentionedUsers().get(0).getId()+">");

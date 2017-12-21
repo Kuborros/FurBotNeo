@@ -4,15 +4,17 @@
  */
 package com.kuborros.FurBotNeo.commands.GeneralCommands;
 
-import com.jagrosh.jdautilities.commandclient.Command;
-import com.jagrosh.jdautilities.commandclient.CommandEvent;
-import static com.kuborros.FurBotNeo.BotMain.db;
+import com.jagrosh.jdautilities.command.Command;
+import com.jagrosh.jdautilities.command.CommandEvent;
 import com.kuborros.FurBotNeo.utils.msg.EmbedSender;
-import java.awt.Color;
-import java.sql.SQLException;
-import java.util.Map;
 import net.dv8tion.jda.core.Permission;
 import net.dv8tion.jda.core.entities.User;
+
+import java.awt.*;
+import java.sql.SQLException;
+import java.util.Map;
+
+import static com.kuborros.FurBotNeo.BotMain.db;
 
 /**
  *

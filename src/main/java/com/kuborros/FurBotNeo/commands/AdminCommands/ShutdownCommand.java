@@ -1,11 +1,12 @@
 package com.kuborros.FurBotNeo.commands.AdminCommands;
 
-import com.jagrosh.jdautilities.commandclient.Command;
-import com.jagrosh.jdautilities.commandclient.CommandEvent;
-import static com.kuborros.FurBotNeo.BotMain.db;
+import com.jagrosh.jdautilities.command.Command;
+import com.jagrosh.jdautilities.command.CommandEvent;
 import net.dv8tion.jda.core.Permission;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import static com.kuborros.FurBotNeo.BotMain.db;
 
 
 public class ShutdownCommand extends Command {

@@ -21,7 +21,7 @@ public class LogListener extends ListenerAdapter{
     {
         User author = event.getAuthor();
         Message message = event.getMessage();
-        String msg = message.getStrippedContent();
+        String msg = message.getContentStripped();
         if (msg.isEmpty()) return;
         
         if (event.isFromType(ChannelType.TEXT))

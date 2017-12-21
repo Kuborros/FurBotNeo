@@ -4,7 +4,7 @@
  */
 package com.kuborros.FurBotNeo.commands.MusicCommands;
 
-import com.jagrosh.jdautilities.commandclient.CommandEvent;
+import com.jagrosh.jdautilities.command.CommandEvent;
 import net.dv8tion.jda.core.Permission;
 
 /**

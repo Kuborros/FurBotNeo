@@ -1,7 +1,7 @@
 package com.kuborros.FurBotNeo;
 
-import com.jagrosh.jdautilities.commandclient.CommandClientBuilder;
-import com.jagrosh.jdautilities.commandclient.examples.AboutCommand;
+import com.jagrosh.jdautilities.command.CommandClientBuilder;
+import com.jagrosh.jdautilities.command.examples.AboutCommand;
 import com.jagrosh.jdautilities.waiter.EventWaiter;
 import com.kuborros.FurBotNeo.commands.AdminCommands.EvalCommand;
 import com.kuborros.FurBotNeo.commands.AdminCommands.InfoCommand;
@@ -52,7 +52,7 @@ public class BotMain {
         client.setPrefix(cfg.getPREFIX());
         client.addCommands(
 
-                new AboutCommand(Color.CYAN, "and im here to make this server a better place!", 
+                new AboutCommand(Color.CYAN, "and im here to make this server a better place!",
                                         new String[]{"Picture commands!","Music player!","Cute furry mascot!"},
                                         Permission.ADMINISTRATOR, Permission.MANAGE_ROLES,
                                         Permission.MANAGE_SERVER, Permission.MESSAGE_ADD_REACTION, Permission.MESSAGE_ATTACH_FILES, Permission.MESSAGE_READ,
