@@ -14,10 +14,8 @@ import java.util.Random;
  * @author Kuborros
  */
 public class DiceCmd extends Command{
-    private StringBuilder rolls = new StringBuilder();
-    private int numSides = 20;
-    private int numDices = 1;
-    private Random rand = new Random();
+    private final StringBuilder rolls = new StringBuilder();
+    private final Random rand = new Random();
     
     
     public DiceCmd()
@@ -31,8 +29,10 @@ public class DiceCmd extends Command{
     @Override
     public void execute(CommandEvent event){  
         String dice = event.getArgs().toLowerCase();
+        int numSides;
         if (dice.contains("d")){
             String[] aDice = dice.split("d");
+            int numDices;
             try {
                 numDices = Integer.parseInt(aDice[0]);
                 if (numDices > 20) numDices = 20;

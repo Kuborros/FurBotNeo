@@ -26,9 +26,8 @@ import static com.kuborros.FurBotNeo.BotMain.db;
  * @author Kuborros
  */
 public class PokeCmd  extends Command{
-   
-    private Permission[] perms = {Permission.MESSAGE_EMBED_LINKS};
-    private EventWaiter waiter;
+
+    private final EventWaiter waiter;
     
     public PokeCmd(EventWaiter waiter){
         this.name = "poke";
@@ -38,7 +37,7 @@ public class PokeCmd  extends Command{
         this.ownerCommand = false;
         this.cooldown = 5;
         this.waiter = waiter;
-        this.botPermissions = perms;
+        this.botPermissions = new Permission[]{Permission.MESSAGE_EMBED_LINKS};
         this.category = new Category("ImageBoards"); 
         db.registerCommand(this.name);        
     }

@@ -26,8 +26,7 @@ import static com.kuborros.FurBotNeo.BotMain.db;
  */
 public class DanCmd extends Command {
 
-    private Permission[] perms = {Permission.MESSAGE_EMBED_LINKS,Permission.MANAGE_EMOTES};
-    private EventWaiter waiter;
+    private final EventWaiter waiter;
 
     public DanCmd(EventWaiter waiter) {
         this.name = "dan";
@@ -36,7 +35,7 @@ public class DanCmd extends Command {
         this.guildOnly = true;
         this.ownerCommand = false;
         this.cooldown = 5;
-        this.botPermissions = perms;
+        this.botPermissions = new Permission[]{Permission.MESSAGE_EMBED_LINKS, Permission.MANAGE_EMOTES};
         this.category = new Category("ImageBoards");
         this.hidden = true;
         this.waiter = waiter;

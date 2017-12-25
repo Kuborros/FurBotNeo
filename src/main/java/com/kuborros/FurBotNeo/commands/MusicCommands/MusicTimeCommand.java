@@ -30,7 +30,7 @@ public class MusicTimeCommand extends MusicCommand {
         int seconds;
         try {
             seconds = (min ? 60 : 1) * Integer.parseInt(val);
-            Long milis = Long.valueOf(seconds * 1000);
+            Long milis = (long) (seconds * 1000);
             if (getPlayer(guild).getPlayingTrack().getDuration() <= milis) {
                 event.replyWarning("This track is not long enough to skip that far!");
                 return;

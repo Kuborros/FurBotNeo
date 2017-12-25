@@ -48,10 +48,10 @@ import java.util.List;
  * @author Kuborros
  */
 public class PokemonApi {
-    
-private List<String> urls = new ArrayList<>();
-private String url;
-    private Logger LOG = LoggerFactory.getLogger("ImageBoardApi");
+
+    private final List<String> urls = new ArrayList<>();
+    private final String url;
+    private final Logger LOG = LoggerFactory.getLogger("ImageBoardApi");
 
 public PokemonApi(String url){
     this.url = url;

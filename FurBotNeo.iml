@@ -24,7 +24,7 @@
     <orderEntry type="library" scope="RUNTIME" name="Maven: net.iharder:base64:2.3.9" level="project" />
     <orderEntry type="library" name="Maven: com.sedmelluq:jda-nas:1.0.5" level="project" />
     <orderEntry type="library" scope="RUNTIME" name="Maven: com.sedmelluq:udp-queue:1.0.6" level="project" />
-    <orderEntry type="library" name="Maven: net.dv8tion:JDA:3.4.0_317" level="project" />
+    <orderEntry type="library" name="Maven: net.dv8tion:JDA:3.4.0_318" level="project" />
     <orderEntry type="library" name="Maven: com.google.code.findbugs:jsr305:3.0.2" level="project" />
     <orderEntry type="library" name="Maven: org.apache.commons:commons-collections4:4.1" level="project" />
     <orderEntry type="library" name="Maven: org.json:json:20160810" level="project" />

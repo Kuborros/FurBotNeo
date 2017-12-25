@@ -22,9 +22,8 @@ import static com.kuborros.FurBotNeo.BotMain.db;
  * @author Kuborros
  */
 public class E621Cmd extends Command{
-   
-    private Permission[] perms = {Permission.MESSAGE_EMBED_LINKS,Permission.MANAGE_EMOTES};
-    private EventWaiter waiter;
+
+    private final EventWaiter waiter;
     
     public E621Cmd(EventWaiter waiter){
         this.name = "e621";
@@ -33,7 +32,7 @@ public class E621Cmd extends Command{
         this.guildOnly = true;
         this.ownerCommand = false;
         this.cooldown = 5;
-        this.botPermissions = perms;
+        this.botPermissions = new Permission[]{Permission.MESSAGE_EMBED_LINKS, Permission.MANAGE_EMOTES};
         this.category = new Category("ImageBoards");
         this.waiter = waiter;
         db.registerCommand(this.name);        

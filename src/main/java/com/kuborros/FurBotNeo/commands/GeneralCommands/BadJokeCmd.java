@@ -25,7 +25,7 @@ import java.util.Scanner;
  */
 public class BadJokeCmd extends Command{
 
-    private Logger LOG = LoggerFactory.getLogger("CommandExec");
+    private final Logger LOG = LoggerFactory.getLogger("CommandExec");
     
     public BadJokeCmd()
     {

@@ -26,9 +26,8 @@ import static com.kuborros.FurBotNeo.BotMain.db;
  * @author Kuborros
  */
 public class R34Cmd extends Command{
-   
-    private Permission[] perms = {Permission.MESSAGE_EMBED_LINKS};
-    private EventWaiter waiter;
+
+    private final EventWaiter waiter;
     
     public R34Cmd(EventWaiter waiter){
         this.name = "r34";
@@ -38,7 +37,7 @@ public class R34Cmd extends Command{
         this.ownerCommand = false;
         this.cooldown = 5;
         this.waiter = waiter;
-        this.botPermissions = perms;
+        this.botPermissions = new Permission[]{Permission.MESSAGE_EMBED_LINKS};
         this.category = new Category("ImageBoards"); 
         db.registerCommand(this.name);        
     }

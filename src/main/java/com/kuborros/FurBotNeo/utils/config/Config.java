@@ -6,18 +6,14 @@ import java.util.Properties;
 @SuppressWarnings("FieldCanBeLocal")
 public class Config {
 
-    private Properties properties;
-    private String BOT_TOKEN;
-    private String OWNER_ID;
-    private String PREFIX = "!";
-    private String VERSION = "V2.3";
-    private boolean FILE_LOGGING;
-    private boolean GUILD_MSGS;
+    private final Properties properties;
+    private final String BOT_TOKEN;
+    private final String OWNER_ID;
+    private final String PREFIX = "!";
+    private final String VERSION = "V2.3";
+    private final boolean GUILD_MSGS;
 
 
-    public Properties getProperties() {
-        return properties;
-    }
 
     public String getBOT_TOKEN() {
         return BOT_TOKEN;
@@ -35,10 +31,6 @@ public class Config {
         return VERSION;
     }
 
-    public boolean isFILE_LOGGING() {
-        return FILE_LOGGING;
-    }
-
     public boolean isGUILD_MSGS() {
         return GUILD_MSGS;
     }
@@ -47,10 +39,9 @@ public class Config {
         ConFile.ConFileCheck();
         properties = ConFile.getProperties();
 
-        BOT_TOKEN = properties.getProperty("BotToken");
-        OWNER_ID = properties.getProperty("OwnerId");
-        FILE_LOGGING =  properties.getProperty("LogToFile").equalsIgnoreCase("true");
-        GUILD_MSGS = properties.getProperty("PostGuildMessages").equalsIgnoreCase("true");
+        BOT_TOKEN = properties != null ? properties.getProperty("BotToken") : "0";
+        OWNER_ID = properties != null ? properties.getProperty("OwnerId") : "0";
+        GUILD_MSGS = properties != null && properties.getProperty("PostGuildMessages").equalsIgnoreCase("true");
 
     }
 

@@ -6,7 +6,8 @@ package com.kuborros.FurBotNeo.commands.GeneralCommands;
 
 import com.jagrosh.jdautilities.command.Command;
 import com.jagrosh.jdautilities.command.CommandEvent;
-import com.kuborros.FurBotNeo.utils.msg.EmbedSender;
+import net.dv8tion.jda.core.EmbedBuilder;
+import net.dv8tion.jda.core.MessageBuilder;
 import net.dv8tion.jda.core.Permission;
 import net.dv8tion.jda.core.entities.User;
 
@@ -21,9 +22,7 @@ import static com.kuborros.FurBotNeo.BotMain.db;
  * @author Kuborros
  */
 public class CommandStatCmd extends Command{
-    
-    private Permission[] perms = {Permission.MESSAGE_EMBED_LINKS};    
-    
+
     public CommandStatCmd()
     {
         this.name = "picstat";
@@ -32,23 +31,29 @@ public class CommandStatCmd extends Command{
         this.guildOnly = true;
         this.ownerCommand = false;
         this.category = new Command.Category("Basic");
-        this.botPermissions = perms;
+        this.botPermissions = new Permission[]{Permission.MESSAGE_EMBED_LINKS};
     }
     
     @Override
     @SuppressWarnings("unchecked")
     protected void execute(CommandEvent event){
         StringBuilder builder = new StringBuilder();
-        EmbedSender emb = new EmbedSender(event);
         User user = !event.getMessage().getMentionedUsers().isEmpty() ? event.getMessage().getMentionedUsers().get(0) : event.getAuthor();
         try {
             Map map = db.getCommandStats(user.getId());
             builder.append("\n");
             map.forEach((k,v) -> builder.append("``").append(k).append("`` used **").append(v).append("** times\n\n"));
-            emb.sendEmbed("How many times " + user.getName() + " nutted to:", builder.toString(), Color.yellow);
+            sendEmbed(event, String.format("How many times %s nutted to:", user.getName()), builder.toString());
         } catch (SQLException e){
             event.replyError("Something went wrong"); 
         }
-    
-}    
+
+    }
+
+    private void sendEmbed(CommandEvent event, String title, String description) {
+        event.getChannel().sendMessage(
+                new MessageBuilder().setEmbed(
+                        new EmbedBuilder().setTitle(title, null).setDescription(description).setColor(Color.yellow).build()
+                ).build()).queue();
+    }
 }

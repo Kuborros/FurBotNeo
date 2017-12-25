@@ -30,19 +30,16 @@ import com.sedmelluq.discord.lavaplayer.track.AudioTrackEndReason;
 import net.dv8tion.jda.core.entities.Guild;
 import net.dv8tion.jda.core.entities.Member;
 import net.dv8tion.jda.core.entities.VoiceChannel;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.util.*;
 import java.util.concurrent.LinkedBlockingQueue;
 
 
 public class TrackManager extends AudioEventAdapter {
-    
-    static final Logger LOG = LoggerFactory.getLogger(TrackManager.class);
 
-    private AudioPlayer player;
-    private Queue<AudioInfo> queue;
+
+    private final AudioPlayer player;
+    private final Queue<AudioInfo> queue;
 
     public TrackManager(AudioPlayer player) {
         this.player = player;
@@ -58,18 +55,20 @@ public class TrackManager extends AudioEventAdapter {
         }
     }
 
-    public void queueTimed(AudioTrack track, Member author, Long milis) {
-
-        if (track.isSeekable()) {
-            track.setPosition(milis);
-        }
-        AudioInfo info = new AudioInfo(track, author);
-        queue.add(info);
-
-        if (player.getPlayingTrack() == null) {
-            player.playTrack(track);
-        }
-    }
+// --Commented out by Inspection START (2017-12-25 23:51):
+//    public void queueTimed(AudioTrack track, Member author, Long milis) {
+//
+//        if (track.isSeekable()) {
+//            track.setPosition(milis);
+//        }
+//        AudioInfo info = new AudioInfo(track, author);
+//        queue.add(info);
+//
+//        if (player.getPlayingTrack() == null) {
+//            player.playTrack(track);
+//        }
+//    }
+// --Commented out by Inspection STOP (2017-12-25 23:51)
 
     public void skipToTime(Long milis) {
         AudioTrack track = player.getPlayingTrack();
@@ -120,7 +119,9 @@ public class TrackManager extends AudioEventAdapter {
         queue.clear();
     }
 
-    public AudioInfo getTrackInfo(AudioTrack track) {
-        return queue.stream().filter(audioInfo -> audioInfo.getTrack().equals(track)).findFirst().orElse(null);
-    }
+
+    // public AudioInfo getTrackInfo(AudioTrack track) {
+    //     return queue.stream().filter(audioInfo -> audioInfo.getTrack().equals(track)).findFirst().orElse(null);
+    // }
+
 }

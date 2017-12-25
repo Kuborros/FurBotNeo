@@ -26,9 +26,8 @@ import static com.kuborros.FurBotNeo.BotMain.db;
  * @author Kuborros
  */
 public class GelCmd extends Command{
-   
-    private Permission[] perms = {Permission.MESSAGE_EMBED_LINKS};
-    private EventWaiter waiter;
+
+    private final EventWaiter waiter;
     
     public GelCmd(EventWaiter waiter){
         this.name = "gel";
@@ -37,7 +36,7 @@ public class GelCmd extends Command{
         this.guildOnly = true;
         this.ownerCommand = false;
         this.cooldown = 5;
-        this.botPermissions = perms;
+        this.botPermissions = new Permission[]{Permission.MESSAGE_EMBED_LINKS};
         this.waiter = waiter;
         this.category = new Category("ImageBoards");  
         db.registerCommand(this.name);        

@@ -43,10 +43,10 @@ import java.util.Scanner;
  * @author Kuborros
  */
 public class E621Api {
-    
-    private String url;
-    private Logger LOG = LoggerFactory.getLogger("ImageBoardApi");
-    private List<String> result = new ArrayList<>();
+
+    private final String url;
+    private final Logger LOG = LoggerFactory.getLogger("ImageBoardApi");
+    private final List<String> result = new ArrayList<>();
 
 public E621Api(String url){
     this.url = url;

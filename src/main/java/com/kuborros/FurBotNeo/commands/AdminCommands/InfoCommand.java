@@ -6,7 +6,8 @@ package com.kuborros.FurBotNeo.commands.AdminCommands;
 
 import com.jagrosh.jdautilities.command.Command;
 import com.jagrosh.jdautilities.command.CommandEvent;
-import com.kuborros.FurBotNeo.utils.msg.EmbedSender;
+import net.dv8tion.jda.core.EmbedBuilder;
+import net.dv8tion.jda.core.MessageBuilder;
 import net.dv8tion.jda.core.OnlineStatus;
 import net.dv8tion.jda.core.Permission;
 import net.dv8tion.jda.core.entities.Member;
@@ -48,8 +49,6 @@ public class InfoCommand extends Command{
 
     @Override
     protected void execute(CommandEvent event) {
-        //Logger LOG = LoggerFactory.getLogger("CommandExec");   
-        EmbedSender emb = new EmbedSender(event);
         
         if (event.getMessage().getMentionedUsers().isEmpty())
                 {
@@ -84,7 +83,7 @@ public class InfoCommand extends Command{
                         if (member.isOwner()){
                             ownerguy = CROWNED + " OWNER!";
                         }
-                        emb.sendEmbed("Data collected by NSA about: " + member.getEffectiveName(), "What we know: \n"
+                        sendEmbed(event, "Data collected by NSA about: " + member.getEffectiveName(), "What we know: \n"
                                 + NAMETAG + "Full Discord name: " + member.getEffectiveName() + "#" + member.getUser().getDiscriminator() + "\n"
                                 + IDBADGE + "User ID: " + member.getUser().getId() +"\n"
                                 + TIMER1 + "Server join date: " + member.getJoinDate().format(DateTimeFormatter.ofPattern("yyyy-MM-dd  HH:mm:ss")) + "\n"
@@ -94,10 +93,16 @@ public class InfoCommand extends Command{
                                 + HAT + "Current roles: "+ roles +"\n\n"
                                 , member.getUser().getAvatarUrl()
                                 , ownerguy
-                                , Color.BLUE
                         );
                     });
          }
         
+    }
+
+    private void sendEmbed(CommandEvent event, String title, String description, String imgUrl, String footer) {
+        event.getChannel().sendMessage(
+                new MessageBuilder().setEmbed(
+                        new EmbedBuilder().setTitle(title, null).setThumbnail(imgUrl).setDescription(description).setColor(Color.BLUE).setFooter(footer, null).build()
+                ).build()).queue();
     }
 }

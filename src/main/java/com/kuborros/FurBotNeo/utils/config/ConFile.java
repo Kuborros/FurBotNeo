@@ -32,9 +32,7 @@ class ConFile {
 
                 prop.setProperty("BotToken", "");
                 prop.setProperty("OwnerId", "0");
-                prop.setProperty("LogToFile", "false");
                 prop.setProperty("PostGuildMessages", "false");
-                prop.setProperty("FirstLaunch", "true");
 
                 prop.store(output, null);
 
@@ -86,36 +84,38 @@ class ConFile {
     }
 
 
-    static void modifyProperty(String key, String value) {
-        Properties prop = new Properties();
-        InputStream input = null;
-        OutputStream output = null;
-        try {
-
-            input = new FileInputStream(CONFIG);
-            prop.load(input);
-            output = new FileOutputStream(CONFIG);
-            prop.setProperty(key, value);
-            prop.store(output, null);
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            if (output != null) {
-                try {
-                    output.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-            if (input != null) {
-                try {
-                    input.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-
-    }
+// --Commented out by Inspection START (2017-12-25 23:52):
+//    static void modifyProperty(String key, String value) {
+//        Properties prop = new Properties();
+//        InputStream input = null;
+//        OutputStream output = null;
+//        try {
+//
+//            input = new FileInputStream(CONFIG);
+//            prop.load(input);
+//            output = new FileOutputStream(CONFIG);
+//            prop.setProperty(key, value);
+//            prop.store(output, null);
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        } finally {
+//            if (output != null) {
+//                try {
+//                    output.close();
+//                } catch (IOException e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//            if (input != null) {
+//                try {
+//                    input.close();
+//                } catch (IOException e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//        }
+//
+//    }
+// --Commented out by Inspection STOP (2017-12-25 23:52)
 
 }

@@ -24,7 +24,6 @@ public class Database {
 
     private Connection conn;
     private Statement stat;
-    private ResultSet rs;
 
 
     public Database() {
@@ -182,7 +181,7 @@ public class Database {
             Map<String, String> map = new HashMap<>();
             int counter;
             stat = conn.createStatement();
-            rs = stat.executeQuery("SELECT * FROM CommandStats WHERE user_id=" + memberID);
+        ResultSet rs = stat.executeQuery("SELECT * FROM CommandStats WHERE user_id=" + memberID);
             ResultSetMetaData rsmd = rs.getMetaData();
             int columnCount = rsmd.getColumnCount();  
             List<String> names = new ArrayList<>();

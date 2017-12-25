@@ -1,18 +1,18 @@
 
 package com.kuborros.FurBotNeo.utils.msg;
 
-import java.util.List;
 import net.dv8tion.jda.core.entities.Guild;
 import net.dv8tion.jda.core.entities.TextChannel;
-import net.dv8tion.jda.core.entities.VoiceChannel;
+
+import java.util.List;
 
 /**
  *
  * @author Kuborros
  */
 public class ChannelFinder {
-    
-    private Guild guild;
+
+    private final Guild guild;
     
     public ChannelFinder(Guild guild) {
         this.guild = guild;
@@ -26,24 +26,4 @@ public class ChannelFinder {
         }
         return guild.getDefaultChannel();
     }
-    
-    public VoiceChannel FindMusicChannel() {
-       List<VoiceChannel> channels = guild.getVoiceChannels();
-       for (VoiceChannel channel : channels) {
-           if (channel.getName().contains("music"))
-               return channel;
-       }
-       return null;
-    }
-     
-    public boolean HasBotChat() {
-        List<TextChannel> channels = guild.getTextChannels();
-        return channels.stream().anyMatch((channel) -> (channel.getName().contains("bot")));
-    }
-    
-    public boolean HasMusicChannel() {
-       List<VoiceChannel> channels = guild.getVoiceChannels();
-       return channels.stream().anyMatch((channel) -> (channel.getName().contains("music")));
-    }
-     
 }

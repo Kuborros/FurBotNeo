@@ -35,8 +35,11 @@ import net.dv8tion.jda.core.hooks.ListenerAdapter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.Objects;
+
 import static com.kuborros.FurBotNeo.BotMain.cfg;
 import static com.kuborros.FurBotNeo.BotMain.db;
+import static net.dv8tion.jda.core.entities.Game.watching;
 
 /**
  *
@@ -51,7 +54,7 @@ public class BotEventListener extends ListenerAdapter{
     public void onReady(ReadyEvent event) {
         ClearConsole();
         LOG.info("FurryBot {} - Startup completed!", cfg.getVERSION());
-        //event.getJDA().getPresence().setGame(Game.watching(" furry porn"));
+        event.getJDA().getPresence().setGame(watching(" furry porn"));
         
         if (cfg.getOWNER_ID().equals("0")) {
            LOG.warn("Please set your own user ID in config.cfg! This gives you sudo powers in bot commands!");
@@ -61,10 +64,9 @@ public class BotEventListener extends ListenerAdapter{
     }
     
     @Override
-    @SuppressWarnings("null")
     public void onGuildJoin(GuildJoinEvent event) {
         Guild guild = event.getGuild();
-        LOG.info("Joining guild: {}! It's main channel is: {}", guild.getName(), guild.getDefaultChannel().getName());
+        LOG.info("Joining guild: {}! It's main channel is: {}", guild.getName(), Objects.requireNonNull(guild.getDefaultChannel()).getName());
         if (!guild.isAvailable()) {
             LOG.warn("...But it's unavaible right now!");
             return;
