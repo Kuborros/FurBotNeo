@@ -30,10 +30,10 @@ public class MusicVolumeCmd extends MusicCommand{
                 vol = Integer.decode(event.getArgs());
                 }
             catch (NumberFormatException e) {
-                event.replyError(":warning:  Please set valid volume! <0-150>."); 
+                event.replyError("Please set valid volume! <0-150>.");
             }
             setVolume(guild,vol);
-            event.reply("Volume set to: " + getPlayer(guild).getVolume());                      
+            event.reply(String.format("Volume set to: %d", getPlayer(guild).getVolume()));
             }
     }
 }

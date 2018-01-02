@@ -18,7 +18,7 @@ public class ShutdownCommand extends Command {
         this.guildOnly = false;
         this.ownerCommand = true;
         this.category = new Category("Moderation");
-        this.userPermissions = new Permission[]{Permission.KICK_MEMBERS};        
+        this.userPermissions = new Permission[]{Permission.ADMINISTRATOR};
     }
 
     @Override

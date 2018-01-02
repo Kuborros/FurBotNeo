@@ -92,7 +92,7 @@ public abstract class MusicCommand extends Command{
     
      protected void setVolume(Guild guild, int vol) {
         AudioPlayer p;
-        if (hasPlayer(guild)) {
+         if (hasPlayer(guild)) {
             p = players.get(guild.getId()).getKey();
             p.setVolume(vol);
         }
@@ -127,7 +127,7 @@ public abstract class MusicCommand extends Command{
 
         guild = author.getGuild();
         getPlayer(guild);
-        myManager.setFrameBufferDuration(1000);
+        myManager.setFrameBufferDuration(5000);
         myManager.loadItemOrdered(guild, identifier, new AudioLoadResultHandler() {
 
             @Override
@@ -185,8 +185,7 @@ public abstract class MusicCommand extends Command{
         getPlayer(guild);
 
 
-        myManager.setFrameBufferDuration(1000);
-        myManager.enableGcMonitoring();
+        myManager.setFrameBufferDuration(5000);
         myManager.loadItemOrdered(guild, identifier, new AudioLoadResultHandler() {
             @Override
             public void trackLoaded(AudioTrack track) {
@@ -232,7 +231,6 @@ public abstract class MusicCommand extends Command{
 
 
         myManager.setFrameBufferDuration(5000);
-        myManager.enableGcMonitoring();
         myManager.loadItemOrdered(guild, identifier, new AudioLoadResultHandler() {
             @Override
             public void trackLoaded(AudioTrack track) {
