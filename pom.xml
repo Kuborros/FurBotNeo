@@ -46,7 +46,7 @@
         <dependency>
            <groupId>com.github.JDA-Applications</groupId>
            <artifactId>JDA-Utilities</artifactId>
-            <version>version-major~2.0-SNAPSHOT</version>
+            <version>version-major~2.0-1.9-gb90264a-56</version>
            <scope>compile</scope>
         </dependency>
         <dependency>
