@@ -41,6 +41,11 @@
       <name>jitpack-io</name>
       <url>https://jitpack.io</url>
     </repository>
+      <repository>
+          <id>bintray-jagrosh-maven</id>
+          <name>bintray</name>
+          <url>https://dl.bintray.com/jagrosh/maven</url>
+      </repository>
   </repositories>
   <properties>
     <exec.mainClass>com.kuborros.FurBotNeo.BotMain</exec.mainClass>

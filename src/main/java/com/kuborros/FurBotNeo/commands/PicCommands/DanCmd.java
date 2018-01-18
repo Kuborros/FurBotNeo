@@ -6,8 +6,8 @@ package com.kuborros.FurBotNeo.commands.PicCommands;
 
 import com.jagrosh.jdautilities.command.Command;
 import com.jagrosh.jdautilities.command.CommandEvent;
+import com.jagrosh.jdautilities.commons.waiter.EventWaiter;
 import com.jagrosh.jdautilities.menu.Slideshow;
-import com.jagrosh.jdautilities.waiter.EventWaiter;
 import com.kuborros.FurBotNeo.net.apis.DanApi;
 import com.kuborros.FurBotNeo.net.apis.NoImgException;
 import net.dv8tion.jda.core.Permission;
