@@ -20,7 +20,6 @@ import net.dv8tion.jda.core.AccountType;
 import net.dv8tion.jda.core.JDABuilder;
 import net.dv8tion.jda.core.OnlineStatus;
 import net.dv8tion.jda.core.Permission;
-import net.dv8tion.jda.core.exceptions.RateLimitedException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -129,11 +128,6 @@ public class BotMain {
             LOG.error("Stored token was rejected!");
             LOG.error("Please double-check your token.");
             System.exit(102);
-        }
-        catch (RateLimitedException e)
-        {
-            LOG.error("We got ratelimited while logging in! \n Try again in a while.");
-            System.exit(210);
         }
     }
     
