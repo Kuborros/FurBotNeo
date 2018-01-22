@@ -6,7 +6,7 @@ package com.kuborros.FurBotNeo.commands.MusicCommands;
 
 import com.jagrosh.jdautilities.command.Command;
 import com.jagrosh.jdautilities.command.CommandEvent;
-import com.jagrosh.jdautilities.waiter.EventWaiter;
+import com.jagrosh.jdautilities.commons.waiter.EventWaiter;
 import com.kuborros.FurBotNeo.utils.audio.AudioInfo;
 import com.kuborros.FurBotNeo.utils.audio.AudioPlayerSendHandler;
 import com.kuborros.FurBotNeo.utils.audio.TrackManager;

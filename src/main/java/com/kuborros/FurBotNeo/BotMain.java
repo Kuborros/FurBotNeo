@@ -1,8 +1,8 @@
 package com.kuborros.FurBotNeo;
 
 import com.jagrosh.jdautilities.command.CommandClientBuilder;
-import com.jagrosh.jdautilities.command.examples.AboutCommand;
-import com.jagrosh.jdautilities.waiter.EventWaiter;
+import com.jagrosh.jdautilities.commons.waiter.EventWaiter;
+import com.jagrosh.jdautilities.examples.command.AboutCommand;
 import com.kuborros.FurBotNeo.commands.AdminCommands.EvalCommand;
 import com.kuborros.FurBotNeo.commands.AdminCommands.InfoCommand;
 import com.kuborros.FurBotNeo.commands.AdminCommands.ShutdownCommand;
@@ -15,6 +15,7 @@ import com.kuborros.FurBotNeo.listeners.LogListener;
 import com.kuborros.FurBotNeo.listeners.MemberEventListener;
 import com.kuborros.FurBotNeo.utils.config.Config;
 import com.kuborros.FurBotNeo.utils.config.Database;
+import com.kuborros.FurBotNeo.utils.config.FurrySettingsManager;
 import com.sedmelluq.discord.lavaplayer.jdaudp.NativeAudioSendFactory;
 import net.dv8tion.jda.core.AccountType;
 import net.dv8tion.jda.core.JDABuilder;
@@ -39,7 +40,8 @@ public class BotMain {
             LOG.warn("Not running in UTF-8 mode! This ~might~ end badly for us!");
         }
         EventWaiter waiter = new EventWaiter();
-        
+
+
         db = new Database();
         db.createTables();
 
@@ -49,6 +51,7 @@ public class BotMain {
         client.setOwnerId(cfg.getOWNER_ID());
         client.setEmojis("\u2705", "\u2757", "\u274C");
         client.setPrefix(cfg.getPREFIX());
+        client.setGuildSettingsManager(new FurrySettingsManager());
         client.addCommands(
 
                 new AboutCommand(Color.CYAN, "and im here to make this server a better place!",
@@ -129,6 +132,7 @@ public class BotMain {
             LOG.error("Please double-check your token.");
             System.exit(102);
         }
+        //catch (RateLimitedException ignored) {}
     }
     
 }

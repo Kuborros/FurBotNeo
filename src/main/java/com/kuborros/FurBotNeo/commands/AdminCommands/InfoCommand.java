@@ -25,7 +25,6 @@ import java.util.List;
 public class InfoCommand extends Command{
     
     //Emotes start
-    //private static final String PAWS = "\ud83d\udc3e";
     private static final String NAMETAG = "\ud83d\udcdb";
     private static final String IDBADGE = "\ud83c\udd94";
     private static final String TIMER1 = "\u23f0";

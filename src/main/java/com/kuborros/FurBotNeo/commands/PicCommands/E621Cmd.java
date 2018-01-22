@@ -4,8 +4,8 @@ package com.kuborros.FurBotNeo.commands.PicCommands;
 
 import com.jagrosh.jdautilities.command.Command;
 import com.jagrosh.jdautilities.command.CommandEvent;
+import com.jagrosh.jdautilities.commons.waiter.EventWaiter;
 import com.jagrosh.jdautilities.menu.Slideshow;
-import com.jagrosh.jdautilities.waiter.EventWaiter;
 import com.kuborros.FurBotNeo.net.apis.E621Api;
 import com.kuborros.FurBotNeo.net.apis.NoImgException;
 import net.dv8tion.jda.core.Permission;
@@ -35,7 +35,8 @@ public class E621Cmd extends Command{
         this.botPermissions = new Permission[]{Permission.MESSAGE_EMBED_LINKS, Permission.MANAGE_EMOTES};
         this.category = new Category("ImageBoards");
         this.waiter = waiter;
-        db.registerCommand(this.name);        
+        db.registerCommand(this.name);
+
     }
     
     @Override
