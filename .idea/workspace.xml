@@ -2,21 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d1641ed2-026d-4e0d-a34f-7a3c922f5d3c" name="Default" comment="Jda utils 2.0">
-      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_jagrosh_jda_utilities_2_0.xml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_jagrosh_jda_utilities_command_2_0.xml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_jagrosh_jda_utilities_commons_2_0.xml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_jagrosh_jda_utilities_doc_2_0.xml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/kuborros/FurBotNeo/utils/config/FurrySettingsManager.java" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_github_JDA_Applications_JDA_Utilities_version_major_2_0_1_9_gb90264a_56.xml" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_google_code_findbugs_jsr305_3_0_2.xml" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_google_code_findbugs_jsr305_3_0_2.xml" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_neovisionaries_nv_websocket_client_2_2.xml" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_neovisionaries_nv_websocket_client_2_2.xml" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_squareup_okhttp3_okhttp_3_8_1.xml" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_squareup_okhttp3_okhttp_3_8_1.xml" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_squareup_okio_okio_1_13_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_squareup_okio_okio_1_13_0.xml" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__net_dv8tion_JDA_3_5_0_327.xml" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__net_java_dev_jna_jna_4_4_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__net_java_dev_jna_jna_4_4_0.xml" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__net_sf_trove4j_trove4j_3_0_3.xml" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__net_sf_trove4j_trove4j_3_0_3.xml" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_commons_commons_collections4_4_1.xml" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_commons_commons_collections4_4_1.xml" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_json_json_20160810.xml" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_json_json_20160810.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_jagrosh_jda_utilities_examples_2_0.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_jagrosh_jda_utilities_menu_2_0.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__net_dv8tion_JDA_3_5_0_329.xml" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_jagrosh_jda_utilities_2_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_jagrosh_jda_utilities_2_0.xml" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/FurBotNeo.iml" afterPath="$PROJECT_DIR$/FurBotNeo.iml" />
       <change beforePath="$PROJECT_DIR$/database.db" afterPath="$PROJECT_DIR$/database.db" />
@@ -24,14 +13,6 @@
       <change beforePath="$PROJECT_DIR$/pom.xml" afterPath="$PROJECT_DIR$/pom.xml" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/kuborros/FurBotNeo/BotMain.java" afterPath="$PROJECT_DIR$/src/main/java/com/kuborros/FurBotNeo/BotMain.java" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/kuborros/FurBotNeo/commands/MusicCommands/MusicCommand.java" afterPath="$PROJECT_DIR$/src/main/java/com/kuborros/FurBotNeo/commands/MusicCommands/MusicCommand.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kuborros/FurBotNeo/commands/MusicCommands/MusicVolumeCmd.java" afterPath="$PROJECT_DIR$/src/main/java/com/kuborros/FurBotNeo/commands/MusicCommands/MusicVolumeCmd.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kuborros/FurBotNeo/commands/PicCommands/DanCmd.java" afterPath="$PROJECT_DIR$/src/main/java/com/kuborros/FurBotNeo/commands/PicCommands/DanCmd.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kuborros/FurBotNeo/commands/PicCommands/E621Cmd.java" afterPath="$PROJECT_DIR$/src/main/java/com/kuborros/FurBotNeo/commands/PicCommands/E621Cmd.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kuborros/FurBotNeo/commands/PicCommands/GelCmd.java" afterPath="$PROJECT_DIR$/src/main/java/com/kuborros/FurBotNeo/commands/PicCommands/GelCmd.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kuborros/FurBotNeo/commands/PicCommands/PokeCmd.java" afterPath="$PROJECT_DIR$/src/main/java/com/kuborros/FurBotNeo/commands/PicCommands/PokeCmd.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kuborros/FurBotNeo/commands/PicCommands/R34Cmd.java" afterPath="$PROJECT_DIR$/src/main/java/com/kuborros/FurBotNeo/commands/PicCommands/R34Cmd.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kuborros/FurBotNeo/commands/PicCommands/SafeCmd.java" afterPath="$PROJECT_DIR$/src/main/java/com/kuborros/FurBotNeo/commands/PicCommands/SafeCmd.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kuborros/FurBotNeo/net/apis/DanApi.java" afterPath="$PROJECT_DIR$/src/main/java/com/kuborros/FurBotNeo/net/apis/DanApi.java" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -58,90 +39,24 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="MusicCommand.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="AudioPlayerSendHandler.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/kuborros/FurBotNeo/utils/audio/AudioPlayerSendHandler.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="49">
+              <caret line="25" column="0" lean-forward="false" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MusicCommand.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/kuborros/FurBotNeo/commands/MusicCommands/MusicCommand.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-85">
-              <caret line="19" column="67" lean-forward="false" selection-start-line="19" selection-start-column="67" selection-end-line="19" selection-end-column="67" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="pom.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/pom.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="46" column="42" lean-forward="false" selection-start-line="46" selection-start-column="42" selection-end-line="46" selection-end-column="42" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="FurrySettingsManager.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/kuborros/FurBotNeo/utils/config/FurrySettingsManager.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="10" column="44" lean-forward="false" selection-start-line="10" selection-start-column="44" selection-end-line="10" selection-end-column="44" />
+            <state relative-caret-position="218">
+              <caret line="92" column="67" lean-forward="true" selection-start-line="92" selection-start-column="67" selection-end-line="92" selection-end-column="67" />
               <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#354#355#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="BotMain.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/kuborros/FurBotNeo/BotMain.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="432">
-              <caret line="134" column="26" lean-forward="false" selection-start-line="134" selection-start-column="26" selection-end-line="134" selection-end-column="49" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="E621Cmd.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/kuborros/FurBotNeo/commands/PicCommands/E621Cmd.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="340">
-              <caret line="38" column="0" lean-forward="false" selection-start-line="38" selection-start-column="0" selection-end-line="38" selection-end-column="0" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="PokeCmd.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/kuborros/FurBotNeo/commands/PicCommands/PokeCmd.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="13" column="32" lean-forward="false" selection-start-line="13" selection-start-column="32" selection-end-line="13" selection-end-column="32" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="R34Cmd.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/kuborros/FurBotNeo/commands/PicCommands/R34Cmd.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="102">
-              <caret line="9" column="47" lean-forward="false" selection-start-line="9" selection-start-column="47" selection-end-line="9" selection-end-column="47" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SafeCmd.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/kuborros/FurBotNeo/commands/PicCommands/SafeCmd.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="306">
-              <caret line="21" column="48" lean-forward="false" selection-start-line="21" selection-start-column="48" selection-end-line="21" selection-end-column="48" />
-              <folding>
-                <element signature="imports" expanded="true" />
+                <element signature="e#4597#4598#0" expanded="true" />
+                <element signature="e#4654#4655#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -161,9 +76,11 @@
       <find>timeout</find>
       <find>import com.jagrosh.jdautilities.commandclient.</find>
       <find>manager</find>
+      <find>playermanager</find>
     </findStrings>
     <replaceStrings>
       <replace>import com.jagrosh.jdautilities.command.</replace>
+      <replace>myManager</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -221,11 +138,11 @@
         <option value="$PROJECT_DIR$/src/main/java/com/kuborros/FurBotNeo/commands/PicCommands/PokeCmd.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/kuborros/FurBotNeo/commands/PicCommands/R34Cmd.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/kuborros/FurBotNeo/commands/PicCommands/SafeCmd.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/kuborros/FurBotNeo/commands/MusicCommands/MusicCommand.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/kuborros/FurBotNeo/commands/PicCommands/E621Cmd.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/kuborros/FurBotNeo/utils/config/FurrySettingsManager.java" />
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/src/main/java/com/kuborros/FurBotNeo/BotMain.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/kuborros/FurBotNeo/commands/MusicCommands/MusicCommand.java" />
       </list>
     </option>
   </component>
@@ -291,7 +208,7 @@
     <OptionsSetting value="false" id="Update" />
   </component>
   <component name="ProjectView">
-    <navigator currentView="ProjectPane" proportions="" version="1">
+    <navigator currentView="PackagesPane" proportions="" version="1">
       <flattenPackages />
       <showMembers />
       <showModules />
@@ -305,236 +222,53 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
-      <pane id="ProjectPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="FurBotNeo" type="b2602c69:ProjectViewProjectNode" />
-              <item name="FurBotNeo" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="FurBotNeo" type="b2602c69:ProjectViewProjectNode" />
-              <item name="FurBotNeo" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="FurBotNeo" type="b2602c69:ProjectViewProjectNode" />
-              <item name="FurBotNeo" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="FurBotNeo" type="b2602c69:ProjectViewProjectNode" />
-              <item name="FurBotNeo" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="FurBotNeo" type="b2602c69:ProjectViewProjectNode" />
-              <item name="FurBotNeo" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="FurBotNeo" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="FurBotNeo" type="b2602c69:ProjectViewProjectNode" />
-              <item name="FurBotNeo" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="FurBotNeo" type="462c0819:PsiDirectoryNode" />
-              <item name="commands" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="FurBotNeo" type="b2602c69:ProjectViewProjectNode" />
-              <item name="FurBotNeo" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="FurBotNeo" type="462c0819:PsiDirectoryNode" />
-              <item name="commands" type="462c0819:PsiDirectoryNode" />
-              <item name="AdminCommands" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="FurBotNeo" type="b2602c69:ProjectViewProjectNode" />
-              <item name="FurBotNeo" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="FurBotNeo" type="462c0819:PsiDirectoryNode" />
-              <item name="commands" type="462c0819:PsiDirectoryNode" />
-              <item name="GeneralCommands" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="FurBotNeo" type="b2602c69:ProjectViewProjectNode" />
-              <item name="FurBotNeo" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="FurBotNeo" type="462c0819:PsiDirectoryNode" />
-              <item name="commands" type="462c0819:PsiDirectoryNode" />
-              <item name="MusicCommands" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="FurBotNeo" type="b2602c69:ProjectViewProjectNode" />
-              <item name="FurBotNeo" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="FurBotNeo" type="462c0819:PsiDirectoryNode" />
-              <item name="commands" type="462c0819:PsiDirectoryNode" />
-              <item name="PicCommands" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="FurBotNeo" type="b2602c69:ProjectViewProjectNode" />
-              <item name="FurBotNeo" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="FurBotNeo" type="462c0819:PsiDirectoryNode" />
-              <item name="listeners" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="FurBotNeo" type="b2602c69:ProjectViewProjectNode" />
-              <item name="FurBotNeo" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="FurBotNeo" type="462c0819:PsiDirectoryNode" />
-              <item name="apis" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="FurBotNeo" type="b2602c69:ProjectViewProjectNode" />
-              <item name="FurBotNeo" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="FurBotNeo" type="462c0819:PsiDirectoryNode" />
-              <item name="utils" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="FurBotNeo" type="b2602c69:ProjectViewProjectNode" />
-              <item name="FurBotNeo" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="FurBotNeo" type="462c0819:PsiDirectoryNode" />
-              <item name="utils" type="462c0819:PsiDirectoryNode" />
-              <item name="audio" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="FurBotNeo" type="b2602c69:ProjectViewProjectNode" />
-              <item name="FurBotNeo" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="FurBotNeo" type="462c0819:PsiDirectoryNode" />
-              <item name="utils" type="462c0819:PsiDirectoryNode" />
-              <item name="config" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="FurBotNeo" type="b2602c69:ProjectViewProjectNode" />
-              <item name="FurBotNeo" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="FurBotNeo" type="462c0819:PsiDirectoryNode" />
-              <item name="utils" type="462c0819:PsiDirectoryNode" />
-              <item name="msg" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="FurBotNeo" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
-      <pane id="AndroidView" />
-      <pane id="Scratches" />
       <pane id="PackagesPane">
         <subPane>
           <expand>
             <path>
-              <item name="FurBotNeo" type="58d84e3e:PackageViewProjectNode" />
+              <item name="furbotNeo" type="58d84e3e:PackageViewProjectNode" />
               <item name="FurBotNeo" type="616d4139:PackageViewModuleNode" />
             </path>
             <path>
-              <item name="FurBotNeo" type="58d84e3e:PackageViewProjectNode" />
-              <item name="FurBotNeo" type="616d4139:PackageViewModuleNode" />
-              <item name="com.kuborros.FurBotNeo" type="1f31426a:PackageElementNode" />
-            </path>
-            <path>
-              <item name="FurBotNeo" type="58d84e3e:PackageViewProjectNode" />
+              <item name="furbotNeo" type="58d84e3e:PackageViewProjectNode" />
               <item name="FurBotNeo" type="616d4139:PackageViewModuleNode" />
               <item name="com.kuborros.FurBotNeo" type="1f31426a:PackageElementNode" />
-              <item name="commands" type="1f31426a:PackageElementNode" />
             </path>
             <path>
-              <item name="FurBotNeo" type="58d84e3e:PackageViewProjectNode" />
+              <item name="furbotNeo" type="58d84e3e:PackageViewProjectNode" />
               <item name="FurBotNeo" type="616d4139:PackageViewModuleNode" />
               <item name="com.kuborros.FurBotNeo" type="1f31426a:PackageElementNode" />
               <item name="commands" type="1f31426a:PackageElementNode" />
-              <item name="AdminCommands" type="1f31426a:PackageElementNode" />
             </path>
             <path>
-              <item name="FurBotNeo" type="58d84e3e:PackageViewProjectNode" />
-              <item name="FurBotNeo" type="616d4139:PackageViewModuleNode" />
-              <item name="com.kuborros.FurBotNeo" type="1f31426a:PackageElementNode" />
-              <item name="commands" type="1f31426a:PackageElementNode" />
-              <item name="GeneralCommands" type="1f31426a:PackageElementNode" />
-            </path>
-            <path>
-              <item name="FurBotNeo" type="58d84e3e:PackageViewProjectNode" />
-              <item name="FurBotNeo" type="616d4139:PackageViewModuleNode" />
-              <item name="com.kuborros.FurBotNeo" type="1f31426a:PackageElementNode" />
-              <item name="commands" type="1f31426a:PackageElementNode" />
-              <item name="MusicCommands" type="1f31426a:PackageElementNode" />
-            </path>
-            <path>
-              <item name="FurBotNeo" type="58d84e3e:PackageViewProjectNode" />
+              <item name="furbotNeo" type="58d84e3e:PackageViewProjectNode" />
               <item name="FurBotNeo" type="616d4139:PackageViewModuleNode" />
               <item name="com.kuborros.FurBotNeo" type="1f31426a:PackageElementNode" />
               <item name="commands" type="1f31426a:PackageElementNode" />
               <item name="PicCommands" type="1f31426a:PackageElementNode" />
             </path>
             <path>
-              <item name="FurBotNeo" type="58d84e3e:PackageViewProjectNode" />
-              <item name="FurBotNeo" type="616d4139:PackageViewModuleNode" />
-              <item name="com.kuborros.FurBotNeo" type="1f31426a:PackageElementNode" />
-              <item name="listeners" type="1f31426a:PackageElementNode" />
-            </path>
-            <path>
-              <item name="FurBotNeo" type="58d84e3e:PackageViewProjectNode" />
-              <item name="FurBotNeo" type="616d4139:PackageViewModuleNode" />
-              <item name="com.kuborros.FurBotNeo" type="1f31426a:PackageElementNode" />
-              <item name="net.apis" type="1f31426a:PackageElementNode" />
-            </path>
-            <path>
-              <item name="FurBotNeo" type="58d84e3e:PackageViewProjectNode" />
+              <item name="furbotNeo" type="58d84e3e:PackageViewProjectNode" />
               <item name="FurBotNeo" type="616d4139:PackageViewModuleNode" />
               <item name="com.kuborros.FurBotNeo" type="1f31426a:PackageElementNode" />
               <item name="utils" type="1f31426a:PackageElementNode" />
             </path>
             <path>
-              <item name="FurBotNeo" type="58d84e3e:PackageViewProjectNode" />
+              <item name="furbotNeo" type="58d84e3e:PackageViewProjectNode" />
               <item name="FurBotNeo" type="616d4139:PackageViewModuleNode" />
               <item name="com.kuborros.FurBotNeo" type="1f31426a:PackageElementNode" />
               <item name="utils" type="1f31426a:PackageElementNode" />
               <item name="audio" type="1f31426a:PackageElementNode" />
             </path>
             <path>
-              <item name="FurBotNeo" type="58d84e3e:PackageViewProjectNode" />
+              <item name="furbotNeo" type="58d84e3e:PackageViewProjectNode" />
               <item name="FurBotNeo" type="616d4139:PackageViewModuleNode" />
               <item name="com.kuborros.FurBotNeo" type="1f31426a:PackageElementNode" />
               <item name="utils" type="1f31426a:PackageElementNode" />
               <item name="config" type="1f31426a:PackageElementNode" />
             </path>
             <path>
-              <item name="FurBotNeo" type="58d84e3e:PackageViewProjectNode" />
+              <item name="furbotNeo" type="58d84e3e:PackageViewProjectNode" />
               <item name="FurBotNeo" type="616d4139:PackageViewModuleNode" />
               <item name="com.kuborros.FurBotNeo" type="1f31426a:PackageElementNode" />
               <item name="utils" type="1f31426a:PackageElementNode" />
@@ -544,6 +278,24 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
+      <pane id="Scratches" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="furbotNeo" type="b2602c69:ProjectViewProjectNode" />
+              <item name="furbotNeo" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="furbotNeo" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="AndroidView" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -588,7 +340,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Maven.Clean and Install">
+  <component name="RunManager" selected="Maven.Compile and Run">
     <configuration default="true" type="Applet" factoryName="Applet">
       <option name="HTML_USED" value="false" />
       <option name="WIDTH" value="400" />
@@ -672,9 +424,9 @@
       <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
     </configuration>
     <list size="3">
-      <item index="0" class="java.lang.String" itemvalue="Maven.Clean and Install" />
-      <item index="1" class="java.lang.String" itemvalue="Maven.Compile and Run" />
-      <item index="2" class="java.lang.String" itemvalue="Maven.Install (compile)" />
+      <item index="0" class="java.lang.String" itemvalue="Maven.Compile and Run" />
+      <item index="1" class="java.lang.String" itemvalue="Maven.Install (compile)" />
+      <item index="2" class="java.lang.String" itemvalue="Maven.Clean and Install" />
     </list>
   </component>
   <component name="ShelveChangesManager" show_recycled="false">
@@ -743,6 +495,7 @@
       <workItem from="1516030133561" duration="918000" />
       <workItem from="1516033568675" duration="475000" />
       <workItem from="1516282414607" duration="3155000" />
+      <workItem from="1516990502186" duration="955000" />
     </task>
     <task id="LOCAL-00001" summary="Welp">
       <created>1512171162364</created>
@@ -874,42 +627,42 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="68397000" />
+    <option name="totallyTimeSpent" value="72329000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <frame x="260" y="20" width="1366" height="745" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32911393" sideWeight="0.50208336" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32911393" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32911393" sideWeight="0.49791667" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3275862" sideWeight="0.49791667" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Inspection Results" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32911393" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24963397" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32911393" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39978904" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Dependency Viewer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32911393" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Duplicates" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32911393" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32911393" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection Results" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32911393" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3275862" sideWeight="0.49707174" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32911393" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -985,36 +738,6 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/kuborros/FurBotNeo/commands/GeneralCommands/R8BallCmd.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="14" column="13" lean-forward="false" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/kuborros/FurBotNeo/commands/GeneralCommands/VoteCommand.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="385">
-          <caret line="83" column="32" lean-forward="false" selection-start-line="83" selection-start-column="32" selection-end-line="84" selection-end-column="94" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/kuborros/FurBotNeo/commands/MusicCommands/MusicQueueCmd.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="580">
-          <caret line="52" column="0" lean-forward="false" selection-start-line="52" selection-start-column="0" selection-end-line="52" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/kuborros/FurBotNeo/commands/MusicCommands/MusicSkipCmd.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="12" column="13" lean-forward="false" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/kuborros/FurBotNeo/commands/MusicCommands/PlayCommand.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
@@ -1079,13 +802,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/com/github/JDA-Applications/JDA-Utilities/version-major~2.0-1.9-gb90264a-56/JDA-Utilities-version-major~2.0-1.9-gb90264a-56-sources.jar!/resources/FixedSizeCache.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="34" column="13" lean-forward="false" selection-start-line="34" selection-start-column="13" selection-end-line="34" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/com/github/JDA-Applications/JDA-Utilities/version-major~2.0-1.9-gb90264a-56/JDA-Utilities-version-major~2.0-1.9-gb90264a-56-sources.jar!/resources/FixedSizeCache.java" />
     <entry file="file://$PROJECT_DIR$/nbactions.xml" />
     <entry file="file://$PROJECT_DIR$/src/main/java/com/kuborros/FurBotNeo/listeners/AudioChannelListener.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/com/kuborros/FurBotNeo/utils/config/ConFile.java">
@@ -1109,19 +826,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1836">
           <caret line="121" column="39" lean-forward="false" selection-start-line="121" selection-start-column="39" selection-end-line="121" selection-end-column="39" />
-          <folding>
-            <marker date="1514244646724" expanded="true" signature="1538:1931" ph="CREATE TABLE... BotBans" />
-            <marker date="1514244646724" expanded="true" signature="1999:2254" ph="CREATE TABLE... Guilds" />
-            <marker date="1514244646724" expanded="true" signature="2331:2565" ph="CREATE TABLE... Games" />
-            <marker date="1514244646724" expanded="true" signature="2643:2749" ph="CREATE TABLE... CommandStats" />
-            <marker date="1514244646724" expanded="true" signature="3145:3163" ph="DELETE FROM Guilds... " />
-            <marker date="1514244646724" expanded="true" signature="3250:3326" ph="INSERT OR IG... Guilds" />
-            <marker date="1514244646724" expanded="true" signature="4256:4313" ph="UPDATE Guilds... " />
-            <marker date="1514244646724" expanded="true" signature="4652:4726" ph="INSERT OR IG... CommandStats" />
-            <marker date="1514244646724" expanded="true" signature="4982:5051" ph="ALTER TABLE CommandStats... " />
-            <marker date="1514244646724" expanded="true" signature="5279:5353" ph="UPDATE CommandStats... " />
-            <marker date="1514244646724" expanded="true" signature="5689:5730" ph="SELECT * FRO... CommandStats" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1129,24 +833,11 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="561">
           <caret line="43" column="112" lean-forward="false" selection-start-line="43" selection-start-column="112" selection-end-line="43" selection-end-column="112" />
-          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/com/github/JDA-Applications/JDA-Utilities/version-major~2.0-1.9-gb90264a-56/JDA-Utilities-version-major~2.0-1.9-gb90264a-56-sources.jar!/com/jagrosh/jdautilities/command/GuildSettingsManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="228">
-          <caret line="43" column="17" lean-forward="false" selection-start-line="43" selection-start-column="17" selection-end-line="43" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/com/github/JDA-Applications/JDA-Utilities/version-major~2.0-1.9-gb90264a-56/JDA-Utilities-version-major~2.0-1.9-gb90264a-56-sources.jar!/com/jagrosh/jdautilities/command/GuildSettingsProvider.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="217">
-          <caret line="47" column="17" lean-forward="false" selection-start-line="47" selection-start-column="17" selection-end-line="47" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/com/github/JDA-Applications/JDA-Utilities/version-major~2.0-1.9-gb90264a-56/JDA-Utilities-version-major~2.0-1.9-gb90264a-56-sources.jar!/com/jagrosh/jdautilities/command/GuildSettingsManager.java" />
+    <entry file="jar://$MAVEN_REPOSITORY$/com/github/JDA-Applications/JDA-Utilities/version-major~2.0-1.9-gb90264a-56/JDA-Utilities-version-major~2.0-1.9-gb90264a-56-sources.jar!/com/jagrosh/jdautilities/command/GuildSettingsProvider.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/com/kuborros/FurBotNeo/commands/GeneralCommands/DiceCmd.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="476">
@@ -1187,14 +878,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/kuborros/FurBotNeo/utils/audio/AudioPlayerSendHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="29" column="13" lean-forward="false" selection-start-line="29" selection-start-column="13" selection-end-line="29" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/kuborros/FurBotNeo/net/apis/GelEngine.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
@@ -1223,7 +906,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="374">
           <caret line="58" column="16" lean-forward="false" selection-start-line="58" selection-start-column="16" selection-end-line="58" selection-end-column="16" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1231,7 +913,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="646">
           <caret line="47" column="10" lean-forward="false" selection-start-line="47" selection-start-column="10" selection-end-line="47" selection-end-column="10" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1239,7 +920,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="527">
           <caret line="46" column="5" lean-forward="false" selection-start-line="46" selection-start-column="5" selection-end-line="46" selection-end-column="5" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1247,9 +927,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="952">
           <caret line="95" column="0" lean-forward="false" selection-start-line="95" selection-start-column="0" selection-end-line="95" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1257,7 +934,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="102">
           <caret line="6" column="0" lean-forward="false" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1265,7 +941,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1020">
           <caret line="96" column="0" lean-forward="false" selection-start-line="96" selection-start-column="0" selection-end-line="96" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1306,255 +981,15 @@
         <state relative-caret-position="306">
           <caret line="21" column="48" lean-forward="false" selection-start-line="21" selection-start-column="48" selection-end-line="21" selection-end-column="48" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/com/jagrosh/jda-utilities-command/2.0/jda-utilities-command-2.0.jar!/com/jagrosh/jdautilities/command/impl/CommandClientImpl.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="202">
-          <caret line="404" column="0" lean-forward="false" selection-start-line="404" selection-start-column="0" selection-end-line="404" selection-end-column="0" />
-          <folding>
-            <marker date="1516282843536" expanded="false" signature="0:104" ph="/.../" />
-            <marker date="1516282843536" expanded="false" signature="161:2547" ph="..." />
-            <marker date="1516282843536" expanded="true" signature="4486:9197" ph="{...}" />
-            <marker date="1516282843536" expanded="true" signature="6780:8963" ph="{...}" />
-            <marker date="1516282843536" expanded="true" signature="7933:7968" ph="{}" />
-            <marker date="1516282843536" expanded="true" signature="7977:8133" ph="{...}" />
-            <marker date="1516282843536" expanded="false" signature="9252:9263" ph=" { " />
-            <marker date="1516282843536" expanded="false" signature="9288:9294" ph=" }" />
-            <marker date="1516282843536" expanded="false" signature="9336:9347" ph=" { " />
-            <marker date="1516282843536" expanded="false" signature="9368:9374" ph=" }" />
-            <marker date="1516282843536" expanded="false" signature="9414:9425" ph=" { " />
-            <marker date="1516282843536" expanded="false" signature="9446:9452" ph=" }" />
-            <marker date="1516282843536" expanded="false" signature="9494:9505" ph=" { " />
-            <marker date="1516282843536" expanded="false" signature="9523:9529" ph=" }" />
-            <marker date="1516282843536" expanded="false" signature="9581:9592" ph=" { " />
-            <marker date="1516282843536" expanded="false" signature="9640:9646" ph=" }" />
-            <marker date="1516282843536" expanded="true" signature="9697:10077" ph="{...}" />
-            <marker date="1516282843536" expanded="true" signature="10135:10225" ph="{...}" />
-            <marker date="1516282843536" expanded="true" signature="10260:10638" ph="{...}" />
-            <marker date="1516282843536" expanded="true" signature="10392:10479" ph="{...}" />
-            <marker date="1516282843536" expanded="false" signature="10686:10697" ph=" { " />
-            <marker date="1516282843536" expanded="false" signature="10743:10749" ph=" }" />
-            <marker date="1516282843536" expanded="false" signature="10793:10804" ph=" { " />
-            <marker date="1516282843536" expanded="false" signature="10852:10858" ph=" }" />
-            <marker date="1516282843536" expanded="false" signature="10903:10914" ph=" { " />
-            <marker date="1516282843536" expanded="false" signature="10961:10967" ph=" }" />
-            <marker date="1516282843536" expanded="true" signature="11024:12859" ph="{...}" />
-            <marker date="1516282843536" expanded="true" signature="11844:11959" ph="{...}" />
-            <marker date="1516282843536" expanded="true" signature="12008:12168" ph="{...}" />
-            <marker date="1516282843536" expanded="true" signature="12904:13998" ph="{...}" />
-            <marker date="1516282843536" expanded="true" signature="13299:13397" ph="{...}" />
-            <marker date="1516282843536" expanded="true" signature="13667:13756" ph="{...}" />
-            <marker date="1516282843536" expanded="true" signature="13805:13933" ph="{...}" />
-            <marker date="1516282843536" expanded="false" signature="14049:14060" ph=" { " />
-            <marker date="1516282843536" expanded="false" signature="14116:14122" ph=" }" />
-            <marker date="1516282843536" expanded="true" signature="14214:14369" ph="{...}" />
-            <marker date="1516282843536" expanded="true" signature="14275:14361" ph="{...}" />
-            <marker date="1516282843536" expanded="false" signature="14401:14412" ph=" { " />
-            <marker date="1516282843536" expanded="false" signature="14432:14438" ph=" }" />
-            <marker date="1516282843536" expanded="false" signature="14472:14483" ph=" { " />
-            <marker date="1516282843536" expanded="false" signature="14519:14525" ph=" }" />
-            <marker date="1516282843536" expanded="false" signature="14562:14573" ph=" { " />
-            <marker date="1516282843536" expanded="false" signature="14596:14602" ph=" }" />
-            <marker date="1516282843536" expanded="true" signature="14642:14950" ph="{...}" />
-            <marker date="1516282843536" expanded="false" signature="14982:14993" ph=" { " />
-            <marker date="1516282843536" expanded="false" signature="15013:15019" ph=" }" />
-            <marker date="1516282843536" expanded="false" signature="15051:15062" ph=" { " />
-            <marker date="1516282843536" expanded="false" signature="15082:15088" ph=" }" />
-            <marker date="1516282843536" expanded="false" signature="15118:15129" ph=" { " />
-            <marker date="1516282843536" expanded="false" signature="15147:15153" ph=" }" />
-            <marker date="1516282843536" expanded="false" signature="15212:15223" ph=" { " />
-            <marker date="1516282843536" expanded="false" signature="15244:15250" ph=" }" />
-            <marker date="1516282843536" expanded="false" signature="15287:15298" ph=" { " />
-            <marker date="1516282843536" expanded="false" signature="15323:15329" ph=" }" />
-            <marker date="1516282843536" expanded="false" signature="15360:15371" ph=" { " />
-            <marker date="1516282843536" expanded="false" signature="15390:15396" ph=" }" />
-            <marker date="1516282843536" expanded="false" signature="15430:15441" ph=" { " />
-            <marker date="1516282843536" expanded="false" signature="15463:15469" ph=" }" />
-            <marker date="1516282843536" expanded="false" signature="15507:15518" ph=" { " />
-            <marker date="1516282843536" expanded="false" signature="15541:15547" ph=" }" />
-            <marker date="1516282843536" expanded="false" signature="15580:15591" ph=" { " />
-            <marker date="1516282843536" expanded="false" signature="15615:15621" ph=" }" />
-            <marker date="1516282843536" expanded="false" signature="15654:15665" ph=" { " />
-            <marker date="1516282843536" expanded="false" signature="15686:15692" ph=" }" />
-            <marker date="1516282843536" expanded="false" signature="15733:15744" ph=" { " />
-            <marker date="1516282843536" expanded="false" signature="15776:15782" ph=" }" />
-            <marker date="1516282843536" expanded="true" signature="15824:15835" ph=" { " />
-            <marker date="1516282843536" expanded="true" signature="15874:15880" ph=" }" />
-            <marker date="1516282843536" expanded="false" signature="15915:15926" ph=" { " />
-            <marker date="1516282843536" expanded="false" signature="15946:15952" ph=" }" />
-            <marker date="1516282843536" expanded="true" signature="15991:16817" ph="{...}" />
-            <marker date="1516282843536" expanded="true" signature="16862:17484" ph="{...}" />
-            <marker date="1516282843536" expanded="true" signature="17549:21367" ph="{...}" />
-            <marker date="1516282843536" expanded="true" signature="20212:20298" ph="{...}" />
-            <marker date="1516282843536" expanded="true" signature="21405:26494" ph="{...}" />
-            <marker date="1516282843536" expanded="true" signature="22141:22568" ph="{...}" />
-            <marker date="1516282843536" expanded="true" signature="22212:22368" ph="{...}" />
-            <marker date="1516282843536" expanded="true" signature="22434:22554" ph="{...}" />
-            <marker date="1516282843536" expanded="true" signature="23255:23684" ph="{...}" />
-            <marker date="1516282843536" expanded="true" signature="23326:23483" ph="{...}" />
-            <marker date="1516282843536" expanded="true" signature="23549:23670" ph="{...}" />
-            <marker date="1516282843536" expanded="true" signature="24340:24769" ph="{...}" />
-            <marker date="1516282843536" expanded="true" signature="24411:24568" ph="{...}" />
-            <marker date="1516282843536" expanded="true" signature="24634:24755" ph="{...}" />
-            <marker date="1516282843536" expanded="true" signature="26560:27396" ph="{...}" />
-            <marker date="1516282843536" expanded="true" signature="27039:27062" ph="{}" />
-            <marker date="1516282843536" expanded="true" signature="27077:27100" ph="{}" />
-            <marker date="1516282843536" expanded="true" signature="27197:27345" ph="{...}" />
-            <marker date="1516282843536" expanded="true" signature="27252:27279" ph="{}" />
-            <marker date="1516282843536" expanded="true" signature="27294:27321" ph="{}" />
-            <marker date="1516282843536" expanded="true" signature="27461:27641" ph="{...}" />
-            <marker date="1516282843536" expanded="true" signature="27722:27826" ph="{...}" />
-            <marker date="1516282843536" expanded="true" signature="27882:28292" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/com/jagrosh/JDA-Utilities/2.0/jda-utilities-2.0.jar!/com/jagrosh/jdautilities/command/impl/CommandClientImpl.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="202">
-          <caret line="404" column="0" lean-forward="false" selection-start-line="404" selection-start-column="0" selection-end-line="404" selection-end-column="0" />
-          <folding>
-            <marker date="1516282840899" expanded="false" signature="0:104" ph="/.../" />
-            <marker date="1516282840899" expanded="false" signature="161:2547" ph="..." />
-            <marker date="1516282840899" expanded="true" signature="4486:9197" ph="{...}" />
-            <marker date="1516282840899" expanded="true" signature="6780:8963" ph="{...}" />
-            <marker date="1516282840899" expanded="true" signature="7933:7968" ph="{}" />
-            <marker date="1516282840899" expanded="true" signature="7977:8133" ph="{...}" />
-            <marker date="1516282840899" expanded="false" signature="9252:9263" ph=" { " />
-            <marker date="1516282840899" expanded="false" signature="9288:9294" ph=" }" />
-            <marker date="1516282840899" expanded="false" signature="9336:9347" ph=" { " />
-            <marker date="1516282840899" expanded="false" signature="9368:9374" ph=" }" />
-            <marker date="1516282840899" expanded="false" signature="9414:9425" ph=" { " />
-            <marker date="1516282840899" expanded="false" signature="9446:9452" ph=" }" />
-            <marker date="1516282840899" expanded="false" signature="9494:9505" ph=" { " />
-            <marker date="1516282840899" expanded="false" signature="9523:9529" ph=" }" />
-            <marker date="1516282840899" expanded="false" signature="9581:9592" ph=" { " />
-            <marker date="1516282840899" expanded="false" signature="9640:9646" ph=" }" />
-            <marker date="1516282840899" expanded="true" signature="9697:10077" ph="{...}" />
-            <marker date="1516282840899" expanded="true" signature="10135:10225" ph="{...}" />
-            <marker date="1516282840899" expanded="true" signature="10260:10638" ph="{...}" />
-            <marker date="1516282840899" expanded="true" signature="10392:10479" ph="{...}" />
-            <marker date="1516282840899" expanded="false" signature="10686:10697" ph=" { " />
-            <marker date="1516282840899" expanded="false" signature="10743:10749" ph=" }" />
-            <marker date="1516282840899" expanded="false" signature="10793:10804" ph=" { " />
-            <marker date="1516282840899" expanded="false" signature="10852:10858" ph=" }" />
-            <marker date="1516282840899" expanded="false" signature="10903:10914" ph=" { " />
-            <marker date="1516282840899" expanded="false" signature="10961:10967" ph=" }" />
-            <marker date="1516282840899" expanded="true" signature="11024:12859" ph="{...}" />
-            <marker date="1516282840899" expanded="true" signature="11844:11959" ph="{...}" />
-            <marker date="1516282840899" expanded="true" signature="12008:12168" ph="{...}" />
-            <marker date="1516282840899" expanded="true" signature="12904:13998" ph="{...}" />
-            <marker date="1516282840899" expanded="true" signature="13299:13397" ph="{...}" />
-            <marker date="1516282840899" expanded="true" signature="13667:13756" ph="{...}" />
-            <marker date="1516282840899" expanded="true" signature="13805:13933" ph="{...}" />
-            <marker date="1516282840899" expanded="false" signature="14049:14060" ph=" { " />
-            <marker date="1516282840899" expanded="false" signature="14116:14122" ph=" }" />
-            <marker date="1516282840899" expanded="true" signature="14214:14369" ph="{...}" />
-            <marker date="1516282840899" expanded="true" signature="14275:14361" ph="{...}" />
-            <marker date="1516282840899" expanded="false" signature="14401:14412" ph=" { " />
-            <marker date="1516282840899" expanded="false" signature="14432:14438" ph=" }" />
-            <marker date="1516282840899" expanded="false" signature="14472:14483" ph=" { " />
-            <marker date="1516282840899" expanded="false" signature="14519:14525" ph=" }" />
-            <marker date="1516282840899" expanded="false" signature="14562:14573" ph=" { " />
-            <marker date="1516282840899" expanded="false" signature="14596:14602" ph=" }" />
-            <marker date="1516282840899" expanded="true" signature="14642:14950" ph="{...}" />
-            <marker date="1516282840899" expanded="false" signature="14982:14993" ph=" { " />
-            <marker date="1516282840899" expanded="false" signature="15013:15019" ph=" }" />
-            <marker date="1516282840899" expanded="false" signature="15051:15062" ph=" { " />
-            <marker date="1516282840899" expanded="false" signature="15082:15088" ph=" }" />
-            <marker date="1516282840899" expanded="false" signature="15118:15129" ph=" { " />
-            <marker date="1516282840899" expanded="false" signature="15147:15153" ph=" }" />
-            <marker date="1516282840899" expanded="false" signature="15212:15223" ph=" { " />
-            <marker date="1516282840899" expanded="false" signature="15244:15250" ph=" }" />
-            <marker date="1516282840899" expanded="false" signature="15287:15298" ph=" { " />
-            <marker date="1516282840899" expanded="false" signature="15323:15329" ph=" }" />
-            <marker date="1516282840899" expanded="false" signature="15360:15371" ph=" { " />
-            <marker date="1516282840899" expanded="false" signature="15390:15396" ph=" }" />
-            <marker date="1516282840899" expanded="false" signature="15430:15441" ph=" { " />
-            <marker date="1516282840899" expanded="false" signature="15463:15469" ph=" }" />
-            <marker date="1516282840899" expanded="false" signature="15507:15518" ph=" { " />
-            <marker date="1516282840899" expanded="false" signature="15541:15547" ph=" }" />
-            <marker date="1516282840899" expanded="false" signature="15580:15591" ph=" { " />
-            <marker date="1516282840899" expanded="false" signature="15615:15621" ph=" }" />
-            <marker date="1516282840899" expanded="false" signature="15654:15665" ph=" { " />
-            <marker date="1516282840899" expanded="false" signature="15686:15692" ph=" }" />
-            <marker date="1516282840899" expanded="false" signature="15733:15744" ph=" { " />
-            <marker date="1516282840899" expanded="false" signature="15776:15782" ph=" }" />
-            <marker date="1516282840899" expanded="true" signature="15824:15835" ph=" { " />
-            <marker date="1516282840899" expanded="true" signature="15874:15880" ph=" }" />
-            <marker date="1516282840899" expanded="false" signature="15915:15926" ph=" { " />
-            <marker date="1516282840899" expanded="false" signature="15946:15952" ph=" }" />
-            <marker date="1516282840899" expanded="true" signature="15991:16817" ph="{...}" />
-            <marker date="1516282840899" expanded="true" signature="16862:17484" ph="{...}" />
-            <marker date="1516282840899" expanded="true" signature="17549:21367" ph="{...}" />
-            <marker date="1516282840899" expanded="true" signature="20212:20298" ph="{...}" />
-            <marker date="1516282840899" expanded="true" signature="21405:26494" ph="{...}" />
-            <marker date="1516282840899" expanded="true" signature="22141:22568" ph="{...}" />
-            <marker date="1516282840899" expanded="true" signature="22212:22368" ph="{...}" />
-            <marker date="1516282840899" expanded="true" signature="22434:22554" ph="{...}" />
-            <marker date="1516282840899" expanded="true" signature="23255:23684" ph="{...}" />
-            <marker date="1516282840899" expanded="true" signature="23326:23483" ph="{...}" />
-            <marker date="1516282840899" expanded="true" signature="23549:23670" ph="{...}" />
-            <marker date="1516282840899" expanded="true" signature="24340:24769" ph="{...}" />
-            <marker date="1516282840899" expanded="true" signature="24411:24568" ph="{...}" />
-            <marker date="1516282840899" expanded="true" signature="24634:24755" ph="{...}" />
-            <marker date="1516282840899" expanded="true" signature="26560:27396" ph="{...}" />
-            <marker date="1516282840899" expanded="true" signature="27039:27062" ph="{}" />
-            <marker date="1516282840899" expanded="true" signature="27077:27100" ph="{}" />
-            <marker date="1516282840899" expanded="true" signature="27197:27345" ph="{...}" />
-            <marker date="1516282840899" expanded="true" signature="27252:27279" ph="{}" />
-            <marker date="1516282840899" expanded="true" signature="27294:27321" ph="{}" />
-            <marker date="1516282840899" expanded="true" signature="27461:27641" ph="{...}" />
-            <marker date="1516282840899" expanded="true" signature="27722:27826" ph="{...}" />
-            <marker date="1516282840899" expanded="true" signature="27882:28292" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/com/jagrosh/jda-utilities-command/2.0/jda-utilities-command-2.0-sources.jar!/com/jagrosh/jdautilities/command/impl/CommandClientImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="236">
-          <caret line="101" column="44" lean-forward="true" selection-start-line="101" selection-start-column="44" selection-end-line="101" selection-end-column="44" />
-          <folding>
-            <element signature="e#14460#14461#0" expanded="false" />
-            <element signature="e#14509#14510#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/kuborros/FurBotNeo/utils/config/FurrySettingsManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" column="44" lean-forward="false" selection-start-line="10" selection-start-column="44" selection-end-line="10" selection-end-column="44" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#354#355#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/kuborros/FurBotNeo/commands/MusicCommands/MusicCommand.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-85">
-          <caret line="19" column="67" lean-forward="false" selection-start-line="19" selection-start-column="67" selection-end-line="19" selection-end-column="67" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/kuborros/FurBotNeo/commands/PicCommands/E621Cmd.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="38" column="0" lean-forward="false" selection-start-line="38" selection-start-column="0" selection-end-line="38" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/com/jagrosh/jda-utilities-command/2.0/jda-utilities-command-2.0.jar!/com/jagrosh/jdautilities/command/impl/CommandClientImpl.class" />
+    <entry file="jar://$MAVEN_REPOSITORY$/com/jagrosh/JDA-Utilities/2.0/jda-utilities-2.0.jar!/com/jagrosh/jdautilities/command/impl/CommandClientImpl.class" />
+    <entry file="jar://$MAVEN_REPOSITORY$/com/jagrosh/jda-utilities-command/2.0/jda-utilities-command-2.0-sources.jar!/com/jagrosh/jdautilities/command/impl/CommandClientImpl.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/kuborros/FurBotNeo/utils/config/FurrySettingsManager.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/com/kuborros/FurBotNeo/commands/PicCommands/PokeCmd.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
@@ -1563,20 +998,87 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pom.xml">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/kuborros/FurBotNeo/commands/PicCommands/E621Cmd.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="46" column="42" lean-forward="false" selection-start-line="46" selection-start-column="42" selection-end-line="46" selection-end-column="42" />
-          <folding />
+        <state relative-caret-position="372">
+          <caret line="83" column="0" lean-forward="false" selection-start-line="83" selection-start-column="0" selection-end-line="83" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/kuborros/FurBotNeo/BotMain.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="432">
-          <caret line="134" column="26" lean-forward="false" selection-start-line="134" selection-start-column="26" selection-end-line="134" selection-end-column="49" />
+        <state relative-caret-position="445">
+          <caret line="131" column="5" lean-forward="false" selection-start-line="131" selection-start-column="5" selection-end-line="131" selection-end-column="5" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/kuborros/FurBotNeo/utils/audio/AudioPlayerSendHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="49">
+          <caret line="25" column="0" lean-forward="false" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/com/sedmelluq/lavaplayer/1.2.43/lavaplayer-1.2.43-sources.jar!/com/sedmelluq/discord/lavaplayer/source/AudioSourceManagers.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="244">
+          <caret line="24" column="5" lean-forward="false" selection-start-line="24" selection-start-column="0" selection-end-line="28" selection-end-column="70" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-237">
+          <caret line="46" column="42" lean-forward="false" selection-start-line="46" selection-start-column="42" selection-end-line="46" selection-end-column="42" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/com/sedmelluq/lavaplayer/1.2.43/lavaplayer-1.2.43-sources.jar!/com/sedmelluq/discord/lavaplayer/source/twitch/TwitchStreamAudioSourceManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="324">
+          <caret line="42" column="9" lean-forward="false" selection-start-line="42" selection-start-column="9" selection-end-line="42" selection-end-column="9" />
+          <folding>
+            <element signature="e#1835#1836#0" expanded="true" />
+            <element signature="e#1917#1918#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/com/sedmelluq/lavaplayer/1.2.43/lavaplayer-1.2.43-sources.jar!/com/sedmelluq/discord/lavaplayer/source/beam/BeamAudioSourceManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="202">
+          <caret line="38" column="9" lean-forward="false" selection-start-line="38" selection-start-column="9" selection-end-line="38" selection-end-column="9" />
+          <folding>
+            <element signature="e#1684#1685#0" expanded="true" />
+            <element signature="e#1771#1772#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/com/sedmelluq/lavaplayer/1.2.43/lavaplayer-1.2.43-sources.jar!/com/sedmelluq/discord/lavaplayer/source/youtube/YoutubeAudioSourceManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-5770">
+          <caret line="93" column="9" lean-forward="false" selection-start-line="93" selection-start-column="9" selection-end-line="93" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/kuborros/FurBotNeo/commands/MusicCommands/MusicCommand.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="218">
+          <caret line="92" column="67" lean-forward="true" selection-start-line="92" selection-start-column="67" selection-end-line="92" selection-end-column="67" />
+          <folding>
+            <element signature="e#4597#4598#0" expanded="true" />
+            <element signature="e#4654#4655#0" expanded="true" />
           </folding>
         </state>
       </provider>

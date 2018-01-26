@@ -132,7 +132,5 @@ public class BotMain {
             LOG.error("Please double-check your token.");
             System.exit(102);
         }
-        //catch (RateLimitedException ignored) {}
     }
-    
 }
