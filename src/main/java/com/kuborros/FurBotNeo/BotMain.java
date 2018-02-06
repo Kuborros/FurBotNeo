@@ -41,7 +41,6 @@ public class BotMain {
         }
         EventWaiter waiter = new EventWaiter();
 
-
         db = new Database();
         db.createTables();
 
