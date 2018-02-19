@@ -6,7 +6,6 @@ package com.kuborros.FurBotNeo.commands.MusicCommands;
 
 import com.jagrosh.jdautilities.command.Command;
 import com.jagrosh.jdautilities.command.CommandEvent;
-import com.jagrosh.jdautilities.commons.waiter.EventWaiter;
 import com.kuborros.FurBotNeo.utils.audio.AudioInfo;
 import com.kuborros.FurBotNeo.utils.audio.AudioPlayerSendHandler;
 import com.kuborros.FurBotNeo.utils.audio.TrackManager;
@@ -41,33 +40,30 @@ import java.util.*;
  *
  * @author Kuborros
  */
-@SuppressWarnings("ALL")
-public abstract class MusicCommand extends Command{
-    
-    protected final static String NOTE = ":musical_note:  ";
-    
-    protected static Guild guild;
-    protected static ChannelFinder finder;
-    protected String input;
-    protected static AudioEventListener audioEventListener;
-    
-    protected final int PLAYLIST_LIMIT = 40;
-    protected static AudioPlayerManager myManager = new DefaultAudioPlayerManager();
-    protected static Map<String, Map.Entry<AudioPlayer, TrackManager>> players = new HashMap<>();
-    protected EventWaiter waiter;
+abstract class MusicCommand extends Command {
 
-        
-    public MusicCommand() {
-        this.audioEventListener = new AudioEventAdapter() {
+    final static String NOTE = ":musical_note:  ";
+
+    static Guild guild;
+    private static ChannelFinder finder;
+    String input;
+    private static AudioEventListener audioEventListener;
+
+    private final int PLAYLIST_LIMIT = 40;
+    private static final AudioPlayerManager myManager = new DefaultAudioPlayerManager();
+    private static final Map<String, Map.Entry<AudioPlayer, TrackManager>> players = new HashMap<>();
+
+
+    MusicCommand() {
+        audioEventListener = new AudioEventAdapter() {
             @Override
             public void onTrackStart(AudioPlayer player, AudioTrack track) {
                 
                 Set<AudioInfo> queue = getTrackManager(guild).getQueuedTracks();
-                ArrayList<AudioInfo> tracks = new ArrayList<>();
-                queue.forEach(audioInfo -> tracks.add(audioInfo));
-                
+                ArrayList<AudioInfo> tracks = new ArrayList<>(queue);
+
                 finder.FindBotChat().getManager().setTopic("Last track: " + track.getInfo().title).queue();
-                
+
                 EmbedBuilder eb = new EmbedBuilder()
                         .setColor(Color.CYAN)
                         .setDescription(NOTE + "   **Now Playing**   ")
@@ -93,11 +89,11 @@ public abstract class MusicCommand extends Command{
         myManager.registerSourceManager(youtubeAudioSourceManager);
     }
 
-    protected boolean hasPlayer(Guild guild) {
+    boolean hasPlayer(Guild guild) {
         return players.containsKey(guild.getId());
     }
 
-    protected AudioPlayer getPlayer(Guild guild) {
+    AudioPlayer getPlayer(Guild guild) {
         AudioPlayer p;
         if (hasPlayer(guild)) {
             p = players.get(guild.getId()).getKey();
@@ -106,8 +102,8 @@ public abstract class MusicCommand extends Command{
         }
         return p;
     }
-    
-     protected void setVolume(Guild guild, int vol) {
+
+    void setVolume(Guild guild, int vol) {
         AudioPlayer p;
          if (hasPlayer(guild)) {
             p = players.get(guild.getId()).getKey();
@@ -115,11 +111,11 @@ public abstract class MusicCommand extends Command{
         }
     }
 
-    protected TrackManager getTrackManager(Guild guild) {
+    TrackManager getTrackManager(Guild guild) {
         return players.get(guild.getId()).getValue();
     }
 
-    protected AudioPlayer createPlayer(Guild guild) {
+    private AudioPlayer createPlayer(Guild guild) {
         AudioPlayer nPlayer = myManager.createPlayer();
         nPlayer.checkCleanup(10000);
         TrackManager manager = new TrackManager(nPlayer);
@@ -129,14 +125,14 @@ public abstract class MusicCommand extends Command{
         return nPlayer;
     }
 
-    protected void reset(Guild guild) {
+    void reset(Guild guild) {
         players.remove(guild.getId());
         getPlayer(guild).destroy();
         getTrackManager(guild).purgeQueue();
         guild.getAudioManager().closeAudioConnection();
     }
 
-    protected void loadTrackNext(String identifier, Member author, Message msg) {
+    void loadTrackNext(String identifier, Member author, Message msg) {
         if (author.getVoiceState().getChannel() == null) {
             msg.getChannel().sendMessage("You are not in a Voice Channel!").queue();
             return;
@@ -192,7 +188,7 @@ public abstract class MusicCommand extends Command{
         });
     }
 
-    protected void loadTrack(String identifier, Member author, Message msg) {
+    void loadTrack(String identifier, Member author, Message msg) {
         if (author.getVoiceState().getChannel() == null) {
             msg.getChannel().sendMessage("You are not in a Voice Channel!").queue();
             return;
@@ -237,43 +233,45 @@ public abstract class MusicCommand extends Command{
         });
     }
 
-    protected void loadTrackTimed(String identifier, Member author, Message msg, Long milis) {
-        if (author.getVoiceState().getChannel() == null) {
-            msg.getChannel().sendMessage("You are not in a Voice Channel!").queue();
-            return;
-        }
+// --Commented out by Inspection START (2018-02-19 20:58):
+//    protected void loadTrackTimed(String identifier, Member author, Message msg, Long milis) {
+//        if (author.getVoiceState().getChannel() == null) {
+//            msg.getChannel().sendMessage("You are not in a Voice Channel!").queue();
+//            return;
+//        }
+//
+//        guild = author.getGuild();
+//        getPlayer(guild);
+//
+//
+//        myManager.setFrameBufferDuration(5000);
+//        myManager.loadItemOrdered(guild, identifier, new AudioLoadResultHandler() {
+//            @Override
+//            public void trackLoaded(AudioTrack track) {
+//                track.setPosition(milis);
+//                getTrackManager(guild).queue(track, author);
+//            }
+//
+//            @Override
+//            public void playlistLoaded(AudioPlaylist playlist) {
+//            }
+//
+//            @Override
+//            public void noMatches() {
+//                msg.getChannel().sendMessage("\u26A0 No playable tracks were found.").queue();
+//            }
+//
+//            @Override
+//            public void loadFailed(FriendlyException exception) {
+//                if (!exception.severity.equals(FriendlyException.Severity.FAULT)) {
+//                    msg.getChannel().sendMessage("\u274C Error while fetching music: " + exception.getMessage()).queue();
+//                }
+//            }
+//        });
+//    }
+// --Commented out by Inspection STOP (2018-02-19 20:58)
 
-        guild = author.getGuild();
-        getPlayer(guild);
-
-
-        myManager.setFrameBufferDuration(5000);
-        myManager.loadItemOrdered(guild, identifier, new AudioLoadResultHandler() {
-            @Override
-            public void trackLoaded(AudioTrack track) {
-                track.setPosition(milis);
-                getTrackManager(guild).queue(track, author);
-            }
-
-            @Override
-            public void playlistLoaded(AudioPlaylist playlist) {
-            }
-
-            @Override
-            public void noMatches() {
-                msg.getChannel().sendMessage("\u26A0 No playable tracks were found.").queue();
-            }
-
-            @Override
-            public void loadFailed(FriendlyException exception) {
-                if (!exception.severity.equals(FriendlyException.Severity.FAULT)) {
-                    msg.getChannel().sendMessage("\u274C Error while fetching music: " + exception.getMessage()).queue();
-                }
-            }
-        });
-    }
-
-    protected boolean isIdle(Guild guild, CommandEvent event) {
+    boolean isIdle(Guild guild, CommandEvent event) {
         if (!hasPlayer(guild) || getPlayer(guild).getPlayingTrack() == null) {
             event.reply("No music is being played at the moment!");
             return true;
@@ -281,19 +279,19 @@ public abstract class MusicCommand extends Command{
         return false;
     }
 
-    protected void forceSkipTrack(Guild guild) {
+    void forceSkipTrack(Guild guild) {
         getPlayer(guild).stopTrack();
         
     }
-    
-        protected String buildQueueMessage(AudioInfo info) {
+
+    String buildQueueMessage(AudioInfo info) {
         AudioTrackInfo trackInfo = info.getTrack().getInfo();
         String title = trackInfo.title;
         long length = trackInfo.length;
         return "`[ " + getTimestamp(length) + " ]` " + title + "\n";
     }
 
-    protected String getTimestamp(long milis) {
+    String getTimestamp(long milis) {
         long seconds = milis / 1000;
         long hours = Math.floorDiv(seconds, 3600);
         seconds -= (hours * 3600);
@@ -302,11 +300,7 @@ public abstract class MusicCommand extends Command{
         return (hours == 0 ? "" : hours + ":") + String.format("%02d", mins) + ":" + String.format("%02d", seconds);
     }
 
-    protected String getOrNull(String s) {
-        return s.isEmpty() ? "N/A" : s;
-    }
-    
-        @Override
+    @Override
         protected void execute(CommandEvent event) {
             guild = event.getGuild();
             finder = new ChannelFinder(guild);
@@ -317,6 +311,7 @@ public abstract class MusicCommand extends Command{
                 input = event.getArgs();
                 doCommand(event);
             }
-    }    
-    public abstract void doCommand(CommandEvent event);
+    }
+
+    protected abstract void doCommand(CommandEvent event);
 }
