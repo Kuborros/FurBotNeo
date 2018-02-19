@@ -13,14 +13,6 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="Maven: net.dv8tion:JDA:3.5.0_328" level="project" />
     <orderEntry type="library" name="Maven: net.dv8tion:JDA:3.5.0_334" level="project" />
-    <orderEntry type="library" name="Maven: com.sedmelluq:lavaplayer:1.2.51" level="project" />
-    <orderEntry type="library" scope="RUNTIME" name="Maven: com.sedmelluq:lavaplayer-common:1.0.6" level="project" />
-    <orderEntry type="library" scope="RUNTIME" name="Maven: com.sedmelluq:lavaplayer-natives:1.2.50" level="project" />
-    <orderEntry type="library" scope="RUNTIME" name="Maven: com.fasterxml.jackson.core:jackson-core:2.9.4" level="project" />
-    <orderEntry type="library" scope="RUNTIME" name="Maven: com.fasterxml.jackson.core:jackson-databind:2.9.4" level="project" />
-    <orderEntry type="library" scope="RUNTIME" name="Maven: com.fasterxml.jackson.core:jackson-annotations:2.9.0" level="project" />
-    <orderEntry type="library" scope="RUNTIME" name="Maven: org.jsoup:jsoup:1.11.2" level="project" />
-    <orderEntry type="library" name="Maven: net.dv8tion:JDA:3.5.1_339" level="project" />
     <orderEntry type="library" name="Maven: com.jagrosh:jda-utilities-command:2.0" level="project" />
     <orderEntry type="library" name="Maven: com.jagrosh:jda-utilities-commons:2.0" level="project" />
     <orderEntry type="library" name="Maven: com.jagrosh:jda-utilities-doc:2.0" level="project" />

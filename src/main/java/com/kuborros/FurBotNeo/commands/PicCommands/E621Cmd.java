@@ -63,8 +63,13 @@ public class E621Cmd extends Command{
 
 
         if (!event.getArgs().isEmpty()){
-            api = new E621Api("https://e621.net/post/index.json?tags=" + event.getArgs().replaceAll(" ", "+") + "+order:random&limit=20");
-         } else {
+            if (event.getArgs().contains("cheese_grater")) {
+                event.replyWarning("**NO**, you sick fuck!");
+                return;
+            } else {
+                api = new E621Api("https://e621.net/post/index.json?tags=" + event.getArgs().replaceAll(" ", "+") + "+order:random&limit=20");
+            }
+        } else {
             api = new E621Api("https://e621.net/post/index.json?tags=" + "rating:a+order:random+-flash&limit=20");
          }
                 try {
