@@ -26,7 +26,7 @@ public class ProfPicCmd extends Command{
         this.category = new Command.Category("Basic"); 
 }
     @Override
-    public void execute(CommandEvent event){  
+    public void execute(CommandEvent event) {
             Message message = event.getMessage();   
             if (message.getMentionedUsers().isEmpty()) return;
             User user = message.getMentionedUsers().get(0);
