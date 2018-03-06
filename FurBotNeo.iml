@@ -18,6 +18,7 @@
     <orderEntry type="library" name="Maven: com.jagrosh:jda-utilities-doc:2.0" level="project" />
     <orderEntry type="library" name="Maven: com.jagrosh:jda-utilities-examples:2.0" level="project" />
     <orderEntry type="library" name="Maven: com.jagrosh:jda-utilities-menu:2.0" level="project" />
+    <orderEntry type="library" name="Maven: net.dv8tion:JDA:3.5.1_345" level="project" />
     <orderEntry type="library" name="Maven: com.sedmelluq:lavaplayer:1.2.56" level="project" />
     <orderEntry type="library" scope="RUNTIME" name="Maven: com.sedmelluq:lavaplayer-common:1.0.6" level="project" />
     <orderEntry type="library" scope="RUNTIME" name="Maven: com.sedmelluq:lavaplayer-natives:1.2.55" level="project" />
