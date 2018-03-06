@@ -90,8 +90,8 @@ public class VoteCommand extends Command{
 
 
     @SuppressWarnings("SameReturnValue")
-private boolean startVote(TextChannel channel, Instant now, int seconds, String prize){
-        MessageEmbed msg = new EmbedBuilder().setTitle("**Vote**").setDescription(prize).setTimestamp(now).setColor(Color.BLUE).addField("", "Vote will end in: " + secondsToTime(seconds) + "!", false).build();
+    private boolean startVote(TextChannel channel, Instant now, int seconds, String topic) {
+        MessageEmbed msg = new EmbedBuilder().setTitle("**Vote**").setDescription(topic).setTimestamp(now).setColor(Color.BLUE).addField("", "Vote will end in: " + secondsToTime(seconds) + "!", false).build();
         channel.sendMessage(msg).queue(m -> {
             m.addReaction("\u2705").queue();
             m.addReaction("\u274E").queue();
@@ -108,7 +108,7 @@ private boolean startVote(TextChannel channel, Instant now, int seconds, String 
                             "The results are: \n"
                                     + "\u2705 :  **" + check + "**\n"
                                     + "\u274E :  **" + cross + "**\n"
-                    ).addField("", "Vote's topic was: \"" + prize + "\" !", false).setColor(col).build();
+                    ).addField("", "Vote's topic was: \"" + topic + "\" !", false).setColor(col).build();
                     channel.sendMessage(msg).complete();
                     channel.getMessageById(mID).complete().delete().complete();
                     timer.cancel();
