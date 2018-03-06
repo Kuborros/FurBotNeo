@@ -31,41 +31,40 @@ import net.dv8tion.jda.core.hooks.ListenerAdapter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.Objects;
+
 import static com.kuborros.FurBotNeo.BotMain.cfg;
 import static com.kuborros.FurBotNeo.BotMain.db;
 
-@SuppressWarnings("ConstantConditions")
 public class MemberEventListener extends ListenerAdapter{
 
     private static final Logger LOG = LoggerFactory.getLogger("MemberInfo");
 
     @Override
-    @SuppressWarnings("null")
     public void onGuildMemberJoin(GuildMemberJoinEvent event) {
         TextChannel pub = event.getGuild().getDefaultChannel();
         if (cfg.isGUILD_MSGS() && event.getMember().getUser().isBot() && !event.getMember().getUser().equals(event.getJDA().getSelfUser())) {
-            pub.sendMessage("Another bot?" + "\n"
+            Objects.requireNonNull(pub).sendMessage("Another bot?" + "\n"
                     + "just make sure their commands dont start with \"" + cfg.getPREFIX() + "\", ok?").queue();
         }
         if (event.getMember().getUser().getId().equals("348186098951913473") && cfg.isGUILD_MSGS()) {
-            pub.sendMessage("Hello, " + event.getMember().getAsMention() + " and welcome on the... \n Oh right, its just you. Welcome back???").queue();
+            Objects.requireNonNull(pub).sendMessage("Hello, " + event.getMember().getAsMention() + " and welcome on the... \n Oh right, its just you. Welcome back???").queue();
         } else if (cfg.isGUILD_MSGS()) {
-            pub.sendMessage("Hello, " + event.getMember().getAsMention() + " and welcome on the " + event.getGuild().getName() + " server! :3").queue();
+            Objects.requireNonNull(pub).sendMessage("Hello, " + event.getMember().getAsMention() + " and welcome on the " + event.getGuild().getName() + " server! :3").queue();
         }
         LOG.info("{} has joined the {} server!", event.getMember().getEffectiveName(), event.getGuild().getName());
         db.updateGuildMembers(event);
     }
 
     @Override
-    @SuppressWarnings("null")
     public void onGuildMemberLeave(GuildMemberLeaveEvent event) {
         if (event.getMember().getUser().isBot()) return;
         TextChannel pub = event.getGuild().getDefaultChannel();
         if (cfg.isGUILD_MSGS()) {
-            pub.sendMessage("Bye, " + event.getMember().getEffectiveName() + "! it was nice (or not) having you with us!").queue();
+            Objects.requireNonNull(pub).sendMessage("Bye, " + event.getMember().getEffectiveName() + "! it was nice (or not) having you with us!").queue();
         }
         if (event.getMember().getUser().getId().equals("348186098951913473")) {
-            pub.sendMessage("**He did it agaaain!**").queue();
+            Objects.requireNonNull(pub).sendMessage("**He did it agaaain!**").queue();
         }
         LOG.info("{} has left the {} server!", event.getMember().getEffectiveName(), event.getGuild().getName());
         db.updateGuildMembers(event);
