@@ -68,6 +68,7 @@ public class BotMain {
                 new BadJokeCmd(),
                 new VoteCommand(),
                 new CommandStatCmd(),
+                new BigTextCmd(),
                 
                 // Imageboards
                 new E621Cmd(waiter),
