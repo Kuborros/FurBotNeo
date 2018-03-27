@@ -233,43 +233,6 @@ abstract class MusicCommand extends Command {
         });
     }
 
-// --Commented out by Inspection START (2018-02-19 20:58):
-//    protected void loadTrackTimed(String identifier, Member author, Message msg, Long milis) {
-//        if (author.getVoiceState().getChannel() == null) {
-//            msg.getChannel().sendMessage("You are not in a Voice Channel!").queue();
-//            return;
-//        }
-//
-//        guild = author.getGuild();
-//        getPlayer(guild);
-//
-//
-//        myManager.setFrameBufferDuration(5000);
-//        myManager.loadItemOrdered(guild, identifier, new AudioLoadResultHandler() {
-//            @Override
-//            public void trackLoaded(AudioTrack track) {
-//                track.setPosition(milis);
-//                getTrackManager(guild).queue(track, author);
-//            }
-//
-//            @Override
-//            public void playlistLoaded(AudioPlaylist playlist) {
-//            }
-//
-//            @Override
-//            public void noMatches() {
-//                msg.getChannel().sendMessage("\u26A0 No playable tracks were found.").queue();
-//            }
-//
-//            @Override
-//            public void loadFailed(FriendlyException exception) {
-//                if (!exception.severity.equals(FriendlyException.Severity.FAULT)) {
-//                    msg.getChannel().sendMessage("\u274C Error while fetching music: " + exception.getMessage()).queue();
-//                }
-//            }
-//        });
-//    }
-// --Commented out by Inspection STOP (2018-02-19 20:58)
 
     boolean isIdle(Guild guild, CommandEvent event) {
         if (!hasPlayer(guild) || getPlayer(guild).getPlayingTrack() == null) {

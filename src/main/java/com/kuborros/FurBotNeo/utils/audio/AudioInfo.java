@@ -27,6 +27,8 @@ package com.kuborros.FurBotNeo.utils.audio;
 import com.sedmelluq.discord.lavaplayer.track.AudioTrack;
 import net.dv8tion.jda.core.entities.Member;
 
+import javax.annotation.Nonnull;
+
 public class AudioInfo {
 
     private final AudioTrack track;
@@ -45,4 +47,18 @@ public class AudioInfo {
         return author;
     }
 
+    @Override
+    public String toString() {
+        return "`[" + getTimestamp(track.getDuration()) + "]` **" + track.getInfo().title + "** - <@" + author.getEffectiveName() + ">";
+    }
+
+    @Nonnull
+    private String getTimestamp(long milis) {
+        long seconds = milis / 1000;
+        long hours = Math.floorDiv(seconds, 3600);
+        seconds -= (hours * 3600);
+        long mins = Math.floorDiv(seconds, 60);
+        seconds -= (mins * 60);
+        return (hours == 0 ? "" : hours + ":") + String.format("%02d", mins) + ":" + String.format("%02d", seconds);
+    }
 }
