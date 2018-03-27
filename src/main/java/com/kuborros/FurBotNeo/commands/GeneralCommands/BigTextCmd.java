@@ -29,13 +29,14 @@ public class BigTextCmd extends Command {
         for (String letter : toBiggyfy) {
             if (letter.equalsIgnoreCase(" ")) result.append(":black_large_square:");
             else if (letter.equalsIgnoreCase(".")) result.append(":black_small_square:");
+            else if (letter.equalsIgnoreCase("!")) result.append(":exclamation:");
+            else if (letter.equalsIgnoreCase("?")) result.append(":question:");
             else if (letter.equalsIgnoreCase("-") || letter.equalsIgnoreCase("_")) result.append(":heavy_minus_sign:");
             else if (alphabet.contains(letter)) {
                 result.append(":regional_indicator_").append(letter).append(":");
             }
         }
-        event.getTextChannel().sendMessage(result.toString()).queue();
+        event.reply(result.toString());
         result.delete(0, result.length());
-        //event.getMessage().delete().queue();
     }
 }
