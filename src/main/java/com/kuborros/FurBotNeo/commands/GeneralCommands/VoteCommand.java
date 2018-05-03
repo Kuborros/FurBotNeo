@@ -22,7 +22,7 @@ import java.util.concurrent.TimeUnit;
  *
  * @author Kuborros
  */
-public class VoteCommand extends Command{
+public class VoteCommand extends GeneralCommand {
     
 //private Logger LOG = LoggerFactory.getLogger("VoteCommand");    
 
@@ -40,7 +40,7 @@ public class VoteCommand extends Command{
     }
 
     @Override
-    protected void execute(CommandEvent event) {
+    protected void doCommand(CommandEvent event) {
         String[] args;
         if (event.getArgs().isEmpty()) {
             event.replyWarning("Votes need to contain <time> and <topic>!");

@@ -4,7 +4,6 @@
  */
 package com.kuborros.FurBotNeo.commands.AdminCommands;
 
-import com.jagrosh.jdautilities.command.Command;
 import com.jagrosh.jdautilities.command.CommandEvent;
 import net.dv8tion.jda.core.EmbedBuilder;
 import net.dv8tion.jda.core.MessageBuilder;
@@ -22,7 +21,7 @@ import java.util.List;
  *
  * @author Kuborros
  */
-public class InfoCommand extends Command{
+public class InfoCommand extends AdminCommand {
     
     //Emotes start
     private static final String NAMETAG = "\ud83d\udcdb";
@@ -47,11 +46,11 @@ public class InfoCommand extends Command{
     }
 
     @Override
-    protected void execute(CommandEvent event) {
+    protected void doCommand(CommandEvent event) {
         
         if (event.getMessage().getMentionedUsers().isEmpty())
                 {
-                    event.reply("You must mention 1 or more Users to be scanned by the NSA!");
+                    event.reply("You must mention User to be scanned by the NSA!");
                 }
                 else
                 {

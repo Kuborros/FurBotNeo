@@ -16,7 +16,7 @@ import java.awt.*;
  *
  * @author Kuborros
  */
-public class ProfPicCmd extends Command{
+public class ProfPicCmd extends GeneralCommand {
     public ProfPicCmd()
     {
         this.name = "profpic";
@@ -26,7 +26,7 @@ public class ProfPicCmd extends Command{
         this.category = new Command.Category("Basic"); 
 }
     @Override
-    public void execute(CommandEvent event) {
+    public void doCommand(CommandEvent event) {
             Message message = event.getMessage();   
             if (message.getMentionedUsers().isEmpty()) return;
             User user = message.getMentionedUsers().get(0);

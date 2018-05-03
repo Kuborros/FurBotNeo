@@ -13,7 +13,7 @@ import java.util.Random;
  *
  * @author Kuborros
  */
-public class R8BallCmd extends Command{
+public class R8BallCmd extends GeneralCommand {
 
     public R8BallCmd()
     {
@@ -23,7 +23,7 @@ public class R8BallCmd extends Command{
         this.category = new Command.Category("Basic"); 
 }
     @Override
-    public void execute(CommandEvent event){
+    public void doCommand(CommandEvent event) {
         Random rand = new Random();
         int roll = rand.nextInt(8);
             switch(roll){

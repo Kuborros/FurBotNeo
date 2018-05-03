@@ -3,11 +3,9 @@ package com.kuborros.FurBotNeo;
 import com.jagrosh.jdautilities.command.CommandClientBuilder;
 import com.jagrosh.jdautilities.commons.waiter.EventWaiter;
 import com.jagrosh.jdautilities.examples.command.AboutCommand;
-import com.kuborros.FurBotNeo.commands.AdminCommands.EvalCommand;
-import com.kuborros.FurBotNeo.commands.AdminCommands.InfoCommand;
-import com.kuborros.FurBotNeo.commands.AdminCommands.ShutdownCommand;
-import com.kuborros.FurBotNeo.commands.AdminCommands.StatsCommand;
+import com.kuborros.FurBotNeo.commands.AdminCommands.*;
 import com.kuborros.FurBotNeo.commands.GeneralCommands.*;
+import com.kuborros.FurBotNeo.commands.LastFmCommands.LastFmCmd;
 import com.kuborros.FurBotNeo.commands.MusicCommands.*;
 import com.kuborros.FurBotNeo.commands.PicCommands.*;
 import com.kuborros.FurBotNeo.listeners.BotEventListener;
@@ -17,6 +15,8 @@ import com.kuborros.FurBotNeo.utils.config.Config;
 import com.kuborros.FurBotNeo.utils.config.Database;
 import com.kuborros.FurBotNeo.utils.config.FurrySettingsManager;
 import com.sedmelluq.discord.lavaplayer.jdaudp.NativeAudioSendFactory;
+import de.umass.lastfm.Caller;
+import de.umass.lastfm.cache.DatabaseCache;
 import net.dv8tion.jda.core.AccountType;
 import net.dv8tion.jda.core.JDABuilder;
 import net.dv8tion.jda.core.OnlineStatus;
@@ -26,13 +26,14 @@ import org.slf4j.LoggerFactory;
 
 import javax.security.auth.login.LoginException;
 import java.awt.*;
+import java.sql.SQLException;
 
 public class BotMain {
 
     private static final Logger LOG = LoggerFactory.getLogger("Main");
     public static Config cfg;
     public static Database db;
-    
+    private static final FurrySettingsManager settingsManager = new FurrySettingsManager();
 
     public static void main(String args[]) {
 
@@ -44,13 +45,20 @@ public class BotMain {
         db = new Database();
         db.createTables();
 
+        try {
+            Caller.getInstance().setCache(new DatabaseCache(db.getConn()));
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        Caller.getInstance().setUserAgent("DiscordBot/1.0");
+
         cfg = new Config();
 
         CommandClientBuilder client = new CommandClientBuilder();
         client.setOwnerId(cfg.getOWNER_ID());
         client.setEmojis("\u2705", "\u2757", "\u274C");
         client.setPrefix(cfg.getPREFIX());
-        client.setGuildSettingsManager(new FurrySettingsManager());
+        client.setGuildSettingsManager(settingsManager);
         client.addCommands(
 
                 new AboutCommand(Color.CYAN, "and im here to make this server a better place!",
@@ -93,10 +101,12 @@ public class BotMain {
                 new MusicStopCmd(),
                 new MusicVolumeCmd(),
 
-                
+                //Last.fm
+                new LastFmCmd(),
                 
                 //Admin
                 new InfoCommand(),
+                new BotBanCmd(),
                 new StatsCommand(),
                 new EvalCommand(),
                 new ShutdownCommand());

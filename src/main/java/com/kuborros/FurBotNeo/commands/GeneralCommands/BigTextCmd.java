@@ -6,7 +6,7 @@ import com.jagrosh.jdautilities.command.CommandEvent;
 import java.util.Arrays;
 import java.util.List;
 
-public class BigTextCmd extends Command {
+public class BigTextCmd extends GeneralCommand {
     private final StringBuilder result = new StringBuilder();
     private static final List<String> alphabet = Arrays.asList("abcdefghijklmnopqrstuvwxyz".split(""));
 
@@ -19,7 +19,7 @@ public class BigTextCmd extends Command {
     }
 
     @Override
-    protected void execute(CommandEvent event) {
+    protected void doCommand(CommandEvent event) {
         if (event.getArgs().isEmpty()) {
             event.replyError("Put something in to biggyfy!");
             return;

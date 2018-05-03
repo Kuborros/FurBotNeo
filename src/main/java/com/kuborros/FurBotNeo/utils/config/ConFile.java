@@ -6,7 +6,6 @@ import org.slf4j.LoggerFactory;
 import java.io.*;
 import java.util.Properties;
 
-@SuppressWarnings("ResultOfMethodCallIgnored")
 class ConFile {
     private static final Logger LOG = LoggerFactory.getLogger(ConFile.class);
     private static File CONFIG;
@@ -32,6 +31,8 @@ class ConFile {
 
                 prop.setProperty("BotToken", "");
                 prop.setProperty("OwnerId", "0");
+                prop.setProperty("LastFmToken", "0");
+                prop.setProperty("LastFmSecret", "0");
                 prop.setProperty("PostGuildMessages", "false");
 
                 prop.store(output, null);

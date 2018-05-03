@@ -7,11 +7,15 @@ import javax.annotation.Nullable;
 
 import static com.kuborros.FurBotNeo.BotMain.db;
 
+
 public class FurrySettingsManager implements GuildSettingsManager {
+
+    private static final FurConfig defaultConfig = new FurConfig();
+
     @Nullable
     @Override
     public Object getSettings(Guild guild) {
-        return null;
+        return defaultConfig;
     }
 
     @Override

@@ -21,7 +21,7 @@ import static com.kuborros.FurBotNeo.BotMain.db;
  *
  * @author Kuborros
  */
-public class CommandStatCmd extends Command{
+public class CommandStatCmd extends GeneralCommand {
 
     public CommandStatCmd()
     {
@@ -36,7 +36,7 @@ public class CommandStatCmd extends Command{
     
     @Override
     @SuppressWarnings("unchecked")
-    protected void execute(CommandEvent event){
+    protected void doCommand(CommandEvent event) {
         StringBuilder builder = new StringBuilder();
         User user = !event.getMessage().getMentionedUsers().isEmpty() ? event.getMessage().getMentionedUsers().get(0) : event.getAuthor();
         try {

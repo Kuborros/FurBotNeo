@@ -23,7 +23,7 @@ import java.util.Scanner;
  *
  * @author Kuborros
  */
-public class BadJokeCmd extends Command{
+public class BadJokeCmd extends GeneralCommand {
 
     private final Logger LOG = LoggerFactory.getLogger("CommandExec");
     
@@ -36,7 +36,7 @@ public class BadJokeCmd extends Command{
         this.category = new Command.Category("Basic"); 
 }
     @Override
-    public void execute(CommandEvent event){  
+    public void doCommand(CommandEvent event) {
             Message message = event.getMessage();   
             TextChannel chat = event.getTextChannel();
            

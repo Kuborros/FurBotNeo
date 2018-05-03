@@ -1,13 +1,12 @@
 package com.kuborros.FurBotNeo.commands.AdminCommands;
 
-import com.jagrosh.jdautilities.command.Command;
 import com.jagrosh.jdautilities.command.CommandEvent;
 import net.dv8tion.jda.core.Permission;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 
-public class ShutdownCommand extends Command {
+public class ShutdownCommand extends AdminCommand {
 
     public ShutdownCommand()
     {
@@ -20,7 +19,7 @@ public class ShutdownCommand extends Command {
     }
 
     @Override
-    protected void execute(CommandEvent event) {
+    protected void doCommand(CommandEvent event) {
         Logger LOG = LoggerFactory.getLogger("CommandExec");
         event.reply("If you say so... \n" + event.getSelfMember().getEffectiveName() + " shutting down!");
         event.getJDA().shutdown();

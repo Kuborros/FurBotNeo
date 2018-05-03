@@ -13,7 +13,7 @@ import java.util.Random;
  *
  * @author Kuborros
  */
-public class DiceCmd extends Command{
+public class DiceCmd extends GeneralCommand {
     private final StringBuilder rolls = new StringBuilder();
     private final Random rand = new Random();
     
@@ -27,7 +27,7 @@ public class DiceCmd extends Command{
         this.category = new Command.Category("Basic"); 
 }  
     @Override
-    public void execute(CommandEvent event){  
+    public void doCommand(CommandEvent event) {
         String dice = event.getArgs().toLowerCase();
         int numSides;
         if (dice.contains("d")){

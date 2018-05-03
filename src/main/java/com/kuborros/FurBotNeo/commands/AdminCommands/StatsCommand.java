@@ -4,7 +4,6 @@
  */
 package com.kuborros.FurBotNeo.commands.AdminCommands;
 
-import com.jagrosh.jdautilities.command.Command;
 import com.jagrosh.jdautilities.command.CommandEvent;
 import net.dv8tion.jda.core.Permission;
 
@@ -16,7 +15,7 @@ import java.time.format.DateTimeFormatter;
  * @author Kuborros
  */
 
-public class StatsCommand extends Command {
+public class StatsCommand extends AdminCommand {
 
     private final OffsetDateTime start = OffsetDateTime.now();
     public StatsCommand()
@@ -30,7 +29,7 @@ public class StatsCommand extends Command {
     }
     
     @Override
-    protected void execute(CommandEvent event) {
+    protected void doCommand(CommandEvent event) {
         long totalMb = Runtime.getRuntime().totalMemory()/(1024*1024);
         long usedMb = (Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory())/(1024*1024);
         event.reply("**"+event.getSelfUser().getName()+"** statistics:"

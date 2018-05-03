@@ -49,6 +49,10 @@ public class Database {
         stat.close();
         }catch (SQLException ignored){}
     }
+
+    public Connection getConn() {
+        return conn;
+    }
     
     public void createTables() {
 
@@ -62,10 +66,6 @@ public class Database {
                   " user_id TEXT NOT NULL, " +
 
                   " guild_id TEXT NOT NULL, " +
-                  
-                  " reason TEXT NOT NULL, " +
-
-                  " time_end TEXT NOT NULL, " +                  
 
                   " time_start TEXT DEFAULT CURRENT_TIMESTAMP) ";
 
@@ -174,28 +174,42 @@ public class Database {
             stat.executeUpdate("UPDATE CommandStats SET " + command + "=" + command + " + 1 WHERE user_id=" + memberID);
        } catch (SQLException ignored) {
        }
-    }        
-    
+    }
+
     public Map<String, String> getCommandStats(String memberID) throws SQLException{
-  
-            Map<String, String> map = new HashMap<>();
-            int counter;
-            stat = conn.createStatement();
+
+        Map<String, String> map = new HashMap<>();
+        int counter;
+        stat = conn.createStatement();
         ResultSet rs = stat.executeQuery("SELECT * FROM CommandStats WHERE user_id=" + memberID);
-            ResultSetMetaData rsmd = rs.getMetaData();
-            int columnCount = rsmd.getColumnCount();  
-            List<String> names = new ArrayList<>();
-            for (int i = 1; i <= columnCount; i++ ) {
-                names.add(rsmd.getColumnName(i));
+        ResultSetMetaData rsmd = rs.getMetaData();
+        int columnCount = rsmd.getColumnCount();
+        List<String> names = new ArrayList<>();
+        for (int i = 1; i <= columnCount; i++ ) {
+            names.add(rsmd.getColumnName(i));
+        }
+        names.remove(0);
+        while (rs.next()) {
+            for (String name : names) {
+                counter = rs.getInt(name);
+                map.put(name, Integer.toString(counter));
             }
-            names.remove(0);
-            while (rs.next()) {
-                for (String name : names) {
-                    counter = rs.getInt(name);
-                    map.put(name, Integer.toString(counter));
-                }
-            }
-            return map;
-        
+        }
+        return map;
+
+    }
+
+    public void addBannedUser(String memberId, String guildId) throws SQLException {
+        if (getBanStatus(memberId, guildId)) return;
+        stat = conn.createStatement();
+        stat.executeUpdate("INSERT INTO BotBans (user_id, guild_id) VALUES (" + memberId + "," + guildId + ")");
+    }
+
+    public boolean getBanStatus(String memberId, String guildId) {
+        return false;
+    }
+
+    public boolean unbanUser(String memberId, String guildId) {
+        return true;
     }
 }

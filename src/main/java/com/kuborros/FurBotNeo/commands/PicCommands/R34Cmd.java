@@ -4,7 +4,6 @@
  */
 package com.kuborros.FurBotNeo.commands.PicCommands;
 
-import com.jagrosh.jdautilities.command.Command;
 import com.jagrosh.jdautilities.command.CommandEvent;
 import com.jagrosh.jdautilities.commons.waiter.EventWaiter;
 import com.jagrosh.jdautilities.menu.Slideshow;
@@ -25,7 +24,7 @@ import static com.kuborros.FurBotNeo.BotMain.db;
  *
  * @author Kuborros
  */
-public class R34Cmd extends Command{
+public class R34Cmd extends PicCommand {
 
     private final EventWaiter waiter;
     
@@ -43,7 +42,7 @@ public class R34Cmd extends Command{
     }
     
     @Override
-    protected void execute(CommandEvent event) {
+    protected void doCommand(CommandEvent event) {
         GelEngine api;
         List<String> result;
         Slideshow.Builder builder = new Slideshow.Builder();

@@ -4,7 +4,6 @@
  */
 package com.kuborros.FurBotNeo.commands.AdminCommands;
 
-import com.jagrosh.jdautilities.command.Command;
 import com.jagrosh.jdautilities.command.CommandEvent;
 import org.slf4j.LoggerFactory;
 
@@ -15,7 +14,7 @@ import javax.script.ScriptException;
 /**
  * @author Kuborros
  */
-public class EvalCommand extends Command {
+public class EvalCommand extends AdminCommand {
 
     private final ScriptEngine engine;
 
@@ -45,7 +44,8 @@ public class EvalCommand extends Command {
         }
     }
 
-    protected void execute(CommandEvent event) {
+    @Override
+    protected void doCommand(CommandEvent event) {
         engine.put("event", event);
         engine.put("jda", event.getJDA());
         engine.put("guild", event.getGuild());
