@@ -25,8 +25,7 @@ public class BigTextCmd extends GeneralCommand {
             return;
         }
         String[] text = event.getArgs().toLowerCase().split("");
-        List<String> toBiggyfy = Arrays.asList(text);
-        for (String letter : toBiggyfy) {
+        for (String letter : text) {
             if (letter.equalsIgnoreCase(" ")) result.append(":black_large_square:");
             else if (letter.equalsIgnoreCase(".")) result.append(":black_small_square:");
             else if (letter.equalsIgnoreCase("!")) result.append(":exclamation:");

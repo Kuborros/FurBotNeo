@@ -5,7 +5,8 @@ import com.jagrosh.jdautilities.commons.waiter.EventWaiter;
 import com.jagrosh.jdautilities.examples.command.AboutCommand;
 import com.kuborros.FurBotNeo.commands.AdminCommands.*;
 import com.kuborros.FurBotNeo.commands.GeneralCommands.*;
-import com.kuborros.FurBotNeo.commands.LastFmCommands.LastFmCmd;
+import com.kuborros.FurBotNeo.commands.LastFmCommands.LastFmArtistInfoCmd;
+import com.kuborros.FurBotNeo.commands.LastFmCommands.LastFmUserInfoCmd;
 import com.kuborros.FurBotNeo.commands.MusicCommands.*;
 import com.kuborros.FurBotNeo.commands.PicCommands.*;
 import com.kuborros.FurBotNeo.listeners.BotEventListener;
@@ -27,6 +28,7 @@ import org.slf4j.LoggerFactory;
 import javax.security.auth.login.LoginException;
 import java.awt.*;
 import java.sql.SQLException;
+import java.util.logging.Level;
 
 public class BotMain {
 
@@ -50,6 +52,7 @@ public class BotMain {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        Caller.getInstance().getLogger().setLevel(Level.WARNING);
         Caller.getInstance().setUserAgent("DiscordBot/1.0");
 
         cfg = new Config();
@@ -102,7 +105,8 @@ public class BotMain {
                 new MusicVolumeCmd(),
 
                 //Last.fm
-                new LastFmCmd(),
+                new LastFmUserInfoCmd(),
+                new LastFmArtistInfoCmd(),
                 
                 //Admin
                 new InfoCommand(),

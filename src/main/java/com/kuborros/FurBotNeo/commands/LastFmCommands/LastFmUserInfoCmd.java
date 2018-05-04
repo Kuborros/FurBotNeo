@@ -7,14 +7,14 @@ import net.dv8tion.jda.core.EmbedBuilder;
 
 import java.awt.*;
 
-public class LastFmUserInfoComm extends LastFmCommand {
+public class LastFmUserInfoCmd extends LastFmCommand {
 
 
-    LastFmUserInfoComm() {
+    public LastFmUserInfoCmd() {
         {
-            this.name = "info";
+            this.name = "lastinfo";
             this.arguments = "<Username>";
-            this.help = "Shows info about current song";
+            this.help = "Shows basic info about user";
             this.guildOnly = true;
         }
     }
@@ -23,6 +23,7 @@ public class LastFmUserInfoComm extends LastFmCommand {
     protected void doCommand(CommandEvent event) {
         if (event.getArgs().isEmpty()) {
             event.replyError("Provide a correct username");
+            return;
         }
         User user = User.getInfo(event.getArgs(), key);
         if (Caller.getInstance().getLastResult().isSuccessful()) {
