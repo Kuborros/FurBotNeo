@@ -78,7 +78,7 @@ public class DanCmd extends PicCommand {
         }
             try {
                 result = api.getDanPic();
-                builder.setUrls(result.toArray(new String[result.size()]));
+                builder.setUrls(result.toArray(new String[0]));
             } catch (NoImgException e) {
                 event.reply("No results found!");
                 return;

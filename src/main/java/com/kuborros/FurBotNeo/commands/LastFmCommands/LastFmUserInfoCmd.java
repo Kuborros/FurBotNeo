@@ -45,7 +45,7 @@ public class LastFmUserInfoCmd extends LastFmCommand {
             EmbedBuilder eb = new EmbedBuilder()
 
                     .setColor(Color.RED)
-                    .setTitle("Last.fm info for user: " + event.getArgs())
+                    .setTitle("Last.fm info for user: " + event.getArgs(), user.getUrl())
                     .addField("Username: ", "" + user.getName(), true)
                     .addField("Real Name: ", name, true)
                     .addField("Gender: ", gender, true)
@@ -60,6 +60,6 @@ public class LastFmUserInfoCmd extends LastFmCommand {
                 eb.setThumbnail(user.getImageURL());
             }
             event.reply(eb.build());
-        }
+        } else event.replyError("User not found.");
     }
 }

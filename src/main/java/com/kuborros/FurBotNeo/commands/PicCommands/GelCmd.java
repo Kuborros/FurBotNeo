@@ -72,7 +72,7 @@ public class GelCmd extends PicCommand {
         }
                 try {
                 result = api.getGelPic();
-                builder.setUrls(result.toArray(new String[result.size()]));
+                    builder.setUrls(result.toArray(new String[0]));
                 } catch (NoImgException e) {
                     event.reply("No results found!");                    
                     return;

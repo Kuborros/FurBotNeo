@@ -29,14 +29,16 @@ public class LastFmArtistInfoCmd extends LastFmCommand {
         Artist artist = Artist.getInfo(event.getArgs(), key);
         if (Caller.getInstance().getLastResult().isSuccessful()) {
 
+
+            String summary = "" + artist.getWikiSummary().substring(0, artist.getWikiSummary().indexOf("<a"));
             EmbedBuilder eb = new EmbedBuilder()
                     .setColor(Color.RED)
                     .setTitle("Last.fm info for Artist: " + event.getArgs(), artist.getUrl())
                     .addField("Artist name: ", "" + artist.getName(), true)
-                    .addField("About: ", "" + artist.getWikiSummary(), false)
+                    .addField("About: ", "" + summary, false)
                     .addField("Listeners: ", String.valueOf(artist.getListeners()), true)
                     .addField("Playcount: ", String.valueOf(artist.getPlaycount()), true)
-                    .addField("Wiki last updated: ", format.format(artist.getWikiLastChanged()), true)
+                    .addField("Wiki last updated: ", "Unknown", true)
                     .addField("Can be streamed: ", artist.isStreamable() ? "Yes" : "No", true);
 
             if (!artist.getImageURL(ImageSize.MEDIUM).isEmpty()) {
@@ -44,6 +46,6 @@ public class LastFmArtistInfoCmd extends LastFmCommand {
             }
             event.reply(eb.build());
 
-        }
+        } else event.replyError("Artist not found.");
     }
 }

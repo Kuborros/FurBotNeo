@@ -6,6 +6,7 @@ import com.jagrosh.jdautilities.examples.command.AboutCommand;
 import com.kuborros.FurBotNeo.commands.AdminCommands.*;
 import com.kuborros.FurBotNeo.commands.GeneralCommands.*;
 import com.kuborros.FurBotNeo.commands.LastFmCommands.LastFmArtistInfoCmd;
+import com.kuborros.FurBotNeo.commands.LastFmCommands.LastFmTopArtCmd;
 import com.kuborros.FurBotNeo.commands.LastFmCommands.LastFmUserInfoCmd;
 import com.kuborros.FurBotNeo.commands.MusicCommands.*;
 import com.kuborros.FurBotNeo.commands.PicCommands.*;
@@ -107,6 +108,7 @@ public class BotMain {
                 //Last.fm
                 new LastFmUserInfoCmd(),
                 new LastFmArtistInfoCmd(),
+                new LastFmTopArtCmd(waiter),
                 
                 //Admin
                 new InfoCommand(),

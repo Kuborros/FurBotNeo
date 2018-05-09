@@ -73,7 +73,7 @@ public class PokeCmd extends PicCommand {
          }
                 try {
                 result = api.PokeXml();
-                builder.setUrls(result.toArray(new String[result.size()]));
+                    builder.setUrls(result.toArray(new String[0]));
                 } catch (NoImgException e) {
                     event.reply("No results found!");
                     return;
