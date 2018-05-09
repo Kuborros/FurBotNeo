@@ -6,6 +6,7 @@ import org.slf4j.LoggerFactory;
 import java.io.*;
 import java.util.Properties;
 
+@SuppressWarnings("ResultOfMethodCallIgnored")
 class ConFile {
     private static final Logger LOG = LoggerFactory.getLogger(ConFile.class);
     private static File CONFIG;

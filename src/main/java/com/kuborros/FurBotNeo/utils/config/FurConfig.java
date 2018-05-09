@@ -12,11 +12,11 @@ class FurConfig implements GuildSettingsProvider {
 
     private final List<String> prefixes = new ArrayList<>();
     private final String botName;
-    private boolean welcomeMsg;
-    private boolean isFurry;
-    private String audioChannel;
+    private final boolean welcomeMsg;
+    private final boolean isFurry;
+    private final String audioChannel;
 
-    public FurConfig() {
+    FurConfig() {
         this.botName = "FurryBot";
         this.audioChannel = "0";
         this.isFurry = true;

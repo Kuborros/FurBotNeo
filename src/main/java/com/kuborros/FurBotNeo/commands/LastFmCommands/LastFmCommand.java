@@ -9,8 +9,8 @@ import java.text.DateFormat;
 
 abstract class LastFmCommand extends Command {
 
-    static String key = BotMain.cfg.getLASTFM_KEY();
-    DateFormat format;
+    static final String key = BotMain.cfg.getLASTFM_KEY();
+    final DateFormat format;
 
     LastFmCommand() {
         format = DateFormat.getDateInstance();
