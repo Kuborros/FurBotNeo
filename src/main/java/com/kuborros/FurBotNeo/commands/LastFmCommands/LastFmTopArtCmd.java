@@ -15,16 +15,14 @@ import java.util.concurrent.TimeUnit;
 
 public class LastFmTopArtCmd extends LastFmCommand {
 
-    private EventWaiter waiter;
+    private final EventWaiter waiter;
 
     public LastFmTopArtCmd(EventWaiter waiter) {
-        {
-            this.name = "lasttop";
-            this.arguments = "<Tag>";
-            this.help = "Shows top 10 current scrobbled artists";
-            this.guildOnly = true;
-            this.waiter = waiter;
-        }
+        this.name = "lasttop";
+        this.arguments = "<Tag>";
+        this.help = "Shows top 10 current scrobbled artists";
+        this.guildOnly = true;
+        this.waiter = waiter;
     }
 
     @Override

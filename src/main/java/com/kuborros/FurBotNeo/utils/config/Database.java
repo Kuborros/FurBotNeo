@@ -42,8 +42,8 @@ public class Database {
             e.printStackTrace();
         }
     }
-    
-    public void close(){
+
+    void close() {
         try{
         conn.close();
         stat.close();
@@ -205,11 +205,17 @@ public class Database {
         stat.executeUpdate("INSERT INTO BotBans (user_id, guild_id) VALUES (" + memberId + "," + guildId + ")");
     }
 
-    public boolean getBanStatus(String memberId, String guildId) {
+    public boolean getBanStatus(String memberId, String guildId) throws SQLException {
+        stat = conn.createStatement();
+        ResultSet resultSet = stat.executeQuery("SELECT user_id FROM BotBans WHERE user_id =" + memberId + " AND guild_id =" + guildId);
+        while (resultSet.next()) {
+            if (resultSet.getString("user_id").contains(memberId)) return true;
+        }
         return false;
     }
 
-    public boolean unbanUser(String memberId, String guildId) {
-        return true;
+    public void unbanUser(String memberId, String guildId) throws SQLException {
+        stat = conn.createStatement();
+        stat.executeUpdate("DELETE FROM BotBans WHERE user_id =" + memberId + " AND guild_id =" + guildId);
     }
 }

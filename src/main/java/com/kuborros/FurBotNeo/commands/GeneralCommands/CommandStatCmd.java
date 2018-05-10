@@ -35,12 +35,11 @@ public class CommandStatCmd extends GeneralCommand {
     }
     
     @Override
-    @SuppressWarnings("unchecked")
     protected void doCommand(CommandEvent event) {
         StringBuilder builder = new StringBuilder();
         User user = !event.getMessage().getMentionedUsers().isEmpty() ? event.getMessage().getMentionedUsers().get(0) : event.getAuthor();
         try {
-            Map map = db.getCommandStats(user.getId());
+            Map<String, String> map = db.getCommandStats(user.getId());
             builder.append("\n");
             map.forEach((k,v) -> builder.append("``").append(k).append("`` used **").append(v).append("** times\n\n"));
             sendEmbed(event, String.format("How many times %s nutted to:", user.getName()), builder.toString());

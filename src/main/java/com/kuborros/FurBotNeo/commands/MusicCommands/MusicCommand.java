@@ -32,15 +32,22 @@ import net.dv8tion.jda.core.entities.Member;
 import net.dv8tion.jda.core.entities.Message;
 import org.apache.http.client.config.CookieSpecs;
 import org.apache.http.client.config.RequestConfig;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.awt.*;
+import java.sql.SQLException;
 import java.util.*;
+
+import static com.kuborros.FurBotNeo.BotMain.db;
 
 /**
  *
  * @author Kuborros
  */
 abstract class MusicCommand extends Command {
+
+    private static final Logger LOG = LoggerFactory.getLogger("MusicCommands");
 
     final static String NOTE = ":musical_note:  ";
 
@@ -265,7 +272,14 @@ abstract class MusicCommand extends Command {
 
     @Override
         protected void execute(CommandEvent event) {
-            guild = event.getGuild();
+        guild = event.getGuild();
+        try {
+            if (db.getBanStatus(event.getMember().getUser().getId(), guild.getId())) {
+                event.reply("You are blocked from bot commands!");
+            }
+        } catch (SQLException e) {
+            LOG.error("Error while contacting database: ", e);
+        }
             finder = new ChannelFinder(guild);
             if (!event.getTextChannel().equals(finder.FindBotChat())) return;
             if (!event.getAuthor().isBot()) {            

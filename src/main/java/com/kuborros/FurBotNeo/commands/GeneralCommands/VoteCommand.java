@@ -23,11 +23,8 @@ import java.util.concurrent.TimeUnit;
  * @author Kuborros
  */
 public class VoteCommand extends GeneralCommand {
-    
-//private Logger LOG = LoggerFactory.getLogger("VoteCommand");    
 
-        
-        public VoteCommand()         
+    public VoteCommand()
     {
         this.name = "vote";
         this.help = "Creates a vote";

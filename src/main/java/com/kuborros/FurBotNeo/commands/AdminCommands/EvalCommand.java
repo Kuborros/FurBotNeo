@@ -5,7 +5,6 @@
 package com.kuborros.FurBotNeo.commands.AdminCommands;
 
 import com.jagrosh.jdautilities.command.CommandEvent;
-import org.slf4j.LoggerFactory;
 
 import javax.script.ScriptEngine;
 import javax.script.ScriptEngineManager;
@@ -40,7 +39,7 @@ public class EvalCommand extends AdminCommand {
                     "Packages.net.dv8tion.jda.core.managers.impl," +
                     "Packages.net.dv8tion.jda.core.utils);");
         } catch (ScriptException e) {
-            LoggerFactory.getLogger("CommandExec").error(e.getMessage());
+            LOG.error("Eval command error: ", e.getMessage());
         }
     }
 

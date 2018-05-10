@@ -10,8 +10,6 @@ import net.dv8tion.jda.core.entities.Message;
 import net.dv8tion.jda.core.entities.TextChannel;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -24,8 +22,6 @@ import java.util.Scanner;
  * @author Kuborros
  */
 public class BadJokeCmd extends GeneralCommand {
-
-    private final Logger LOG = LoggerFactory.getLogger("CommandExec");
     
     public BadJokeCmd()
     {

@@ -12,12 +12,6 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="Maven: com.sedmelluq:lavaplayer:1.2.63" level="project" />
-    <orderEntry type="library" name="Maven: com.jagrosh:jda-utilities-command:2.1.1" level="project" />
-    <orderEntry type="library" name="Maven: com.jagrosh:jda-utilities-commons:2.1.1" level="project" />
-    <orderEntry type="library" name="Maven: com.jagrosh:jda-utilities-doc:2.1.1" level="project" />
-    <orderEntry type="library" name="Maven: com.jagrosh:jda-utilities-examples:2.1.1" level="project" />
-    <orderEntry type="library" name="Maven: com.jagrosh:jda-utilities-menu:2.1.1" level="project" />
-    <orderEntry type="library" name="Maven: com.sedmelluq:lavaplayer:1.2.63" level="project" />
     <orderEntry type="library" scope="RUNTIME" name="Maven: com.sedmelluq:lavaplayer-common:1.0.6" level="project" />
     <orderEntry type="library" scope="RUNTIME" name="Maven: com.sedmelluq:lavaplayer-natives:1.2.55" level="project" />
     <orderEntry type="library" scope="RUNTIME" name="Maven: com.fasterxml.jackson.core:jackson-core:2.9.4" level="project" />

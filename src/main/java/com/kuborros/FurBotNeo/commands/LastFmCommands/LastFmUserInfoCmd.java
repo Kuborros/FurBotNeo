@@ -11,12 +11,10 @@ public class LastFmUserInfoCmd extends LastFmCommand {
 
 
     public LastFmUserInfoCmd() {
-        {
-            this.name = "lastinfo";
-            this.arguments = "<Username>";
-            this.help = "Shows basic info about user";
-            this.guildOnly = true;
-        }
+        this.name = "lastinfo";
+        this.arguments = "<Username>";
+        this.help = "Shows basic info about user";
+        this.guildOnly = true;
     }
 
     @Override

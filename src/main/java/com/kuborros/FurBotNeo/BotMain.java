@@ -5,9 +5,6 @@ import com.jagrosh.jdautilities.commons.waiter.EventWaiter;
 import com.jagrosh.jdautilities.examples.command.AboutCommand;
 import com.kuborros.FurBotNeo.commands.AdminCommands.*;
 import com.kuborros.FurBotNeo.commands.GeneralCommands.*;
-import com.kuborros.FurBotNeo.commands.LastFmCommands.LastFmArtistInfoCmd;
-import com.kuborros.FurBotNeo.commands.LastFmCommands.LastFmTopArtCmd;
-import com.kuborros.FurBotNeo.commands.LastFmCommands.LastFmUserInfoCmd;
 import com.kuborros.FurBotNeo.commands.MusicCommands.*;
 import com.kuborros.FurBotNeo.commands.PicCommands.*;
 import com.kuborros.FurBotNeo.listeners.BotEventListener;
@@ -17,8 +14,6 @@ import com.kuborros.FurBotNeo.utils.config.Config;
 import com.kuborros.FurBotNeo.utils.config.Database;
 import com.kuborros.FurBotNeo.utils.config.FurrySettingsManager;
 import com.sedmelluq.discord.lavaplayer.jdaudp.NativeAudioSendFactory;
-import de.umass.lastfm.Caller;
-import de.umass.lastfm.cache.DatabaseCache;
 import net.dv8tion.jda.core.AccountType;
 import net.dv8tion.jda.core.JDABuilder;
 import net.dv8tion.jda.core.OnlineStatus;
@@ -28,8 +23,6 @@ import org.slf4j.LoggerFactory;
 
 import javax.security.auth.login.LoginException;
 import java.awt.*;
-import java.sql.SQLException;
-import java.util.logging.Level;
 
 public class BotMain {
 
@@ -48,13 +41,15 @@ public class BotMain {
         db = new Database();
         db.createTables();
 
-        try {
-            Caller.getInstance().setCache(new DatabaseCache(db.getConn()));
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        Caller.getInstance().getLogger().setLevel(Level.WARNING);
-        Caller.getInstance().setUserAgent("DiscordBot/1.0");
+     /*
+     try {
+     Caller.getInstance().setCache(new DatabaseCache(db.getConn()));
+     } catch (SQLException e) {
+     e.printStackTrace();
+     }
+     Caller.getInstance().getLogger().setLevel(Level.WARNING);
+     Caller.getInstance().setUserAgent("DiscordBot/1.0");
+     */
 
         cfg = new Config();
 
@@ -106,13 +101,15 @@ public class BotMain {
                 new MusicVolumeCmd(),
 
                 //Last.fm
-                new LastFmUserInfoCmd(),
-                new LastFmArtistInfoCmd(),
-                new LastFmTopArtCmd(waiter),
-                
+
+                //new LastFmUserInfoCmd(),
+                //new LastFmArtistInfoCmd(),
+                //new LastFmTopArtCmd(waiter),
+
                 //Admin
                 new InfoCommand(),
                 new BotBanCmd(),
+                new BotUnBanCmd(),
                 new StatsCommand(),
                 new EvalCommand(),
                 new ShutdownCommand());

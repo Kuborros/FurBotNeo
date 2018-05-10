@@ -8,12 +8,12 @@ import java.sql.SQLException;
 
 import static com.kuborros.FurBotNeo.BotMain.db;
 
-public class BotBanCmd extends AdminCommand {
+public class BotUnBanCmd extends AdminCommand {
 
-    public BotBanCmd() {
-        this.name = "botban";
-        this.help = "Bans user from using bot commands";
-        this.arguments = "<@user> [time]";
+    public BotUnBanCmd() {
+        this.name = "botunban";
+        this.help = "Unbans user from using bot commands";
+        this.arguments = "<@user>";
         this.guildOnly = true;
         this.ownerCommand = false;
         this.category = new Category("Moderation");
@@ -24,23 +24,17 @@ public class BotBanCmd extends AdminCommand {
     @Override
     protected void doCommand(CommandEvent event) {
         if (event.getMessage().getMentionedUsers().isEmpty()) {
-            event.replyWarning("You must mention someone for me to ignore!");
+            event.replyWarning("You must mention someone for me to unban!");
         } else {
             Member member = event.getMessage().getMentionedMembers().get(0);
             try {
-                db.addBannedUser(member.getUser().getId(), event.getGuild().getId());
+                db.unbanUser(member.getUser().getId(), event.getGuild().getId());
             } catch (SQLException e) {
-                LOG.error("Error while banning member: ", e);
+                LOG.error("Error while unbanning member: ", e);
                 event.replyError("Internal error has occured! ```\n" + e.getLocalizedMessage() + "\n```");
+                return;
             }
-            try {
-                if (db.getBanStatus(member.getUser().getId(), event.getGuild().getId())) {
-                    event.reply("User has been blocked from bot commands!");
-                }
-            } catch (SQLException e) {
-                LOG.error("Error while contacting database: ", e);
-                event.replyError("Internal error has occured! ```\n" + e.getLocalizedMessage() + "\n```");
-            }
+            event.reply("User has been unbanned!");
         }
     }
 }

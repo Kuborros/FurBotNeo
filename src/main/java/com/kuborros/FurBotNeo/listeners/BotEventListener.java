@@ -53,7 +53,7 @@ public class BotEventListener extends ListenerAdapter{
     @Override
     public void onReady(ReadyEvent event) {
         ClearConsole();
-        LOG.info("FurryBot {} - Startup completed!", cfg.getVERSION());
+        LOG.info("FurryBot - Startup completed!");
         event.getJDA().getPresence().setGame(watching(" furry porn"));
         
         if (cfg.getOWNER_ID().equals("0")) {
