@@ -1,21 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d1641ed2-026d-4e0d-a34f-7a3c922f5d3c" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/kuborros/FurBotNeo/commands/LastFmCommands/LastFmTopArtCmd.java" afterDir="false" />
+    <list default="true" id="d1641ed2-026d-4e0d-a34f-7a3c922f5d3c" name="Default" comment="LastFm Thingies">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database.db" beforeDir="false" afterPath="$PROJECT_DIR$/database.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dependency-reduced-pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/dependency-reduced-pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kuborros/FurBotNeo/BotMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kuborros/FurBotNeo/BotMain.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kuborros/FurBotNeo/commands/LastFmCommands/LastFmArtistInfoCmd.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kuborros/FurBotNeo/commands/LastFmCommands/LastFmArtistInfoCmd.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kuborros/FurBotNeo/commands/LastFmCommands/LastFmUserInfoCmd.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kuborros/FurBotNeo/commands/LastFmCommands/LastFmUserInfoCmd.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kuborros/FurBotNeo/commands/PicCommands/DanCmd.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kuborros/FurBotNeo/commands/PicCommands/DanCmd.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kuborros/FurBotNeo/commands/PicCommands/E621Cmd.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kuborros/FurBotNeo/commands/PicCommands/E621Cmd.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kuborros/FurBotNeo/commands/PicCommands/GelCmd.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kuborros/FurBotNeo/commands/PicCommands/GelCmd.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kuborros/FurBotNeo/commands/PicCommands/PokeCmd.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kuborros/FurBotNeo/commands/PicCommands/PokeCmd.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kuborros/FurBotNeo/commands/PicCommands/R34Cmd.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kuborros/FurBotNeo/commands/PicCommands/R34Cmd.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kuborros/FurBotNeo/commands/PicCommands/SafeCmd.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kuborros/FurBotNeo/commands/PicCommands/SafeCmd.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kuborros/FurBotNeo/utils/audio/TrackManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kuborros/FurBotNeo/utils/audio/TrackManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -41,75 +29,12 @@
     <select />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="BotMain.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/kuborros/FurBotNeo/BotMain.java">
+    <leaf>
+      <file leaf-file-name="pom.xml" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/pom.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="99">
-              <caret line="110" column="44" selection-start-line="110" selection-start-column="44" selection-end-line="110" selection-end-column="44" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="E621Cmd.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/kuborros/FurBotNeo/commands/PicCommands/E621Cmd.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="306">
-              <caret line="83" column="3" selection-start-line="83" selection-end-line="83" selection-end-column="64" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="LastFmArtistInfoCmd.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/kuborros/FurBotNeo/commands/LastFmCommands/LastFmArtistInfoCmd.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="314">
-              <caret line="50" column="39" selection-start-line="50" selection-start-column="39" selection-end-line="50" selection-end-column="39" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="LastFmUserInfoCmd.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/kuborros/FurBotNeo/commands/LastFmCommands/LastFmUserInfoCmd.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="168">
-              <caret line="28" column="63" selection-start-line="28" selection-start-column="63" selection-end-line="28" selection-end-column="63" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="LastFmTopArtCmd.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/kuborros/FurBotNeo/commands/LastFmCommands/LastFmTopArtCmd.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="90">
-              <caret line="35" column="68" selection-start-line="35" selection-start-column="68" selection-end-line="35" selection-end-column="68" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="LastFmCommand.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/kuborros/FurBotNeo/commands/LastFmCommands/LastFmCommand.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="102">
-              <caret line="10" selection-start-line="10" selection-end-line="10" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="BigTextCmd.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/kuborros/FurBotNeo/commands/GeneralCommands/BigTextCmd.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret line="39" column="5" selection-start-line="39" selection-start-column="5" selection-end-line="39" selection-end-column="5" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state relative-caret-position="327">
+              <caret line="53" column="30" selection-start-line="53" selection-start-column="30" selection-end-line="53" selection-end-column="30" />
             </state>
           </provider>
         </entry>
@@ -186,7 +111,6 @@
         <option value="$PROJECT_DIR$/src/main/java/com/kuborros/FurBotNeo/utils/audio/AudioInfo.java" />
         <option value="$APPLICATION_CONFIG_DIR$/idea64.vmoptions" />
         <option value="$PROJECT_DIR$/src/main/java/com/kuborros/FurBotNeo/commands/AdminCommands/EvalCommand.java" />
-        <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/src/main/java/com/kuborros/FurBotNeo/commands/LastFmCommands/LastFmCmd.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/kuborros/FurBotNeo/commands/LastFmCommands/LastFmUserInfoComm.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/kuborros/FurBotNeo/commands/LastFmCommands/LastFmCommand.java" />
@@ -196,6 +120,7 @@
         <option value="$PROJECT_DIR$/src/main/java/com/kuborros/FurBotNeo/commands/LastFmCommands/LastFmArtistInfoCmd.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/kuborros/FurBotNeo/commands/LastFmCommands/LastFmTopArtCmd.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/kuborros/FurBotNeo/commands/LastFmCommands/LastFmUserInfoCmd.java" />
+        <option value="$PROJECT_DIR$/pom.xml" />
       </list>
     </option>
   </component>
@@ -267,46 +192,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="furbotNeo" type="58d84e3e:PackageViewProjectNode" />
-              <item name="FurBotNeo" type="616d4139:PackageViewModuleNode" />
-            </path>
-            <path>
-              <item name="furbotNeo" type="58d84e3e:PackageViewProjectNode" />
-              <item name="FurBotNeo" type="616d4139:PackageViewModuleNode" />
-              <item name="com.kuborros.FurBotNeo" type="1f31426a:PackageElementNode" />
-            </path>
-            <path>
-              <item name="furbotNeo" type="58d84e3e:PackageViewProjectNode" />
-              <item name="FurBotNeo" type="616d4139:PackageViewModuleNode" />
-              <item name="com.kuborros.FurBotNeo" type="1f31426a:PackageElementNode" />
-              <item name="commands" type="1f31426a:PackageElementNode" />
-            </path>
-            <path>
-              <item name="furbotNeo" type="58d84e3e:PackageViewProjectNode" />
-              <item name="FurBotNeo" type="616d4139:PackageViewModuleNode" />
-              <item name="com.kuborros.FurBotNeo" type="1f31426a:PackageElementNode" />
-              <item name="commands" type="1f31426a:PackageElementNode" />
-              <item name="LastFmCommands" type="1f31426a:PackageElementNode" />
-            </path>
-            <path>
-              <item name="furbotNeo" type="58d84e3e:PackageViewProjectNode" />
-              <item name="FurBotNeo" type="616d4139:PackageViewModuleNode" />
-              <item name="com.kuborros.FurBotNeo" type="1f31426a:PackageElementNode" />
-              <item name="listeners" type="1f31426a:PackageElementNode" />
-            </path>
-            <path>
-              <item name="furbotNeo" type="58d84e3e:PackageViewProjectNode" />
-              <item name="FurBotNeo" type="616d4139:PackageViewModuleNode" />
-              <item name="Libraries" type="5c3f07af:PackageViewLibrariesNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -336,29 +221,45 @@
               <item name="furbotNeo" type="b2602c69:ProjectViewProjectNode" />
               <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
             </path>
-            <path>
-              <item name="furbotNeo" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-              <item name="Maven: com.jagrosh:jda-utilities-menu:2.1.1" type="70bed36:NamedLibraryElementNode" />
-            </path>
-            <path>
-              <item name="furbotNeo" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-              <item name="Maven: com.jagrosh:jda-utilities-menu:2.1.1" type="70bed36:NamedLibraryElementNode" />
-              <item name="jda-utilities-menu-2.1.1.jar" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="furbotNeo" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-              <item name="Maven: com.jagrosh:jda-utilities-menu:2.1.1" type="70bed36:NamedLibraryElementNode" />
-              <item name="jda-utilities-menu-2.1.1.jar" type="462c0819:PsiDirectoryNode" />
-              <item name="menu" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
       </pane>
       <pane id="Scope" />
+      <pane id="PackagesPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="furbotNeo" type="58d84e3e:PackageViewProjectNode" />
+              <item name="FurBotNeo" type="616d4139:PackageViewModuleNode" />
+            </path>
+            <path>
+              <item name="furbotNeo" type="58d84e3e:PackageViewProjectNode" />
+              <item name="FurBotNeo" type="616d4139:PackageViewModuleNode" />
+              <item name="com.kuborros.FurBotNeo" type="1f31426a:PackageElementNode" />
+            </path>
+            <path>
+              <item name="furbotNeo" type="58d84e3e:PackageViewProjectNode" />
+              <item name="FurBotNeo" type="616d4139:PackageViewModuleNode" />
+              <item name="com.kuborros.FurBotNeo" type="1f31426a:PackageElementNode" />
+              <item name="commands" type="1f31426a:PackageElementNode" />
+            </path>
+            <path>
+              <item name="furbotNeo" type="58d84e3e:PackageViewProjectNode" />
+              <item name="FurBotNeo" type="616d4139:PackageViewModuleNode" />
+              <item name="com.kuborros.FurBotNeo" type="1f31426a:PackageElementNode" />
+              <item name="commands" type="1f31426a:PackageElementNode" />
+              <item name="LastFmCommands" type="1f31426a:PackageElementNode" />
+            </path>
+            <path>
+              <item name="furbotNeo" type="58d84e3e:PackageViewProjectNode" />
+              <item name="FurBotNeo" type="616d4139:PackageViewModuleNode" />
+              <item name="Libraries" type="5c3f07af:PackageViewLibrariesNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
       <pane id="AndroidView" />
     </panes>
   </component>
@@ -392,120 +293,6 @@
       <recent name="com.kuborros.FurBotNeo.commands.PicCommands" />
     </key>
   </component>
-  <component name="RestoreUpdateTree" date="Moments ago" ActionInfo="_Update">
-    <UpdatedFiles>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Updated from server" />
-        <option name="myStatusName" value="Changed on server" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="CHANGED_ON_SERVER" />
-        <FILE-GROUP>
-          <option name="myUpdateName" value="Updated" />
-          <option name="myStatusName" value="Changed" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" value="UPDATED" />
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/.idea/workspace.xml</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/database.db</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/com/kuborros/FurBotNeo/commands/LastFmCommands/LastFmCommand.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/com/kuborros/FurBotNeo/utils/config/ConFile.java</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/main/java/com/kuborros/FurBotNeo/utils/config/FurConfig.java</PATH>
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" value="Created" />
-          <option name="myStatusName" value="Created" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" value="CREATED" />
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" value="Deleted" />
-          <option name="myStatusName" value="Deleted" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="true" />
-          <option name="myId" value="REMOVED_FROM_REPOSITORY" />
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" value="Restored" />
-          <option name="myStatusName" value="Will be restored" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" value="RESTORED" />
-        </FILE-GROUP>
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Modified" />
-        <option name="myStatusName" value="Modified" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="MODIFIED" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Skipped" />
-        <option name="myStatusName" value="Skipped" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="SKIPPED" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Merged with conflicts" />
-        <option name="myStatusName" value="Will be merged with conflicts" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="MERGED_WITH_CONFLICTS" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Merged with tree conflicts" />
-        <option name="myStatusName" value="Merged with tree conflicts" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="MERGED_WITH_TREE_CONFLICT" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Merged with property conflicts" />
-        <option name="myStatusName" value="Will be merged with property conflicts" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="MERGED_WITH_PROPERTY_CONFLICT" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Merged" />
-        <option name="myStatusName" value="Will be merged" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="MERGED" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Not in repository" />
-        <option name="myStatusName" value="Not in repository" />
-        <option name="mySupportsDeletion" value="true" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="UNKNOWN" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Locally added" />
-        <option name="myStatusName" value="Locally added" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="LOCALLY_ADDED" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Locally removed" />
-        <option name="myStatusName" value="Locally removed" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="LOCALLY_REMOVED" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Switched" />
-        <option name="myStatusName" value="Switched" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="SWITCHED" />
-      </FILE-GROUP>
-    </UpdatedFiles>
-  </component>
   <component name="RunDashboard">
     <option name="ruleStates">
       <list>
@@ -518,7 +305,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Maven.Compile and Run">
+  <component name="RunManager" selected="Maven.Clean and Install">
     <configuration default="true" type="Applet" factoryName="Applet">
       <option name="HEIGHT" value="0" />
       <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
@@ -691,7 +478,9 @@
       <workItem from="1525458858708" duration="995000" />
       <workItem from="1525459896546" duration="115000" />
       <workItem from="1525460046827" duration="3246000" />
-      <workItem from="1525897751795" duration="3663000" />
+      <workItem from="1525897751795" duration="3773000" />
+      <workItem from="1525986098448" duration="1751000" />
+      <workItem from="1526674984798" duration="63000" />
     </task>
     <task id="LOCAL-00001" summary="Welp">
       <created>1512171162364</created>
@@ -882,11 +671,18 @@
       <option name="project" value="LOCAL" />
       <updated>1525464462452</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="LastFm Thingies">
+      <created>1525901517183</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1525901517184</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="102258000" />
+    <option name="totallyTimeSpent" value="104182000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="22" width="1366" height="746" extended-state="6" />
@@ -899,13 +695,11 @@
       <window_info anchor="right" id="Maven Projects" order="3" />
       <window_info anchor="bottom" id="Database Changes" order="8" />
       <window_info anchor="bottom" id="Version Control" order="7" weight="0.3286385" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49791667" visible="true" weight="0.3233909" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49791667" weight="0.3233909" />
       <window_info anchor="bottom" id="Terminal" order="7" />
       <window_info id="Designer" order="2" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.17057101" />
-      <window_info anchor="bottom" id="Inspection Results" order="8" weight="0.32810047" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.17057101" />
       <window_info anchor="right" id="Database" order="3" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.32911393" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info id="UI Designer" order="2" />
@@ -916,6 +710,7 @@
       <window_info anchor="bottom" id="Messages" order="7" sideWeight="0.49707174" weight="0.3265306" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info id="Image Layers" order="2" />
+      <window_info anchor="bottom" id="Inspection Results" order="8" weight="0.32810047" />
       <window_info anchor="bottom" id="Duplicates" order="8" weight="0.32911393" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info id="Capture Tool" order="2" />
@@ -923,6 +718,7 @@
       <window_info anchor="bottom" id="Dependency Viewer" order="8" weight="0.32810047" />
       <window_info anchor="right" id="Theme Preview" order="3" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32911393" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -975,13 +771,22 @@
     <MESSAGE value="Added extra chars to bigtext" />
     <MESSAGE value="AudioInfo toString" />
     <MESSAGE value="JDA 3.6.0" />
-    <option name="LAST_COMMIT_MESSAGE" value="JDA 3.6.0" />
+    <MESSAGE value="LastFm Thingies" />
+    <option name="LAST_COMMIT_MESSAGE" value="LastFm Thingies" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="9" />
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/kuborros/FurBotNeo/commands/PicCommands/E621Cmd.java</url>
+          <line>52</line>
+          <properties />
+          <option name="timeStamp" value="9" />
+        </line-breakpoint>
+      </breakpoints>
+      <option name="time" value="10" />
     </breakpoint-manager>
     <watches-manager>
       <configuration name="MavenRunConfiguration">
@@ -1057,13 +862,6 @@
       </provider>
     </entry>
     <entry file="jar://$MAVEN_REPOSITORY$/com/jagrosh/JDA-Utilities/2.0/jda-utilities-2.0.jar!/com/jagrosh/jdautilities/command/GuildSettingsManager.class" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/kuborros/FurBotNeo/net/apis/GelEngine.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-136">
-          <caret line="26" column="13" selection-start-line="26" selection-start-column="13" selection-end-line="26" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$MAVEN_REPOSITORY$/com/jagrosh/JDA-Utilities/2.0/jda-utilities-2.0.jar!/com/jagrosh/jdautilities/command/Command.class" />
     <entry file="jar://$MAVEN_REPOSITORY$/com/sedmelluq/lavaplayer/1.2.43/lavaplayer-1.2.43-sources.jar!/com/sedmelluq/discord/lavaplayer/player/event/AudioEventAdapter.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -1155,13 +953,6 @@
       </provider>
     </entry>
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_151/src.zip!/java/util/function/Consumer.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/kuborros/FurBotNeo/net/apis/DanApi.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="935">
-          <caret line="69" column="5" selection-start-line="69" selection-start-column="5" selection-end-line="69" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/kuborros/FurBotNeo/listeners/MemberEventListener.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="561">
@@ -1187,13 +978,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
           <caret line="10" column="41" selection-start-line="10" selection-start-column="41" selection-end-line="10" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/kuborros/FurBotNeo/commands/PicCommands/DanCmd.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="550">
-          <caret line="91" column="1" selection-start-line="91" selection-start-column="1" selection-end-line="91" selection-end-column="1" />
         </state>
       </provider>
     </entry>
@@ -1246,24 +1030,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="317">
-          <caret line="42" column="36" selection-start-line="42" selection-start-column="36" selection-end-line="42" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/kuborros/FurBotNeo/utils/audio/AudioInfo.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="612">
           <caret line="63" column="1" selection-start-line="63" selection-start-column="1" selection-end-line="63" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/kuborros/FurBotNeo/commands/MusicCommands/MusicCommand.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret line="56" column="20" selection-start-line="56" selection-start-column="20" selection-end-line="56" selection-end-column="20" />
         </state>
       </provider>
     </entry>
@@ -1282,27 +1052,10 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/kuborros/FurBotNeo/commands/LastFmCommands/LastFmCmd.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/kuborros/FurBotNeo/commands/GeneralCommands/BigTextCmd.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret line="39" column="5" selection-start-line="39" selection-start-column="5" selection-end-line="39" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/kuborros/FurBotNeo/commands/GeneralCommands/R8BallCmd.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-163">
           <caret line="15" column="13" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/kuborros/FurBotNeo/commands/LastFmCommands/LastFmCommand.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="10" selection-start-line="10" selection-end-line="10" />
         </state>
       </provider>
     </entry>
@@ -1327,44 +1080,87 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/kuborros/FurBotNeo/commands/PicCommands/E621Cmd.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/kuborros/FurBotNeo/commands/GeneralCommands/BigTextCmd.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="83" column="3" selection-start-line="83" selection-end-line="83" selection-end-column="64" />
+        <state relative-caret-position="339">
+          <caret line="39" column="5" selection-start-line="39" selection-start-column="5" selection-end-line="39" selection-end-column="5" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/kuborros/FurBotNeo/BotMain.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/kuborros/FurBotNeo/commands/LastFmCommands/LastFmCommand.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="99">
-          <caret line="110" column="44" selection-start-line="110" selection-start-column="44" selection-end-line="110" selection-end-column="44" />
+        <state relative-caret-position="255">
+          <caret line="15" selection-start-line="15" selection-end-line="15" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/kuborros/FurBotNeo/commands/LastFmCommands/LastFmArtistInfoCmd.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/kuborros/FurBotNeo/net/apis/DanApi.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="314">
-          <caret line="50" column="39" selection-start-line="50" selection-start-column="39" selection-end-line="50" selection-end-column="39" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="443">
+          <caret line="70" column="1" lean-forward="true" selection-start-line="70" selection-start-column="1" selection-end-line="70" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/kuborros/FurBotNeo/net/apis/GelEngine.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="39" column="11" selection-start-line="37" selection-end-line="84" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/kuborros/FurBotNeo/commands/PicCommands/DanCmd.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="137">
+          <caret line="66" column="26" lean-forward="true" selection-start-line="43" selection-end-line="90" selection-end-column="1" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/kuborros/FurBotNeo/commands/LastFmCommands/LastFmTopArtCmd.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="35" column="68" selection-start-line="35" selection-start-column="68" selection-end-line="35" selection-end-column="68" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="136">
+          <caret line="35" lean-forward="true" selection-start-line="35" selection-end-line="35" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/kuborros/FurBotNeo/commands/LastFmCommands/LastFmUserInfoCmd.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="168">
+        <state relative-caret-position="-35">
           <caret line="28" column="63" selection-start-line="28" selection-start-column="63" selection-end-line="28" selection-end-column="63" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/kuborros/FurBotNeo/commands/LastFmCommands/LastFmArtistInfoCmd.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="524">
+          <caret line="45" column="1" lean-forward="true" selection-start-line="45" selection-start-column="1" selection-end-line="45" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/kuborros/FurBotNeo/commands/PicCommands/E621Cmd.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="61" lean-forward="true" selection-start-line="61" selection-end-line="61" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/kuborros/FurBotNeo/commands/MusicCommands/MusicCommand.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="56" column="20" selection-start-line="56" selection-start-column="20" selection-end-line="56" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/kuborros/FurBotNeo/BotMain.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-164">
+          <caret line="105" column="44" selection-start-line="105" selection-start-column="44" selection-end-line="105" selection-end-column="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="327">
+          <caret line="53" column="30" selection-start-line="53" selection-start-column="30" selection-end-line="53" selection-end-column="30" />
         </state>
       </provider>
     </entry>
