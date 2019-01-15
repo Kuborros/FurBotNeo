@@ -119,6 +119,12 @@ public class TrackManager extends AudioEventAdapter {
         queue.clear();
     }
 
+    public void purgeStopQueue() {
+        AudioInfo info = queue.element();
+        queue.clear();
+        queue.add(info);
+    }
+
 
     // public AudioInfo getTrackInfo(AudioTrack track) {
     //     return queue.stream().filter(audioInfo -> audioInfo.getTrack().equals(track)).findFirst().orElse(null);

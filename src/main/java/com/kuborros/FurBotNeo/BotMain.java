@@ -31,7 +31,7 @@ public class BotMain {
     public static Database db;
     private static final FurrySettingsManager settingsManager = new FurrySettingsManager();
 
-    public static void main(String args[]) {
+    public static void main(String[] args) {
 
         if (!System.getProperty("file.encoding").equals("UTF-8")) {
             LOG.warn("Not running in UTF-8 mode! This ~might~ end badly for us!");

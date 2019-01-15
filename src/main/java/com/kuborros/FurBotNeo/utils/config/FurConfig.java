@@ -8,27 +8,30 @@ import java.util.Collection;
 import java.util.List;
 
 
-class FurConfig implements GuildSettingsProvider {
+public class FurConfig implements GuildSettingsProvider {
 
     private final List<String> prefixes = new ArrayList<>();
     private final String botName;
     private final boolean welcomeMsg;
     private final boolean isFurry;
+    private final boolean isNSFW;
     private final String audioChannel;
 
-    FurConfig() {
+    public FurConfig() {
         this.botName = "FurryBot";
         this.audioChannel = "0";
         this.isFurry = true;
         this.welcomeMsg = true;
+        this.isNSFW = true;
     }
 
-    public FurConfig(String botName, boolean welcomeMsg, boolean isFurry, String prefix, String audioChannel) {
+    public FurConfig(String botName, boolean welcomeMsg, boolean isFurry, boolean isNSFW, String prefix, String audioChannel) {
         this.botName = botName;
         this.prefixes.add(prefix);
         this.audioChannel = audioChannel;
         this.isFurry = isFurry;
         this.welcomeMsg = welcomeMsg;
+        this.isNSFW = isNSFW;
 
     }
 
@@ -50,6 +53,10 @@ class FurConfig implements GuildSettingsProvider {
 
     public boolean isFurry() {
         return isFurry;
+    }
+
+    public boolean isNSFW() {
+        return isNSFW;
     }
 
     public String getAudioChannel() {

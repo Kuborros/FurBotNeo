@@ -38,6 +38,8 @@ public class LogListener extends ListenerAdapter{
         else if (event.isFromType(ChannelType.PRIVATE))
         {
             LOG.info("[PRIV] ({}): {}", author.getName(), msg);
+        } else if (event.isFromType(ChannelType.GROUP)) {
+            LOG.info("[GRP] ({}): {}", author.getName(), msg);
         }
     }
 }
