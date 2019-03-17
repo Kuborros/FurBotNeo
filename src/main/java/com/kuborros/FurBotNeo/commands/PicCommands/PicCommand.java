@@ -17,7 +17,7 @@ abstract class PicCommand extends Command {
         assert config != null;
         if (config.isNSFW()) {
             doCommand(event);
-        } else LOG.debug("NSFW command ran on SFW server, ignoring");
+        } else LOG.info("NSFW command ran on SFW server, ignoring");
     }
 
     protected abstract void doCommand(CommandEvent event);

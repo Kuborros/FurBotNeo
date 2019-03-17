@@ -183,7 +183,7 @@ public class Database {
 
     public boolean updateGuildIsNSFW(boolean gai, Guild guild) {
         try {
-            String nsfw = gai ? "true" : "false";
+            String nsfw = gai ? "1" : "0";
             stat = conn.createStatement();
             stat.executeUpdate("UPDATE Guilds SET isNSFW = \'" + nsfw + "\' WHERE guild_id = " + guild.getId());
             needsUpdate.put(guild.getId(), true);
@@ -196,7 +196,7 @@ public class Database {
 
     public boolean updateGuildIsFurry(boolean furfags, Guild guild) {
         try {
-            String furry = furfags ? "true" : "false";
+            String furry = furfags ? "1" : "0";
             stat = conn.createStatement();
             stat.executeUpdate("UPDATE Guilds SET isNSFW = \'" + furry + "\' WHERE guild_id = " + guild.getId());
             needsUpdate.put(guild.getId(), true);
