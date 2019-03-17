@@ -21,6 +21,7 @@ public class Config {
         return OWNER_ID;
     }
 
+    @SuppressWarnings("SameReturnValue")
     public String getPREFIX() {
         return "!";
     }

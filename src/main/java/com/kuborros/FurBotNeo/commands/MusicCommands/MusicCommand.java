@@ -9,7 +9,7 @@ import com.jagrosh.jdautilities.command.CommandEvent;
 import com.kuborros.FurBotNeo.utils.audio.AudioInfo;
 import com.kuborros.FurBotNeo.utils.audio.AudioPlayerSendHandler;
 import com.kuborros.FurBotNeo.utils.audio.TrackManager;
-import com.kuborros.FurBotNeo.utils.msg.ChannelFinder;
+import com.kuborros.FurBotNeo.utils.config.FurConfig;
 import com.sedmelluq.discord.lavaplayer.player.AudioLoadResultHandler;
 import com.sedmelluq.discord.lavaplayer.player.AudioPlayer;
 import com.sedmelluq.discord.lavaplayer.player.AudioPlayerManager;
@@ -52,7 +52,7 @@ abstract class MusicCommand extends Command {
     final static String NOTE = ":musical_note:  ";
 
     static Guild guild;
-    private static ChannelFinder finder;
+    private static FurConfig config;
     String input;
     private static AudioEventListener audioEventListener;
 
@@ -69,7 +69,7 @@ abstract class MusicCommand extends Command {
                 Set<AudioInfo> queue = getTrackManager(guild).getQueuedTracks();
                 ArrayList<AudioInfo> tracks = new ArrayList<>(queue);
 
-                finder.FindBotChat().getManager().setTopic("Last track: " + track.getInfo().title).queue();
+                guild.getTextChannelById(config.getAudioChannel()).getManager().setTopic("Last track: " + track.getInfo().title).queue();
 
                 EmbedBuilder eb = new EmbedBuilder()
                         .setColor(Color.CYAN)
@@ -78,7 +78,7 @@ abstract class MusicCommand extends Command {
                 if (tracks.size() > 1){
                     eb.addField("Next Track", "`(" + getTimestamp(tracks.get(1).getTrack().getDuration()) + ")`  " + tracks.get(1).getTrack().getInfo().title, false);
                 }
-                finder.FindBotChat().sendMessage(
+                guild.getTextChannelById(config.getAudioChannel()).sendMessage(
                         eb.build()
                 ).queue();
             }
@@ -276,12 +276,13 @@ abstract class MusicCommand extends Command {
         try {
             if (db.getBanStatus(event.getMember().getUser().getId(), guild.getId())) {
                 event.reply("You are blocked from bot commands!");
+                return;
             }
         } catch (SQLException e) {
             LOG.error("Error while contacting database: ", e);
         }
-            finder = new ChannelFinder(guild);
-            if (!event.getTextChannel().equals(finder.FindBotChat())) return;
+        config = (FurConfig) event.getClient().getSettingsManager().getSettings(guild);
+        if (!event.getTextChannel().equals(guild.getTextChannelById(config.getAudioChannel()))) return;
             if (!event.getAuthor().isBot()) {            
                 getPlayer(guild).removeListener(audioEventListener);
                 getPlayer(guild).addListener(audioEventListener);

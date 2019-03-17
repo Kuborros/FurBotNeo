@@ -65,11 +65,12 @@ public PokemonApi(String url){
         }
         }
        
-       for (int i = 0; i < urls.size(); i++) {
-            if (urls.get(i).contains(".webm")){
+       /* for (int i = 0; i < urls.size(); i++) {
+           if (urls.get(i).contains(".webm")){
               urls.remove(i);
             }   
-        }
+        } */
+        urls.removeIf(s -> s.contains(".webm"));
         if (urls.isEmpty()) {
             throw new NoImgException();
         }

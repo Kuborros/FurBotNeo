@@ -25,6 +25,8 @@ public class Database {
     private Connection conn;
     private Statement stat;
 
+    private final Map<String, Boolean> needsUpdate = new HashMap<>();
+
 
     public Database() {
         try {
@@ -50,9 +52,9 @@ public class Database {
         }catch (SQLException ignored){}
     }
 
-    public Connection getConn() {
-        return conn;
-    }
+    //public Connection getConn() {
+    //    return conn;
+    //}
     
     public void createTables() {
 
@@ -78,8 +80,16 @@ public class Database {
                   " music_id TEXT NOT NULL, " +
 
                   " name TEXT NOT NULL, " +
-                  
-                  " members INTEGER)";
+
+                  " members INTEGER, " +
+
+                  " bot_name TEXT NOT NULL, " +
+
+                  " bot_prefix TEXT NOT NULL, " +
+
+                  " isNSFW BOOLEAN DEFAULT FALSE, " +
+
+                  " isFurry BOOLEAN DEFAULT TRUE)";
 
           stat.executeUpdate(guild);
           
@@ -112,21 +122,88 @@ public class Database {
         if(guilds.isEmpty()) return;        
         try {
             stat = conn.createStatement();
-            
-            stat.executeUpdate("DELETE FROM Guilds");
-            
+
             for (Guild guild : guilds){
-                String sql = "INSERT OR IGNORE INTO Guilds(guild_id,music_id,name,members) VALUES(?,?,?,?)";
+
+                needsUpdate.put(guild.getId(), false);
+
+                String sql = "INSERT OR IGNORE INTO Guilds(guild_id,music_id,name,members,bot_name,bot_prefix,isNSFW,isFurry) VALUES(?,?,?,?,?,?,?,?)";
                 PreparedStatement pstmt = conn.prepareStatement(sql);
                 pstmt.setString(1, guild.getId());
                 pstmt.setString(2, new ChannelFinder(guild).FindBotChat().getId());
                 pstmt.setString(3, guild.getName());
                 pstmt.setInt(4, guild.getMembers().size());
+                pstmt.setString(5, guild.getJDA().getSelfUser().getName());
+                pstmt.setString(6, "!");
+                pstmt.setBoolean(7, false);
+                pstmt.setBoolean(8, true);
                 pstmt.executeUpdate();
                 
             } 
         } catch (SQLException e){
             LOG.error(e.getLocalizedMessage());
+        }
+    }
+
+    public boolean updateGuildBotName(String name, Guild guild) {
+        try {
+            stat = conn.createStatement();
+            stat.executeUpdate("UPDATE Guilds SET bot_name = \'" + name + "\' WHERE guild_id = " + guild.getId());
+            needsUpdate.put(guild.getId(), true);
+            return true;
+        } catch (SQLException e) {
+            LOG.error(e.getLocalizedMessage());
+            return false;
+        }
+    }
+
+    public boolean updateGuildPrefix(String prefix, Guild guild) {
+        try {
+            stat = conn.createStatement();
+            stat.executeUpdate("UPDATE Guilds SET bot_prefix = \'" + prefix + "\' WHERE guild_id = " + guild.getId());
+            needsUpdate.put(guild.getId(), true);
+            return true;
+        } catch (SQLException e) {
+            LOG.error(e.getLocalizedMessage());
+            return false;
+        }
+    }
+
+    public boolean updateGuildAudio(String audio, Guild guild) {
+        try {
+            stat = conn.createStatement();
+            stat.executeUpdate("UPDATE Guilds SET music_id = \'" + audio + "\' WHERE guild_id = " + guild.getId());
+            needsUpdate.put(guild.getId(), true);
+            return true;
+        } catch (SQLException e) {
+            LOG.error(e.getLocalizedMessage());
+            return false;
+        }
+    }
+
+    public boolean updateGuildIsNSFW(boolean gai, Guild guild) {
+        try {
+            String nsfw = gai ? "true" : "false";
+            stat = conn.createStatement();
+            stat.executeUpdate("UPDATE Guilds SET isNSFW = \'" + nsfw + "\' WHERE guild_id = " + guild.getId());
+            needsUpdate.put(guild.getId(), true);
+            return true;
+        } catch (SQLException e) {
+            LOG.error(e.getLocalizedMessage());
+            return false;
+        }
+    }
+
+    public boolean updateGuildIsFurry(boolean furfags, Guild guild) {
+        try {
+            String furry = furfags ? "true" : "false";
+            stat = conn.createStatement();
+            stat.executeUpdate("UPDATE Guilds SET isNSFW = \'" + furry + "\' WHERE guild_id = " + guild.getId());
+            needsUpdate.put(guild.getId(), true);
+            return true;
+        } catch (SQLException e) {
+            LOG.error(e.getLocalizedMessage());
+            return false;
         }
     }
      
@@ -146,6 +223,10 @@ public class Database {
         } catch (SQLException e){
             LOG.error(e.getLocalizedMessage());
         }
+    }
+
+    boolean guildNeedsUpdate(Guild guild) {
+        return needsUpdate.get(guild.getId());
     }
     
     public void setCommandStats(JDA jda) {
@@ -196,6 +277,14 @@ public class Database {
             }
         }
         return map;
+
+    }
+
+    FurConfig getGuildConfig(Guild guild) throws SQLException {
+        stat = conn.createStatement();
+        ResultSet rs = stat.executeQuery("SELECT * FROM Guilds WHERE guild_id=" + guild.getId());
+
+        return new FurConfig(rs.getString(5), false, rs.getBoolean(8), rs.getBoolean(7), rs.getString(6), rs.getString(2));
 
     }
 

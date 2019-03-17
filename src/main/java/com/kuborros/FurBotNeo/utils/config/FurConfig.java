@@ -17,7 +17,7 @@ public class FurConfig implements GuildSettingsProvider {
     private final boolean isNSFW;
     private final String audioChannel;
 
-    public FurConfig() {
+    FurConfig() {
         this.botName = "FurryBot";
         this.audioChannel = "0";
         this.isFurry = true;
@@ -25,7 +25,7 @@ public class FurConfig implements GuildSettingsProvider {
         this.isNSFW = true;
     }
 
-    public FurConfig(String botName, boolean welcomeMsg, boolean isFurry, boolean isNSFW, String prefix, String audioChannel) {
+    FurConfig(String botName, boolean welcomeMsg, boolean isFurry, boolean isNSFW, String prefix, String audioChannel) {
         this.botName = botName;
         this.prefixes.add(prefix);
         this.audioChannel = audioChannel;

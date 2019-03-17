@@ -46,7 +46,7 @@ public class DiceCmd extends GeneralCommand {
             int i = 0;
             do {
                 int side = rand.nextInt(numSides) + 1;
-                rolls.append(Integer.toString(side)).append(",");
+                rolls.append(side).append(",");
                 i++;
             } while (i < numDices);
             event.reply("You rolled: " + rolls.toString());

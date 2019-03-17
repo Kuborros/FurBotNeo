@@ -26,7 +26,7 @@ public class LastFmUserInfoCmd extends LastFmCommand {
         User user = User.getInfo(event.getArgs(), key);
         if (Caller.getInstance().getLastResult().isSuccessful()) {
             String gender;
-            String age = String.valueOf(user.getAge()).equals("0") ? "Not set" : "" + String.valueOf(user.getAge());
+            String age = String.valueOf(user.getAge()).equals("0") ? "Not set" : "" + user.getAge();
             String country = user.getCountry().isEmpty() ? "Not set" : "" + user.getCountry();
             String name = user.getRealname() == null ? "Not set" : "" + user.getRealname();
             switch (user.getGender()) {

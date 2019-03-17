@@ -111,6 +111,7 @@ public class BotMain {
                 new BotBanCmd(),
                 new BotUnBanCmd(),
                 new StatsCommand(),
+                new GuildConfigCommand(),
                 new EvalCommand(),
                 new ShutdownCommand());
 
@@ -131,9 +132,9 @@ public class BotMain {
                     .setAutoReconnect(true)
                     .setAudioSendFactory(new NativeAudioSendFactory())
                     .setEnableShutdownHook(true)
-            
 
-                    .buildAsync();
+
+                    .build();
         }
         catch (IllegalArgumentException e) {
             LOG.error("No token has been provided!");

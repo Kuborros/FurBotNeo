@@ -67,11 +67,8 @@ public class GelEngine {
 			urls.add(tempUrl.startsWith("https:") ? tempUrl : "https:" + tempUrl);
                 }
         }
-        for (int i = 0; i < urls.size(); i++) {
-            if (urls.get(i).contains(".webm")){
-              urls.remove(i);
-            }   
-        }
+           urls.removeIf(s -> s.contains(".webm"));
+
            if (urls.isEmpty()) {
                throw new NoImgException();
            }

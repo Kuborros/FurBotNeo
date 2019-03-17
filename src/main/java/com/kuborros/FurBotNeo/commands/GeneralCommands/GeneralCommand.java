@@ -17,6 +17,7 @@ abstract class GeneralCommand extends Command {
         try {
             if (db.getBanStatus(event.getMember().getUser().getId(), event.getGuild().getId())) {
                 event.reply("You are blocked from bot commands!");
+                return;
             }
         } catch (SQLException e) {
             LOG.error("Error while contacting database: ", e);

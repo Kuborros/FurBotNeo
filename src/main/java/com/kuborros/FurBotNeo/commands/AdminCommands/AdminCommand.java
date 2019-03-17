@@ -2,6 +2,7 @@ package com.kuborros.FurBotNeo.commands.AdminCommands;
 
 import com.jagrosh.jdautilities.command.Command;
 import com.jagrosh.jdautilities.command.CommandEvent;
+import net.dv8tion.jda.core.entities.ChannelType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -16,13 +17,16 @@ abstract class AdminCommand extends Command {
 
     @Override
     protected void execute(CommandEvent event) {
-        if (!event.getMember().isOwner() || !event.getMember().getUser().getId().equals(cfg.getOWNER_ID())) {
-            try {
-                if (db.getBanStatus(event.getMember().getUser().getId(), event.getGuild().getId())) {
-                    event.reply("You are blocked from bot commands!");
+        if (event.getChannelType() == ChannelType.TEXT) {
+            if (!event.getMember().isOwner() || !event.getMember().getUser().getId().equals(cfg.getOWNER_ID())) {
+                try {
+                    if (db.getBanStatus(event.getMember().getUser().getId(), event.getGuild().getId())) {
+                        event.reply("You are blocked from bot commands!");
+                        return;
+                    }
+                } catch (SQLException e) {
+                    LOG.error("Error while contacting database: ", e);
                 }
-            } catch (SQLException e) {
-                LOG.error("Error while contacting database: ", e);
             }
         }
         doCommand(event);
