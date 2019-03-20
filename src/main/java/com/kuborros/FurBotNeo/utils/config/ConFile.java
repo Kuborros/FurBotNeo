@@ -32,7 +32,6 @@ class ConFile {
 
                 prop.setProperty("BotToken", "");
                 prop.setProperty("OwnerId", "0");
-                prop.setProperty("LastFmToken", "0");
                 prop.setProperty("PostGuildMessages", "false");
 
                 prop.store(output, null);
@@ -84,6 +83,7 @@ class ConFile {
 
     }
 
+    //Uncomment if editing core variables is ever needed at runtime
 
 // --Commented out by Inspection START (2017-12-25 23:52):
 //    static void modifyProperty(String key, String value) {

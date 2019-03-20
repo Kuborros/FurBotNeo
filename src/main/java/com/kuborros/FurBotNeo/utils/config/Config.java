@@ -7,7 +7,6 @@ public class Config {
 
     private final String BOT_TOKEN;
     private final String OWNER_ID;
-    private final String LASTFM_KEY;
 
     private final boolean GUILD_MSGS;
 
@@ -30,18 +29,12 @@ public class Config {
         return GUILD_MSGS;
     }
 
-    public String getLASTFM_KEY() {
-        return LASTFM_KEY;
-    }
-
-
     public Config() {
         ConFile.ConFileCheck();
         Properties properties = ConFile.getProperties();
 
         BOT_TOKEN = properties != null ? properties.getProperty("BotToken") : "0";
         OWNER_ID = properties != null ? properties.getProperty("OwnerId") : "0";
-        LASTFM_KEY = properties != null ? properties.getProperty("LastFmKey") : "0";
         GUILD_MSGS = properties != null && properties.getProperty("PostGuildMessages").equalsIgnoreCase("true");
 
     }

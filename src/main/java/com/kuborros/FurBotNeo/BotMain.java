@@ -41,16 +41,6 @@ public class BotMain {
         db = new Database();
         db.createTables();
 
-     /*
-     try {
-     Caller.getInstance().setCache(new DatabaseCache(db.getConn()));
-     } catch (SQLException e) {
-     e.printStackTrace();
-     }
-     Caller.getInstance().getLogger().setLevel(Level.WARNING);
-     Caller.getInstance().setUserAgent("DiscordBot/1.0");
-     */
-
         cfg = new Config();
 
         CommandClientBuilder client = new CommandClientBuilder();
@@ -100,13 +90,8 @@ public class BotMain {
                 new MusicStopCmd(),
                 new MusicVolumeCmd(),
 
-                //Last.fm
-
-                //new LastFmUserInfoCmd(),
-                //new LastFmArtistInfoCmd(),
-                //new LastFmTopArtCmd(waiter),
-
                 //Admin
+
                 new InfoCommand(),
                 new BotBanCmd(),
                 new BotUnBanCmd(),

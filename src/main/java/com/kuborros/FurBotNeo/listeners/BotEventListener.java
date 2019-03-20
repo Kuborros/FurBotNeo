@@ -54,7 +54,7 @@ public class BotEventListener extends ListenerAdapter{
     public void onReady(ReadyEvent event) {
         ClearConsole();
         LOG.info("FurryBot - Startup completed!");
-        event.getJDA().getPresence().setGame(watching(" furry porn"));
+        event.getJDA().getPresence().setGame(watching(" furry lewds"));
         
         if (cfg.getOWNER_ID().equals("0")) {
            LOG.warn("Please set your own user ID in config.cfg! This gives you sudo powers in bot commands!");

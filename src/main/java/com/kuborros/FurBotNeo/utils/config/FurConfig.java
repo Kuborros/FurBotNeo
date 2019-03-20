@@ -8,6 +8,7 @@ import java.util.Collection;
 import java.util.List;
 
 
+@SuppressWarnings("unused")
 public class FurConfig implements GuildSettingsProvider {
 
     private final List<String> prefixes = new ArrayList<>();
