@@ -6,6 +6,7 @@ package com.kuborros.FurBotNeo.commands.GeneralCommands;
 
 import com.jagrosh.jdautilities.command.Command;
 import com.jagrosh.jdautilities.command.CommandEvent;
+import com.kuborros.FurBotNeo.utils.config.FurConfig;
 import net.dv8tion.jda.core.EmbedBuilder;
 import net.dv8tion.jda.core.MessageBuilder;
 import net.dv8tion.jda.core.Permission;
@@ -37,6 +38,13 @@ public class CommandStatCmd extends GeneralCommand {
     @Override
     protected void doCommand(CommandEvent event) {
         StringBuilder builder = new StringBuilder();
+
+        FurConfig config = (FurConfig) event.getClient().getSettingsManager().getSettings(event.getGuild());
+        assert config != null;
+        if (!config.isNSFW()) {
+            LOG.info("NSFW command ran on SFW server, ignoring");
+            return;
+        }
         User user = !event.getMessage().getMentionedUsers().isEmpty() ? event.getMessage().getMentionedUsers().get(0) : event.getAuthor();
         try {
             Map<String, String> map = db.getCommandStats(user.getId());
