@@ -34,7 +34,7 @@ public class BotMain {
     public static void main(String[] args) {
 
         if (!System.getProperty("file.encoding").equals("UTF-8")) {
-            LOG.warn("Not running in UTF-8 mode! This ~might~ end badly for us!");
+            LOG.info("Not running in UTF-8 mode! This ~might~ end badly for us!");
         }
         EventWaiter waiter = new EventWaiter();
 

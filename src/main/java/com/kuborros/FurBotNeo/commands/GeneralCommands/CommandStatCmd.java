@@ -44,7 +44,8 @@ public class CommandStatCmd extends GeneralCommand {
             map.forEach((k,v) -> builder.append("``").append(k).append("`` used **").append(v).append("** times\n\n"));
             sendEmbed(event, String.format("How many times %s nutted to:", user.getName()), builder.toString());
         } catch (SQLException e){
-            event.replyError("Something went wrong"); 
+            LOG.error("Error occured while retreiving command stats: ", e);
+            event.replyError("Unable to load commands stats! Thats **not** good.");
         }
 
     }

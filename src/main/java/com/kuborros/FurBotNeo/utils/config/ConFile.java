@@ -40,7 +40,7 @@ class ConFile {
 
             } catch (IOException e) {
                 e.printStackTrace();
-                LOG.info("... but it went horribly wrong!");
+                LOG.error("... but it went horribly wrong! ", e);
             } finally {
                 if (output != null) {
                     try {

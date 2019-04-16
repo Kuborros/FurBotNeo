@@ -77,7 +77,7 @@ public class R34Cmd extends PicCommand {
                     event.reply("No results found!");
                     return;
                 } catch (ParserConfigurationException | IOException | SAXException e) {
-                    event.replyError(e.getLocalizedMessage());
+                    event.replyError("Something went wrong! ```\\n\" " + e.getLocalizedMessage() + "\"\\n```\"");
                     return;
         }
 

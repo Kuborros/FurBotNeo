@@ -66,20 +66,20 @@ public class VoteCommand extends GeneralCommand {
                             else {
                                 String topic = event.getArgs().replaceFirst(args[0], "");
                                 if(topic.length()>500){
-                                    event.replyWarning("That topic is too long. Can you shorten it a bit?");
+                                    event.replyWarning("Topic is way too long. Can you shorten it a bit?");
                                 } else {
                                     Instant now = Instant.now();
                                     if(startVote(event.getTextChannel(), now, seconds, topic)){
                                         event.getMessage().delete().queue();
                                     }
                                     else {
-                                        event.replyError("Uh oh. Something went wrong and I wasn't able to start the vote.");
+                                        event.replyError("Oh no. Something went wrong and I wasn't able to start the vote.");
                                         event.getMessage().delete().queue();
                                     }    
                                 }
                             }
                         } catch (NumberFormatException ex) {
-                            event.replyWarning("Hm. I can't seem to get a number from that.");
+                            event.replyWarning("Hmmmm... I can't seem to get a number from that.");
                         }
                
         

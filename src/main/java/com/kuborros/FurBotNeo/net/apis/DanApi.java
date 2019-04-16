@@ -64,7 +64,7 @@ public class DanApi {
             }
             return results;
         } catch (IOException ex) {
-            LOG.error(ex.getLocalizedMessage());
+            LOG.error("Error occured while retreiving images: ", ex);
             throw ex;
         }
     }

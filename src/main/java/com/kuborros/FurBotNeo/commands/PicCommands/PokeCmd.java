@@ -78,7 +78,7 @@ public class PokeCmd extends PicCommand {
                     event.reply("No results found!");
                     return;
                 } catch (IOException | ParserConfigurationException | SAXException ex) {
-                    event.replyError(ex.getLocalizedMessage());
+                    event.replyError("Something went wrong! ```\\n\" " + ex.getLocalizedMessage() + "\"\\n```\"");
                 }
         builder.build().display(event.getTextChannel());
         }

@@ -75,7 +75,7 @@ public class GelEngine {
         return urls;
        }
        catch (IOException | ParserConfigurationException | SAXException  ex) {
-          LOG.error(ex.getLocalizedMessage()); 
+           LOG.error("Error occured while retreiving images: ", ex);
           throw ex;
        }
     }

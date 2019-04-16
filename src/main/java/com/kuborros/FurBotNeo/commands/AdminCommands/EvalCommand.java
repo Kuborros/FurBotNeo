@@ -39,7 +39,7 @@ public class EvalCommand extends AdminCommand {
                     "Packages.net.dv8tion.jda.core.managers.impl," +
                     "Packages.net.dv8tion.jda.core.utils);");
         } catch (ScriptException e) {
-            LOG.error("Eval command error: ", e.getMessage());
+            LOG.error("Eval command error: ", e);
         }
     }
 

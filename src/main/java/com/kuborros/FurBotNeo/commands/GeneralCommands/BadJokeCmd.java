@@ -51,7 +51,7 @@ public class BadJokeCmd extends GeneralCommand {
             }
                 JSONObject object = new JSONObject(str.toString());
                 if (!"success".equals(object.getString("type"))) {
-                    LOG.error("Joke code fucked up");
+                    LOG.error("Error while retrieving joke.");
                 }
             
                 String joke = object.getJSONObject("value").getString("joke");

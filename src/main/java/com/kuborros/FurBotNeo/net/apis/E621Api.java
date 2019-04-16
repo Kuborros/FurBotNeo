@@ -63,7 +63,7 @@ public E621Api(String url){
 
             return result;
         } catch (IOException ex) {
-            LOG.error(ex.getLocalizedMessage());
+            LOG.error("Error occured while retreiving images: ", ex);
             throw ex;
         }
     

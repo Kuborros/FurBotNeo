@@ -83,7 +83,7 @@ public class DanCmd extends PicCommand {
                 event.reply("No results found!");
                 return;
             } catch (IOException e) {
-                event.replyError(e.getLocalizedMessage());
+                event.replyError("Something went wrong! ```\\n\" " + e.getLocalizedMessage() + "\"\\n```\"");
             }
             Slideshow show = builder.build();
             show.display(event.getTextChannel());

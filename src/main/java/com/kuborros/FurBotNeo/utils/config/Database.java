@@ -32,7 +32,7 @@ public class Database {
         try {
             Class.forName(Database.DRIVER);
         } catch (ClassNotFoundException e) {
-            LOG.error("No JDBC driver!");
+            LOG.error("No JDBC driver detected!");
             e.printStackTrace();
         }
 
@@ -40,7 +40,7 @@ public class Database {
             conn = DriverManager.getConnection(DB);
             stat = conn.createStatement();
         } catch (SQLException e) {
-            LOG.error("Database connection error!");
+            LOG.error("Database connection error occured!");
             e.printStackTrace();
         }
     }
@@ -112,7 +112,7 @@ public class Database {
           stat.executeUpdate(count);          
           
       } catch (SQLException e){
-          LOG.error(e.getMessage());
+          LOG.error("Failure while creating database tables: ", e);
         }
     }
     
@@ -141,7 +141,7 @@ public class Database {
                 
             } 
         } catch (SQLException e){
-            LOG.error(e.getLocalizedMessage());
+            LOG.error("Failure while adding guilds database: ", e);
         }
     }
 
@@ -152,7 +152,7 @@ public class Database {
             needsUpdate.put(guild.getId(), true);
             return true;
         } catch (SQLException e) {
-            LOG.error(e.getLocalizedMessage());
+            LOG.error("Unable to update per-guild configuration: ", e);
             return false;
         }
     }
@@ -164,7 +164,7 @@ public class Database {
             needsUpdate.put(guild.getId(), true);
             return true;
         } catch (SQLException e) {
-            LOG.error(e.getLocalizedMessage());
+            LOG.error("Unable to update per-guild configuration: ", e);
             return false;
         }
     }
@@ -176,7 +176,7 @@ public class Database {
             needsUpdate.put(guild.getId(), true);
             return true;
         } catch (SQLException e) {
-            LOG.error(e.getLocalizedMessage());
+            LOG.error("Unable to update per-guild configuration: ", e);
             return false;
         }
     }
@@ -189,7 +189,7 @@ public class Database {
             needsUpdate.put(guild.getId(), true);
             return true;
         } catch (SQLException e) {
-            LOG.error(e.getLocalizedMessage());
+            LOG.error("Unable to update per-guild configuration: ", e);
             return false;
         }
     }
@@ -202,7 +202,7 @@ public class Database {
             needsUpdate.put(guild.getId(), true);
             return true;
         } catch (SQLException e) {
-            LOG.error(e.getLocalizedMessage());
+            LOG.error("Unable to update per-guild configuration: ", e);
             return false;
         }
     }
@@ -221,7 +221,7 @@ public class Database {
             stat = conn.createStatement();
             stat.executeUpdate("UPDATE Guilds SET members=" + members + " WHERE guild_id=" + guild.getId());
         } catch (SQLException e){
-            LOG.error(e.getLocalizedMessage());
+        LOG.error("Failure while updating member counts: ", e);
         }
     }
 
@@ -237,7 +237,8 @@ public class Database {
                 stat.addBatch("INSERT OR IGNORE INTO CommandStats (user_id) VALUES (" + user.getId() + ")");
             }
             stat.executeBatch();
-        } catch (SQLException ignored) {
+        } catch (SQLException e) {
+            LOG.debug("Possibly harmless exception:", e);
         }
     }
     
@@ -245,7 +246,8 @@ public class Database {
         try {    
             stat = conn.createStatement();
             stat.executeUpdate("ALTER TABLE CommandStats ADD COLUMN " + command + " INTEGER DEFAULT 0");
-        } catch (SQLException ignored) {
+        } catch (SQLException e) {
+            LOG.debug("Possibly harmless exception:", e);
         }
     }
     
@@ -253,7 +255,8 @@ public class Database {
        try {    
             stat = conn.createStatement();
             stat.executeUpdate("UPDATE CommandStats SET " + command + "=" + command + " + 1 WHERE user_id=" + memberID);
-       } catch (SQLException ignored) {
+       } catch (SQLException e) {
+           LOG.debug("Possibly harmless exception:", e);
        }
     }
 

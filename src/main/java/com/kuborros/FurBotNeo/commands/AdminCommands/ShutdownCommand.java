@@ -18,7 +18,7 @@ public class ShutdownCommand extends AdminCommand {
 
     @Override
     protected void doCommand(CommandEvent event) {
-        event.reply("If you say so... \n" + event.getSelfMember().getEffectiveName() + " shutting down!");
+        event.reply("If you say so... Commencing shut down!");
         event.getJDA().shutdown();
         LOG.info("Bot shutting down");
         System.exit(0);
