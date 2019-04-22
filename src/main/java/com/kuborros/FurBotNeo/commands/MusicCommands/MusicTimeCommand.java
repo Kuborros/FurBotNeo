@@ -15,7 +15,10 @@ public class MusicTimeCommand extends MusicCommand {
     @Override
     public void doCommand(CommandEvent event) {
 
-        if (isIdle(guild, event)) return;
+        if (isIdle(guild)) {
+            event.replyWarning("No music is being played at the moment!");
+            return;
+        }
 
         String val = event.getArgs().toUpperCase().trim();
         boolean min = false;

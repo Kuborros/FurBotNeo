@@ -18,6 +18,7 @@ import com.sedmelluq.discord.lavaplayer.player.event.AudioEventAdapter;
 import com.sedmelluq.discord.lavaplayer.player.event.AudioEventListener;
 import com.sedmelluq.discord.lavaplayer.source.bandcamp.BandcampAudioSourceManager;
 import com.sedmelluq.discord.lavaplayer.source.beam.BeamAudioSourceManager;
+import com.sedmelluq.discord.lavaplayer.source.http.HttpAudioSourceManager;
 import com.sedmelluq.discord.lavaplayer.source.soundcloud.SoundCloudAudioSourceManager;
 import com.sedmelluq.discord.lavaplayer.source.twitch.TwitchStreamAudioSourceManager;
 import com.sedmelluq.discord.lavaplayer.source.vimeo.VimeoAudioSourceManager;
@@ -94,6 +95,7 @@ abstract class MusicCommand extends Command {
         myManager.registerSourceManager(new TwitchStreamAudioSourceManager());
         myManager.registerSourceManager(new BeamAudioSourceManager());
         myManager.registerSourceManager(youtubeAudioSourceManager);
+        myManager.registerSourceManager(new HttpAudioSourceManager()); //Might be not that safe
     }
 
     boolean hasPlayer(Guild guild) {
@@ -153,6 +155,13 @@ abstract class MusicCommand extends Command {
             @Override
             public void trackLoaded(AudioTrack track) {
 
+                if (!isIdle(guild)) {
+                    EmbedBuilder eb = new EmbedBuilder()
+                            .setColor(Color.CYAN)
+                            .addField(NOTE + "**Added Track**", "`(" + getTimestamp(track.getDuration()) + ")`  " + track.getInfo().title, false);
+                    guild.getTextChannelById(config.getAudioChannel()).sendMessage(eb.build()).queue();
+                }
+
                 AudioInfo currentTrack = getTrackManager(guild).getQueuedTracks().iterator().next();
                 Set<AudioInfo> queuedTracks = getTrackManager(guild).getQueuedTracks();
                 queuedTracks.remove(currentTrack);
@@ -169,6 +178,12 @@ abstract class MusicCommand extends Command {
                 } else if (playlist.isSearchResult()) {
                     trackLoaded(playlist.getTracks().get(0));
                 } else {
+
+                    EmbedBuilder eb = new EmbedBuilder()
+                            .setColor(Color.CYAN)
+                            .addField(NOTE + "**Added Playlist**", "`(" + "Tracks: " + playlist.getTracks().size() + ")`  " + playlist.getName(), false);
+                    guild.getTextChannelById(config.getAudioChannel()).sendMessage(eb.build()).queue();
+
                     AudioInfo currentTrack = getTrackManager(guild).getQueuedTracks().iterator().next();
                     Set<AudioInfo> queuedTracks = getTrackManager(guild).getQueuedTracks();
                     queuedTracks.remove(currentTrack);
@@ -209,6 +224,12 @@ abstract class MusicCommand extends Command {
         myManager.loadItemOrdered(guild, identifier, new AudioLoadResultHandler() {
             @Override
             public void trackLoaded(AudioTrack track) {
+                if (!isIdle(guild)) {
+                    EmbedBuilder eb = new EmbedBuilder()
+                            .setColor(Color.CYAN)
+                            .addField(NOTE + "**Added Track**", "`(" + getTimestamp(track.getDuration()) + ")`  " + track.getInfo().title, false);
+                    guild.getTextChannelById(config.getAudioChannel()).sendMessage(eb.build()).queue();
+                }
                 getTrackManager(guild).queue(track, author);
             }
 
@@ -219,6 +240,11 @@ abstract class MusicCommand extends Command {
                 } else if (playlist.isSearchResult()) {
                     trackLoaded(playlist.getTracks().get(0));
                 } else {
+
+                    EmbedBuilder eb = new EmbedBuilder()
+                            .setColor(Color.CYAN)
+                            .addField(NOTE + "**Added Playlist**", "`(" + "Tracks: " + playlist.getTracks().size() + ")`  " + playlist.getName(), false);
+                    guild.getTextChannelById(config.getAudioChannel()).sendMessage(eb.build()).queue();
 
                     for (int i = 0; i < Math.min(playlist.getTracks().size(), PLAYLIST_LIMIT); i++) {
                         getTrackManager(guild).queue(playlist.getTracks().get(i), author);
@@ -241,12 +267,8 @@ abstract class MusicCommand extends Command {
     }
 
 
-    boolean isIdle(Guild guild, CommandEvent event) {
-        if (!hasPlayer(guild) || getPlayer(guild).getPlayingTrack() == null) {
-            event.reply("No music is being played at the moment!");
-            return true;
-        }
-        return false;
+    boolean isIdle(Guild guild) {
+        return (!hasPlayer(guild) || getPlayer(guild).getPlayingTrack() == null);
     }
 
     void forceSkipTrack(Guild guild) {

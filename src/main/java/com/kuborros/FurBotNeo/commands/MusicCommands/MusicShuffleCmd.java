@@ -21,7 +21,10 @@ public class MusicShuffleCmd extends MusicCommand{
 }
     @Override
     public void doCommand(CommandEvent event){
-        if (isIdle(guild, event)) return;
+        if (isIdle(guild)) {
+            event.reply("There is no queue for me to shuffle!");
+            return;
+        }
         
         getTrackManager(guild).shuffleQueue();
         event.getTextChannel().sendMessage(NOTE + "Shuffled queue.  :twisted_rightwards_arrows: ").queue();

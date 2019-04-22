@@ -6,6 +6,7 @@ import net.dv8tion.jda.core.entities.Member;
 
 import java.sql.SQLException;
 
+import static com.kuborros.FurBotNeo.BotMain.cfg;
 import static com.kuborros.FurBotNeo.BotMain.db;
 
 public class BotBanCmd extends AdminCommand {
@@ -27,6 +28,10 @@ public class BotBanCmd extends AdminCommand {
             event.replyWarning("You must mention someone for me to ignore!");
         } else {
             Member member = event.getMessage().getMentionedMembers().get(0);
+            if (member.getUser().getId() == cfg.getOWNER_ID()) {
+                event.reply("Can't ban my owner, silly.");
+                return;
+            }
             try {
                 db.addBannedUser(member.getUser().getId(), event.getGuild().getId());
             } catch (SQLException e) {

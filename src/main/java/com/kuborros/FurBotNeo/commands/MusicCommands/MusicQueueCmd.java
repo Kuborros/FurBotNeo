@@ -10,7 +10,6 @@ import net.dv8tion.jda.core.EmbedBuilder;
 
 import java.awt.*;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Set;
 
 /**
@@ -18,45 +17,66 @@ import java.util.Set;
  * @author Kuborros
  */
 public class MusicQueueCmd extends MusicCommand{
+
     
     public MusicQueueCmd()
     {
         this.name = "queue";
         this.aliases = new String[]{"playlist"};
         this.help = "Shows current playlist";
-        this.category = new Category("Music");         
+        this.category = new Category("Music");
 }
     @Override
     public void doCommand(CommandEvent event){
-     
-        EmbedBuilder eb = new EmbedBuilder();    
+
+        /* Paginator implementation, looks worse than old one, might be more usefull however
+
+        Paginator.Builder builder = new Paginator.Builder();
+
+        if (!hasPlayer(guild) || getTrackManager(guild).getQueuedTracks().isEmpty()) {
+            event.reply(NOTE + "The queue is currently empty!");
+            return;
+        }
+
+        builder.allowTextInput(false)
+                .setBulkSkipNumber(5)
+                .waitOnSinglePage(false)
+                .setColor(Color.GREEN)
+                .setItemsPerPage(10)
+                .useNumberedItems(true)
+                .setEventWaiter(waiter)
+                .setText("**Current queue is:**")
+                .setFinalAction(message -> message.clearReactions().queue())
+                .setTimeout(1, TimeUnit.MINUTES);
+
+
+        Set<AudioInfo> queue = getTrackManager(guild).getQueuedTracks();
+        ArrayList<String> tracks = new ArrayList<>();
+        queue.forEach(audioInfo -> tracks.add(buildQueueMessage(audioInfo)));
+
+        builder.addItems(tracks.toArray(new String[0]));
+
+        builder.build().display(event.getTextChannel());
+
+         */
+
+        EmbedBuilder eb = new EmbedBuilder();
 
         if (!hasPlayer(guild) || getTrackManager(guild).getQueuedTracks().isEmpty()) {
             event.reply(NOTE + "The queue is currently empty!");
         } else {
 
-            int SideNumbInput = 1;
-            if (!event.getArgs().isEmpty())
-                SideNumbInput = Integer.parseInt(event.getArgs());
-            
             StringBuilder sb = new StringBuilder();
             Set<AudioInfo> queue = getTrackManager(guild).getQueuedTracks();
             ArrayList<String> tracks = new ArrayList<>();
-            List<String> tracksSublist;
+
             queue.forEach(audioInfo -> tracks.add(buildQueueMessage(audioInfo)));
 
-            if (tracks.size() > 20)
-                tracksSublist = tracks.subList((SideNumbInput-1)*20, (SideNumbInput-1)*20+20);
-            else
-                tracksSublist = tracks;
-
-            tracksSublist.forEach(sb::append);
-            int sideNumbAll = tracks.size() >= 20 ? tracks.size() / 20 : 1;
-            int sideNumb = SideNumbInput;
+            tracks.forEach(sb::append);
 
             eb.setColor(Color.GREEN).setDescription(
                     NOTE + "**QUEUE**\n\n" +
-                    "*[" + queue.size() + " Tracks | Side " + sideNumb + "/" + sideNumbAll + "]*\n\n" +
+                            "*[" + queue.size() + " Tracks" + "]*\n\n" +
                     sb
             );
 
@@ -64,4 +84,6 @@ public class MusicQueueCmd extends MusicCommand{
 
         }
     }
+
+
 }

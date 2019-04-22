@@ -19,7 +19,6 @@ public class MusicVolumeCmd extends MusicCommand{
         this.help = "Sets the playback volume";
         this.guildOnly = true;
         this.hidden = true;
-        this.ownerCommand = true;
         this.category = new Category("Music");  
 }
     @Override

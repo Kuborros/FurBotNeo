@@ -13,7 +13,6 @@ import com.kuborros.FurBotNeo.listeners.MemberEventListener;
 import com.kuborros.FurBotNeo.utils.config.Config;
 import com.kuborros.FurBotNeo.utils.config.Database;
 import com.kuborros.FurBotNeo.utils.config.FurrySettingsManager;
-import com.sedmelluq.discord.lavaplayer.jdaudp.NativeAudioSendFactory;
 import net.dv8tion.jda.core.AccountType;
 import net.dv8tion.jda.core.JDABuilder;
 import net.dv8tion.jda.core.OnlineStatus;
@@ -23,6 +22,8 @@ import org.slf4j.LoggerFactory;
 
 import javax.security.auth.login.LoginException;
 import java.awt.*;
+
+//import com.sedmelluq.discord.lavaplayer.jdaudp.NativeAudioSendFactory;
 
 public class BotMain {
 
@@ -105,8 +106,8 @@ public class BotMain {
 
 
         try {
-            new JDABuilder(AccountType.BOT)
-                    .setToken(cfg.getBOT_TOKEN())
+            JDABuilder builder = new JDABuilder(AccountType.BOT);
+            builder.setToken(cfg.getBOT_TOKEN())
                     .setStatus(OnlineStatus.ONLINE)
                     .addEventListener(waiter)
                     .addEventListener(client.build())
@@ -115,11 +116,16 @@ public class BotMain {
                     .addEventListener(new BotEventListener())                    
                     .setAudioEnabled(true)
                     .setAutoReconnect(true)
-                    .setAudioSendFactory(new NativeAudioSendFactory())
-                    .setEnableShutdownHook(true)
+                    .setEnableShutdownHook(true);
+
+                    /* Because apparently NULL is a thing that can appear here and its not worth it
+                    if (System.getenv("PROCESSOR_ARCHITECTURE").equals("AMD64")){
+                        builder.setAudioSendFactory(new NativeAudioSendFactory());
+                    }
+                     */
+            builder.build();
 
 
-                    .build();
         }
         catch (IllegalArgumentException e) {
             LOG.error("No token has been provided!");
