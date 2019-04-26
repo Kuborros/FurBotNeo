@@ -44,20 +44,28 @@ public class AudioPlayerSendHandler implements AudioSendHandler {
     return lastFrame != null;
   }
 
+    @Override
+    public byte[] provide20MsAudio() {
+        return lastFrame.getData();
+    }
+
+    // Old code, kept in case of issues
+  /*
   @Override
   public byte[] provide20MsAudio() {
     if (lastFrame == null) {
       lastFrame = audioPlayer.provide();
     }
 
-    byte[] data = lastFrame != null ? lastFrame.data : null;
+    byte[] data = lastFrame != null ? lastFrame.getData() : null;
     lastFrame = null;
 
     return data;
   }
 
-  @Override
-  public boolean isOpus() {
-    return true;
-  }
+ */
+    @Override
+    public boolean isOpus() {
+        return true;
+    }
 }
