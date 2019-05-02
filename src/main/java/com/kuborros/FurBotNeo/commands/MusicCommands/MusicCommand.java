@@ -31,6 +31,7 @@ import net.dv8tion.jda.core.EmbedBuilder;
 import net.dv8tion.jda.core.entities.Guild;
 import net.dv8tion.jda.core.entities.Member;
 import net.dv8tion.jda.core.entities.Message;
+import net.dv8tion.jda.core.entities.TextChannel;
 import org.apache.http.client.config.CookieSpecs;
 import org.apache.http.client.config.RequestConfig;
 import org.slf4j.Logger;
@@ -155,20 +156,22 @@ abstract class MusicCommand extends Command {
             @Override
             public void trackLoaded(AudioTrack track) {
 
+                TextChannel botchat = guild.getTextChannelById(config.getAudioChannel());
+
                 if (!isIdle(guild)) {
                     EmbedBuilder eb = new EmbedBuilder()
                             .setColor(Color.CYAN)
                             .addField(NOTE + "**Added Track**", "`(" + getTimestamp(track.getDuration()) + ")`  " + track.getInfo().title, false);
-                    guild.getTextChannelById(config.getAudioChannel()).sendMessage(eb.build()).queue();
+                    botchat.sendMessage(eb.build()).queue();
                 }
 
                 AudioInfo currentTrack = getTrackManager(guild).getQueuedTracks().iterator().next();
                 Set<AudioInfo> queuedTracks = getTrackManager(guild).getQueuedTracks();
                 queuedTracks.remove(currentTrack);
                 getTrackManager(guild).purgeQueue();
-                getTrackManager(guild).queue(currentTrack.getTrack(), author);
-                getTrackManager(guild).queue(track, author);
-                queuedTracks.forEach(audioInfo -> getTrackManager(guild).queue(audioInfo.getTrack(), author));
+                getTrackManager(guild).queue(currentTrack.getTrack(), author, botchat);
+                getTrackManager(guild).queue(track, author, botchat);
+                queuedTracks.forEach(audioInfo -> getTrackManager(guild).queue(audioInfo.getTrack(), author, botchat));
             }
 
             @Override
@@ -179,20 +182,22 @@ abstract class MusicCommand extends Command {
                     trackLoaded(playlist.getTracks().get(0));
                 } else {
 
+                    TextChannel botchat = guild.getTextChannelById(config.getAudioChannel());
+
                     EmbedBuilder eb = new EmbedBuilder()
                             .setColor(Color.CYAN)
                             .addField(NOTE + "**Added Playlist**", "`(" + "Tracks: " + playlist.getTracks().size() + ")`  " + playlist.getName(), false);
-                    guild.getTextChannelById(config.getAudioChannel()).sendMessage(eb.build()).queue();
+                    botchat.sendMessage(eb.build()).queue();
 
                     AudioInfo currentTrack = getTrackManager(guild).getQueuedTracks().iterator().next();
                     Set<AudioInfo> queuedTracks = getTrackManager(guild).getQueuedTracks();
                     queuedTracks.remove(currentTrack);
                     getTrackManager(guild).purgeQueue();
-                    getTrackManager(guild).queue(currentTrack.getTrack(), author);
+                    getTrackManager(guild).queue(currentTrack.getTrack(), author, botchat);
                     for (int i = 0; i < Math.min(playlist.getTracks().size(), PLAYLIST_LIMIT); i++) {
-                        getTrackManager(guild).queue(playlist.getTracks().get(i), author);
+                        getTrackManager(guild).queue(playlist.getTracks().get(i), author, botchat);
                     }
-                    queuedTracks.forEach(audioInfo -> getTrackManager(guild).queue(audioInfo.getTrack(), author));
+                    queuedTracks.forEach(audioInfo -> getTrackManager(guild).queue(audioInfo.getTrack(), author, botchat));
                 }
             }
 
@@ -224,13 +229,14 @@ abstract class MusicCommand extends Command {
         myManager.loadItemOrdered(guild, identifier, new AudioLoadResultHandler() {
             @Override
             public void trackLoaded(AudioTrack track) {
+                TextChannel botchat = guild.getTextChannelById(config.getAudioChannel());
                 if (!isIdle(guild)) {
                     EmbedBuilder eb = new EmbedBuilder()
                             .setColor(Color.CYAN)
                             .addField(NOTE + "**Added Track**", "`(" + getTimestamp(track.getDuration()) + ")`  " + track.getInfo().title, false);
-                    guild.getTextChannelById(config.getAudioChannel()).sendMessage(eb.build()).queue();
+                    botchat.sendMessage(eb.build()).queue();
                 }
-                getTrackManager(guild).queue(track, author);
+                getTrackManager(guild).queue(track, author, botchat);
             }
 
             @Override
@@ -241,13 +247,15 @@ abstract class MusicCommand extends Command {
                     trackLoaded(playlist.getTracks().get(0));
                 } else {
 
+                    TextChannel botchat = guild.getTextChannelById(config.getAudioChannel());
+
                     EmbedBuilder eb = new EmbedBuilder()
                             .setColor(Color.CYAN)
                             .addField(NOTE + "**Added Playlist**", "`(" + "Tracks: " + playlist.getTracks().size() + ")`  " + playlist.getName(), false);
-                    guild.getTextChannelById(config.getAudioChannel()).sendMessage(eb.build()).queue();
+                    botchat.sendMessage(eb.build()).queue();
 
                     for (int i = 0; i < Math.min(playlist.getTracks().size(), PLAYLIST_LIMIT); i++) {
-                        getTrackManager(guild).queue(playlist.getTracks().get(i), author);
+                        getTrackManager(guild).queue(playlist.getTracks().get(i), author, botchat);
                     }
                 }
             }

@@ -23,14 +23,23 @@
  */
 package com.kuborros.FurBotNeo.utils.audio;
 
+
 import com.sedmelluq.discord.lavaplayer.player.AudioPlayer;
 import com.sedmelluq.discord.lavaplayer.player.event.AudioEventAdapter;
+import com.sedmelluq.discord.lavaplayer.tools.FriendlyException;
 import com.sedmelluq.discord.lavaplayer.track.AudioTrack;
 import com.sedmelluq.discord.lavaplayer.track.AudioTrackEndReason;
+import net.dv8tion.jda.core.EmbedBuilder;
 import net.dv8tion.jda.core.entities.Guild;
 import net.dv8tion.jda.core.entities.Member;
+import net.dv8tion.jda.core.entities.TextChannel;
 import net.dv8tion.jda.core.entities.VoiceChannel;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
+import java.awt.*;
+import java.util.List;
+import java.util.Queue;
 import java.util.*;
 import java.util.concurrent.LinkedBlockingQueue;
 
@@ -41,34 +50,22 @@ public class TrackManager extends AudioEventAdapter {
     private final AudioPlayer player;
     private final Queue<AudioInfo> queue;
 
+    private static final Logger LOG = LoggerFactory.getLogger("MusicPlayback");
+
+
     public TrackManager(AudioPlayer player) {
         this.player = player;
         this.queue = new LinkedBlockingQueue<>();
     }
 
-    public void queue(AudioTrack track, Member author) {
-        AudioInfo info = new AudioInfo(track, author);
+    public void queue(AudioTrack track, Member author, TextChannel botchat) {
+        AudioInfo info = new AudioInfo(track, author, botchat);
         queue.add(info);
 
         if (player.getPlayingTrack() == null) {
             player.playTrack(track);
         }
     }
-
-// --Commented out by Inspection START (2017-12-25 23:51):
-//    public void queueTimed(AudioTrack track, Member author, Long milis) {
-//
-//        if (track.isSeekable()) {
-//            track.setPosition(milis);
-//        }
-//        AudioInfo info = new AudioInfo(track, author);
-//        queue.add(info);
-//
-//        if (player.getPlayingTrack() == null) {
-//            player.playTrack(track);
-//        }
-//    }
-// --Commented out by Inspection STOP (2017-12-25 23:51)
 
     public void skipToTime(Long milis) {
         AudioTrack track = player.getPlayingTrack();
@@ -101,6 +98,21 @@ public class TrackManager extends AudioEventAdapter {
         }
     }
 
+    @Override
+    public void onTrackException(AudioPlayer player, AudioTrack track, FriendlyException exception) {
+        LOG.warn("Playback error occured on track: " + track.getInfo().title, exception);
+        EmbedBuilder eb = new EmbedBuilder()
+                .setColor(Color.CYAN)
+                .setTitle("\u274C" + " **An playback error has occured!**")
+                .addField("Exception on playback of track: " + track.getInfo().title, exception.getLocalizedMessage(), false);
+        getTrackInfo(track).getBotchat().sendMessage(eb.build()).queue();
+    }
+
+    @Override
+    public void onTrackStuck(AudioPlayer player, AudioTrack track, long thresholdMs) {
+        LOG.warn("Track " + track.getInfo().title + " stuck for " + thresholdMs);
+    }
+
     public void shuffleQueue() {
         List<AudioInfo> tQueue = new ArrayList<>(getQueuedTracks());
         AudioInfo current = tQueue.get(0);
@@ -126,8 +138,8 @@ public class TrackManager extends AudioEventAdapter {
     }
 
 
-    // public AudioInfo getTrackInfo(AudioTrack track) {
-    //     return queue.stream().filter(audioInfo -> audioInfo.getTrack().equals(track)).findFirst().orElse(null);
-    // }
+    private AudioInfo getTrackInfo(AudioTrack track) {
+        return queue.stream().filter(audioInfo -> audioInfo.getTrack().equals(track)).findFirst().orElse(null);
+    }
 
 }

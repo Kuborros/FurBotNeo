@@ -26,6 +26,7 @@ package com.kuborros.FurBotNeo.utils.audio;
 
 import com.sedmelluq.discord.lavaplayer.track.AudioTrack;
 import net.dv8tion.jda.core.entities.Member;
+import net.dv8tion.jda.core.entities.TextChannel;
 
 import javax.annotation.Nonnull;
 
@@ -33,10 +34,12 @@ public class AudioInfo {
 
     private final AudioTrack track;
     private final Member author;
+    private final TextChannel botchat;
 
-    AudioInfo(AudioTrack track, Member author) {
+    AudioInfo(AudioTrack track, Member author, TextChannel botchat) {
         this.track = track;
         this.author = author;
+        this.botchat = botchat;
     }
 
     public AudioTrack getTrack() {
@@ -45,6 +48,10 @@ public class AudioInfo {
 
     public Member getAuthor() {
         return author;
+    }
+
+    TextChannel getBotchat() {
+        return botchat;
     }
 
     @Override
