@@ -36,53 +36,41 @@ public class VoteCommand extends GeneralCommand {
         this.category = new Command.Category("Basic");
     }
 
-    @Override
-    protected void doCommand(CommandEvent event) {
-        String[] args;
-        if (event.getArgs().isEmpty()) {
-            event.replyWarning("Votes need to contain <time> and <topic>!");
-            event.getMessage().delete().queue();   
-            return;
+    private static String secondsToTime(long timeseconds) {
+        StringBuilder builder = new StringBuilder();
+        int years = (int) (timeseconds / (60 * 60 * 24 * 365));
+        if (years > 0) {
+            builder.append("**").append(years).append("** years, ");
+            timeseconds %= (60 * 60 * 24 * 365);
         }
-        args = event.getArgs().split(" ");
-        String val = args[0].toUpperCase().trim();
-                        boolean min = false;
-                        if(val.endsWith("M"))
-                        {
-                            min=true;
-                            val=val.substring(0,val.length()-1).trim();
-                        }
-                        else if(val.endsWith("S"))
-                        {
-                            val=val.substring(0,val.length()-1).trim();
-                        }
-                        int seconds;
-                        try {
-                            seconds = (min?60:1)*Integer.parseInt(val);
-                            if(seconds<10 || seconds>60*60*24){
-                                event.replyWarning("Sorry! Votes need to be at least 10 seconds long, and can't be _too_ long.");
-                                event.getMessage().delete().queue();                                
-                            }
-                            else {
-                                String topic = event.getArgs().replaceFirst(args[0], "");
-                                if(topic.length()>500){
-                                    event.replyWarning("Topic is way too long. Can you shorten it a bit?");
-                                } else {
-                                    Instant now = Instant.now();
-                                    if(startVote(event.getTextChannel(), now, seconds, topic)){
-                                        event.getMessage().delete().queue();
-                                    }
-                                    else {
-                                        event.replyError("Oh no. Something went wrong and I wasn't able to start the vote.");
-                                        event.getMessage().delete().queue();
-                                    }    
-                                }
-                            }
-                        } catch (NumberFormatException ex) {
-                            event.replyWarning("Hmmmm... I can't seem to get a number from that.");
-                        }
-               
-        
+        int weeks = (int) (timeseconds / (60 * 60 * 24 * 365));
+        if (weeks > 0) {
+            builder.append("**").append(weeks).append("** weeks, ");
+            timeseconds %= (60 * 60 * 24 * 7);
+        }
+        int days = (int) (timeseconds / (60 * 60 * 24));
+        if (days > 0) {
+            builder.append("**").append(days).append("** days, ");
+            timeseconds %= (60 * 60 * 24);
+        }
+        int hours = (int) (timeseconds / (60 * 60));
+        if (hours > 0) {
+            builder.append("**").append(hours).append("** hours, ");
+            timeseconds %= (60 * 60);
+        }
+        int minutes = (int) (timeseconds / (60));
+        if (minutes > 0) {
+            builder.append("**").append(minutes).append("** minutes, ");
+            timeseconds %= (60);
+        }
+        if (timeseconds > 0)
+            builder.append("**").append(timeseconds).append("** seconds");
+        String str = builder.toString();
+        if (str.endsWith(", "))
+            str = str.substring(0, str.length() - 2);
+        if (str.isEmpty())
+            str = "**No time**";
+        return str;
     }
 
 
@@ -114,43 +102,59 @@ public class VoteCommand extends GeneralCommand {
 
             timer.schedule(timerTask, TimeUnit.SECONDS.toMillis(seconds));
         });
-        return true;    
-}
+        return true;
+    }
 
-    private static String secondsToTime(long timeseconds) {
-        StringBuilder builder = new StringBuilder();
-        int years = (int)(timeseconds / (60*60*24*365));
-        if(years>0){
-            builder.append("**").append(years).append("** years, ");
-            timeseconds %= (60*60*24*365);
+    @Override
+    protected void doCommand(CommandEvent event) {
+        String[] args;
+        if (event.getArgs().isEmpty()) {
+            event.replyWarning("Votes need to contain <time> and <topic>!");
+            event.getMessage().delete().queue();
+            return;
         }
-        int weeks = (int)(timeseconds / (60*60*24*365));
-        if(weeks>0){
-            builder.append("**").append(weeks).append("** weeks, ");
-            timeseconds %= (60*60*24*7);
-        }
-        int days = (int)(timeseconds / (60*60*24));
-        if(days>0){
-            builder.append("**").append(days).append("** days, ");
-            timeseconds %= (60*60*24);
-        }
-        int hours = (int)(timeseconds / (60*60));
-        if(hours>0){
-            builder.append("**").append(hours).append("** hours, ");
-            timeseconds %= (60*60);
-        }
-        int minutes = (int)(timeseconds / (60));
-        if(minutes>0){
-            builder.append("**").append(minutes).append("** minutes, ");
-            timeseconds %= (60);
-        }
-        if(timeseconds>0)
-            builder.append("**").append(timeseconds).append("** seconds");
-        String str = builder.toString();
-        if(str.endsWith(", "))
-            str = str.substring(0,str.length()-2);
-        if(str.isEmpty())
-            str="**No time**";
-        return str;
-}        
+        args = event.getArgs().split(" ");
+        String val = args[0].toUpperCase().trim();
+                        boolean min = false;
+                        if(val.endsWith("M"))
+                        {
+                            min=true;
+                            val = timeTrim(val);
+                        }
+                        else if(val.endsWith("S"))
+                        {
+                            val = timeTrim(val);
+                        }
+                        int seconds;
+                        try {
+                            seconds = (min?60:1)*Integer.parseInt(val);
+                            if(seconds<10 || seconds>60*60*24){
+                                event.replyWarning("Sorry! Votes need to be at least 10 seconds long, and can't be _too_ long.");
+                                event.getMessage().delete().queue();
+                            }
+                            else {
+                                String topic = event.getArgs().replaceFirst(args[0], "");
+                                if(topic.length()>500){
+                                    event.replyWarning("Topic is way too long. Can you shorten it a bit?");
+                                } else {
+                                    Instant now = Instant.now();
+                                    if(startVote(event.getTextChannel(), now, seconds, topic)){
+                                        event.getMessage().delete().queue();
+                                    }
+                                    else {
+                                        event.replyError("Oh no. Something went wrong and I wasn't able to start the vote.");
+                                        event.getMessage().delete().queue();
+                                    }
+                                }
+                            }
+                        } catch (NumberFormatException ex) {
+                            event.replyWarning("Hmmmm... I can't seem to get a number from that.");
+                        }
+
+
+    }
+
+    private String timeTrim(String val) {
+        return val.substring(0, val.length() - 1).trim();
+    }
 }

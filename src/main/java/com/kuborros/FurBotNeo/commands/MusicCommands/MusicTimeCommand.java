@@ -24,9 +24,9 @@ public class MusicTimeCommand extends MusicCommand {
         boolean min = false;
         if (val.endsWith("M")) {
             min = true;
-            val = val.substring(0, val.length() - 1).trim();
+            val = timeTrim(val);
         } else if (val.endsWith("S")) {
-            val = val.substring(0, val.length() - 1).trim();
+            val = timeTrim(val);
         } else {
             val = val.trim();
         }
@@ -45,4 +45,7 @@ public class MusicTimeCommand extends MusicCommand {
         }
     }
 
+    private String timeTrim(String val) {
+        return val.substring(0, val.length() - 1).trim();
+    }
 }
