@@ -47,9 +47,7 @@ public class MemberEventListener extends ListenerAdapter{
             Objects.requireNonNull(pub).sendMessage("Another bot?" + "\n"
                     + "just make sure their commands dont start with \"" + cfg.getPREFIX() + "\", ok?").queue();
         }
-        if (event.getMember().getUser().getId().equals("348186098951913473") && cfg.isGUILD_MSGS()) {
-            Objects.requireNonNull(pub).sendMessage("Hello, " + event.getMember().getAsMention() + " and welcome on the... \n Oh right, its just you. Welcome back???").queue();
-        } else if (cfg.isGUILD_MSGS()) {
+        if (cfg.isGUILD_MSGS()) {
             Objects.requireNonNull(pub).sendMessage("Hello, " + event.getMember().getAsMention() + " and welcome on the " + event.getGuild().getName() + " server! :3").queue();
         }
         LOG.info("{} has joined the {} server!", event.getMember().getEffectiveName(), event.getGuild().getName());
@@ -62,9 +60,6 @@ public class MemberEventListener extends ListenerAdapter{
         TextChannel pub = event.getGuild().getDefaultChannel();
         if (cfg.isGUILD_MSGS()) {
             Objects.requireNonNull(pub).sendMessage("Bye, " + event.getMember().getEffectiveName() + "! it was nice (or not) having you with us!").queue();
-        }
-        if (event.getMember().getUser().getId().equals("348186098951913473")) {
-            Objects.requireNonNull(pub).sendMessage("**He did it agaaain!**").queue();
         }
         LOG.info("{} has left the {} server!", event.getMember().getEffectiveName(), event.getGuild().getName());
         db.updateGuildMembers(event);

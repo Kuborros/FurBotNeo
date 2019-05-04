@@ -35,7 +35,7 @@ public class MusicInfoCmd extends MusicCommand{
             AudioTrackInfo info = track.getInfo();
             EmbedBuilder eb = new EmbedBuilder();
                             eb
-                                    .setColor(Color.orange)
+                                    .setColor(Color.CYAN)
                                     .setDescription(":musical_note:   **Current Track Info**")
                                     .addField(":cd:  Title", info.title, false)
                                     .addField(":stopwatch:  Duration", "`[ " + getTimestamp(track.getPosition()) + " / " + getTimestamp(track.getInfo().length) + " ]`", false)
