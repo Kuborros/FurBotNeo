@@ -87,6 +87,7 @@ public class BotMain {
                 new MusicQueueCmd(),
                 new MusicResetCmd(),
                 new MusicShuffleCmd(),
+                new MusicClearCmd(),
                 new MusicSkipCmd(),
                 new MusicStopCmd(),
                 new MusicVolumeCmd(),
@@ -128,8 +129,8 @@ public class BotMain {
 
         }
         catch (IllegalArgumentException e) {
-            LOG.error("No token has been provided!");
-            LOG.error("Please put your discord bot token in the configuration file.");
+            LOG.error("Error occured while starting: ", e);
+            LOG.error("Please check if your discord bot token is in the configuration file, as this is most common cause of this error.");
             System.exit(101);
         }
         catch (LoginException e) {

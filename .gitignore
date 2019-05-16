@@ -10,11 +10,8 @@
 
 # User-specific stuff
 .idea/**/workspace.xml
-.idea/**/dictionaries
 # Sensitive or high-churn files
-.idea/**/dataSources/
 .idea/**/dataSources.local.xml
-.idea/**/uiDesigner.xml
 # Gradle
 .idea/**/libraries
 

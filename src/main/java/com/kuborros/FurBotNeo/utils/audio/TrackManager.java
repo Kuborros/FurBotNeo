@@ -123,6 +123,18 @@ public class TrackManager extends AudioEventAdapter {
         queue.addAll(tQueue);
     }
 
+    public void clearQueue() {
+        if (!queue.isEmpty()) {
+            try {
+                AudioInfo curr = queue.peek();
+                queue.clear();
+                queue.add(curr);
+            } catch (Exception e) {
+                LOG.warn("Unable to clear queue: ", e);
+            }
+        }
+    }
+
     public Set<AudioInfo> getQueuedTracks() {
         return new LinkedHashSet<>(queue);
     }
@@ -132,9 +144,11 @@ public class TrackManager extends AudioEventAdapter {
     }
 
     public void purgeStopQueue() {
-        AudioInfo info = queue.element();
-        queue.clear();
-        queue.add(info);
+        if (!queue.isEmpty()) {
+            AudioInfo info = queue.element();
+            queue.clear();
+            queue.add(info);
+        }
     }
 
 
