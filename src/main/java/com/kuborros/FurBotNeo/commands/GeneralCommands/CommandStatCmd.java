@@ -50,7 +50,10 @@ public class CommandStatCmd extends GeneralCommand {
             Map<String, String> map = db.getCommandStats(user.getId());
             builder.append("\n");
             map.forEach((k,v) -> builder.append("``").append(k).append("`` used **").append(v).append("** times\n\n"));
-            sendEmbed(event, String.format("How many times %s nutted to:", user.getName()), builder.toString());
+            event.getChannel().sendMessage(
+                    new MessageBuilder().setEmbed(
+                            new EmbedBuilder().setTitle(String.format("How many times %s nutted to:", user.getName()), null).setDescription(builder.toString()).setColor(Color.yellow).build()
+                    ).build()).queue();
         } catch (SQLException e){
             LOG.error("Error occured while retreiving command stats: ", e);
             event.replyError("Unable to load commands stats! Thats **not** good.");
@@ -58,10 +61,4 @@ public class CommandStatCmd extends GeneralCommand {
 
     }
 
-    private void sendEmbed(CommandEvent event, String title, String description) {
-        event.getChannel().sendMessage(
-                new MessageBuilder().setEmbed(
-                        new EmbedBuilder().setTitle(title, null).setDescription(description).setColor(Color.yellow).build()
-                ).build()).queue();
-    }
 }

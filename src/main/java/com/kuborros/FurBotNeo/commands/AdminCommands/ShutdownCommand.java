@@ -14,6 +14,7 @@ public class ShutdownCommand extends AdminCommand {
         this.ownerCommand = true;
         this.category = new Category("Moderation");
         this.userPermissions = new Permission[]{Permission.ADMINISTRATOR};
+        this.hidden = true;
     }
 
     @Override

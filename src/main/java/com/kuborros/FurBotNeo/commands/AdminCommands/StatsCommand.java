@@ -26,6 +26,7 @@ public class StatsCommand extends AdminCommand {
         this.guildOnly = false;
         this.category = new Category("Moderation");
         this.userPermissions = new Permission[]{Permission.KICK_MEMBERS};
+        this.hidden = true;
     }
     
     @Override

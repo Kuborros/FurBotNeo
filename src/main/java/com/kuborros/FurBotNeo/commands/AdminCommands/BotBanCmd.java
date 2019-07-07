@@ -20,7 +20,6 @@ public class BotBanCmd extends AdminCommand {
         this.ownerCommand = false;
         this.category = new Category("Moderation");
         this.userPermissions = new Permission[]{Permission.BAN_MEMBERS};
-        this.hidden = true;
     }
 
     @Override

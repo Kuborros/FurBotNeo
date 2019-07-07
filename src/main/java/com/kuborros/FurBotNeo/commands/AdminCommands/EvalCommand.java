@@ -25,6 +25,7 @@ public class EvalCommand extends AdminCommand {
         this.guildOnly = true;
         this.arguments = "<code>";
         this.category = new Category("Moderation");
+        this.hidden = true;
 
         engine = new ScriptEngineManager().getEngineByName("nashorn");
         try {
