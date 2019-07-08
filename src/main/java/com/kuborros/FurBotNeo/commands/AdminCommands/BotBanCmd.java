@@ -1,8 +1,8 @@
 package com.kuborros.FurBotNeo.commands.AdminCommands;
 
 import com.jagrosh.jdautilities.command.CommandEvent;
-import net.dv8tion.jda.core.Permission;
-import net.dv8tion.jda.core.entities.Member;
+import net.dv8tion.jda.api.Permission;
+import net.dv8tion.jda.api.entities.Member;
 
 import java.sql.SQLException;
 import java.util.Objects;

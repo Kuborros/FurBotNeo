@@ -9,7 +9,7 @@ import com.jagrosh.jdautilities.commons.waiter.EventWaiter;
 import com.jagrosh.jdautilities.menu.Slideshow;
 import com.kuborros.FurBotNeo.net.apis.DanApi;
 import com.kuborros.FurBotNeo.net.apis.NoImgException;
-import net.dv8tion.jda.core.Permission;
+import net.dv8tion.jda.api.Permission;
 
 import java.awt.*;
 import java.io.IOException;

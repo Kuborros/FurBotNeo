@@ -1,7 +1,7 @@
 package com.kuborros.FurBotNeo.utils.config;
 
 import com.jagrosh.jdautilities.command.GuildSettingsManager;
-import net.dv8tion.jda.core.entities.Guild;
+import net.dv8tion.jda.api.entities.Guild;
 
 import java.sql.SQLException;
 import java.util.HashMap;

@@ -19,15 +19,13 @@
     <orderEntry type="library" name="Maven: com.fasterxml.jackson.core:jackson-annotations:2.9.0" level="project" />
     <orderEntry type="library" name="Maven: org.jsoup:jsoup:1.11.3" level="project" />
     <orderEntry type="library" name="Maven: net.iharder:base64:2.3.9" level="project" />
-    <orderEntry type="library" name="Maven: com.sedmelluq:jda-nas:1.0.6" level="project" />
-    <orderEntry type="library" scope="RUNTIME" name="Maven: com.sedmelluq:udp-queue:1.0.6" level="project" />
-    <orderEntry type="library" scope="RUNTIME" name="Maven: com.sedmelluq:lavaplayer-common:1.0.5" level="project" />
-    <orderEntry type="library" name="Maven: com.jagrosh:jda-utilities-command:2.1.5" level="project" />
-    <orderEntry type="library" name="Maven: com.jagrosh:jda-utilities-commons:2.1.5" level="project" />
-    <orderEntry type="library" name="Maven: com.jagrosh:jda-utilities-doc:2.1.5" level="project" />
-    <orderEntry type="library" name="Maven: com.jagrosh:jda-utilities-examples:2.1.5" level="project" />
-    <orderEntry type="library" name="Maven: com.jagrosh:jda-utilities-menu:2.1.5" level="project" />
-    <orderEntry type="library" name="Maven: net.dv8tion:JDA:3.8.3_462" level="project" />
+    <orderEntry type="library" name="Maven: com.github.JDA-Applications.JDA-Utilities:jda-utilities-command:jda_v4-1.9-g68b014d-123" level="project" />
+    <orderEntry type="library" name="Maven: org.json:json:20160810" level="project" />
+    <orderEntry type="library" name="Maven: com.github.JDA-Applications.JDA-Utilities:jda-utilities-commons:jda_v4-1.9-g68b014d-123" level="project" />
+    <orderEntry type="library" name="Maven: com.github.JDA-Applications.JDA-Utilities:jda-utilities-doc:jda_v4-1.9-g68b014d-123" level="project" />
+    <orderEntry type="library" name="Maven: com.github.JDA-Applications.JDA-Utilities:jda-utilities-examples:jda_v4-1.9-g68b014d-123" level="project" />
+    <orderEntry type="library" name="Maven: com.github.JDA-Applications.JDA-Utilities:jda-utilities-menu:jda_v4-1.9-g68b014d-123" level="project" />
+    <orderEntry type="library" name="Maven: net.dv8tion:JDA:4.BETA.0_20" level="project" />
     <orderEntry type="library" name="Maven: com.google.code.findbugs:jsr305:3.0.2" level="project" />
     <orderEntry type="library" name="Maven: org.jetbrains:annotations:16.0.1" level="project" />
     <orderEntry type="library" name="Maven: com.neovisionaries:nv-websocket-client:2.5" level="project" />
@@ -37,7 +35,6 @@
     <orderEntry type="library" scope="RUNTIME" name="Maven: net.java.dev.jna:jna:4.4.0" level="project" />
     <orderEntry type="library" name="Maven: club.minnced:opus-java-natives:1.0.4" level="project" />
     <orderEntry type="library" scope="RUNTIME" name="Maven: org.apache.commons:commons-collections4:4.1" level="project" />
-    <orderEntry type="library" name="Maven: org.json:json:20160810" level="project" />
     <orderEntry type="library" scope="RUNTIME" name="Maven: net.sf.trove4j:trove4j:3.0.3" level="project" />
     <orderEntry type="library" name="Maven: commons-io:commons-io:2.6" level="project" />
     <orderEntry type="library" name="Maven: org.apache.commons:commons-lang3:3.8.1" level="project" />

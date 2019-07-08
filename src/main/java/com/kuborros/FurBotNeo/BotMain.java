@@ -13,17 +13,15 @@ import com.kuborros.FurBotNeo.listeners.MemberEventListener;
 import com.kuborros.FurBotNeo.utils.config.Config;
 import com.kuborros.FurBotNeo.utils.config.Database;
 import com.kuborros.FurBotNeo.utils.config.FurrySettingsManager;
-import net.dv8tion.jda.core.AccountType;
-import net.dv8tion.jda.core.JDABuilder;
-import net.dv8tion.jda.core.OnlineStatus;
-import net.dv8tion.jda.core.Permission;
+import net.dv8tion.jda.api.AccountType;
+import net.dv8tion.jda.api.JDABuilder;
+import net.dv8tion.jda.api.OnlineStatus;
+import net.dv8tion.jda.api.Permission;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.security.auth.login.LoginException;
 import java.awt.*;
-
-//import com.sedmelluq.discord.lavaplayer.jdaudp.NativeAudioSendFactory;
 
 public class BotMain {
 
@@ -110,20 +108,9 @@ public class BotMain {
             JDABuilder builder = new JDABuilder(AccountType.BOT);
             builder.setToken(cfg.getBOT_TOKEN())
                     .setStatus(OnlineStatus.ONLINE)
-                    .addEventListener(waiter)
-                    .addEventListener(client.build())
-                    .addEventListener(new LogListener())
-                    .addEventListener(new MemberEventListener())
-                    .addEventListener(new BotEventListener())                    
-                    .setAudioEnabled(true)
+                    .addEventListeners(waiter, client.build(), new LogListener(), new MemberEventListener(), new BotEventListener())
                     .setAutoReconnect(true)
                     .setEnableShutdownHook(true);
-
-                    /* Because apparently NULL is a thing that can appear here and its not worth it
-                    if (System.getenv("PROCESSOR_ARCHITECTURE").equals("AMD64")){
-                        builder.setAudioSendFactory(new NativeAudioSendFactory());
-                    }
-                     */
             builder.build();
 
 
