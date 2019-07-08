@@ -62,6 +62,7 @@ public class InfoCommand extends AdminCommand {
                         String game = "None";
                         String ownerguy = "";                       
                         Member member = event.getGuild().getMember(user);
+                        assert member != null;
                         if (!member.getRoles().isEmpty())
                             for (Role role : member.getRoles()) {
                                 rolebuild.append(role.getName());
