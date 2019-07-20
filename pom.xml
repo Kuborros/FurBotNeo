@@ -38,7 +38,7 @@
             <version>1.3.18</version>
         </dependency>
         <!--
-        #Replaced with bete build untill proper relase
+        #Replaced with beta build untill proper relase
         <dependency>
             <groupId>com.jagrosh</groupId>
             <artifactId>jda-utilities</artifactId>
