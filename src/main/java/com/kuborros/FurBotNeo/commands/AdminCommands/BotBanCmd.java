@@ -28,18 +28,18 @@ public class BotBanCmd extends AdminCommand {
             event.replyWarning("You must mention someone for me to ignore!");
         } else {
             Member member = event.getMessage().getMentionedMembers().get(0);
-            if (Objects.equals(member.getUser().getId(), cfg.getOWNER_ID())) {
+            if (Objects.equals(member.getId(), cfg.getOWNER_ID())) {
                 event.reply("Can't ban my owner, silly.");
                 return;
             }
             try {
-                db.addBannedUser(member.getUser().getId(), event.getGuild().getId());
+                db.addBannedUser(member.getId(), event.getGuild().getId());
             } catch (SQLException e) {
                 LOG.error("Error while banning member: ", e);
                 event.replyError("Internal error has occured! ```\n" + e.getLocalizedMessage() + "\n```");
             }
             try {
-                if (db.getBanStatus(member.getUser().getId(), event.getGuild().getId())) {
+                if (db.getBanStatus(member.getId(), event.getGuild().getId())) {
                     event.reply("User has been blocked from bot commands!");
                 }
             } catch (SQLException e) {

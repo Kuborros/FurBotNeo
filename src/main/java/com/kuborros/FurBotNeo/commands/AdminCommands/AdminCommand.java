@@ -18,9 +18,9 @@ abstract class AdminCommand extends Command {
     @Override
     protected void execute(CommandEvent event) {
         if (event.getChannelType() == ChannelType.TEXT) {
-            if (!event.getMember().isOwner() || !event.getMember().getUser().getId().equals(cfg.getOWNER_ID())) {
+            if (!event.getMember().isOwner() || !event.getMember().getId().equals(cfg.getOWNER_ID())) {
                 try {
-                    if (db.getBanStatus(event.getMember().getUser().getId(), event.getGuild().getId())) {
+                    if (db.getBanStatus(event.getMember().getId(), event.getGuild().getId())) {
                         event.reply("You are blocked from bot commands!");
                         return;
                     }

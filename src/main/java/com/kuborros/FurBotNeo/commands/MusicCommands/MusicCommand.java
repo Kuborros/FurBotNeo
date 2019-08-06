@@ -329,7 +329,7 @@ abstract class MusicCommand extends Command {
         protected void execute(CommandEvent event) {
         guild = event.getGuild();
         try {
-            if (db.getBanStatus(event.getMember().getUser().getId(), guild.getId())) {
+            if (db.getBanStatus(event.getMember().getId(), guild.getId())) {
                 event.reply(ERROR + "You are blocked from bot commands!");
                 return;
             }

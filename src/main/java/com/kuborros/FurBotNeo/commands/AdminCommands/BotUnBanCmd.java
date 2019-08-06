@@ -27,7 +27,7 @@ public class BotUnBanCmd extends AdminCommand {
         } else {
             Member member = event.getMessage().getMentionedMembers().get(0);
             try {
-                db.unbanUser(member.getUser().getId(), event.getGuild().getId());
+                db.unbanUser(member.getId(), event.getGuild().getId());
             } catch (SQLException e) {
                 LOG.error("Error while unbanning member: ", e);
                 event.replyError("Internal error has occured! ```\n" + e.getLocalizedMessage() + "\n```");

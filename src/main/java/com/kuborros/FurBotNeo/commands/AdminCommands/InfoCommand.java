@@ -84,7 +84,7 @@ public class InfoCommand extends AdminCommand {
                         }
                         sendEmbed(event, "Data collected by NSA about: " + member.getEffectiveName(), "What we know: \n"
                                 + NAMETAG + "Full Discord name: " + member.getEffectiveName() + "#" + member.getUser().getDiscriminator() + "\n"
-                                + IDBADGE + "User ID: " + member.getUser().getId() +"\n"
+                                        + IDBADGE + "User ID: " + member.getId() + "\n"
                                         + TIMER1 + "Server join date: " + member.getTimeJoined().format(DateTimeFormatter.ofPattern("yyyy-MM-dd  HH:mm:ss")) + "\n"
                                         + TIMER2 + "Discord join date: " + member.getUser().getTimeCreated().format(DateTimeFormatter.ofPattern("yyyy-MM-dd  HH:mm:ss")) + "\n"
                                 + GLOBE + "Status: "+ online +"\n"
