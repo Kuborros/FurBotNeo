@@ -5,13 +5,13 @@
 package com.kuborros.FurBotNeo.commands.AdminCommands;
 
 import com.jagrosh.jdautilities.command.CommandEvent;
-import net.dv8tion.jda.core.EmbedBuilder;
-import net.dv8tion.jda.core.MessageBuilder;
-import net.dv8tion.jda.core.OnlineStatus;
-import net.dv8tion.jda.core.Permission;
-import net.dv8tion.jda.core.entities.Member;
-import net.dv8tion.jda.core.entities.Role;
-import net.dv8tion.jda.core.entities.User;
+import net.dv8tion.jda.api.EmbedBuilder;
+import net.dv8tion.jda.api.MessageBuilder;
+import net.dv8tion.jda.api.OnlineStatus;
+import net.dv8tion.jda.api.Permission;
+import net.dv8tion.jda.api.entities.Member;
+import net.dv8tion.jda.api.entities.Role;
+import net.dv8tion.jda.api.entities.User;
 
 import java.awt.*;
 import java.time.format.DateTimeFormatter;
@@ -62,6 +62,7 @@ public class InfoCommand extends AdminCommand {
                         String game = "None";
                         String ownerguy = "";                       
                         Member member = event.getGuild().getMember(user);
+                        assert member != null;
                         if (!member.getRoles().isEmpty())
                             for (Role role : member.getRoles()) {
                                 rolebuild.append(role.getName());
@@ -75,17 +76,17 @@ public class InfoCommand extends AdminCommand {
                         if (!member.getOnlineStatus().equals(OnlineStatus.OFFLINE)){
                             online = "ONLINE";
                         }
-                        if (member.getGame() != null) {
-                            game = member.getGame().getName();
+                        if (member.getActivities().isEmpty()) {
+                            game = member.getActivities().get(0).getName();
                         }
                         if (member.isOwner()){
                             ownerguy = CROWNED + " OWNER!";
                         }
                         sendEmbed(event, "Data collected by NSA about: " + member.getEffectiveName(), "What we know: \n"
                                 + NAMETAG + "Full Discord name: " + member.getEffectiveName() + "#" + member.getUser().getDiscriminator() + "\n"
-                                + IDBADGE + "User ID: " + member.getUser().getId() +"\n"
-                                + TIMER1 + "Server join date: " + member.getJoinDate().format(DateTimeFormatter.ofPattern("yyyy-MM-dd  HH:mm:ss")) + "\n"
-                                + TIMER2 + "Discord join date: "+ member.getUser().getCreationTime().format(DateTimeFormatter.ofPattern("yyyy-MM-dd  HH:mm:ss")) +"\n"
+                                        + IDBADGE + "User ID: " + member.getId() + "\n"
+                                        + TIMER1 + "Server join date: " + member.getTimeJoined().format(DateTimeFormatter.ofPattern("yyyy-MM-dd  HH:mm:ss")) + "\n"
+                                        + TIMER2 + "Discord join date: " + member.getUser().getTimeCreated().format(DateTimeFormatter.ofPattern("yyyy-MM-dd  HH:mm:ss")) + "\n"
                                 + GLOBE + "Status: "+ online +"\n"
                                 + GAMEPAD + "In game: " + game +"\n"
                                 + HAT + "Current roles: "+ roles +"\n\n"

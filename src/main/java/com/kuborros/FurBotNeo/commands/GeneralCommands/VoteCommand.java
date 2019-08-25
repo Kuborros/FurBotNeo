@@ -6,10 +6,10 @@ package com.kuborros.FurBotNeo.commands.GeneralCommands;
 
 import com.jagrosh.jdautilities.command.Command;
 import com.jagrosh.jdautilities.command.CommandEvent;
-import net.dv8tion.jda.core.EmbedBuilder;
-import net.dv8tion.jda.core.entities.MessageEmbed;
-import net.dv8tion.jda.core.entities.MessageReaction;
-import net.dv8tion.jda.core.entities.TextChannel;
+import net.dv8tion.jda.api.EmbedBuilder;
+import net.dv8tion.jda.api.entities.MessageEmbed;
+import net.dv8tion.jda.api.entities.MessageReaction;
+import net.dv8tion.jda.api.entities.TextChannel;
 
 import java.awt.*;
 import java.time.Instant;
@@ -85,7 +85,7 @@ public class VoteCommand extends GeneralCommand {
                 @Override
                 public void run() {
                     String mID = m.getId();
-                    List<MessageReaction> ayy = channel.getMessageById(mID).complete().getReactions();
+                    List<MessageReaction> ayy = channel.retrieveMessageById(mID).complete().getReactions();
                     int check = ayy.get(0).getCount() - 1;
                     int cross = ayy.get(1).getCount() - 1;
                     Color col = (check >= cross ? Color.GREEN : Color.RED);
@@ -95,7 +95,7 @@ public class VoteCommand extends GeneralCommand {
                                     + "\u274E :  **" + cross + "**\n"
                     ).addField("", "Vote's topic was: \"" + topic + "\" !", false).setColor(col).build();
                     channel.sendMessage(msg).complete();
-                    channel.getMessageById(mID).complete().delete().complete();
+                    channel.retrieveMessageById(mID).complete().delete().complete();
                     timer.cancel();
                 }
             };

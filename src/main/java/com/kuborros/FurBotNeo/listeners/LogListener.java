@@ -2,9 +2,9 @@
 package com.kuborros.FurBotNeo.listeners;
 
 
-import net.dv8tion.jda.core.entities.*;
-import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
-import net.dv8tion.jda.core.hooks.ListenerAdapter;
+import net.dv8tion.jda.api.entities.*;
+import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
+import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -29,7 +29,7 @@ public class LogListener extends ListenerAdapter{
 
             String name;
             if (message.isWebhookMessage()) name = author.getName();
-            else name = member.getEffectiveName();
+            else name = member != null ? member.getEffectiveName() : "Name Unavaible";
 
             LOG.info("[{}] " + "({}): {}", textChannel.getName(), name, msg);
         } else if (event.isFromType(ChannelType.PRIVATE)) {

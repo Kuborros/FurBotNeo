@@ -1,8 +1,8 @@
 package com.kuborros.FurBotNeo.commands.AdminCommands;
 
 import com.jagrosh.jdautilities.command.CommandEvent;
-import net.dv8tion.jda.core.Permission;
-import net.dv8tion.jda.core.entities.Member;
+import net.dv8tion.jda.api.Permission;
+import net.dv8tion.jda.api.entities.Member;
 
 import java.sql.SQLException;
 
@@ -27,7 +27,7 @@ public class BotUnBanCmd extends AdminCommand {
         } else {
             Member member = event.getMessage().getMentionedMembers().get(0);
             try {
-                db.unbanUser(member.getUser().getId(), event.getGuild().getId());
+                db.unbanUser(member.getId(), event.getGuild().getId());
             } catch (SQLException e) {
                 LOG.error("Error while unbanning member: ", e);
                 event.replyError("Internal error has occured! ```\n" + e.getLocalizedMessage() + "\n```");

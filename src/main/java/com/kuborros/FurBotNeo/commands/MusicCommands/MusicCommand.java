@@ -27,11 +27,11 @@ import com.sedmelluq.discord.lavaplayer.tools.FriendlyException;
 import com.sedmelluq.discord.lavaplayer.track.AudioPlaylist;
 import com.sedmelluq.discord.lavaplayer.track.AudioTrack;
 import com.sedmelluq.discord.lavaplayer.track.AudioTrackInfo;
-import net.dv8tion.jda.core.EmbedBuilder;
-import net.dv8tion.jda.core.entities.Guild;
-import net.dv8tion.jda.core.entities.Member;
-import net.dv8tion.jda.core.entities.Message;
-import net.dv8tion.jda.core.entities.TextChannel;
+import net.dv8tion.jda.api.EmbedBuilder;
+import net.dv8tion.jda.api.entities.Guild;
+import net.dv8tion.jda.api.entities.Member;
+import net.dv8tion.jda.api.entities.Message;
+import net.dv8tion.jda.api.entities.TextChannel;
 import org.apache.http.client.config.CookieSpecs;
 import org.apache.http.client.config.RequestConfig;
 import org.slf4j.Logger;
@@ -73,7 +73,7 @@ abstract class MusicCommand extends Command {
                 Set<AudioInfo> queue = getTrackManager(guild).getQueuedTracks();
                 ArrayList<AudioInfo> tracks = new ArrayList<>(queue);
 
-                guild.getTextChannelById(config.getAudioChannel()).getManager().setTopic("Last track: " + track.getInfo().title).queue();
+                Objects.requireNonNull(guild.getTextChannelById(config.getAudioChannel())).getManager().setTopic("Last track: " + track.getInfo().title).queue();
 
                 EmbedBuilder eb = new EmbedBuilder()
                         .setColor(Color.CYAN)
@@ -82,7 +82,7 @@ abstract class MusicCommand extends Command {
                 if (tracks.size() > 1){
                     eb.addField("Next Track", "`(" + getTimestamp(tracks.get(1).getTrack().getDuration()) + ")`  " + tracks.get(1).getTrack().getInfo().title, false);
                 }
-                guild.getTextChannelById(config.getAudioChannel()).sendMessage(eb.build()).queue();
+                Objects.requireNonNull(guild.getTextChannelById(config.getAudioChannel())).sendMessage(eb.build()).queue();
             }
         };
 
@@ -143,7 +143,7 @@ abstract class MusicCommand extends Command {
     }
 
     void loadTrackNext(String identifier, Member author, Message msg) {
-        if (author.getVoiceState().getChannel() == null) {
+        if (Objects.requireNonNull(author.getVoiceState()).getChannel() == null) {
             msg.getChannel().sendMessage(ERROR + "You are not in a Voice Channel!").queue();
             return;
         }
@@ -163,7 +163,7 @@ abstract class MusicCommand extends Command {
                             .setColor(Color.CYAN)
                             .setTitle(NOTE + "**Added Track**")
                             .addField("", "`(" + getTimestamp(track.getDuration()) + ")`  " + track.getInfo().title, true);
-                    botchat.sendMessage(eb.build()).queue();
+                    Objects.requireNonNull(botchat).sendMessage(eb.build()).queue();
                 }
 
                 AudioInfo currentTrack = getTrackManager(guild).getQueuedTracks().iterator().next();
@@ -189,7 +189,7 @@ abstract class MusicCommand extends Command {
                             .setColor(Color.CYAN)
                             .setDescription(NOTE + "**Added Playlist**")
                             .addField("", "`(" + "Tracks: " + playlist.getTracks().size() + ")`  " + playlist.getName(), true);
-                    botchat.sendMessage(eb.build()).queue();
+                    Objects.requireNonNull(botchat).sendMessage(eb.build()).queue();
 
                     AudioInfo currentTrack = getTrackManager(guild).getQueuedTracks().iterator().next();
                     Set<AudioInfo> queuedTracks = getTrackManager(guild).getQueuedTracks();
@@ -209,7 +209,7 @@ abstract class MusicCommand extends Command {
                         .setColor(Color.CYAN)
                         .setDescription(ERROR + "**Search failed**")
                         .addField("", "No playable tracks have been found!", true);
-                botchat.sendMessage(eb.build()).queue();
+                Objects.requireNonNull(botchat).sendMessage(eb.build()).queue();
             }
 
             @Override
@@ -222,14 +222,14 @@ abstract class MusicCommand extends Command {
                             .setColor(Color.CYAN)
                             .setDescription(ERROR + "**Error while fetching music:**")
                             .addField("", exception.getMessage(), true);
-                    botchat.sendMessage(eb.build()).queue();
+                    Objects.requireNonNull(botchat).sendMessage(eb.build()).queue();
                 }
             }
         });
     }
 
     void loadTrack(String identifier, Member author, Message msg) {
-        if (author.getVoiceState().getChannel() == null) {
+        if (Objects.requireNonNull(author.getVoiceState()).getChannel() == null) {
             msg.getChannel().sendMessage(ERROR + "You are not in a Voice Channel!").queue();
             return;
         }
@@ -249,7 +249,7 @@ abstract class MusicCommand extends Command {
                             .setColor(Color.CYAN)
                             .setDescription(NOTE + "**Added Track**")
                             .addField("", "`(" + getTimestamp(track.getDuration()) + ")`  " + track.getInfo().title, true);
-                    botchat.sendMessage(eb.build()).queue();
+                    Objects.requireNonNull(botchat).sendMessage(eb.build()).queue();
                 }
                 getTrackManager(guild).queue(track, author, botchat);
             }
@@ -266,7 +266,7 @@ abstract class MusicCommand extends Command {
                             .setColor(Color.CYAN)
                             .setDescription(NOTE + "**Added Playlist**")
                             .addField("", "`(" + "Tracks: " + playlist.getTracks().size() + ")`  " + playlist.getName(), true);
-                    botchat.sendMessage(eb.build()).queue();
+                    Objects.requireNonNull(botchat).sendMessage(eb.build()).queue();
 
                     for (int i = 0; i < Math.min(playlist.getTracks().size(), PLAYLIST_LIMIT); i++) {
                         getTrackManager(guild).queue(playlist.getTracks().get(i), author, botchat);
@@ -280,7 +280,7 @@ abstract class MusicCommand extends Command {
                         .setColor(Color.CYAN)
                         .setDescription(ERROR + "**Search failed**")
                         .addField("", "No playable tracks have been found!", true);
-                botchat.sendMessage(eb.build()).queue();
+                Objects.requireNonNull(botchat).sendMessage(eb.build()).queue();
             }
 
             @Override
@@ -293,7 +293,7 @@ abstract class MusicCommand extends Command {
                             .setColor(Color.CYAN)
                             .setDescription(ERROR + "**Error while fetching music:**")
                             .addField("", exception.getMessage(), true);
-                    botchat.sendMessage(eb.build()).queue();
+                    Objects.requireNonNull(botchat).sendMessage(eb.build()).queue();
                 }
             }
         });
@@ -329,7 +329,7 @@ abstract class MusicCommand extends Command {
         protected void execute(CommandEvent event) {
         guild = event.getGuild();
         try {
-            if (db.getBanStatus(event.getMember().getUser().getId(), guild.getId())) {
+            if (db.getBanStatus(event.getMember().getId(), guild.getId())) {
                 event.reply(ERROR + "You are blocked from bot commands!");
                 return;
             }

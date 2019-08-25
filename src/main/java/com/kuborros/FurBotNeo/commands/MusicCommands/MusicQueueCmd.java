@@ -6,7 +6,7 @@ package com.kuborros.FurBotNeo.commands.MusicCommands;
 
 import com.jagrosh.jdautilities.command.CommandEvent;
 import com.kuborros.FurBotNeo.utils.audio.AudioInfo;
-import net.dv8tion.jda.core.EmbedBuilder;
+import net.dv8tion.jda.api.EmbedBuilder;
 
 import java.awt.*;
 import java.util.ArrayList;

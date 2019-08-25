@@ -15,7 +15,7 @@ abstract class GeneralCommand extends Command {
     @Override
     protected void execute(CommandEvent event) {
         try {
-            if (db.getBanStatus(event.getMember().getUser().getId(), event.getGuild().getId())) {
+            if (db.getBanStatus(event.getMember().getId(), event.getGuild().getId())) {
                 event.reply("You are blocked from bot commands!");
                 return;
             }
