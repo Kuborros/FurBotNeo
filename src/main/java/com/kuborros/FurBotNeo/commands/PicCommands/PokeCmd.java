@@ -64,15 +64,13 @@ public class PokeCmd extends PicCommand {
                 .setTimeout(5, TimeUnit.MINUTES);
 
 
-
-
-        if (!event.getArgs().isEmpty()){
-            api = new PokemonApi("http://gallerhy.agn.ph/gallery/post/?search=" + event.getArgs().replaceAll(" ", "+") + "+order:random" + "&api=xml");
-         } else {
-            api = new PokemonApi("http://gallerhy.agn.ph/gallery/post/?api=xml");
-         }
-                try {
-                result = api.PokeXml();
+        api = new PokemonApi("https://agn.ph/gallery/post/?api=xml");
+        try {
+            if (!event.getArgs().isEmpty()) {
+                result = api.getImageSetTags(event.getArgs());
+            } else {
+                result = api.getImageSetRandom();
+            }
                     builder.setUrls(result.toArray(new String[0]));
                 } catch (NoImgException e) {
                     event.reply("No results found!");

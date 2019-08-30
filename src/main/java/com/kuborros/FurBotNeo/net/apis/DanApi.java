@@ -29,11 +29,19 @@ public class DanApi {
         this.url = url;
     }
 
-    public List<String> getDanPic() throws IOException, NoImgException {
+    public List<String> getImageSetRandom() throws IOException, NoImgException {
+        URL u = new URL(url);
+        return getDanPicSet(u);
+    }
+
+    public List<String> getImageSetTags(String tags) throws IOException, NoImgException {
+        URL u = new URL(url + "&tags=" + tags.replaceAll(" ", "+"));
+        return getDanPicSet(u);
+    }
+
+    private List<String> getDanPicSet(URL u) throws IOException, NoImgException {
 
         try {
-
-            URL u = new URL(url);
             URLConnection UC = u.openConnection();
             UC.setRequestProperty("User-agent", "DiscordBot/1.0");
             InputStream r = UC.getInputStream();
@@ -53,7 +61,7 @@ public class DanApi {
                 JSONObject obj = arr.getJSONObject(i);
                 try {
                     String picUrl = obj.getString("file_url");
-                    results.add("https://danbooru.donmai.us" + picUrl);
+                    results.add(picUrl);
                 } catch (JSONException e) {
                     LOG.debug("Picture was missing its file_url");
                 }

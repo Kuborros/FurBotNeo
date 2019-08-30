@@ -30,18 +30,25 @@ public class GelEngine {
     private final List<String> urls = new ArrayList<>();
     private final String url;
     private final Logger LOG = LoggerFactory.getLogger("ImageBoardApi");
-    
-    public GelEngine (String url) {
-       this.url = url;         
+
+    public GelEngine(String baseUrl) {
+        this.url = baseUrl;
     }
 
-    public List<String> getGelPic() throws IllegalArgumentException, ParserConfigurationException, SAXException, IOException, NoImgException {
-
-       try {     
-
-        String tempUrl;
-        
+    public List<String> getImageSetRandom() throws IllegalArgumentException, ParserConfigurationException, SAXException, IOException, NoImgException {
         URL u = new URL(url);
+        return getGelPicSet(u);
+    }
+
+    public List<String> getImageSetTags(String tags) throws IllegalArgumentException, ParserConfigurationException, SAXException, IOException, NoImgException {
+        URL u = new URL(url + "&tags=" + tags.replaceAll(" ", "+"));
+        return getGelPicSet(u);
+    }
+
+
+    private List<String> getGelPicSet(URL u) throws IllegalArgumentException, ParserConfigurationException, SAXException, IOException, NoImgException {
+        try {
+        String tempUrl;
         URLConnection UC = u.openConnection();
         UC.setRequestProperty ( "User-agent", "DiscordBot/1.0");
         InputStream r = UC.getInputStream();

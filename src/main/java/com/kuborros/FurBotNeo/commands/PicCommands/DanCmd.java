@@ -13,7 +13,6 @@ import net.dv8tion.jda.api.Permission;
 
 import java.awt.*;
 import java.io.IOException;
-import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -53,11 +52,6 @@ public class DanCmd extends PicCommand {
             return;
         }
 
-        List<String> tags = Arrays.asList(event.getArgs().split(" "));
-        if (tags.size() > 2) {
-            tags = tags.subList(0, 2);
-        }
-
         builder.allowTextInput(false)
             .setBulkSkipNumber(5)
             .waitOnSinglePage(false)
@@ -69,23 +63,22 @@ public class DanCmd extends PicCommand {
             .setTimeout(5, TimeUnit.MINUTES);
 
 
+        api = new DanApi("https://danbooru.donmai.us/posts.json?random=true&limit=20");
 
 
-        if (!event.getArgs().isEmpty()) {
-            api = new DanApi("https://danbooru.donmai.us/posts.json?tags=" + String.join("+", tags) + "&random=true&limit=20");
-        } else {
-            api = new DanApi("https://danbooru.donmai.us/posts.json?random=true&limit=20");
-        }
             try {
-                result = api.getDanPic();
+                if (!event.getArgs().isEmpty()) {
+                    result = api.getImageSetTags(event.getArgs());
+                } else {
+                    result = api.getImageSetRandom();
+                }
                 builder.setUrls(result.toArray(new String[0]));
             } catch (NoImgException e) {
                 event.reply("No results found!");
                 return;
             } catch (IOException e) {
-                event.replyError("Something went wrong! ```\\n\" " + e.getLocalizedMessage() + "\"\\n```\"");
+                event.replyError("Something went wrong! ```" + e.getLocalizedMessage() + "```");
             }
-            Slideshow show = builder.build();
-            show.display(event.getTextChannel());
+        builder.build().display(event.getTextChannel());
     }
 }

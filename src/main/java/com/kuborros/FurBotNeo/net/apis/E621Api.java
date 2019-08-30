@@ -30,11 +30,20 @@ public E621Api(String url){
     this.url = url;
 }
 
-    public List<String> getFurryPic() throws IOException, NoImgException {
+    public List<String> getImageSetRandom() throws IOException, NoImgException {
+        URL u = new URL(url + "order:random+-flash+-webm&limit=20");
+        return getFurryPicSet(u);
+    }
+
+    public List<String> getImageSetTags(String tags) throws IOException, NoImgException {
+        URL u = new URL(url + "&tags=" + tags.replaceAll(" ", "+") + "+order:random&limit=20");
+        return getFurryPicSet(u);
+    }
+
+    private List<String> getFurryPicSet(URL u) throws IOException, NoImgException {
      
         try {
-            
-            URL u = new URL(url);
+
             URLConnection UC = u.openConnection();
             UC.setRequestProperty ( "User-agent", "DiscordBot/1.0");
             InputStream r = UC.getInputStream();
