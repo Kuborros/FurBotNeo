@@ -64,14 +64,14 @@ public class GelCmd extends PicCommand {
                 .setTimeout(5, TimeUnit.MINUTES);
 
 
+        api = new GelEngine("https://gelbooru.com/index.php?page=dapi&s=post&q=index&limit=20");
 
-        if (!event.getArgs().isEmpty()){
-                api = new GelEngine("https://gelbooru.com/index.php?page=dapi&s=post&q=index&tags=" + event.getArgs().replaceAll(" ", "+") + "&limit=20");
-         } else {
-            api = new GelEngine("https://gelbooru.com/index.php?page=dapi&s=post&q=index&limit=20");
-        }
-                try {
-                result = api.getGelPic();
+        try {
+            if (!event.getArgs().isEmpty()) {
+                result = api.getImageSetTags(event.getArgs());
+            } else {
+                result = api.getImageSetRandom();
+            }
                     builder.setUrls(result.toArray(new String[0]));
                 } catch (NoImgException e) {
                     event.reply("No results found!");                    

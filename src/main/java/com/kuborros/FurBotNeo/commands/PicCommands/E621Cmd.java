@@ -61,24 +61,23 @@ public class E621Cmd extends PicCommand {
                 .setTimeout(5, TimeUnit.MINUTES);
 
 
-        if (!event.getArgs().isEmpty()){
             if (event.getArgs().contains("cheese_grater")) {
                 event.replyWarning("**NO**, you sick fuck!");
                 return;
+            } else api = new E621Api("https://e621.net/post/index.json?tags=");
+
+        try {
+            if (!event.getArgs().isEmpty()) {
+                result = api.getImageSetTags(event.getArgs());
             } else {
-                api = new E621Api("https://e621.net/post/index.json?tags=" + event.getArgs().replaceAll(" ", "+") + "+order:random&limit=20");
+                result = api.getImageSetRandom();
             }
-        } else {
-            api = new E621Api("https://e621.net/post/index.json?tags=" + "rating:a+order:random+-flash&limit=20");
-         }
-                try {
-                result = api.getFurryPic();
                     builder.setUrls(result.toArray(new String[0]));
                 } catch (NoImgException e) {
                     event.reply("No results found!");
                     return;
                 } catch (IOException e){
-                    event.reply(e.getLocalizedMessage());
+            event.reply("Something went wrong! ```" + e.getLocalizedMessage() + "```");
                     return;
                 }
                 builder.build().display(event.getTextChannel());

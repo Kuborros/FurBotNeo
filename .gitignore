@@ -1,10 +1,9 @@
-
-# User-specific stuff
 .idea/**/workspace.xml
-# Sensitive or high-churn files
 .idea/**/dataSources.local.xml
-# Gradle
 .idea/**/libraries
-
 database.db
-
+.idea/deployment.xml
+.idea/discord.xml
+src/main/resources/natives/
+target/
+.idea/
