@@ -35,18 +35,18 @@
         <dependency>
             <groupId>com.sedmelluq</groupId>
             <artifactId>lavaplayer</artifactId>
-            <version>1.3.19</version>
+            <version>1.3.20</version>
         </dependency>
         <dependency>
             <groupId>com.jagrosh</groupId>
             <artifactId>jda-utilities</artifactId>
-            <version>3.0.1</version>
+            <version>3.0.2</version>
             <type>pom</type>
         </dependency>
         <dependency>
             <groupId>net.dv8tion</groupId>
             <artifactId>JDA</artifactId>
-            <version>4.0.0_45</version>
+            <version>4.0.0_46</version>
             <exclusions>
                 <exclusion>
                     <groupId>club.minnced</groupId>
