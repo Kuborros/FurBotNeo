@@ -31,7 +31,7 @@ public E621Api(String url){
 }
 
     public List<String> getImageSetRandom() throws IOException, NoImgException {
-        URL u = new URL(url + "order:random+-flash+-webm&limit=20");
+        URL u = new URL(url + "order:random+-flash+-webm&limit=100");
         return getFurryPicSet(u);
     }
 

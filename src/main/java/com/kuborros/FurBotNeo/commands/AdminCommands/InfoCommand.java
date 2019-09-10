@@ -29,7 +29,6 @@ public class InfoCommand extends AdminCommand {
     private static final String TIMER1 = "\u23f0";
     private static final String TIMER2 = "\u23f3";
     private static final String GLOBE = "\ud83c\udf10";
-    private static final String GAMEPAD = "\ud83c\udfae";
     private static final String HAT = "\ud83c\udfa9";
     private static final String CROWNED = "\ud83d\udc51";
     //Emotes end
@@ -59,7 +58,6 @@ public class InfoCommand extends AdminCommand {
                     mentionedUsers.forEach((User user) -> {
                         String roles;
                         String online = "OFFLINE";
-                        String game = "None";
                         String ownerguy = "";                       
                         Member member = event.getGuild().getMember(user);
                         assert member != null;
@@ -76,9 +74,6 @@ public class InfoCommand extends AdminCommand {
                         if (!member.getOnlineStatus().equals(OnlineStatus.OFFLINE)){
                             online = "ONLINE";
                         }
-                        if (member.getActivities().isEmpty()) {
-                            game = member.getActivities().get(0).getName();
-                        }
                         if (member.isOwner()){
                             ownerguy = CROWNED + " OWNER!";
                         }
@@ -88,7 +83,6 @@ public class InfoCommand extends AdminCommand {
                                         + TIMER1 + "Server join date: " + member.getTimeJoined().format(DateTimeFormatter.ofPattern("yyyy-MM-dd  HH:mm:ss")) + "\n"
                                         + TIMER2 + "Discord join date: " + member.getUser().getTimeCreated().format(DateTimeFormatter.ofPattern("yyyy-MM-dd  HH:mm:ss")) + "\n"
                                 + GLOBE + "Status: "+ online +"\n"
-                                + GAMEPAD + "In game: " + game +"\n"
                                 + HAT + "Current roles: "+ roles +"\n\n"
                                 , member.getUser().getAvatarUrl()
                                 , ownerguy

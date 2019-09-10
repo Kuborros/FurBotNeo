@@ -64,7 +64,7 @@ public class R34Cmd extends PicCommand {
                 .setTimeout(5, TimeUnit.MINUTES);
 
 
-        api = new GelEngine("https://rule34.xxx/index.php?page=dapi&s=post&q=index&limit=20");
+        api = new GelEngine("https://rule34.xxx/index.php?page=dapi&s=post&q=index&limit=100");
 
 
         try {

@@ -64,7 +64,7 @@ public class GelCmd extends PicCommand {
                 .setTimeout(5, TimeUnit.MINUTES);
 
 
-        api = new GelEngine("https://gelbooru.com/index.php?page=dapi&s=post&q=index&limit=20");
+        api = new GelEngine("https://gelbooru.com/index.php?page=dapi&s=post&q=index&limit=100");
 
         try {
             if (!event.getArgs().isEmpty()) {

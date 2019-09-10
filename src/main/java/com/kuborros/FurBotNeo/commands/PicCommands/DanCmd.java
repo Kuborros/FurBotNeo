@@ -63,7 +63,7 @@ public class DanCmd extends PicCommand {
             .setTimeout(5, TimeUnit.MINUTES);
 
 
-        api = new DanApi("https://danbooru.donmai.us/posts.json?random=true&limit=20");
+        api = new DanApi("https://danbooru.donmai.us/posts.json?random=true&limit=100");
 
 
             try {
