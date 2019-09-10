@@ -36,7 +36,7 @@ public E621Api(String url){
     }
 
     public List<String> getImageSetTags(String tags) throws IOException, NoImgException {
-        URL u = new URL(url + "&tags=" + tags.replaceAll(" ", "+") + "+order:random&limit=20");
+        URL u = new URL(url + "&tags=" + tags.replaceAll(" ", "+") + "+order:random&limit=100");
         return getFurryPicSet(u);
     }
 
