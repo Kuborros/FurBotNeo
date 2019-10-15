@@ -28,7 +28,7 @@ public class BotMain {
     private static final Logger LOG = LoggerFactory.getLogger("Main");
     public static Config cfg;
     public static Database db;
-    private static final FurrySettingsManager settingsManager = new FurrySettingsManager();
+    public static final FurrySettingsManager settingsManager = new FurrySettingsManager();
 
     public static void main(String[] args) {
 
@@ -72,6 +72,7 @@ public class BotMain {
                 new DanCmd(waiter),
                 new GelCmd(waiter),
                 new SafeCmd(waiter),
+                new E926Cmd(waiter),
                 new R34Cmd(waiter),
                 
                 //Music

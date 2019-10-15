@@ -8,9 +8,6 @@ public class Config {
     private final String BOT_TOKEN;
     private final String OWNER_ID;
 
-    private final boolean GUILD_MSGS;
-
-
 
     public String getBOT_TOKEN() {
         return BOT_TOKEN;
@@ -25,9 +22,6 @@ public class Config {
         return "!";
     }
 
-    public boolean isGUILD_MSGS() {
-        return GUILD_MSGS;
-    }
 
     public Config() {
         ConFile.ConFileCheck();
@@ -35,8 +29,6 @@ public class Config {
 
         BOT_TOKEN = properties != null ? properties.getProperty("BotToken") : "0";
         OWNER_ID = properties != null ? properties.getProperty("OwnerId") : "0";
-        GUILD_MSGS = properties != null && properties.getProperty("PostGuildMessages").equalsIgnoreCase("true");
-
     }
 
 }

@@ -33,8 +33,7 @@ import org.slf4j.LoggerFactory;
 
 import java.util.Objects;
 
-import static com.kuborros.FurBotNeo.BotMain.cfg;
-import static com.kuborros.FurBotNeo.BotMain.db;
+import static com.kuborros.FurBotNeo.BotMain.*;
 
 public class MemberEventListener extends ListenerAdapter{
 
@@ -42,12 +41,13 @@ public class MemberEventListener extends ListenerAdapter{
 
     @Override
     public void onGuildMemberJoin(GuildMemberJoinEvent event) {
+        boolean welcome = Objects.requireNonNull(settingsManager.getSettings(event.getGuild())).isWelcomeMsg();
         TextChannel pub = event.getGuild().getDefaultChannel();
-        if (cfg.isGUILD_MSGS() && event.getMember().getUser().isBot() && !event.getMember().getUser().equals(event.getJDA().getSelfUser())) {
+        if (welcome && event.getMember().getUser().isBot() && !event.getMember().getUser().equals(event.getJDA().getSelfUser())) {
             Objects.requireNonNull(pub).sendMessage("Another bot?" + "\n"
                     + "just make sure their commands dont start with \"" + cfg.getPREFIX() + "\", ok?").queue();
         }
-        if (cfg.isGUILD_MSGS()) {
+        if (welcome) {
             Objects.requireNonNull(pub).sendMessage("Hello, " + event.getMember().getAsMention() + " and welcome on the " + event.getGuild().getName() + " server! :3").queue();
         }
         LOG.info("{} has joined the {} server!", event.getMember().getEffectiveName(), event.getGuild().getName());
@@ -56,9 +56,10 @@ public class MemberEventListener extends ListenerAdapter{
 
     @Override
     public void onGuildMemberLeave(GuildMemberLeaveEvent event) {
+        boolean welcome = Objects.requireNonNull(settingsManager.getSettings(event.getGuild())).isWelcomeMsg();
         if (event.getMember().getUser().isBot()) return;
         TextChannel pub = event.getGuild().getDefaultChannel();
-        if (cfg.isGUILD_MSGS()) {
+        if (welcome) {
             Objects.requireNonNull(pub).sendMessage("Bye, " + event.getMember().getEffectiveName() + "! it was nice (or not) having you with us!").queue();
         }
         LOG.info("{} has left the {} server!", event.getMember().getEffectiveName(), event.getGuild().getName());

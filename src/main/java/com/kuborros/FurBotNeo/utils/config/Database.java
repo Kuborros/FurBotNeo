@@ -32,15 +32,14 @@ public class Database {
         try {
             Class.forName(Database.DRIVER);
         } catch (ClassNotFoundException e) {
-            LOG.error("No JDBC driver detected!");
-            e.printStackTrace();
+            LOG.error("No JDBC driver detected! ", e);
         }
 
         try {
             conn = DriverManager.getConnection(DB);
             stat = conn.createStatement();
         } catch (SQLException e) {
-            LOG.error("Database connection error occured!");
+            LOG.error("Database connection error occured! ", e);
             e.printStackTrace();
         }
     }
