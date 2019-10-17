@@ -11,7 +11,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="FurBotNeo" target="9" />
+      <module name="FurBotNeo" target="11" />
     </bytecodeTargetLevel>
   </component>
 </project>

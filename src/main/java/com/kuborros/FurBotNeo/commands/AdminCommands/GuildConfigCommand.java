@@ -39,6 +39,9 @@ public class GuildConfigCommand extends AdminCommand {
             case "furry":
                 success = db.updateGuildIsFurry(value.equals("true"), event.getGuild());
                 break;
+            case "welcome":
+                success = db.updateGuildWelcomeMsg(value.equals("true"), event.getGuild());
+                break;
             case "music":
                 success = db.updateGuildAudio(value, event.getGuild());
                 break;

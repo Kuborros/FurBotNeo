@@ -88,7 +88,9 @@ public class Database {
 
                   " isNSFW BOOLEAN DEFAULT FALSE, " +
 
-                  " isFurry BOOLEAN DEFAULT TRUE)";
+                  " isFurry BOOLEAN DEFAULT TRUE, " +
+
+                  " welcomeMsg BOOLEAN DEFAULT FALSE)";
 
           stat.executeUpdate(guild);
           
@@ -126,7 +128,7 @@ public class Database {
 
                 needsUpdate.put(guild.getId(), false);
 
-                String sql = "INSERT OR IGNORE INTO Guilds(guild_id,music_id,name,members,bot_name,bot_prefix,isNSFW,isFurry) VALUES(?,?,?,?,?,?,?,?)";
+                String sql = "INSERT OR IGNORE INTO Guilds(guild_id,music_id,name,members,bot_name,bot_prefix,isNSFW,isFurry,welcomeMsg) VALUES(?,?,?,?,?,?,?,?,?)";
                 PreparedStatement pstmt = conn.prepareStatement(sql);
                 pstmt.setString(1, guild.getId());
                 pstmt.setString(2, new ChannelFinder(guild).FindBotChat().getId());
@@ -136,6 +138,7 @@ public class Database {
                 pstmt.setString(6, "!");
                 pstmt.setBoolean(7, false);
                 pstmt.setBoolean(8, true);
+                pstmt.setBoolean(9, false);
                 pstmt.executeUpdate();
                 
             } 
@@ -185,6 +188,19 @@ public class Database {
             String nsfw = gai ? "1" : "0";
             stat = conn.createStatement();
             stat.executeUpdate("UPDATE Guilds SET isNSFW = \'" + nsfw + "\' WHERE guild_id = " + guild.getId());
+            needsUpdate.put(guild.getId(), true);
+            return true;
+        } catch (SQLException e) {
+            LOG.error("Unable to update per-guild configuration: ", e);
+            return false;
+        }
+    }
+
+    public boolean updateGuildWelcomeMsg(boolean hai, Guild guild) {
+        try {
+            String welcome = hai ? "1" : "0";
+            stat = conn.createStatement();
+            stat.executeUpdate("UPDATE Guilds SET welcomeMsg = \'" + welcome + "\' WHERE guild_id = " + guild.getId());
             needsUpdate.put(guild.getId(), true);
             return true;
         } catch (SQLException e) {
@@ -286,7 +302,7 @@ public class Database {
         stat = conn.createStatement();
         ResultSet rs = stat.executeQuery("SELECT * FROM Guilds WHERE guild_id=" + guild.getId());
 
-        return new FurConfig(rs.getString(5), false, rs.getBoolean(8), rs.getBoolean(7), rs.getString(6), rs.getString(2));
+        return new FurConfig(rs.getString(5), rs.getBoolean(9), rs.getBoolean(8), rs.getBoolean(7), rs.getString(6), rs.getString(2));
 
     }
 

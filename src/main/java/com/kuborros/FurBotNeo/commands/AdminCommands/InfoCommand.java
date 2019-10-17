@@ -5,6 +5,7 @@
 package com.kuborros.FurBotNeo.commands.AdminCommands;
 
 import com.jagrosh.jdautilities.command.CommandEvent;
+import com.kuborros.FurBotNeo.utils.config.FurConfig;
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.MessageBuilder;
 import net.dv8tion.jda.api.OnlineStatus;
@@ -16,6 +17,7 @@ import net.dv8tion.jda.api.entities.User;
 import java.awt.*;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.Objects;
 
 /**
  *
@@ -31,6 +33,8 @@ public class InfoCommand extends AdminCommand {
     private static final String GLOBE = "\ud83c\udf10";
     private static final String HAT = "\ud83c\udfa9";
     private static final String CROWNED = "\ud83d\udc51";
+    private static final String ROBOT = "\uD83E\uDD16";
+    private static final String FURRY = "\uD83D\uDC3E";
     //Emotes end
     
     
@@ -46,6 +50,8 @@ public class InfoCommand extends AdminCommand {
 
     @Override
     protected void doCommand(CommandEvent event) {
+
+        FurConfig config = (FurConfig) event.getClient().getSettingsManager().getSettings(event.getGuild());
         
         if (event.getMessage().getMentionedUsers().isEmpty())
                 {
@@ -58,9 +64,12 @@ public class InfoCommand extends AdminCommand {
                     mentionedUsers.forEach((User user) -> {
                         String roles;
                         String online = "OFFLINE";
-                        String ownerguy = "";                       
+                        String ownerguy = "";
+                        String bot = "";
                         Member member = event.getGuild().getMember(user);
                         assert member != null;
+                        boolean me = member.getUser() == event.getJDA().getSelfUser();
+                        String name;
                         if (!member.getRoles().isEmpty())
                             for (Role role : member.getRoles()) {
                                 rolebuild.append(role.getName());
@@ -77,7 +86,15 @@ public class InfoCommand extends AdminCommand {
                         if (member.isOwner()){
                             ownerguy = CROWNED + " OWNER!";
                         }
-                        sendEmbed(event, "Data collected by NSA about: " + member.getEffectiveName(), "What we know: \n"
+                        if (member.getUser().isBot()) {
+                            bot = me ? FURRY : ROBOT;
+                            bot += "    A BOT!";
+                        }
+                        if (me) {
+                            name = Objects.requireNonNull(config).getBotName();
+                        } else name = member.getEffectiveName();
+
+                        sendEmbed(event, "Data collected by NSA about: " + name, "What we know: \n"
                                 + NAMETAG + "Full Discord name: " + member.getEffectiveName() + "#" + member.getUser().getDiscriminator() + "\n"
                                         + IDBADGE + "User ID: " + member.getId() + "\n"
                                         + TIMER1 + "Server join date: " + member.getTimeJoined().format(DateTimeFormatter.ofPattern("yyyy-MM-dd  HH:mm:ss")) + "\n"
@@ -85,8 +102,9 @@ public class InfoCommand extends AdminCommand {
                                 + GLOBE + "Status: "+ online +"\n"
                                 + HAT + "Current roles: "+ roles +"\n\n"
                                 , member.getUser().getAvatarUrl()
-                                , ownerguy
+                                , ownerguy + bot
                         );
+                        rolebuild.delete(0, rolebuild.length());
                     });
          }
         
