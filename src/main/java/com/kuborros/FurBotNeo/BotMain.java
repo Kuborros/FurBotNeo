@@ -45,7 +45,7 @@ public class BotMain {
         CommandClientBuilder client = new CommandClientBuilder();
         client.setOwnerId(cfg.getOWNER_ID());
         client.setEmojis("\u2705", "\u2757", "\u274C");
-        client.setPrefix(cfg.getPREFIX());
+        client.setPrefix("!");
         client.setGuildSettingsManager(settingsManager);
         client.addCommands(
 

@@ -17,12 +17,6 @@ public class Config {
         return OWNER_ID;
     }
 
-    @SuppressWarnings("SameReturnValue")
-    public String getPREFIX() {
-        return "!";
-    }
-
-
     public Config() {
         ConFile.ConFileCheck();
         Properties properties = ConFile.getProperties();

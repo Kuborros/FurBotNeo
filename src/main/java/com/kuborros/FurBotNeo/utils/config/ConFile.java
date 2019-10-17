@@ -6,50 +6,48 @@ import org.slf4j.LoggerFactory;
 import java.io.*;
 import java.util.Properties;
 
-@SuppressWarnings("ResultOfMethodCallIgnored")
 class ConFile {
     private static final Logger LOG = LoggerFactory.getLogger(ConFile.class);
     private static File CONFIG;
 
     static void ConFileCheck() {
 
-        CONFIG = new File(new File(System.getProperty("user.home"), ".DiscordBot"), "config.cfg");
+        CONFIG = new File("config.cfg");
 
-        if (!CONFIG.exists()) {
-            try {
-                new File(System.getProperty("user.home"), ".DiscordBot").mkdirs();
-                CONFIG.createNewFile();
-            } catch (IOException e) {
-                LOG.error("Error while creating configuration file!");
-                System.exit(255);
-            }
-            Properties prop = new Properties();
-            OutputStream output = null;
-            LOG.info("Generating configuration file...");
-            try {
+        try {
+            if (CONFIG.createNewFile()) {
+                Properties prop = new Properties();
+                OutputStream output = null;
+                LOG.info("Generating configuration file...");
+                try {
 
-                output = new FileOutputStream(CONFIG);
+                    output = new FileOutputStream(CONFIG);
 
-                prop.setProperty("BotToken", "");
-                prop.setProperty("OwnerId", "0");
+                    prop.setProperty("BotToken", "");
+                    prop.setProperty("OwnerId", "0");
 
-                prop.store(output, null);
+                    prop.store(output, null);
 
-                LOG.info("You need to populate this file with your bot token and you userID!");
+                    LOG.info("You need to populate this file with your bot token and you userID!");
 
-            } catch (IOException e) {
-                e.printStackTrace();
-                LOG.error("... but it went horribly wrong! ", e);
-            } finally {
-                if (output != null) {
-                    try {
-                        output.close();
-                    } catch (IOException e) {
-                        e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    LOG.error("... but it went horribly wrong! ", e);
+                } finally {
+                    if (output != null) {
+                        try {
+                            output.close();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                        System.exit(0);
                     }
-                    System.exit(0);
+
                 }
             }
+        } catch (IOException e) {
+            LOG.error("Error while creating configuration file!");
+            System.exit(255);
         }
     }
 
