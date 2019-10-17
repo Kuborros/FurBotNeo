@@ -1,7 +1,14 @@
 package com.kuborros.FurBotNeo.commands.MusicCommands;
 
 import com.jagrosh.jdautilities.command.CommandEvent;
+import com.jagrosh.jdautilities.doc.standard.CommandInfo;
+import com.jagrosh.jdautilities.examples.doc.Author;
 
+@CommandInfo(
+        name = "MusicClear",
+        description = "Clears the play queue."
+)
+@Author("Kuborros")
 public class MusicClearCmd extends MusicCommand {
 
     public MusicClearCmd() {

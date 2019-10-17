@@ -21,10 +21,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-/**
- *
- * @author Kuborros
- */
 public class PokemonApi {
 
     private final List<String> urls = new ArrayList<>();

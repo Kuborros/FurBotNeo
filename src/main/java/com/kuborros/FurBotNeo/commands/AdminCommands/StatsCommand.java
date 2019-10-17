@@ -1,20 +1,19 @@
-/*
- * Here comes the text of your license
- * Each line should be prefixed with  * 
- */
+
 package com.kuborros.FurBotNeo.commands.AdminCommands;
 
 import com.jagrosh.jdautilities.command.CommandEvent;
+import com.jagrosh.jdautilities.doc.standard.CommandInfo;
+import com.jagrosh.jdautilities.examples.doc.Author;
 import net.dv8tion.jda.api.Permission;
 
 import java.time.OffsetDateTime;
 import java.time.format.DateTimeFormatter;
 
-/**
- *
- * @author Kuborros
- */
-
+@CommandInfo(
+        name = "Stats",
+        description = "Prints several statistics about the bot."
+)
+@Author("Kuborros")
 public class StatsCommand extends AdminCommand {
 
     private final OffsetDateTime start = OffsetDateTime.now();

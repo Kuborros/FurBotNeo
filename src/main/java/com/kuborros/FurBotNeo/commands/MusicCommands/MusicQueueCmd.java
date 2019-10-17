@@ -1,10 +1,9 @@
-/*
- * Here comes the text of your license
- * Each line should be prefixed with  * 
- */
+
 package com.kuborros.FurBotNeo.commands.MusicCommands;
 
 import com.jagrosh.jdautilities.command.CommandEvent;
+import com.jagrosh.jdautilities.doc.standard.CommandInfo;
+import com.jagrosh.jdautilities.examples.doc.Author;
 import com.kuborros.FurBotNeo.utils.audio.AudioInfo;
 import net.dv8tion.jda.api.EmbedBuilder;
 
@@ -12,10 +11,11 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.Set;
 
-/**
- *
- * @author Kuborros
- */
+@CommandInfo(
+        name = "MusicQueue",
+        description = "Lists tracks currently in the playback queue."
+)
+@Author("Kuborros")
 public class MusicQueueCmd extends MusicCommand{
 
     

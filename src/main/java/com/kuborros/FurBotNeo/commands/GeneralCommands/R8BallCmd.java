@@ -1,18 +1,18 @@
-/*
- * Here comes the text of your license
- * Each line should be prefixed with  * 
- */
+
 package com.kuborros.FurBotNeo.commands.GeneralCommands;
 
 import com.jagrosh.jdautilities.command.Command;
 import com.jagrosh.jdautilities.command.CommandEvent;
+import com.jagrosh.jdautilities.doc.standard.CommandInfo;
+import com.jagrosh.jdautilities.examples.doc.Author;
 
 import java.util.Random;
 
-/**
- *
- * @author Kuborros
- */
+@CommandInfo(
+        name = "8ball",
+        description = "Basic magic 8ball command."
+)
+@Author("Kuborros")
 public class R8BallCmd extends GeneralCommand {
 
     public R8BallCmd()

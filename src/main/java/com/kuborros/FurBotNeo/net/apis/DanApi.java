@@ -15,10 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-/**
- *
- * @author Kuborros
- */
+
 public class DanApi {
 
     private final String url;

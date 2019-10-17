@@ -1,18 +1,18 @@
-/*
- * Here comes the text of your license
- * Each line should be prefixed with  * 
- */
+
 package com.kuborros.FurBotNeo.commands.GeneralCommands;
 
 import com.jagrosh.jdautilities.command.Command;
 import com.jagrosh.jdautilities.command.CommandEvent;
+import com.jagrosh.jdautilities.doc.standard.CommandInfo;
+import com.jagrosh.jdautilities.examples.doc.Author;
 
 import java.util.Random;
 
-/**
- *
- * @author Kuborros
- */
+@CommandInfo(
+        name = "Dice",
+        description = "Throws number of multi sided dice."
+)
+@Author("Kuborros")
 public class DiceCmd extends GeneralCommand {
     private final StringBuilder rolls = new StringBuilder();
     private final Random rand = new Random();

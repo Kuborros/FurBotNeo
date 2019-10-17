@@ -1,15 +1,15 @@
-/*
- * Here comes the text of your license
- * Each line should be prefixed with  * 
- */
+
 package com.kuborros.FurBotNeo.commands.MusicCommands;
 
 import com.jagrosh.jdautilities.command.CommandEvent;
+import com.jagrosh.jdautilities.doc.standard.CommandInfo;
+import com.jagrosh.jdautilities.examples.doc.Author;
 
-/**
- *
- * @author Kuborros
- */
+@CommandInfo(
+        name = "MusicStop",
+        description = "Stops current track, and clears the queue."
+)
+@Author("Kuborros")
 public class MusicStopCmd extends MusicCommand{
     
     public MusicStopCmd()

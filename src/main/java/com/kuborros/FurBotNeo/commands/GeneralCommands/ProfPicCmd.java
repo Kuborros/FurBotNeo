@@ -1,21 +1,21 @@
-/*
- * Here comes the text of your license
- * Each line should be prefixed with  * 
- */
+
 package com.kuborros.FurBotNeo.commands.GeneralCommands;
 
 import com.jagrosh.jdautilities.command.Command;
 import com.jagrosh.jdautilities.command.CommandEvent;
+import com.jagrosh.jdautilities.doc.standard.CommandInfo;
+import com.jagrosh.jdautilities.examples.doc.Author;
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.entities.Message;
 import net.dv8tion.jda.api.entities.User;
 
 import java.awt.*;
 
-/**
- *
- * @author Kuborros
- */
+@CommandInfo(
+        name = "ProfPic",
+        description = "Gets profile picture of mentioned user from discord servers, and provides reverse image search option."
+)
+@Author("Kuborros")
 public class ProfPicCmd extends GeneralCommand {
     public ProfPicCmd()
     {

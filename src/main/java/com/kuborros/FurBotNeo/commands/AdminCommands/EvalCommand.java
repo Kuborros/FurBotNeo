@@ -5,14 +5,18 @@
 package com.kuborros.FurBotNeo.commands.AdminCommands;
 
 import com.jagrosh.jdautilities.command.CommandEvent;
+import com.jagrosh.jdautilities.doc.standard.CommandInfo;
+import com.jagrosh.jdautilities.examples.doc.Author;
 
 import javax.script.ScriptEngine;
 import javax.script.ScriptEngineManager;
 import javax.script.ScriptException;
 
-/**
- * @author Kuborros
- */
+@CommandInfo(
+        name = "Eval",
+        description = "Runs code using nashorn engine."
+)
+@Author("Kuborros")
 public class EvalCommand extends AdminCommand {
 
     private final ScriptEngine engine;

@@ -1,11 +1,10 @@
-/*
- * Here comes the text of your license
- * Each line should be prefixed with  * 
- */
+
 package com.kuborros.FurBotNeo.commands.GeneralCommands;
 
 import com.jagrosh.jdautilities.command.Command;
 import com.jagrosh.jdautilities.command.CommandEvent;
+import com.jagrosh.jdautilities.doc.standard.CommandInfo;
+import com.jagrosh.jdautilities.examples.doc.Author;
 import net.dv8tion.jda.api.entities.Message;
 import net.dv8tion.jda.api.entities.TextChannel;
 import org.json.JSONException;
@@ -17,10 +16,11 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.util.Scanner;
 
-/**
- *
- * @author Kuborros
- */
+@CommandInfo(
+        name = "Joke",
+        description = "Pulls a Chuck Norris joke and he permits himself to be replaced with mentioned user"
+)
+@Author("Kuborros")
 public class BadJokeCmd extends GeneralCommand {
     
     public BadJokeCmd()

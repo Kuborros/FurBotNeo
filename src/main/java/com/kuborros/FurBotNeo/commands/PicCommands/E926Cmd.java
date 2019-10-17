@@ -4,6 +4,8 @@ package com.kuborros.FurBotNeo.commands.PicCommands;
 
 import com.jagrosh.jdautilities.command.CommandEvent;
 import com.jagrosh.jdautilities.commons.waiter.EventWaiter;
+import com.jagrosh.jdautilities.doc.standard.CommandInfo;
+import com.jagrosh.jdautilities.examples.doc.Author;
 import com.jagrosh.jdautilities.menu.Slideshow;
 import com.kuborros.FurBotNeo.net.apis.E621Api;
 import com.kuborros.FurBotNeo.net.apis.NoImgException;
@@ -16,9 +18,11 @@ import java.util.concurrent.TimeUnit;
 
 import static com.kuborros.FurBotNeo.BotMain.db;
 
-/**
- * @author Kuborros
- */
+@CommandInfo(
+        name = "E926",
+        description = "Searches for sfw images on E926 (Safe for work variant of E621)."
+)
+@Author("Kuborros")
 public class E926Cmd extends PicCommand {
 
     private final EventWaiter waiter;

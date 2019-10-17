@@ -1,20 +1,20 @@
-/*
- * Here comes the text of your license
- * Each line should be prefixed with  * 
- */
+
 package com.kuborros.FurBotNeo.commands.MusicCommands;
 
 import com.jagrosh.jdautilities.command.CommandEvent;
+import com.jagrosh.jdautilities.doc.standard.CommandInfo;
+import com.jagrosh.jdautilities.examples.doc.Author;
 import com.sedmelluq.discord.lavaplayer.track.AudioTrack;
 import com.sedmelluq.discord.lavaplayer.track.AudioTrackInfo;
 import net.dv8tion.jda.api.EmbedBuilder;
 
 import java.awt.*;
 
-/**
- *
- * @author Kuborros
- */
+@CommandInfo(
+        name = "MusicInfo",
+        description = "Returns information on currently played track."
+)
+@Author("Kuborros")
 public class MusicInfoCmd extends MusicCommand{
     
     public MusicInfoCmd()

@@ -2,9 +2,17 @@ package com.kuborros.FurBotNeo.commands.GeneralCommands;
 
 import com.jagrosh.jdautilities.command.Command;
 import com.jagrosh.jdautilities.command.CommandEvent;
+import com.jagrosh.jdautilities.doc.standard.CommandInfo;
+import com.jagrosh.jdautilities.examples.doc.Author;
 
 import java.util.Arrays;
 import java.util.List;
+
+@CommandInfo(
+        name = "BigText",
+        description = "Writes entered text using big letter emojis."
+)
+@Author("Kuborros")
 
 public class BigTextCmd extends GeneralCommand {
     private final StringBuilder result = new StringBuilder();

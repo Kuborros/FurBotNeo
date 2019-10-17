@@ -1,7 +1,4 @@
-/*
- * Here comes the text of your license
- * Each line should be prefixed with  * 
- */
+
 package com.kuborros.FurBotNeo.commands.MusicCommands;
 
 import com.jagrosh.jdautilities.command.Command;
@@ -43,10 +40,7 @@ import java.util.*;
 
 import static com.kuborros.FurBotNeo.BotMain.db;
 
-/**
- *
- * @author Kuborros
- */
+
 abstract class MusicCommand extends Command {
 
     private static final Logger LOG = LoggerFactory.getLogger("MusicCommands");

@@ -1,16 +1,16 @@
-/*
- * Here comes the text of your license
- * Each line should be prefixed with  * 
- */
+
 package com.kuborros.FurBotNeo.commands.MusicCommands;
 
 import com.jagrosh.jdautilities.command.CommandEvent;
+import com.jagrosh.jdautilities.doc.standard.CommandInfo;
+import com.jagrosh.jdautilities.examples.doc.Author;
 
 
-/**
- *
- * @author Kuborros
- */
+@CommandInfo(
+        name = "MusicPlay",
+        description = "Plays the provided track, if none is currently playing, otherwise puts it into the queue. Suports youtube search."
+)
+@Author("Kuborros")
 public class PlayCommand extends MusicCommand{
 
 

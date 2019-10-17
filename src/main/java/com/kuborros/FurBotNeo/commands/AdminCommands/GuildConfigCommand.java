@@ -1,10 +1,17 @@
 package com.kuborros.FurBotNeo.commands.AdminCommands;
 
 import com.jagrosh.jdautilities.command.CommandEvent;
+import com.jagrosh.jdautilities.doc.standard.CommandInfo;
+import com.jagrosh.jdautilities.examples.doc.Author;
 import net.dv8tion.jda.api.Permission;
 
 import static com.kuborros.FurBotNeo.BotMain.db;
 
+@CommandInfo(
+        name = "GuildConfig",
+        description = "Sets the specific per-guild configuration options."
+)
+@Author("Kuborros")
 public class GuildConfigCommand extends AdminCommand {
 
     public GuildConfigCommand() {

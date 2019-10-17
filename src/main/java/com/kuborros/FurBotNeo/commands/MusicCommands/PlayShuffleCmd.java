@@ -1,15 +1,15 @@
-/*
- * Here comes the text of your license
- * Each line should be prefixed with  * 
- */
+
 package com.kuborros.FurBotNeo.commands.MusicCommands;
 
 import com.jagrosh.jdautilities.command.CommandEvent;
+import com.jagrosh.jdautilities.doc.standard.CommandInfo;
+import com.jagrosh.jdautilities.examples.doc.Author;
 
-/**
- *
- * @author Kuborros
- */
+@CommandInfo(
+        name = "MusicPlayShuffle",
+        description = "Same as MusicPlay, but queue gets randomised."
+)
+@Author("Kuborros")
 public class PlayShuffleCmd extends MusicCommand{
     
     public PlayShuffleCmd()

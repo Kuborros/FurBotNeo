@@ -1,7 +1,14 @@
 package com.kuborros.FurBotNeo.commands.MusicCommands;
 
 import com.jagrosh.jdautilities.command.CommandEvent;
+import com.jagrosh.jdautilities.doc.standard.CommandInfo;
+import com.jagrosh.jdautilities.examples.doc.Author;
 
+@CommandInfo(
+        name = "MusicSeek",
+        description = "Skips to specified time in the track."
+)
+@Author("Kuborros")
 public class MusicTimeCommand extends MusicCommand {
 
     public MusicTimeCommand() {

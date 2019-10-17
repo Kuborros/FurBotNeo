@@ -1,11 +1,10 @@
-/*
- * Here comes the text of your license
- * Each line should be prefixed with  * 
- */
+
 package com.kuborros.FurBotNeo.commands.PicCommands;
 
 import com.jagrosh.jdautilities.command.CommandEvent;
 import com.jagrosh.jdautilities.commons.waiter.EventWaiter;
+import com.jagrosh.jdautilities.doc.standard.CommandInfo;
+import com.jagrosh.jdautilities.examples.doc.Author;
 import com.jagrosh.jdautilities.menu.Slideshow;
 import com.kuborros.FurBotNeo.net.apis.GelEngine;
 import com.kuborros.FurBotNeo.net.apis.NoImgException;
@@ -20,10 +19,11 @@ import java.util.concurrent.TimeUnit;
 
 import static com.kuborros.FurBotNeo.BotMain.db;
 
-/**
- *
- * @author Kuborros
- */
+@CommandInfo(
+        name = "Safe",
+        description = "Searches for sfw images on safebooru."
+)
+@Author("Kuborros")
 public class SafeCmd extends PicCommand {
 
     private final EventWaiter waiter;

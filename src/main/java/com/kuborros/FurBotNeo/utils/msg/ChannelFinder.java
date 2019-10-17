@@ -6,10 +6,7 @@ import net.dv8tion.jda.api.entities.TextChannel;
 
 import java.util.List;
 
-/**
- *
- * @author Kuborros
- */
+
 public class ChannelFinder {
 
     private final Guild guild;

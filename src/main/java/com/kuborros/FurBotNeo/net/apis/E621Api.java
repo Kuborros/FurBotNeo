@@ -16,10 +16,6 @@ import java.util.List;
 import java.util.Scanner;
 
 
-/**
- *
- * @author Kuborros
- */
 public class E621Api {
 
     private final String url;

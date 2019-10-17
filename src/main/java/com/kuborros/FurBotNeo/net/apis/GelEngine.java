@@ -20,10 +20,7 @@ import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- *
- * @author Kuborros
- */
+
 public class GelEngine {
 
 
