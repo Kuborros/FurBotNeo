@@ -5,6 +5,12 @@
   <artifactId>FurBotNeo</artifactId>
     <version>1.0-SNAPSHOT</version>
   <build>
+      <resources>
+          <resource>
+              <filtering>true</filtering>
+              <directory>src/main/resources</directory>
+          </resource>
+      </resources>
     <plugins>
       <plugin>
         <artifactId>maven-shade-plugin</artifactId>
@@ -34,6 +40,14 @@
         <configuration>
             <source>11</source>
             <target>11</target>
+        </configuration>
+      </plugin>
+        <plugin>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>versions-maven-plugin</artifactId>
+            <version>2.5</version>
+            <configuration>
+                <generateBackupPoms>false</generateBackupPoms>
         </configuration>
       </plugin>
     </plugins>
@@ -68,6 +82,8 @@
       <maven.compiler.target>1.11</maven.compiler.target>
     <exec.mainClass>com.kuborros.FurBotNeo.BotMain</exec.mainClass>
       <maven.compiler.source>1.11</maven.compiler.source>
+      <maven.build.timestamp.format>yyyy-MM-dd HH:mm</maven.build.timestamp.format>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+      <timestamp>${maven.build.timestamp}</timestamp>
   </properties>
 </project>
