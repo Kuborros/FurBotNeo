@@ -90,7 +90,8 @@ public class TrackManager extends AudioEventAdapter {
 
     @Override
     public void onTrackStuck(AudioPlayer player, AudioTrack track, long thresholdMs) {
-        LOG.warn("Track " + track.getInfo().title + " stuck for " + thresholdMs);
+        LOG.warn("Track " + track.getInfo().title + " stuck for " + thresholdMs + " ms, skipping.");
+        player.stopTrack();
     }
 
     public void shuffleQueue() {
