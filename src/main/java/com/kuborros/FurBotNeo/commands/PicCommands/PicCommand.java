@@ -29,7 +29,7 @@ abstract class PicCommand extends Command {
         }
         if (config.isNSFW()) {
             doCommand(event);
-        } else LOG.info("NSFW command ran on SFW server, ignoring");
+        } else LOG.info("Image commands disabled by server owner, ignoring.");
     }
 
     protected abstract void doCommand(CommandEvent event);

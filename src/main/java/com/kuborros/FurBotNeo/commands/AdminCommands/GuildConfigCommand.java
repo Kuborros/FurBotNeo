@@ -5,6 +5,8 @@ import com.jagrosh.jdautilities.doc.standard.CommandInfo;
 import com.jagrosh.jdautilities.examples.doc.Author;
 import net.dv8tion.jda.api.Permission;
 
+import java.util.Arrays;
+
 import static com.kuborros.FurBotNeo.BotMain.db;
 
 @CommandInfo(
@@ -31,11 +33,13 @@ public class GuildConfigCommand extends AdminCommand {
             event.replyWarning("You need to provide both variable you want to change, and what value change it to!");
             return;
         }
-        boolean success = false;
+        boolean success;
         String value = MysqlRealScapeString(args[1]);
+        String valueName = MysqlRealScapeString(Arrays.toString(args).replaceAll("[\\[\\],]", "").replaceFirst(args[0], ""));
         switch (args[0]) {
+            case "name":
             case "bot_name":
-                success = db.updateGuildBotName(value, event.getGuild());
+                success = db.updateGuildBotName(valueName, event.getGuild());
                 break;
             case "prefix":
                 success = db.updateGuildPrefix(value, event.getGuild());
@@ -52,6 +56,9 @@ public class GuildConfigCommand extends AdminCommand {
             case "music":
                 success = db.updateGuildAudio(value, event.getGuild());
                 break;
+            default:
+                event.replyError("Provided setting name is not valid!");
+                return;
         }
         if (success) {
             event.reply("Configuration option changed!");

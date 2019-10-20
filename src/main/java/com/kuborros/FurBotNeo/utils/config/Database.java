@@ -152,6 +152,7 @@ public class Database {
             stat = conn.createStatement();
             stat.executeUpdate("UPDATE Guilds SET bot_name = \'" + name + "\' WHERE guild_id = " + guild.getId());
             needsUpdate.put(guild.getId(), true);
+            guild.getSelfMember().modifyNickname(name).complete();
             return true;
         } catch (SQLException e) {
             LOG.error("Unable to update per-guild configuration: ", e);
