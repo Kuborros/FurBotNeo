@@ -42,6 +42,7 @@ public class BotMain {
 
         cfg = new Config();
 
+
         CommandClientBuilder client = new CommandClientBuilder();
         client.setOwnerId(cfg.getOWNER_ID());
         client.setEmojis("\u2705", "\u2757", "\u274C");
@@ -100,9 +101,6 @@ public class BotMain {
                 new GuildConfigCommand(),
                 new EvalCommand(),
                 new ShutdownCommand());
-
-
-
 
 
         try {
