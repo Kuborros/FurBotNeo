@@ -16,6 +16,8 @@ And if you think its really bad.. well we all have to start somewhere, and skill
 
 
 Compilation instructions: 
+
+Minimum JDK version required is **11**. (Current LTS release.)
 _Use maven_ (Should be avaible in your distribution repositories.)
 
 For simple compilation and package into .jar archives, run this command in project root directory:
