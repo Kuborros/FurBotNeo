@@ -16,10 +16,16 @@ And if you think its really bad.. well we all have to start somewhere, and skill
 
 
 Compilation instructions: 
-_Use maven_
+_Use maven_ (Should be avaible in your distribution repositories.)
 
-Run this command in project root directory:
+For simple compilation and package into .jar archives, run this command in project root directory:
 ```bash
 mvn package
 ```
 Output .jars will be placed in ``target`` directory.
+
+Project is set so it can be ran directly without repackaging with 
+
+```bash
+mvn exec:java
+```
