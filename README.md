@@ -15,7 +15,10 @@ If this code helps you learn something that's great :3
 And if you think its really bad.. well we all have to start somewhere, and skilled advice will be appreciated!
 
 
-Compilation instructions: 
+
+
+
+## Compilation instructions: 
 
 Minimum JDK version required is **11**. (Current LTS release.)
 
