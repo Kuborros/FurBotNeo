@@ -13,3 +13,13 @@ There is no proper documentation of the code, shamefully commented version of co
 
 If this code helps you learn something that's great :3
 And if you think its really bad.. well we all have to start somewhere, and skilled advice will be appreciated!
+
+
+Compilation instructions: 
+_Use maven_
+
+Run this command in project root directory:
+```bash
+mvn package
+```
+Output .jars will be placed in ``target`` directory.
