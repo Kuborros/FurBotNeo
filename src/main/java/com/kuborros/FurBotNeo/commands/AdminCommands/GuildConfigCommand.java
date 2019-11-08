@@ -3,9 +3,13 @@ package com.kuborros.FurBotNeo.commands.AdminCommands;
 import com.jagrosh.jdautilities.command.CommandEvent;
 import com.jagrosh.jdautilities.doc.standard.CommandInfo;
 import com.jagrosh.jdautilities.examples.doc.Author;
+import com.kuborros.FurBotNeo.utils.config.FurConfig;
+import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.Permission;
 
+import java.awt.*;
 import java.util.Arrays;
+import java.util.Objects;
 
 import static com.kuborros.FurBotNeo.BotMain.db;
 
@@ -30,7 +34,26 @@ public class GuildConfigCommand extends AdminCommand {
     protected void doCommand(CommandEvent event) {
         String[] args = event.getArgs().split(" ");
         if (event.getArgs().isEmpty() || args.length < 2) {
-            event.replyWarning("You need to provide both variable you want to change, and what value change it to!");
+            EmbedBuilder embedBuilder = new EmbedBuilder();
+            FurConfig config = (FurConfig) event.getClient().getSettingsManager().getSettings(event.getGuild());
+            assert config != null; //If we get null here something **did** in fact, *go wrong* and such, we should make a fuss about it.
+
+            String prefixes = config.getPrefixes() != null ? config.getPrefixes().toString() : "!";
+
+            embedBuilder.setTitle("Current guild settings: ")
+                    .setColor(Color.BLUE)
+                    .addField("Bot name: ", config.getBotName(), false)
+                    .addField("Command prefix(es): ", prefixes, false)
+                    .addField("NSFW Mode: ", config.isNSFW() ? "ON" : "OFF", false)
+                    .addField("Furry Mode: ", config.isFurry() ? "OwO" : "OFF", false)
+                    .addField("New member welcome messages: ", config.isWelcomeMsg() ? "ON" : "OFF", false)
+                    .addField("Selected music channel: ", Objects.requireNonNull(event.getGuild().getGuildChannelById(config.getAudioChannel())).getName(), false)
+                    .setFooter("To set the options, add key and value to this command!");
+
+            if (event.getGuild().getIconUrl() != null) {
+                embedBuilder.setThumbnail(event.getGuild().getIconUrl());
+            }
+            event.reply(embedBuilder.build());
             return;
         }
         boolean success;
