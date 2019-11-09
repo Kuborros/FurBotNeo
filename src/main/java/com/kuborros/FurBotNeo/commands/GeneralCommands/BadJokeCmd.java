@@ -6,7 +6,6 @@ import com.jagrosh.jdautilities.command.CommandEvent;
 import com.jagrosh.jdautilities.doc.standard.CommandInfo;
 import com.jagrosh.jdautilities.examples.doc.Author;
 import net.dv8tion.jda.api.entities.Message;
-import net.dv8tion.jda.api.entities.TextChannel;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -33,8 +32,7 @@ public class BadJokeCmd extends GeneralCommand {
 }
     @Override
     public void doCommand(CommandEvent event) {
-            Message message = event.getMessage();   
-            TextChannel chat = event.getTextChannel();
+            Message message = event.getMessage();
            
             try {                
             URL u = new URL("http://api.icndb.com/jokes/random");
@@ -53,22 +51,21 @@ public class BadJokeCmd extends GeneralCommand {
                 if (!"success".equals(object.getString("type"))) {
                     LOG.error("Error while retrieving joke.");
                 }
-            
+
                 String joke = object.getJSONObject("value").getString("joke");
-                String remainder = message.getContentDisplay().replaceFirst("!joke ", "");
-            
-                if(message.getMentionedUsers().size() > 0){
-                    joke = joke.replaceAll("Chuck Norris", "<@"+message.getMentionedUsers().get(0).getId()+">");
-                } else if (remainder.length() > 0){
+                String remainder = event.getArgs();
+
+                if (!message.getMentionedUsers().isEmpty()) {
+                    joke = joke.replaceAll("Chuck Norris", "<@" + message.getMentionedUsers().get(0).getId() + ">");
+                } else if (!remainder.isEmpty()) {
                     joke = joke.replaceAll("Chuck Norris", remainder);
                 }
-            
+
                 joke = joke.replaceAll("&quot;", "\"");
-            
-                chat.sendMessage(joke).queue();
-            }
-            catch (IOException | JSONException e) {     
-                e.printStackTrace();
+
+                event.reply(joke);
+            } catch (IOException | JSONException e) {
+                LOG.error("Exception occurred while obtaining jokes: ", e);
             }    
     }  
 }
