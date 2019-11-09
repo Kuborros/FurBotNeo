@@ -70,13 +70,9 @@ public class E621Cmd extends PicCommand {
             } else api = new E621Api("https://e621.net/post/index.json?tags=");
 
         try {
-            if (!event.getArgs().isEmpty()) {
-                result = api.getImageSetTags(event.getArgs());
-            } else {
-                result = api.getImageSetRandom();
-            }
-                    builder.setUrls(result.toArray(new String[0]));
-                } catch (NoImgException e) {
+            result = !event.getArgs().isEmpty() ? api.getImageSetTags(event.getArgs()) : api.getImageSetRandom();
+            builder.setUrls(result.toArray(new String[0]));
+        } catch (NoImgException e) {
                     event.reply("No results found!");
                     return;
                 } catch (IOException e){

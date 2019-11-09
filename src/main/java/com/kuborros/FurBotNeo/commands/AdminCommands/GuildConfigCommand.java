@@ -93,7 +93,7 @@ public class GuildConfigCommand extends AdminCommand {
 
     private String MysqlRealScapeString(String str) {
         String data = null;
-        if (str != null && str.length() > 0) {
+        if (str != null && !str.isEmpty()) {
             str = str.replace("\\", "\\\\");
             str = str.replace("'", "\\'");
             str = str.replace("\0", "\\0");

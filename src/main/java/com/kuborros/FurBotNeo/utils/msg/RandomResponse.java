@@ -67,6 +67,7 @@ public class RandomResponse {
 
         FurConfig config = settings.getSettings(guild);
 
+
         LinkedList<String> messageList = new LinkedList<>(Arrays.asList(
                 "I think i did something wrong...",
                 "Its not my fault, i swear.",

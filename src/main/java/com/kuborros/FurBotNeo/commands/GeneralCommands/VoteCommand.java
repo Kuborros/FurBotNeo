@@ -74,7 +74,6 @@ public class VoteCommand extends GeneralCommand {
     }
 
 
-    @SuppressWarnings("SameReturnValue")
     private boolean startVote(TextChannel channel, Instant now, int seconds, String topic) {
         MessageEmbed msg = new EmbedBuilder().setTitle("**Vote**").setDescription(topic).setTimestamp(now).setColor(Color.BLUE).addField("", "Vote will end in: " + secondsToTime(seconds) + "!", false).build();
         channel.sendMessage(msg).queue(m -> {

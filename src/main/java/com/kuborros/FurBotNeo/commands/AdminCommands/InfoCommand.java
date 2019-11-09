@@ -80,19 +80,17 @@ public class InfoCommand extends AdminCommand {
                           }
                           else rolebuild.append("None");
                           roles = rolebuild.toString();
-                        if (!member.getOnlineStatus().equals(OnlineStatus.OFFLINE)){
+                        if (member.getOnlineStatus() != OnlineStatus.OFFLINE) {
                             online = "ONLINE";
                         }
-                        if (member.isOwner()){
+                        if (member.isOwner()) {
                             ownerguy = CROWNED + " OWNER!";
                         }
                         if (member.getUser().isBot()) {
                             bot = me ? FURRY : ROBOT;
                             bot += "    A BOT!";
                         }
-                        if (me) {
-                            name = Objects.requireNonNull(config).getBotName();
-                        } else name = member.getEffectiveName();
+                        name = me ? Objects.requireNonNull(config).getBotName() : member.getEffectiveName();
 
                         sendEmbed(event, "Data collected by NSA about: " + name, "What we know: \n"
                                 + NAMETAG + "Full Discord name: " + member.getEffectiveName() + "#" + member.getUser().getDiscriminator() + "\n"

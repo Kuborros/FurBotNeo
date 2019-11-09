@@ -36,6 +36,7 @@ import org.slf4j.LoggerFactory;
 
 import java.awt.*;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.*;
 
 import static com.kuborros.FurBotNeo.BotMain.db;
@@ -45,9 +46,9 @@ abstract class MusicCommand extends Command {
 
     private static final Logger LOG = LoggerFactory.getLogger("MusicCommands");
 
-    final static String NOTE = ":musical_note:  ";
+    static final String NOTE = ":musical_note:  ";
 
-    private final static String ERROR = "\u274C  ";
+    private static final String ERROR = "\u274C  ";
 
     static Guild guild;
     private static FurConfig config;
@@ -63,9 +64,9 @@ abstract class MusicCommand extends Command {
         audioEventListener = new AudioEventAdapter() {
             @Override
             public void onTrackStart(AudioPlayer player, AudioTrack track) {
-                
+
                 Set<AudioInfo> queue = getTrackManager(guild).getQueuedTracks();
-                ArrayList<AudioInfo> tracks = new ArrayList<>(queue);
+                List<AudioInfo> tracks = new ArrayList<>(queue);
 
                 Objects.requireNonNull(guild.getTextChannelById(config.getAudioChannel())).getManager().setTopic("Last track: " + track.getInfo().title).queue();
 
@@ -99,11 +100,7 @@ abstract class MusicCommand extends Command {
 
     AudioPlayer getPlayer(Guild guild) {
         AudioPlayer p;
-        if (hasPlayer(guild)) {
-            p = players.get(guild.getId()).getKey();
-        } else {
-            p = createPlayer(guild);
-        }
+        p = hasPlayer(guild) ? players.get(guild.getId()).getKey() : createPlayer(guild);
         return p;
     }
 
@@ -211,7 +208,7 @@ abstract class MusicCommand extends Command {
 
                 LOG.warn("Error loading track: ", exception);
 
-                if (!exception.severity.equals(FriendlyException.Severity.FAULT)) {
+                if (exception.severity != FriendlyException.Severity.FAULT) {
                     EmbedBuilder eb = new EmbedBuilder()
                             .setColor(Color.CYAN)
                             .setDescription(ERROR + "**Error while fetching music:**")
@@ -282,7 +279,7 @@ abstract class MusicCommand extends Command {
 
                 LOG.warn("Error loading track: ", exception);
 
-                if (!exception.severity.equals(FriendlyException.Severity.FAULT)) {
+                if (exception.severity != FriendlyException.Severity.FAULT) {
                     EmbedBuilder eb = new EmbedBuilder()
                             .setColor(Color.CYAN)
                             .setDescription(ERROR + "**Error while fetching music:**")

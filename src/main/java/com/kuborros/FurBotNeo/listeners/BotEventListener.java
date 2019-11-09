@@ -80,8 +80,9 @@ public class BotEventListener extends ListenerAdapter{
        LOG.debug("Connected to guild: {}", event.getGuild().getName());
     }
 
+    @SuppressWarnings("UseOfSystemOutOrSystemErr")
     private static void ClearConsole() {
-       System.out.print("\033[H\033[2J");  
-       System.out.flush(); 
-   } 
+        System.out.print("\033[H\033[2J");
+        System.out.flush();
+    }
 }

@@ -45,16 +45,17 @@ public class CommandStatCmd extends GeneralCommand {
             LOG.info("NSFW command ran on SFW server, ignoring");
             return;
         }
-        User user = !event.getMessage().getMentionedUsers().isEmpty() ? event.getMessage().getMentionedUsers().get(0) : event.getAuthor();
+
+        User user = event.getMessage().getMentionedUsers().isEmpty() ? event.getAuthor() : event.getMessage().getMentionedUsers().get(0);
         try {
             Map<String, String> map = db.getCommandStats(user.getId());
             builder.append("\n");
-            map.forEach((k,v) -> builder.append("``").append(k).append("`` used **").append(v).append("** times\n\n"));
+            map.forEach((k, v) -> builder.append("``").append(k).append("`` used **").append(v).append("** times\n\n"));
             event.getChannel().sendMessage(
                     new MessageBuilder().setEmbed(
                             new EmbedBuilder().setTitle(String.format("How many times %s nutted to:", user.getName()), null).setDescription(builder.toString()).setColor(Color.yellow).build()
                     ).build()).queue();
-        } catch (SQLException e){
+        } catch (SQLException e) {
             LOG.error("Error occured while retreiving command stats: ", e);
             event.replyError("Unable to load commands stats! Thats **not** good.");
         }

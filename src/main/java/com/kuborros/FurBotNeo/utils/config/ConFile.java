@@ -31,14 +31,13 @@ class ConFile {
                     LOG.info("You need to populate this file with your bot token and you userID!");
 
                 } catch (IOException e) {
-                    e.printStackTrace();
-                    LOG.error("... but it went horribly wrong! ", e);
+                    LOG.error("... and failed! ", e);
                 } finally {
                     if (output != null) {
                         try {
                             output.close();
                         } catch (IOException e) {
-                            e.printStackTrace();
+                            LOG.error("Failed to close file: ", e);
                         }
                         System.exit(0);
                     }
@@ -46,7 +45,7 @@ class ConFile {
                 }
             }
         } catch (IOException e) {
-            LOG.error("Error while creating configuration file!");
+            LOG.error("Error while creating configuration file! ", e);
             System.exit(255);
         }
     }
@@ -66,14 +65,14 @@ class ConFile {
             return prop;
 
         } catch (IOException e) {
-            e.printStackTrace();
+            LOG.error("Failed to obtain properties: ", e);
             return null;
         } finally {
             if (input != null) {
                 try {
                     input.close();
                 } catch (IOException e) {
-                    e.printStackTrace();
+                    LOG.error("Failed to close file: ", e);
                 }
             }
         }

@@ -40,7 +40,6 @@ public class Database {
             stat = conn.createStatement();
         } catch (SQLException e) {
             LOG.error("Database connection error occured! ", e);
-            e.printStackTrace();
         }
     }
 

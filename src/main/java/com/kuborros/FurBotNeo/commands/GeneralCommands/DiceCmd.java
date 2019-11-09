@@ -49,7 +49,7 @@ public class DiceCmd extends GeneralCommand {
                 rolls.append(side).append(",");
                 i++;
             } while (i < numDices);
-            event.reply("You rolled: " + rolls.toString());
+            event.reply("You rolled: " + rolls);
             rolls.delete(0, rolls.length());
         }
         else {

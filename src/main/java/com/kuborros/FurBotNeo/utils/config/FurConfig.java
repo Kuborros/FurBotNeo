@@ -37,9 +37,7 @@ public class FurConfig implements GuildSettingsProvider {
     @Nullable
     @Override
     public Collection<String> getPrefixes() {
-        if (prefixes.isEmpty()) {
-            return null;
-        } else return prefixes;
+        return prefixes.isEmpty() ? null : prefixes;
     }
 
     public String getBotName() {

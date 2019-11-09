@@ -67,13 +67,9 @@ public class GelCmd extends PicCommand {
         api = new GelEngine("https://gelbooru.com/index.php?page=dapi&s=post&q=index&limit=100");
 
         try {
-            if (!event.getArgs().isEmpty()) {
-                result = api.getImageSetTags(event.getArgs());
-            } else {
-                result = api.getImageSetRandom();
-            }
-                    builder.setUrls(result.toArray(new String[0]));
-                } catch (NoImgException e) {
+            result = !event.getArgs().isEmpty() ? api.getImageSetTags(event.getArgs()) : api.getImageSetRandom();
+            builder.setUrls(result.toArray(new String[0]));
+        } catch (NoImgException e) {
                     event.reply("No results found!");                    
                     return;
                 } catch (ParserConfigurationException | IOException | SAXException e) {

@@ -53,12 +53,12 @@ public class DanCmd extends PicCommand {
         }
 
         builder.allowTextInput(false)
-            .setBulkSkipNumber(5)
-            .waitOnSinglePage(false)
-            .setColor(Color.PINK)
-            .setEventWaiter(waiter)
-            .setText("")
-            .setDescription("Danbooru")
+                .setBulkSkipNumber(5)
+                .waitOnSinglePage(false)
+                .setColor(Color.PINK)
+                .setEventWaiter(waiter)
+                .setText("")
+                .setDescription("Danbooru")
                 .setFinalAction(message -> message.clearReactions().queue())
             .setTimeout(5, TimeUnit.MINUTES);
 
@@ -67,11 +67,7 @@ public class DanCmd extends PicCommand {
 
 
             try {
-                if (!event.getArgs().isEmpty()) {
-                    result = api.getImageSetTags(event.getArgs());
-                } else {
-                    result = api.getImageSetRandom();
-                }
+                result = event.getArgs().isEmpty() ? api.getImageSetRandom() : api.getImageSetTags(event.getArgs());
                 builder.setUrls(result.toArray(new String[0]));
             } catch (NoImgException e) {
                 event.reply("No results found!");
