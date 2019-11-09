@@ -74,7 +74,7 @@ public class VoteCommand extends GeneralCommand {
     }
 
 
-    private boolean startVote(TextChannel channel, Instant now, int seconds, String topic) {
+    private void startVote(TextChannel channel, Instant now, int seconds, String topic) {
         MessageEmbed msg = new EmbedBuilder().setTitle("**Vote**").setDescription(topic).setTimestamp(now).setColor(Color.BLUE).addField("", "Vote will end in: " + secondsToTime(seconds) + "!", false).build();
         channel.sendMessage(msg).queue(m -> {
             m.addReaction("\u2705").queue();
@@ -101,7 +101,6 @@ public class VoteCommand extends GeneralCommand {
 
             timer.schedule(timerTask, TimeUnit.SECONDS.toMillis(seconds));
         });
-        return true;
     }
 
     @Override
@@ -137,13 +136,8 @@ public class VoteCommand extends GeneralCommand {
                                     event.replyWarning("Topic is way too long. Can you shorten it a bit?");
                                 } else {
                                     Instant now = Instant.now();
-                                    if(startVote(event.getTextChannel(), now, seconds, topic)){
-                                        event.getMessage().delete().queue();
-                                    }
-                                    else {
-                                        event.replyError("Oh no. Something went wrong and I wasn't able to start the vote.");
-                                        event.getMessage().delete().queue();
-                                    }
+                                    startVote(event.getTextChannel(), now, seconds, topic);
+                                    event.getMessage().delete().queue();
                                 }
                             }
                         } catch (NumberFormatException ex) {

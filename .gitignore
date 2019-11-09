@@ -1,7 +1,7 @@
 .idea/**/workspace.xml
 .idea/**/dataSources.local.xml
 .idea/**/libraries
-database.db
+database.*
 .idea/deployment.xml
 .idea/discord.xml
 .idea/**/dictionaries

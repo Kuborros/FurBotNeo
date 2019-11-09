@@ -58,7 +58,7 @@ public class RandomResponse {
                     "UwU"));
         }
         if (config.isNSFW()) {
-            messageList.add("She`s not a real waifu, if there is no porn of her~");
+            messageList.add("She's not a real waifu, if there is no porn of her~");
         }
         return messageList.get(new Random().nextInt(messageList.size()));
     }
