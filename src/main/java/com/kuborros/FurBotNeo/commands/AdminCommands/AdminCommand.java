@@ -32,13 +32,13 @@ abstract class AdminCommand extends Command {
     }
 
     protected MessageEmbed errorResponseEmbed(Exception exception) {
-        return errorResponseEmbed("Internal error has occured! ", exception.getLocalizedMessage());
+        return errorResponseEmbed(exception.getLocalizedMessage());
     }
 
-    protected MessageEmbed errorResponseEmbed(String message, String ex) {
+    protected MessageEmbed errorResponseEmbed(String ex) {
         String random = randomResponse.getRandomErrorMessage(guild);
         EmbedBuilder builder = new EmbedBuilder();
-        builder.setTitle(client.getError() + message)
+        builder.setTitle(client.getError() + "Internal error has occured! ")
                 .setDescription(random)
                 .addField("Error details: ", "`` " + ex + " ``", false)
                 .setColor(Color.RED);

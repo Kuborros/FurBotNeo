@@ -7,6 +7,7 @@ import com.jagrosh.jdautilities.command.CommandEvent;
 import com.kuborros.FurBotNeo.utils.audio.AudioInfo;
 import com.kuborros.FurBotNeo.utils.audio.AudioPlayerSendHandler;
 import com.kuborros.FurBotNeo.utils.audio.TrackManager;
+import com.kuborros.FurBotNeo.utils.audio.invidious.InvidiousAudioSourceManager;
 import com.kuborros.FurBotNeo.utils.config.FurConfig;
 import com.sedmelluq.discord.lavaplayer.player.AudioLoadResultHandler;
 import com.sedmelluq.discord.lavaplayer.player.AudioPlayer;
@@ -20,15 +21,12 @@ import com.sedmelluq.discord.lavaplayer.source.http.HttpAudioSourceManager;
 import com.sedmelluq.discord.lavaplayer.source.soundcloud.SoundCloudAudioSourceManager;
 import com.sedmelluq.discord.lavaplayer.source.twitch.TwitchStreamAudioSourceManager;
 import com.sedmelluq.discord.lavaplayer.source.vimeo.VimeoAudioSourceManager;
-import com.sedmelluq.discord.lavaplayer.source.youtube.YoutubeAudioSourceManager;
 import com.sedmelluq.discord.lavaplayer.tools.FriendlyException;
 import com.sedmelluq.discord.lavaplayer.track.AudioPlaylist;
 import com.sedmelluq.discord.lavaplayer.track.AudioTrack;
 import com.sedmelluq.discord.lavaplayer.track.AudioTrackInfo;
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.entities.*;
-import org.apache.http.client.config.CookieSpecs;
-import org.apache.http.client.config.RequestConfig;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -72,24 +70,27 @@ abstract class MusicCommand extends Command {
                         .setColor(Color.CYAN)
                         .setDescription(NOTE + "   **Now Playing**   ")
                         .addField("Current Track", "`(" + getTimestamp(track.getDuration()) + ")`  " + track.getInfo().title, false);
-                if (tracks.size() > 1){
+                if (tracks.size() > 1) {
                     eb.addField("Next Track", "`(" + getTimestamp(tracks.get(1).getTrack().getDuration()) + ")`  " + tracks.get(1).getTrack().getInfo().title, false);
                 }
                 Objects.requireNonNull(guild.getTextChannelById(config.getAudioChannel())).sendMessage(eb.build()).queue();
             }
         };
 
-
+        /*
         YoutubeAudioSourceManager youtubeAudioSourceManager = new YoutubeAudioSourceManager(true);
         youtubeAudioSourceManager.configureRequests(config -> RequestConfig.copy(config).setCookieSpec(CookieSpecs.IGNORE_COOKIES).build());
+        */
+        myManager.registerSourceManager(new InvidiousAudioSourceManager());
 
         myManager.registerSourceManager(new SoundCloudAudioSourceManager());
         myManager.registerSourceManager(new BandcampAudioSourceManager());
         myManager.registerSourceManager(new VimeoAudioSourceManager());
         myManager.registerSourceManager(new TwitchStreamAudioSourceManager());
         myManager.registerSourceManager(new BeamAudioSourceManager());
-        myManager.registerSourceManager(youtubeAudioSourceManager);
+        //myManager.registerSourceManager(youtubeAudioSourceManager);
         myManager.registerSourceManager(new HttpAudioSourceManager()); //Might be not that safe
+
     }
 
     boolean hasPlayer(Guild guild) {

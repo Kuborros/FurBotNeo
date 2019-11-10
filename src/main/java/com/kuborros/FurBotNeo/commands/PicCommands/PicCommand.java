@@ -34,13 +34,13 @@ abstract class PicCommand extends Command {
     }
 
     protected MessageEmbed errorResponseEmbed(Exception exception) {
-        return errorResponseEmbed("Something went wrong!", exception.getLocalizedMessage());
+        return errorResponseEmbed(exception.getLocalizedMessage());
     }
 
-    protected MessageEmbed errorResponseEmbed(String message, String ex) {
+    protected MessageEmbed errorResponseEmbed(String ex) {
         String random = randomResponse.getRandomErrorMessage(guild);
         EmbedBuilder builder = new EmbedBuilder();
-        builder.setTitle(client.getError() + message)
+        builder.setTitle(client.getError() + "Something went wrong!")
                 .setDescription(random)
                 .addField("Error details: ", "`` " + ex + " ``", false)
                 .setColor(Color.RED);
