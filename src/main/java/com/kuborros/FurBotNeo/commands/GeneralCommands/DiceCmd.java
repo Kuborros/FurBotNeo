@@ -40,7 +40,7 @@ public class DiceCmd extends GeneralCommand {
                 if (numSides > 255) numSides = 255;
             }
             catch (NumberFormatException e) {
-                event.replyError("Please enter a valid set of numbers!");
+                event.replyWarning("Please enter a valid set of numbers!");
                 return;                
             }
             int i = 0;
@@ -57,7 +57,7 @@ public class DiceCmd extends GeneralCommand {
                 numSides = Integer.parseInt(dice);
                 if (numSides > 255) numSides = 255;
             } catch (NumberFormatException e) {
-                event.replyError("Please enter a valid number!");
+                event.replyWarning("Please enter a valid number!");
                 return;
             }
             int roll = rand.nextInt(numSides) + 1;

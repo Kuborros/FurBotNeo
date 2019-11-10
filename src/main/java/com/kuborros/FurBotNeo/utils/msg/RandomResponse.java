@@ -30,7 +30,6 @@ public class RandomResponse {
                 "I'll pretend you didn't say that.",
                 "Not today.",
                 "*yawn*",
-                "I have the power. You don't.",
                 "User not in sudoers file. This incident will be reported.",
                 "Access Denied.",
                 "Please don't joke about that."));
@@ -45,24 +44,6 @@ public class RandomResponse {
         return messageList.get(new Random().nextInt(messageList.size()));
     }
 
-    public String getRandomWarningMessage(Guild guild) {
-
-        FurConfig config = settings.getSettings(guild);
-
-        LinkedList<String> messageList = new LinkedList<>(Arrays.asList(
-                "No, U.",
-                "Oh no."));
-        if (config.isFurry()) {
-            messageList.addAll(Arrays.asList(
-                    "*Confused bat noises*",
-                    "UwU"));
-        }
-        if (config.isNSFW()) {
-            messageList.add("She's not a real waifu, if there is no porn of her~");
-        }
-        return messageList.get(new Random().nextInt(messageList.size()));
-    }
-
     public String getRandomErrorMessage(Guild guild) {
 
         FurConfig config = settings.getSettings(guild);
@@ -73,7 +54,7 @@ public class RandomResponse {
                 "Its not my fault, i swear.",
                 "The server is currently on fire, please wait.",
                 "--AI core reboot in progress--",
-                "That`s a bad sign.",
+                "That's a bad sign.",
                 "No, i have no idea why.",
                 "Hopefully the error message is usefull...",
                 "Segmentation fault at 0xOHNO621",
@@ -87,10 +68,9 @@ public class RandomResponse {
                     "I got my tail stuck in the door..."));
         }
         if (config.isNSFW()) {
-            messageList.add("That`s what you get for lewding me!");
+            messageList.add("That's what you get for lewding me!");
         }
         return messageList.get(new Random().nextInt(messageList.size()));
     }
-
 
 }

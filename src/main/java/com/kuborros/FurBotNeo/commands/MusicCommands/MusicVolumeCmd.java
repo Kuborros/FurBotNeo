@@ -24,14 +24,14 @@ public class MusicVolumeCmd extends MusicCommand{
     @Override
     public void doCommand(CommandEvent event){
         if (event.getArgs().isEmpty()) {
-            event.replyError("Please set valid volume! <0-1000>.");
+            event.replyWarning("Please set valid volume! <0-1000>.");
         } else {
             int vol = 100;
             try {
                 vol = Integer.decode(event.getArgs());
                 }
             catch (NumberFormatException e) {
-                event.replyError("Please set valid volume! <0-1000>.");
+                event.replyWarning("Please set valid volume! <0-1000>.");
             }
             setVolume(guild,vol);
             event.reply(String.format("Volume set to: %d", getPlayer(guild).getVolume()));

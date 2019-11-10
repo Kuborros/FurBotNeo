@@ -41,18 +41,18 @@ public class BotBanCmd extends AdminCommand {
                 return;
             }
             try {
-                db.addBannedUser(member.getId(), event.getGuild().getId());
+                db.addBannedUser(member.getId(), guild.getId());
             } catch (SQLException e) {
                 LOG.error("Error while banning member: ", e);
-                event.replyError("Internal error has occured! ```\n" + e.getLocalizedMessage() + "\n```");
+                event.reply(errorResponseEmbed(e));
             }
             try {
-                if (db.getBanStatus(member.getId(), event.getGuild().getId())) {
+                if (db.getBanStatus(member.getId(), guild.getId())) {
                     event.reply("User has been blocked from bot commands!");
                 }
             } catch (SQLException e) {
                 LOG.error("Error while contacting database: ", e);
-                event.replyError("Internal error has occured! ```\n" + e.getLocalizedMessage() + "\n```");
+                event.reply(errorResponseEmbed(e));
             }
         }
     }

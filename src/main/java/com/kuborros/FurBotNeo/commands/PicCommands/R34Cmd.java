@@ -71,15 +71,14 @@ public class R34Cmd extends PicCommand {
             result = !event.getArgs().isEmpty() ? api.getImageSetTags(event.getArgs()) : api.getImageSetRandom();
             builder.setUrls(result.toArray(new String[0]));
         } catch (NoImgException e) {
-                    event.reply("No results found!");
-                    return;
-                } catch (ParserConfigurationException | IOException | SAXException e) {
-                    event.replyError("Something went wrong! ```\\n\" " + e.getLocalizedMessage() + "\"\\n```\"");
-                    return;
+            event.replyWarning("No results found!");
+            return;
+        } catch (ParserConfigurationException | IOException | SAXException e) {
+            event.reply(errorResponseEmbed(e));
+            return;
         }
-
         builder.build().display(event.getTextChannel());
-        }
+    }
 }
 
 

@@ -70,10 +70,10 @@ public class DanCmd extends PicCommand {
                 result = event.getArgs().isEmpty() ? api.getImageSetRandom() : api.getImageSetTags(event.getArgs());
                 builder.setUrls(result.toArray(new String[0]));
             } catch (NoImgException e) {
-                event.reply("No results found!");
+                event.replyWarning("No results found!");
                 return;
             } catch (IOException e) {
-                event.replyError("Something went wrong! ```" + e.getLocalizedMessage() + "```");
+                event.reply(errorResponseEmbed(e));
             }
         builder.build().display(event.getTextChannel());
     }

@@ -22,7 +22,7 @@ public class MusicShuffleCmd extends MusicCommand{
     @Override
     public void doCommand(CommandEvent event){
         if (isIdle(guild)) {
-            event.reply("There is no queue for me to shuffle!");
+            event.replyWarning("There is no queue for me to shuffle!");
             return;
         }
         

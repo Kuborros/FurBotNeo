@@ -35,7 +35,7 @@ public class GuildConfigCommand extends AdminCommand {
         String[] args = event.getArgs().split(" ");
         if (event.getArgs().isEmpty() || args.length < 2) {
             EmbedBuilder embedBuilder = new EmbedBuilder();
-            FurConfig config = (FurConfig) event.getClient().getSettingsManager().getSettings(event.getGuild());
+            FurConfig config = (FurConfig) event.getClient().getSettingsManager().getSettings(guild);
             assert config != null; //If we get null here something **did** in fact, *go wrong* and such, we should make a fuss about it.
 
             String prefixes = config.getPrefixes() != null ? config.getPrefixes().toString() : "!";
@@ -47,11 +47,11 @@ public class GuildConfigCommand extends AdminCommand {
                     .addField("NSFW Mode: ", config.isNSFW() ? "ON" : "OFF", false)
                     .addField("Furry Mode: ", config.isFurry() ? "OwO" : "OFF", false)
                     .addField("New member welcome messages: ", config.isWelcomeMsg() ? "ON" : "OFF", false)
-                    .addField("Selected music channel: ", Objects.requireNonNull(event.getGuild().getGuildChannelById(config.getAudioChannel())).getName(), false)
+                    .addField("Selected music channel: ", Objects.requireNonNull(guild.getGuildChannelById(config.getAudioChannel())).getName(), false)
                     .setFooter("To set the options, add key and value to this command!");
 
-            if (event.getGuild().getIconUrl() != null) {
-                embedBuilder.setThumbnail(event.getGuild().getIconUrl());
+            if (guild.getIconUrl() != null) {
+                embedBuilder.setThumbnail(guild.getIconUrl());
             }
             event.reply(embedBuilder.build());
             return;
@@ -62,25 +62,25 @@ public class GuildConfigCommand extends AdminCommand {
         switch (args[0]) {
             case "name":
             case "bot_name":
-                success = db.updateGuildBotName(valueName, event.getGuild());
+                success = db.updateGuildBotName(valueName, guild);
                 break;
             case "prefix":
-                success = db.updateGuildPrefix(value, event.getGuild());
+                success = db.updateGuildPrefix(value, guild);
                 break;
             case "nsfw":
-                success = db.updateGuildIsNSFW(value.equals("true"), event.getGuild());
+                success = db.updateGuildIsNSFW(value.equals("true"), guild);
                 break;
             case "furry":
-                success = db.updateGuildIsFurry(value.equals("true"), event.getGuild());
+                success = db.updateGuildIsFurry(value.equals("true"), guild);
                 break;
             case "welcome":
-                success = db.updateGuildWelcomeMsg(value.equals("true"), event.getGuild());
+                success = db.updateGuildWelcomeMsg(value.equals("true"), guild);
                 break;
             case "music":
-                success = db.updateGuildAudio(value, event.getGuild());
+                success = db.updateGuildAudio(value, guild);
                 break;
             default:
-                event.replyError("Provided setting name is not valid!");
+                event.replyWarning("Provided setting name is not valid!");
                 return;
         }
         if (success) {

@@ -39,7 +39,7 @@ public class CommandStatCmd extends GeneralCommand {
     protected void doCommand(CommandEvent event) {
         StringBuilder builder = new StringBuilder();
 
-        FurConfig config = (FurConfig) event.getClient().getSettingsManager().getSettings(event.getGuild());
+        FurConfig config = (FurConfig) event.getClient().getSettingsManager().getSettings(guild);
         assert config != null;
         if (!config.isNSFW()) {
             LOG.info("NSFW command ran on SFW server, ignoring");

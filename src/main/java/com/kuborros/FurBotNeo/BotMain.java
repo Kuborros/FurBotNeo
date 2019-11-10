@@ -13,6 +13,7 @@ import com.kuborros.FurBotNeo.listeners.MemberEventListener;
 import com.kuborros.FurBotNeo.utils.config.Config;
 import com.kuborros.FurBotNeo.utils.config.Database;
 import com.kuborros.FurBotNeo.utils.config.FurrySettingsManager;
+import com.kuborros.FurBotNeo.utils.msg.RandomResponse;
 import net.dv8tion.jda.api.AccountType;
 import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.OnlineStatus;
@@ -28,6 +29,7 @@ public class BotMain {
     private static final Logger LOG = LoggerFactory.getLogger("Main");
     public static Config cfg;
     public static Database db;
+    public static RandomResponse randomResponse;
     public static final FurrySettingsManager settingsManager = new FurrySettingsManager();
 
     public static void main(String[] args) {
@@ -42,6 +44,7 @@ public class BotMain {
 
         cfg = new Config();
 
+        randomResponse = new RandomResponse(settingsManager);
 
         CommandClientBuilder client = new CommandClientBuilder();
         client.setOwnerId(cfg.getOWNER_ID());

@@ -69,11 +69,11 @@ public class PokeCmd extends PicCommand {
             result = !event.getArgs().isEmpty() ? api.getImageSetTags(event.getArgs()) : api.getImageSetRandom();
             builder.setUrls(result.toArray(new String[0]));
         } catch (NoImgException e) {
-                    event.reply("No results found!");
-                    return;
-                } catch (IOException | ParserConfigurationException | SAXException ex) {
-                    event.replyError("Something went wrong! ```\\n\" " + ex.getLocalizedMessage() + "\"\\n```\"");
-                }
+            event.replyWarning("No results found!");
+            return;
+        } catch (IOException | ParserConfigurationException | SAXException e) {
+            event.reply(errorResponseEmbed(e));
+        }
         builder.build().display(event.getTextChannel());
         }
 }

@@ -51,7 +51,7 @@ public class InfoCommand extends AdminCommand {
     @Override
     protected void doCommand(CommandEvent event) {
 
-        FurConfig config = (FurConfig) event.getClient().getSettingsManager().getSettings(event.getGuild());
+        FurConfig config = (FurConfig) event.getClient().getSettingsManager().getSettings(guild);
         
         if (event.getMessage().getMentionedUsers().isEmpty())
                 {
@@ -66,7 +66,7 @@ public class InfoCommand extends AdminCommand {
                         String online = "OFFLINE";
                         String ownerguy = "";
                         String bot = "";
-                        Member member = event.getGuild().getMember(user);
+                        Member member = guild.getMember(user);
                         assert member != null;
                         boolean me = member.getUser() == event.getJDA().getSelfUser();
                         String name;

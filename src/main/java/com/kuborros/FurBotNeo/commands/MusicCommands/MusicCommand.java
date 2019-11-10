@@ -2,6 +2,7 @@
 package com.kuborros.FurBotNeo.commands.MusicCommands;
 
 import com.jagrosh.jdautilities.command.Command;
+import com.jagrosh.jdautilities.command.CommandClient;
 import com.jagrosh.jdautilities.command.CommandEvent;
 import com.kuborros.FurBotNeo.utils.audio.AudioInfo;
 import com.kuborros.FurBotNeo.utils.audio.AudioPlayerSendHandler;
@@ -25,10 +26,7 @@ import com.sedmelluq.discord.lavaplayer.track.AudioPlaylist;
 import com.sedmelluq.discord.lavaplayer.track.AudioTrack;
 import com.sedmelluq.discord.lavaplayer.track.AudioTrackInfo;
 import net.dv8tion.jda.api.EmbedBuilder;
-import net.dv8tion.jda.api.entities.Guild;
-import net.dv8tion.jda.api.entities.Member;
-import net.dv8tion.jda.api.entities.Message;
-import net.dv8tion.jda.api.entities.TextChannel;
+import net.dv8tion.jda.api.entities.*;
 import org.apache.http.client.config.CookieSpecs;
 import org.apache.http.client.config.RequestConfig;
 import org.slf4j.Logger;
@@ -40,6 +38,7 @@ import java.util.List;
 import java.util.*;
 
 import static com.kuborros.FurBotNeo.BotMain.db;
+import static com.kuborros.FurBotNeo.BotMain.randomResponse;
 
 
 abstract class MusicCommand extends Command {
@@ -48,9 +47,8 @@ abstract class MusicCommand extends Command {
 
     static final String NOTE = ":musical_note:  ";
 
-    private static final String ERROR = "\u274C  ";
-
-    static Guild guild;
+    protected static Guild guild;
+    private static CommandClient client;
     private static FurConfig config;
     String input;
     private static AudioEventListener audioEventListener;
@@ -135,7 +133,7 @@ abstract class MusicCommand extends Command {
 
     void loadTrackNext(String identifier, Member author, Message msg) {
         if (Objects.requireNonNull(author.getVoiceState()).getChannel() == null) {
-            msg.getChannel().sendMessage(ERROR + "You are not in a Voice Channel!").queue();
+            msg.getChannel().sendMessage(client.getError() + "You are not in a Voice Channel!").queue();
             return;
         }
 
@@ -198,7 +196,7 @@ abstract class MusicCommand extends Command {
             public void noMatches() {
                 EmbedBuilder eb = new EmbedBuilder()
                         .setColor(Color.CYAN)
-                        .setDescription(ERROR + "**Search failed**")
+                        .setDescription(client.getError() + "**Search failed**")
                         .addField("", "No playable tracks have been found!", true);
                 Objects.requireNonNull(botchat).sendMessage(eb.build()).queue();
             }
@@ -211,7 +209,7 @@ abstract class MusicCommand extends Command {
                 if (exception.severity != FriendlyException.Severity.FAULT) {
                     EmbedBuilder eb = new EmbedBuilder()
                             .setColor(Color.CYAN)
-                            .setDescription(ERROR + "**Error while fetching music:**")
+                            .setDescription(client.getError() + "**Error while fetching music:**")
                             .addField("", exception.getMessage(), true);
                     Objects.requireNonNull(botchat).sendMessage(eb.build()).queue();
                 }
@@ -221,7 +219,7 @@ abstract class MusicCommand extends Command {
 
     void loadTrack(String identifier, Member author, Message msg) {
         if (Objects.requireNonNull(author.getVoiceState()).getChannel() == null) {
-            msg.getChannel().sendMessage(ERROR + "You are not in a Voice Channel!").queue();
+            msg.getChannel().sendMessage(client.getError() + "You are not in a Voice Channel!").queue();
             return;
         }
 
@@ -269,7 +267,7 @@ abstract class MusicCommand extends Command {
             public void noMatches() {
                 EmbedBuilder eb = new EmbedBuilder()
                         .setColor(Color.CYAN)
-                        .setDescription(ERROR + "**Search failed**")
+                        .setDescription(client.getError() + "**Search failed**")
                         .addField("", "No playable tracks have been found!", true);
                 Objects.requireNonNull(botchat).sendMessage(eb.build()).queue();
             }
@@ -282,7 +280,7 @@ abstract class MusicCommand extends Command {
                 if (exception.severity != FriendlyException.Severity.FAULT) {
                     EmbedBuilder eb = new EmbedBuilder()
                             .setColor(Color.CYAN)
-                            .setDescription(ERROR + "**Error while fetching music:**")
+                            .setDescription(client.getError() + "**Error while fetching music:**")
                             .addField("", exception.getMessage(), true);
                     Objects.requireNonNull(botchat).sendMessage(eb.build()).queue();
                 }
@@ -316,12 +314,22 @@ abstract class MusicCommand extends Command {
         return (hours == 0 ? "" : hours + ":") + String.format("%02d", mins) + ":" + String.format("%02d", seconds);
     }
 
+    private MessageEmbed bannedResponseEmbed() {
+        String random = randomResponse.getRandomDeniedMessage(guild);
+        EmbedBuilder builder = new EmbedBuilder();
+        builder.setTitle("You are blocked from bot commands!")
+                .setDescription(random)
+                .setColor(Color.ORANGE);
+        return builder.build();
+    }
+
     @Override
-        protected void execute(CommandEvent event) {
+    protected void execute(CommandEvent event) {
         guild = event.getGuild();
+        client = event.getClient();
         try {
             if (db.getBanStatus(event.getMember().getId(), guild.getId())) {
-                event.reply(ERROR + "You are blocked from bot commands!");
+                event.reply(bannedResponseEmbed());
                 return;
             }
         } catch (SQLException e) {

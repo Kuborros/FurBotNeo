@@ -149,7 +149,7 @@ public class Database {
     public boolean updateGuildBotName(String name, Guild guild) {
         try {
             stat = conn.createStatement();
-            stat.executeUpdate("UPDATE Guilds SET bot_name = \'" + name + "\' WHERE guild_id = " + guild.getId());
+            stat.executeUpdate("UPDATE Guilds SET bot_name = '" + name + "' WHERE guild_id = " + guild.getId());
             needsUpdate.put(guild.getId(), true);
             guild.getSelfMember().modifyNickname(name).complete();
             return true;
@@ -162,7 +162,7 @@ public class Database {
     public boolean updateGuildPrefix(String prefix, Guild guild) {
         try {
             stat = conn.createStatement();
-            stat.executeUpdate("UPDATE Guilds SET bot_prefix = \'" + prefix + "\' WHERE guild_id = " + guild.getId());
+            stat.executeUpdate("UPDATE Guilds SET bot_prefix = '" + prefix + "' WHERE guild_id = " + guild.getId());
             needsUpdate.put(guild.getId(), true);
             return true;
         } catch (SQLException e) {
@@ -174,7 +174,7 @@ public class Database {
     public boolean updateGuildAudio(String audio, Guild guild) {
         try {
             stat = conn.createStatement();
-            stat.executeUpdate("UPDATE Guilds SET music_id = \'" + audio + "\' WHERE guild_id = " + guild.getId());
+            stat.executeUpdate("UPDATE Guilds SET music_id = '" + audio + "' WHERE guild_id = " + guild.getId());
             needsUpdate.put(guild.getId(), true);
             return true;
         } catch (SQLException e) {
@@ -187,7 +187,7 @@ public class Database {
         try {
             String nsfw = gai ? "1" : "0";
             stat = conn.createStatement();
-            stat.executeUpdate("UPDATE Guilds SET isNSFW = \'" + nsfw + "\' WHERE guild_id = " + guild.getId());
+            stat.executeUpdate("UPDATE Guilds SET isNSFW = '" + nsfw + "' WHERE guild_id = " + guild.getId());
             needsUpdate.put(guild.getId(), true);
             return true;
         } catch (SQLException e) {
@@ -200,7 +200,7 @@ public class Database {
         try {
             String welcome = hai ? "1" : "0";
             stat = conn.createStatement();
-            stat.executeUpdate("UPDATE Guilds SET welcomeMsg = \'" + welcome + "\' WHERE guild_id = " + guild.getId());
+            stat.executeUpdate("UPDATE Guilds SET welcomeMsg = '" + welcome + "' WHERE guild_id = " + guild.getId());
             needsUpdate.put(guild.getId(), true);
             return true;
         } catch (SQLException e) {
@@ -213,7 +213,7 @@ public class Database {
         try {
             String furry = furfags ? "1" : "0";
             stat = conn.createStatement();
-            stat.executeUpdate("UPDATE Guilds SET isNSFW = \'" + furry + "\' WHERE guild_id = " + guild.getId());
+            stat.executeUpdate("UPDATE Guilds SET isNSFW = '" + furry + "' WHERE guild_id = " + guild.getId());
             needsUpdate.put(guild.getId(), true);
             return true;
         } catch (SQLException e) {

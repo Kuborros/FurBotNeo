@@ -38,16 +38,6 @@ public class VoteCommand extends GeneralCommand {
 
     private static String secondsToTime(long timeseconds) {
         StringBuilder builder = new StringBuilder();
-        int years = (int) (timeseconds / (60 * 60 * 24 * 365));
-        if (years > 0) {
-            builder.append("**").append(years).append("** years, ");
-            timeseconds %= (60 * 60 * 24 * 365);
-        }
-        int weeks = (int) (timeseconds / (60 * 60 * 24 * 365));
-        if (weeks > 0) {
-            builder.append("**").append(weeks).append("** weeks, ");
-            timeseconds %= (60 * 60 * 24 * 7);
-        }
         int days = (int) (timeseconds / (60 * 60 * 24));
         if (days > 0) {
             builder.append("**").append(days).append("** days, ");
@@ -66,10 +56,7 @@ public class VoteCommand extends GeneralCommand {
         if (timeseconds > 0)
             builder.append("**").append(timeseconds).append("** seconds");
         String str = builder.toString();
-        if (str.endsWith(", "))
-            str = str.substring(0, str.length() - 2);
-        if (str.isEmpty())
-            str = "**No time**";
+        if (str.endsWith(", ")) str = str.substring(0, str.length() - 2);
         return str;
     }
 

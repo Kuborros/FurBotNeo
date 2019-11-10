@@ -52,7 +52,7 @@ public class EvalCommand extends AdminCommand {
     protected void doCommand(CommandEvent event) {
         engine.put("event", event);
         engine.put("jda", event.getJDA());
-        engine.put("guild", event.getGuild());
+        engine.put("guild", guild);
         engine.put("channel", event.getChannel());
         try {
             event.reply(event.getClient().getSuccess() + " Evaluated Successfully:\n```\n" + engine.eval(event.getArgs()) + " ```");

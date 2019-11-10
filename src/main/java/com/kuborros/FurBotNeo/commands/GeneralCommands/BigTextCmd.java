@@ -29,7 +29,7 @@ public class BigTextCmd extends GeneralCommand {
     @Override
     protected void doCommand(CommandEvent event) {
         if (event.getArgs().isEmpty()) {
-            event.replyError("Put something in to biggyfy!");
+            event.replyWarning("Put something in to biggyfy!");
             return;
         }
         String[] text = event.getArgs().toLowerCase().split("");

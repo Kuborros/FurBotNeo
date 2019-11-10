@@ -28,7 +28,7 @@ public class PlayCommand extends MusicCommand{
         this.input = (input != null && input.startsWith("http")) ? input : "ytsearch: " + input;
 
         if (event.getArgs().isEmpty()) {
-            event.replyError("Please include a valid source.");
+            event.replyWarning("Please include a valid source.");
         } else {
             loadTrack(input, event.getMember(), event.getMessage());
             if (getPlayer(guild).isPaused())
