@@ -1,6 +1,7 @@
 package com.kuborros.FurBotNeo.commands.GeneralCommands;
 
 import com.jagrosh.jdautilities.command.Command;
+import com.jagrosh.jdautilities.command.CommandClient;
 import com.jagrosh.jdautilities.command.CommandEvent;
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.entities.Guild;
@@ -19,6 +20,7 @@ abstract class GeneralCommand extends Command {
     static final Logger LOG = LoggerFactory.getLogger("MainCommands");
 
     protected Guild guild;
+    private CommandClient client;
 
     private MessageEmbed bannedResponseEmbed() {
         String random = randomResponse.getRandomDeniedMessage(guild);
@@ -29,9 +31,24 @@ abstract class GeneralCommand extends Command {
         return builder.build();
     }
 
+    protected MessageEmbed errorResponseEmbed(String message, Exception exception) {
+        return errorResponseEmbed(message, exception.getLocalizedMessage());
+    }
+
+    protected MessageEmbed errorResponseEmbed(String message, String ex) {
+        String random = randomResponse.getRandomErrorMessage(guild);
+        EmbedBuilder builder = new EmbedBuilder();
+        builder.setTitle(client.getError() + message)
+                .setDescription(random)
+                .addField("Error details: ", "`` " + ex + " ``", false)
+                .setColor(Color.RED);
+        return builder.build();
+    }
+
     @Override
     protected void execute(CommandEvent event) {
         guild = event.getGuild();
+        client = event.getClient();
         try {
             if (db.getBanStatus(event.getMember().getId(), guild.getId())) {
                 event.reply(bannedResponseEmbed());

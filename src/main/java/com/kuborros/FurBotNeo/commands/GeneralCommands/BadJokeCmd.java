@@ -50,6 +50,7 @@ public class BadJokeCmd extends GeneralCommand {
                 JSONObject object = new JSONObject(str.toString());
                 if (!"success".equals(object.getString("type"))) {
                     LOG.error("Error while retrieving joke.");
+                    event.reply(errorResponseEmbed("Unable to obtain joke! ", "Api reports external failure."));
                 }
 
                 String joke = object.getJSONObject("value").getString("joke");
@@ -66,6 +67,7 @@ public class BadJokeCmd extends GeneralCommand {
                 event.reply(joke);
             } catch (IOException | JSONException e) {
                 LOG.error("Exception occurred while obtaining jokes: ", e);
+                event.reply(errorResponseEmbed("Exception occurred while obtaining jokes:", e));
             }    
     }  
 }

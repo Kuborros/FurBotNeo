@@ -57,7 +57,7 @@ public class CommandStatCmd extends GeneralCommand {
                     ).build()).queue();
         } catch (SQLException e) {
             LOG.error("Error occured while retreiving command stats: ", e);
-            event.replyError("Unable to load commands stats! Thats **not** good.");
+            event.reply(errorResponseEmbed("Unable to load commands stats! Thats **not** good.", e));
         }
 
     }
