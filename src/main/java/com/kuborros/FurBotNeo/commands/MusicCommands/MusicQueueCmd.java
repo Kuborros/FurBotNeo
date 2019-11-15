@@ -68,7 +68,7 @@ public class MusicQueueCmd extends MusicCommand{
 
             StringBuilder sb = new StringBuilder();
             Set<AudioInfo> queue = getTrackManager(guild).getQueuedTracks();
-            ArrayList<String> tracks = new ArrayList<>();
+            ArrayList<String> tracks = new ArrayList<>(queue.size());
 
             queue.forEach(audioInfo -> tracks.add(buildQueueMessage(audioInfo)));
 

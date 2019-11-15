@@ -20,7 +20,7 @@ public class DanApi {
 
     private final String url;
     private final Logger LOG = LoggerFactory.getLogger("ImageBoardApi");
-    private final List<String> results = new ArrayList<>();
+    private final List<String> results = new ArrayList<>(100);
 
     public DanApi(String url) {
         this.url = url;

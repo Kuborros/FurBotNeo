@@ -20,7 +20,7 @@ public class E621Api {
 
     private final String url;
     private final Logger LOG = LoggerFactory.getLogger("ImageBoardApi");
-    private final List<String> result = new ArrayList<>();
+    private final List<String> result = new ArrayList<>(100);
 
 public E621Api(String url){
     this.url = url;
