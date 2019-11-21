@@ -70,7 +70,7 @@ public class BotMain {
                 new CommandStatCmd(),
                 new BigTextCmd(),
                 
-                // Imageboards
+                //Imageboards
                 new E621Cmd(waiter),
                 new PokeCmd(waiter),
                 new DanCmd(waiter),
@@ -118,7 +118,7 @@ public class BotMain {
 
         }
         catch (IllegalArgumentException e) {
-            LOG.error("Error occured while starting: ", e);
+            LOG.error("Error occurred while starting: ", e);
             LOG.error("Please check if your discord bot token is in the configuration file, as this is most common cause of this error.");
             System.exit(101);
         }

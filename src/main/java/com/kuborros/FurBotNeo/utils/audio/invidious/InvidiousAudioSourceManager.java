@@ -31,15 +31,15 @@ import static com.sedmelluq.discord.lavaplayer.tools.io.HttpClientTools.getHeade
 
 public class InvidiousAudioSourceManager extends ProbingAudioSourceManager implements AudioSourceManager, HttpConfigurable {
 
-    private static InvidiousAudioGetReference audioGetReference = new InvidiousAudioGetReference("https://www.invidio.us/api/v1/");
-    private static InvidiousAudioSearch audioSearch = new InvidiousAudioSearch("https://www.invidio.us/api/v1/");
+    private static final InvidiousAudioGetReference audioGetReference = new InvidiousAudioGetReference("https://www.invidio.us/api/v1/");
+    private static final InvidiousAudioSearch audioSearch = new InvidiousAudioSearch("https://www.invidio.us/api/v1/");
     private final HttpInterfaceManager httpInterfaceManager;
 
     public InvidiousAudioSourceManager() {
         this(MediaContainerRegistry.DEFAULT_REGISTRY);
     }
 
-    public InvidiousAudioSourceManager(MediaContainerRegistry containerRegistry) {
+    private InvidiousAudioSourceManager(MediaContainerRegistry containerRegistry) {
         super(containerRegistry);
         httpInterfaceManager = new ThreadLocalHttpInterfaceManager(
                 HttpClientTools
@@ -167,7 +167,7 @@ public class InvidiousAudioSourceManager extends ProbingAudioSourceManager imple
 
     }
 
-    public HttpInterface getHttpInterface() {
+    HttpInterface getHttpInterface() {
         return httpInterfaceManager.getInterface();
     }
 

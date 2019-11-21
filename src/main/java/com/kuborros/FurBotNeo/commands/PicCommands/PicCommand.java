@@ -22,7 +22,7 @@ abstract class PicCommand extends Command {
     private static final Logger LOG = LoggerFactory.getLogger("PicCommands");
 
     private static CommandClient client;
-    protected Guild guild;
+    private Guild guild;
 
     private MessageEmbed bannedResponseEmbed() {
         String random = randomResponse.getRandomDeniedMessage(guild);
@@ -33,11 +33,11 @@ abstract class PicCommand extends Command {
         return builder.build();
     }
 
-    protected MessageEmbed errorResponseEmbed(Exception exception) {
+    MessageEmbed errorResponseEmbed(Exception exception) {
         return errorResponseEmbed(exception.getLocalizedMessage());
     }
 
-    protected MessageEmbed errorResponseEmbed(String ex) {
+    private MessageEmbed errorResponseEmbed(String ex) {
         String random = randomResponse.getRandomErrorMessage(guild);
         EmbedBuilder builder = new EmbedBuilder();
         builder.setTitle(client.getError() + "Something went wrong!")

@@ -15,20 +15,20 @@ import org.slf4j.LoggerFactory;
 import java.net.URI;
 
 
-public class InvidiousAudioTrack extends DelegatedAudioTrack {
+class InvidiousAudioTrack extends DelegatedAudioTrack {
     private static final Logger log = LoggerFactory.getLogger(InvidiousAudioTrack.class);
 
     private final MediaContainerDescriptor containerTrackFactory;
     private final InvidiousAudioSourceManager sourceManager;
 
-    public InvidiousAudioTrack(AudioTrackInfo trackInfo, MediaContainerDescriptor containerTrackFactory, InvidiousAudioSourceManager sourceManager) {
+    InvidiousAudioTrack(AudioTrackInfo trackInfo, MediaContainerDescriptor containerTrackFactory, InvidiousAudioSourceManager sourceManager) {
         super(trackInfo);
 
         this.containerTrackFactory = containerTrackFactory;
         this.sourceManager = sourceManager;
     }
 
-    public MediaContainerDescriptor getContainerTrackFactory() {
+    MediaContainerDescriptor getContainerTrackFactory() {
         return containerTrackFactory;
     }
 

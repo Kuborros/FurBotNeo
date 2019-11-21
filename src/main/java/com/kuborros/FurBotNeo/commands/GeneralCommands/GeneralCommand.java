@@ -19,7 +19,7 @@ abstract class GeneralCommand extends Command {
 
     static final Logger LOG = LoggerFactory.getLogger("MainCommands");
 
-    protected Guild guild;
+    Guild guild;
     private CommandClient client;
 
     private MessageEmbed bannedResponseEmbed() {
@@ -31,11 +31,11 @@ abstract class GeneralCommand extends Command {
         return builder.build();
     }
 
-    protected MessageEmbed errorResponseEmbed(String message, Exception exception) {
+    MessageEmbed errorResponseEmbed(String message, Exception exception) {
         return errorResponseEmbed(message, exception.getLocalizedMessage());
     }
 
-    protected MessageEmbed errorResponseEmbed(String message, String ex) {
+    MessageEmbed errorResponseEmbed(String message, String ex) {
         String random = randomResponse.getRandomErrorMessage(guild);
         EmbedBuilder builder = new EmbedBuilder();
         builder.setTitle(client.getError() + message)

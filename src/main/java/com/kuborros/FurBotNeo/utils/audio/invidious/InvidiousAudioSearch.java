@@ -10,15 +10,15 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.util.Scanner;
 
-public class InvidiousAudioSearch {
+class InvidiousAudioSearch {
     private final Logger LOG = LoggerFactory.getLogger("Invidious URL Json");
-    private String apiUrl; //Example URL: https://www.invidio.us/api/v1/search/?q=gaben&fields=videoId,title&pretty=1
+    private final String apiUrl; //Example URL: https://www.invidio.us/api/v1/search/?q=gaben&fields=videoId,title&pretty=1
 
     InvidiousAudioSearch(String apiURL) {
         this.apiUrl = apiURL + "search/"; // https://www.invidio.us/api/v1/search/
     }
 
-    public String getIdBySearch(AudioReference reference) {
+    String getIdBySearch(AudioReference reference) {
         String ref;
         try {
             ref = getStreamId(new URL(

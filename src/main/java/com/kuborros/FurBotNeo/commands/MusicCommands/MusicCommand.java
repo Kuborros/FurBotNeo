@@ -45,7 +45,7 @@ abstract class MusicCommand extends Command {
 
     static final String NOTE = ":musical_note:  ";
 
-    protected static Guild guild;
+    static Guild guild;
     private static CommandClient client;
     private static FurConfig config;
     String input;

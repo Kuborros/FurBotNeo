@@ -16,16 +16,16 @@ import java.util.Scanner;
 
 //Example URL: https://www.invidio.us/api/v1/videos/yjbEeVC1yxY?fields=videoId,title,description,author,formatStreams&pretty=1
 
-public class InvidiousAudioGetReference {
+class InvidiousAudioGetReference {
 
     private final Logger LOG = LoggerFactory.getLogger("Invidious URL Json");
-    private String apiUrl;
+    private final String apiUrl;
 
     InvidiousAudioGetReference(String apiURL) {
         this.apiUrl = apiURL + "videos/"; // https://www.invidio.us/api/v1/videos/
     }
 
-    public AudioReference getUrlById(String id) {
+    AudioReference getUrlById(String id) {
         String stream, title;
         try {
             List<String> ref = getStreamURL(new URL(
@@ -41,7 +41,7 @@ public class InvidiousAudioGetReference {
         return new AudioReference(stream, title);
     }
 
-    public AudioReference getUrlById(AudioReference reference) {
+    AudioReference getUrlById(AudioReference reference) {
         String stream, title;
 
         String id = StringUtils.substringBefore(StringUtils.substringAfter(reference.identifier, "?v="), "&");
