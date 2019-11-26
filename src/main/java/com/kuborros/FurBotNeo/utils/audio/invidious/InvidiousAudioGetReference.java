@@ -87,7 +87,7 @@ class InvidiousAudioGetReference {
             result.add(title + "@" + author);
             return result;
         } catch (Exception e) {
-            LOG.error("Error has occured: ", e);
+            LOG.error("Error has occurred: ", e);
             return null;
         }
     }

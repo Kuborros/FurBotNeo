@@ -45,7 +45,6 @@ public class Config {
 
                     prop.setProperty("BotToken", "");
                     prop.setProperty("OwnerId", "0");
-
                     prop.store(output, null);
 
                     LOG.info("You need to populate this file with your bot token and you userID!");
@@ -60,7 +59,6 @@ public class Config {
                             LOG.error("Failed to close file: ", e);
                         }
                     }
-
                 }
             }
         } catch (IOException e) {
@@ -76,9 +74,7 @@ public class Config {
         try {
 
             input = new FileInputStream(CONFIG);
-
             prop.load(input);
-
             return prop;
 
         } catch (IOException e) {
@@ -93,7 +89,5 @@ public class Config {
                 }
             }
         }
-
     }
-
 }
