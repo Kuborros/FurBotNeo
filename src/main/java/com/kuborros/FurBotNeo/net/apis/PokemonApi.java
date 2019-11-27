@@ -2,6 +2,9 @@
 package com.kuborros.FurBotNeo.net.apis;
 
 
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.w3c.dom.Document;
@@ -15,10 +18,9 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
-import java.net.URL;
-import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 
 public class PokemonApi {
@@ -26,28 +28,36 @@ public class PokemonApi {
     private final List<String> urls = new ArrayList<>(100);
     private final String url;
     private final Logger LOG = LoggerFactory.getLogger("ImageBoardApi");
+    private final OkHttpClient client = new OkHttpClient();
 
 public PokemonApi(String url){
     this.url = url;
 }
 
     public List<String> getImageSetRandom() throws IllegalArgumentException, ParserConfigurationException, SAXException, IOException, NoImgException {
-        URL u = new URL(url);
-        return getPokeSet(u);
+        Request randomRq = new Request.Builder()
+                .url(url)
+                .header("User-Agent", "FurryBotNeo/1.0")
+                .addHeader("Accept", "application/json")
+                .build();
+        return getPokeSet(randomRq);
     }
 
     public List<String> getImageSetTags(String tags) throws IllegalArgumentException, ParserConfigurationException, SAXException, IOException, NoImgException {
-        URL u = new URL(url + "&search=" + tags.replaceAll(" ", "+") + "+order:random");
-        return getPokeSet(u);
+        Request tagRq = new Request.Builder()
+                .url(url + "&search=" + tags.replaceAll(" ", "+") + "+order:random")
+                .header("User-Agent", "FurryBotNeo/1.0")
+                .addHeader("Accept", "application/json")
+                .build();
+        return getPokeSet(tagRq);
     }
 
-    private List<String> getPokeSet(URL u) throws IllegalArgumentException, NoImgException, ParserConfigurationException, SAXException, IOException {
-        try {
+    private List<String> getPokeSet(Request rq) throws IllegalArgumentException, NoImgException, ParserConfigurationException, SAXException, IOException {
+        try (Response response = client.newCall(rq).execute()) {
 
-            URLConnection UC = u.openConnection();
-            UC.setRequestProperty ( "User-agent", "DiscordBot/1.0");
 
-            InputSource source = new InputSource(UC.getInputStream());
+            if (!response.isSuccessful()) throw new IOException("Received error response code: " + response);
+            InputSource source = new InputSource(Objects.requireNonNull(response.body()).byteStream());
 
             DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();

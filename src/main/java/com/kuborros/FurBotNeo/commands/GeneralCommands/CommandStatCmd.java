@@ -56,8 +56,8 @@ public class CommandStatCmd extends GeneralCommand {
                             new EmbedBuilder().setTitle(String.format("How many times %s nutted to:", user.getName()), null).setDescription(builder.toString()).setColor(Color.yellow).build()
                     ).build()).queue();
         } catch (SQLException e) {
-            LOG.error("Error occured while retreiving command stats: ", e);
-            event.reply(errorResponseEmbed("Unable to load commands stats! Thats **not** good.", e));
+            LOG.error("Error occurred while retrieving command stats: ", e);
+            event.reply(errorResponseEmbed("Unable to load commands stats! That's **not** good.", e));
         }
 
     }

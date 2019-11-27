@@ -24,7 +24,7 @@ public class FurrySettingsManager implements GuildSettingsManager<FurConfig> {
         try {
             return db.getGuildConfig(guild);
         } catch (SQLException e) {
-            LOG.error("Exception occured while updating guild configuration, falling back to default: ", e);
+            LOG.error("Exception occurred while updating guild configuration, falling back to default: ", e);
             return defaultConfig;
         }
     }

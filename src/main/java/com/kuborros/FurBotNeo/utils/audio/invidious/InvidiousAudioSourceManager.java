@@ -75,7 +75,7 @@ public class InvidiousAudioSourceManager extends ProbingAudioSourceManager imple
     }
 
     private AudioReference getAsHttpReference(AudioReference reference) {
-        if (reference.identifier.contains("https://youtube") || reference.identifier.startsWith("https://www.youtube")) {
+        if (reference.identifier.contains("https://youtube") || reference.identifier.startsWith("https://www.youtube") || reference.identifier.startsWith("https://youtu.be")) {
             return getAsIdReference(reference);
         } else if (reference.identifier.startsWith("ytsearch: ")) {
             return getAsSearchReference(reference);

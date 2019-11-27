@@ -26,7 +26,7 @@ public class LogListener extends ListenerAdapter{
 
             String name;
             if (message.isWebhookMessage()) name = author.getName();
-            else name = member != null ? member.getEffectiveName() : "Name Unavaible";
+            else name = member != null ? member.getEffectiveName() : "Name Unavailable";
 
             LOG.info("[{}] " + "({}): {}", textChannel.getName(), name, msg);
         } else if (event.isFromType(ChannelType.PRIVATE)) {

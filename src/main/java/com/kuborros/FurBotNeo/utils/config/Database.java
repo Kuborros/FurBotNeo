@@ -39,7 +39,7 @@ public class Database {
             conn = DriverManager.getConnection(DB);
             stat = conn.createStatement();
         } catch (SQLException e) {
-            LOG.error("Database connection error occured! ", e);
+            LOG.error("Database connection error occurred! ", e);
         }
     }
 

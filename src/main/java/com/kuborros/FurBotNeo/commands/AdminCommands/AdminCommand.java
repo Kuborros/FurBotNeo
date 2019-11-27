@@ -38,7 +38,7 @@ abstract class AdminCommand extends Command {
     private MessageEmbed errorResponseEmbed(String ex) {
         String random = randomResponse.getRandomErrorMessage(guild);
         EmbedBuilder builder = new EmbedBuilder();
-        builder.setTitle(client.getError() + "Internal error has occured! ")
+        builder.setTitle(client.getError() + "Internal error has occurred! ")
                 .setDescription(random)
                 .addField("Error details: ", "`` " + ex + " ``", false)
                 .setColor(Color.RED);

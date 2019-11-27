@@ -1,6 +1,9 @@
 
 package com.kuborros.FurBotNeo.net.apis;
 
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -9,10 +12,9 @@ import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.URL;
-import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Scanner;
 
 
@@ -21,28 +23,36 @@ public class E621Api {
     private final String url;
     private final Logger LOG = LoggerFactory.getLogger("ImageBoardApi");
     private final List<String> result = new ArrayList<>(100);
+    private final OkHttpClient client = new OkHttpClient();
 
 public E621Api(String url){
     this.url = url;
 }
 
     public List<String> getImageSetRandom() throws IOException, NoImgException {
-        URL u = new URL(url + "order:random+-flash+-webm&limit=100");
-        return getFurryPicSet(u);
+        Request randomRq = new Request.Builder()
+                .url(url + "order:random+-flash+-webm&limit=100")
+                .header("User-Agent", "DiscordBot/1.0")
+                .addHeader("Accept", "application/json")
+                .build();
+        return getFurryPicSet(randomRq);
     }
 
     public List<String> getImageSetTags(String tags) throws IOException, NoImgException {
-        URL u = new URL(url + "&tags=" + tags.replaceAll(" ", "+") + "+order:random&limit=100");
-        return getFurryPicSet(u);
+        Request tagRq = new Request.Builder()
+                .url(url + "&tags=" + tags.replaceAll(" ", "+") + "+order:random&limit=100")
+                .header("User-Agent", "DiscordBot/1.0")
+                .addHeader("Accept", "application/json")
+                .build();
+        return getFurryPicSet(tagRq);
     }
 
-    private List<String> getFurryPicSet(URL u) throws IOException, NoImgException {
-     
-        try {
+    private List<String> getFurryPicSet(Request rq) throws IOException, NoImgException {
 
-            URLConnection UC = u.openConnection();
-            UC.setRequestProperty ( "User-agent", "DiscordBot/1.0");
-            InputStream r = UC.getInputStream();
+        try (Response response = client.newCall(rq).execute()) {
+
+            if (!response.isSuccessful()) throw new IOException("Received error response code: " + response);
+            InputStream r = Objects.requireNonNull(response.body()).byteStream();
 
             StringBuilder str;
             try (Scanner scan = new Scanner(r)) {
@@ -68,7 +78,7 @@ public E621Api(String url){
 
             return result;
         } catch (IOException ex) {
-            LOG.error("Error occured while retreiving images: ", ex);
+            LOG.error("Error occurred while retrieving images: ", ex);
             throw ex;
         }
     

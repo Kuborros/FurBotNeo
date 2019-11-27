@@ -56,7 +56,7 @@ public class RandomResponse {
                 "--AI core reboot in progress--",
                 "That's a bad sign.",
                 "No, i have no idea why.",
-                "Hopefully the error message is usefull...",
+                "Hopefully the error message is useful...",
                 "Segmentation fault at 0xOHNO621",
                 "Aaaaaaaaa",
                 "Connection interrupted. Disconnecting in 39.5s...",
