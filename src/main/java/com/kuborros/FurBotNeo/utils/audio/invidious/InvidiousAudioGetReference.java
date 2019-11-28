@@ -34,7 +34,7 @@ class InvidiousAudioGetReference {
         try {
             Request request = new Request.Builder()
                     .url(apiUrl + id + "?fields=videoId,title,description,author,formatStreams&pretty=1")
-                    .header("User-Agent", "DiscordBot/1.0")
+                    .header("User-Agent", "FurryBotNeo/1.0")
                     .addHeader("Accept", "application/json")
                     .build();
             List<String> ref = getStreamURL(request);
@@ -55,7 +55,7 @@ class InvidiousAudioGetReference {
         try {
             Request request = new Request.Builder()
                     .url(apiUrl + id + "?fields=videoId,title,description,author,formatStreams&pretty=1")
-                    .header("User-Agent", "DiscordBot/1.0")
+                    .header("User-Agent", "FurryBotNeo/1.0")
                     .addHeader("Accept", "application/json")
                     .build();
             List<String> ref = getStreamURL(request);

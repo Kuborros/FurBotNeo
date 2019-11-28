@@ -32,7 +32,7 @@ public E621Api(String url){
     public List<String> getImageSetRandom() throws IOException, NoImgException {
         Request randomRq = new Request.Builder()
                 .url(url + "order:random+-flash+-webm&limit=100")
-                .header("User-Agent", "DiscordBot/1.0")
+                .header("User-Agent", "FurryBotNeo/1.0")
                 .addHeader("Accept", "application/json")
                 .build();
         return getFurryPicSet(randomRq);
@@ -41,7 +41,7 @@ public E621Api(String url){
     public List<String> getImageSetTags(String tags) throws IOException, NoImgException {
         Request tagRq = new Request.Builder()
                 .url(url + "&tags=" + tags.replaceAll(" ", "+") + "+order:random&limit=100")
-                .header("User-Agent", "DiscordBot/1.0")
+                .header("User-Agent", "FurryBotNeo/1.0")
                 .addHeader("Accept", "application/json")
                 .build();
         return getFurryPicSet(tagRq);

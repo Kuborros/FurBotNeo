@@ -27,7 +27,7 @@ class InvidiousAudioSearch {
         try {
             Request request = new Request.Builder()
                     .url(apiUrl + "?q=" + reference.identifier.replaceFirst("ytsearch: ", "").replaceAll(" ", "%20") + "&fields=videoId,title&pretty=1")
-                    .header("User-Agent", "DiscordBot/1.0")
+                    .header("User-Agent", "FurryBotNeo/1.0")
                     .addHeader("Accept", "application/json")
                     .build();
             ref = getStreamId(request);
