@@ -11,6 +11,7 @@ public class Config {
 
     private final String BOT_TOKEN;
     private final String OWNER_ID;
+    private final boolean INVIDIOUS;
 
     private static final Logger LOG = LoggerFactory.getLogger(Config.class);
     private static final File CONFIG = new File("config.cfg");
@@ -23,12 +24,17 @@ public class Config {
         return OWNER_ID;
     }
 
-    public Config() {
+    public Config(boolean invidio) {
         ConFileCheck();
         Properties properties = getProperties();
 
         BOT_TOKEN = properties != null ? properties.getProperty("BotToken") : "0";
         OWNER_ID = properties != null ? properties.getProperty("OwnerId") : "0";
+        INVIDIOUS = invidio;
+    }
+
+    public boolean isINVIDIOUS() {
+        return INVIDIOUS;
     }
 
 
