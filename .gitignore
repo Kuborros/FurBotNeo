@@ -5,6 +5,7 @@ database.*
 .idea/deployment.xml
 .idea/discord.xml
 .idea/**/dictionaries
-src/main/resources/natives/
 target/
 config.cfg
+src/main/java/com/kuborros/FurBotNeo/commands/GameCommands/
+src/main/java/com/kuborros/FurBotNeo/utils/game/
