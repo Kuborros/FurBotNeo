@@ -45,8 +45,10 @@ mvn exec:java
 
 ### General:
 
-| **Command**   | **Arguments:**|             **Description:**|
-| :------------ |:-------------:| :--------------------------:|
-| placeholder   |               |                             |
-| placeholder   |               |                             |
-| placeholder   |               |                             |
+| **Command**   |  **Arguments:**   |             **Description:**              |
+| :------------ |:-----------------:| :----------------------------------------:|
+| joke          | name or mention   | Makes Chuck Noris joke with mentioned name.|
+| bigtext       | text              | Replaces normal letters with regional indicators to make given text huge.|
+| roll          | number of sides   | Rolls the dice.             |
+| profpic       | mention           | Provides link to profile picture of the user. |
+| 8ball         |   ---             | Magic 8ball! |
