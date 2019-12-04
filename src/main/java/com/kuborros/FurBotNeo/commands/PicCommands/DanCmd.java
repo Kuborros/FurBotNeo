@@ -47,6 +47,11 @@ public class DanCmd extends PicCommand {
         List<String> result;
         db.updateCommandStats(event.getAuthor().getId(), this.name);
 
+        if (!guildNSFW) {
+            LOG.info("Image commands disabled by server owner, ignoring.");
+            return;
+        }
+
         if (!event.getTextChannel().isNSFW()) {
             event.replyWarning("This command works only on NSFW channels! (For obvious reasons)");
             return;

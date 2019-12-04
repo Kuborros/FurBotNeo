@@ -46,9 +46,14 @@ public class GelCmd extends PicCommand {
         GelEngine api;
         List<String> result;
         Slideshow.Builder builder = new Slideshow.Builder();
-        db.updateCommandStats(event.getAuthor().getId(), this.name);        
+        db.updateCommandStats(event.getAuthor().getId(), this.name);
 
-        if (!event.getTextChannel().isNSFW()){
+        if (!guildNSFW) {
+            LOG.info("Image commands disabled by server owner, ignoring.");
+            return;
+        }
+
+        if (!event.getTextChannel().isNSFW()) {
             event.replyWarning("This command works only on NSFW channels! (For obvious reasons)");
             return;
         }

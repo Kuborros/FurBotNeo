@@ -17,6 +17,15 @@ public class RandomResponse {
     }
 
 
+    public String getRandomBootupMessage() {
+        return "";
+    }
+
+    public String getRandomShutdownMessage() {
+        return "";
+    }
+
+
     public String getRandomDeniedMessage(Guild guild) {
 
         FurConfig config = settings.getSettings(guild);

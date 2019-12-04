@@ -84,7 +84,7 @@ abstract class MusicCommand extends Command {
         youtubeAudioSourceManager.configureRequests(config -> RequestConfig.copy(config).setCookieSpec(CookieSpecs.IGNORE_COOKIES).build());
 
 
-        myManager.registerSourceManager(new SoundCloudAudioSourceManager());
+        myManager.registerSourceManager(SoundCloudAudioSourceManager.createDefault());
         myManager.registerSourceManager(new BandcampAudioSourceManager());
         myManager.registerSourceManager(new VimeoAudioSourceManager());
         myManager.registerSourceManager(new TwitchStreamAudioSourceManager());

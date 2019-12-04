@@ -19,10 +19,11 @@ import static com.kuborros.FurBotNeo.BotMain.randomResponse;
 
 abstract class PicCommand extends Command {
 
-    private static final Logger LOG = LoggerFactory.getLogger("PicCommands");
+    protected static final Logger LOG = LoggerFactory.getLogger("PicCommands");
 
     private static CommandClient client;
     private Guild guild;
+    protected boolean guildNSFW;
 
     private MessageEmbed bannedResponseEmbed() {
         String random = randomResponse.getRandomDeniedMessage(guild);
@@ -61,9 +62,8 @@ abstract class PicCommand extends Command {
         } catch (SQLException e) {
             LOG.error("Error while contacting database: ", e);
         }
-        if (config.isNSFW()) {
-            doCommand(event);
-        } else LOG.info("Image commands disabled by server owner, ignoring.");
+        guildNSFW = config.isNSFW();
+        doCommand(event);
     }
 
     protected abstract void doCommand(CommandEvent event);
