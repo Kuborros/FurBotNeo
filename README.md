@@ -40,3 +40,13 @@ Project is set so it can be ran directly without repackaging with
 ```bash
 mvn exec:java
 ```
+
+## Supported chat commands:
+
+### General:
+
+| **Command**   | **Arguments:**|             **Description:**|
+| :------------ |:-------------:| :--------------------------:|
+| placeholder   |               |                             |
+| placeholder   |               |                             |
+| placeholder   |               |                             |
