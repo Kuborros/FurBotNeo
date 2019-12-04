@@ -18,13 +18,12 @@ Steps to reproduce the behavior:
 **Screenshots**
 If applicable, add screenshots to help explain your problem.
 
----
-###Required:
+### Required:
 **Stacktrace**
  If present, otherwise printed Exception.
  (Preferably the stacktrace should be posted on pastebin and link provided here.)
 
-###Optional:
+### Optional:
 **Guild (Server) information:**
  - Members: [10]
  - Region: [EU,NA]
