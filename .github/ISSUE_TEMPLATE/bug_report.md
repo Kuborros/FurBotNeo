@@ -18,6 +18,12 @@ Steps to reproduce the behavior:
 **Screenshots**
 If applicable, add screenshots to help explain your problem.
 
+---
+###Required:
+**Stacktrace**
+ If present, otherwise printed Exception.
+ (Preferably the stacktrace should be posted on pastebin and link provided here.)
+
 **Discord client information (If issue is visual):**
  - OS: [e.g. iOS]
  - Browser [e.g. chrome, safari] or Desktop application
