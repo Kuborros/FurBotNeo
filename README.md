@@ -44,11 +44,42 @@ mvn exec:java
 ## Supported chat commands:
 
 ### General:
+Mostly simple chat commands.
 
 | **Command**   |  **Arguments:**   |             **Description:**              |
 | :------------ |:-----------------:| :----------------------------------------:|
+| about         |   ---             | Prints basic information about the bot. |
+| help          |   ---             | Sends private message with list of available commands. |
 | joke          | name or mention   | Makes Chuck Noris joke with mentioned name.|
 | bigtext       | text              | Replaces normal letters with regional indicators to make given text huge.|
 | roll          | number of sides   | Rolls the dice.             |
 | profpic       | mention           | Provides link to profile picture of the user. |
 | 8ball         |   ---             | Magic 8ball! |
+
+### Images:
+NSFW commands only work on servers with nsfw setting enabled, and on channels marked as nsfw.
+Results are displayed as single embed with controlls.
+
+| **Command**   | **NSFW?** |  **Arguments:**   |             **Description:**              |
+| :------------ |:---------:|:----------:| :----------------------------------------:|
+| e621          |  **yes**  |  tags      | Searches for up to 100 pictures on e621. |
+| e926          |   *no*    |  tags      | Searches for up to 100 pictures on sfw version of e621 - e926. |
+| dan           |  **yes**  |  tags      | Searches for up to 100 pictures on danbooru.|
+| gel           |  **yes**  |  tags      | Searches for up to 100 pictures on gelbooru.|
+| safe          |   *no*    |  tags      | Searches for up to 100 pictures on safebooru.|
+| poke          |  **yes**  |  tags      | Searches for up to 100 pictures on AGNPH. |
+| r34           |  **yes**  |  tags      | Searches for up to 100 pictures on r34.xxx.|
+
+### Admin:
+Administrative commands, some restricted only to bot owner due to possible abuse.
+Remaining commands assume: Moderators can kick members, Admins can ban them.
+
+| **Command**   | **Owner Only** |  **Arguments:**   |             **Description:**              |
+| :------------ |:--------------:|:----------:| :----------------------------------------:|
+| stats         |  **yes**       |  ----      | Prints backed stats of the bot (ping,mem,etc.) |
+| info          |   *no*         |  mention   | Displays information about server member mentioned. |
+| guildcfg      |   *no*         |  key value | Sets per-guild settings. When ran without arguments, it will print available options, and their values.|
+| eval          |  **yes**       |  code      | Directly runs code on the bot. Best only used for debugging.|
+| botban        |   *no*         |  mention   | Bans user from using any bot commands on the server.|
+| botunban      |   *no*         |  mention   | Removes command ban from user. |
+| shutdown      |  **yes**       |  ----      | Shuts down the bot.|
