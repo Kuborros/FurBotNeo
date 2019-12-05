@@ -39,7 +39,7 @@ public class Database {
             conn = DriverManager.getConnection(DB);
             stat = conn.createStatement();
         } catch (SQLException e) {
-            LOG.error("Database connection error occured! ", e);
+            LOG.error("Database connection error occurred! ", e);
         }
     }
 
@@ -283,7 +283,7 @@ public class Database {
         ResultSet rs = stat.executeQuery("SELECT * FROM CommandStats WHERE user_id=" + memberID);
         ResultSetMetaData rsmd = rs.getMetaData();
         int columnCount = rsmd.getColumnCount();
-        List<String> names = new ArrayList<>();
+        List<String> names = new ArrayList<>(10);
         for (int i = 1; i <= columnCount; i++ ) {
             names.add(rsmd.getColumnName(i));
         }

@@ -19,7 +19,7 @@ abstract class AdminCommand extends Command {
 
     static final Logger LOG = LoggerFactory.getLogger("AdminCommands");
 
-    protected Guild guild;
+    Guild guild;
     private CommandClient client;
 
     private MessageEmbed bannedResponseEmbed() {
@@ -31,14 +31,14 @@ abstract class AdminCommand extends Command {
         return builder.build();
     }
 
-    protected MessageEmbed errorResponseEmbed(Exception exception) {
-        return errorResponseEmbed("Internal error has occured! ", exception.getLocalizedMessage());
+    MessageEmbed errorResponseEmbed(Exception exception) {
+        return errorResponseEmbed(exception.getLocalizedMessage());
     }
 
-    protected MessageEmbed errorResponseEmbed(String message, String ex) {
+    private MessageEmbed errorResponseEmbed(String ex) {
         String random = randomResponse.getRandomErrorMessage(guild);
         EmbedBuilder builder = new EmbedBuilder();
-        builder.setTitle(client.getError() + message)
+        builder.setTitle(client.getError() + "Internal error has occurred! ")
                 .setDescription(random)
                 .addField("Error details: ", "`` " + ex + " ``", false)
                 .setColor(Color.RED);

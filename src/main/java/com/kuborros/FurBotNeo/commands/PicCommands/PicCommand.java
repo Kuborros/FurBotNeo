@@ -19,10 +19,11 @@ import static com.kuborros.FurBotNeo.BotMain.randomResponse;
 
 abstract class PicCommand extends Command {
 
-    private static final Logger LOG = LoggerFactory.getLogger("PicCommands");
+    protected static final Logger LOG = LoggerFactory.getLogger("PicCommands");
 
     private static CommandClient client;
-    protected Guild guild;
+    private Guild guild;
+    protected boolean guildNSFW;
 
     private MessageEmbed bannedResponseEmbed() {
         String random = randomResponse.getRandomDeniedMessage(guild);
@@ -33,14 +34,14 @@ abstract class PicCommand extends Command {
         return builder.build();
     }
 
-    protected MessageEmbed errorResponseEmbed(Exception exception) {
-        return errorResponseEmbed("Something went wrong!", exception.getLocalizedMessage());
+    MessageEmbed errorResponseEmbed(Exception exception) {
+        return errorResponseEmbed(exception.getLocalizedMessage());
     }
 
-    protected MessageEmbed errorResponseEmbed(String message, String ex) {
+    private MessageEmbed errorResponseEmbed(String ex) {
         String random = randomResponse.getRandomErrorMessage(guild);
         EmbedBuilder builder = new EmbedBuilder();
-        builder.setTitle(client.getError() + message)
+        builder.setTitle(client.getError() + "Something went wrong!")
                 .setDescription(random)
                 .addField("Error details: ", "`` " + ex + " ``", false)
                 .setColor(Color.RED);
@@ -61,9 +62,8 @@ abstract class PicCommand extends Command {
         } catch (SQLException e) {
             LOG.error("Error while contacting database: ", e);
         }
-        if (config.isNSFW()) {
-            doCommand(event);
-        } else LOG.info("Image commands disabled by server owner, ignoring.");
+        guildNSFW = config.isNSFW();
+        doCommand(event);
     }
 
     protected abstract void doCommand(CommandEvent event);

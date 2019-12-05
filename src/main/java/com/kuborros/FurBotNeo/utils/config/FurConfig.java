@@ -9,7 +9,7 @@ import java.util.List;
 
 public class FurConfig implements GuildSettingsProvider {
 
-    private final List<String> prefixes = new ArrayList<>();
+    private final List<String> prefixes = new ArrayList<>(5);
     private final String botName;
     private final boolean welcomeMsg;
     private final boolean isFurry;

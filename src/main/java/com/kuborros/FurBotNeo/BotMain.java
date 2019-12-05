@@ -5,6 +5,7 @@ import com.jagrosh.jdautilities.commons.waiter.EventWaiter;
 import com.jagrosh.jdautilities.examples.command.AboutCommand;
 import com.kuborros.FurBotNeo.commands.AdminCommands.*;
 import com.kuborros.FurBotNeo.commands.GeneralCommands.*;
+import com.kuborros.FurBotNeo.commands.LewdCommands.CommandStatCmd;
 import com.kuborros.FurBotNeo.commands.MusicCommands.*;
 import com.kuborros.FurBotNeo.commands.PicCommands.*;
 import com.kuborros.FurBotNeo.listeners.BotEventListener;
@@ -37,12 +38,20 @@ public class BotMain {
         if (!System.getProperty("file.encoding").equals("UTF-8")) {
             LOG.info("Not running in UTF-8 mode! This ~might~ end badly for us!");
         }
+        boolean invidio = false;
+        for (String s : args) {
+            if (s.equals("-i")) {
+                invidio = true;
+                break;
+            }
+        }
+
         EventWaiter waiter = new EventWaiter();
 
         db = new Database();
         db.createTables();
 
-        cfg = new Config();
+        cfg = new Config(invidio);
 
         randomResponse = new RandomResponse(settingsManager);
 
@@ -67,10 +76,10 @@ public class BotMain {
                 new DiceCmd(),
                 new BadJokeCmd(),
                 new VoteCommand(),
-                new CommandStatCmd(),
                 new BigTextCmd(),
                 
-                // Imageboards
+                //Imageboards
+
                 new E621Cmd(waiter),
                 new PokeCmd(waiter),
                 new DanCmd(waiter),
@@ -103,7 +112,11 @@ public class BotMain {
                 new StatsCommand(),
                 new GuildConfigCommand(),
                 new EvalCommand(),
-                new ShutdownCommand());
+                new ShutdownCommand(),
+
+                //Lewd
+
+                new CommandStatCmd());
 
 
         try {
@@ -118,7 +131,7 @@ public class BotMain {
 
         }
         catch (IllegalArgumentException e) {
-            LOG.error("Error occured while starting: ", e);
+            LOG.error("Error occurred while starting: ", e);
             LOG.error("Please check if your discord bot token is in the configuration file, as this is most common cause of this error.");
             System.exit(101);
         }

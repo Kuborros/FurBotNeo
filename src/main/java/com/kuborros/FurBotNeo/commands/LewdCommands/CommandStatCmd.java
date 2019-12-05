@@ -1,5 +1,5 @@
 
-package com.kuborros.FurBotNeo.commands.GeneralCommands;
+package com.kuborros.FurBotNeo.commands.LewdCommands;
 
 import com.jagrosh.jdautilities.command.Command;
 import com.jagrosh.jdautilities.command.CommandEvent;
@@ -22,10 +22,9 @@ import static com.kuborros.FurBotNeo.BotMain.db;
         description = "Prints list of times player used picture commands."
 )
 @Author("Kuborros")
-public class CommandStatCmd extends GeneralCommand {
+public class CommandStatCmd extends LewdCommand {
 
-    public CommandStatCmd()
-    {
+    public CommandStatCmd() {
         this.name = "picstat";
         this.help = "Tells you how perverted someone is!";
         this.arguments = "@user";
@@ -56,8 +55,8 @@ public class CommandStatCmd extends GeneralCommand {
                             new EmbedBuilder().setTitle(String.format("How many times %s nutted to:", user.getName()), null).setDescription(builder.toString()).setColor(Color.yellow).build()
                     ).build()).queue();
         } catch (SQLException e) {
-            LOG.error("Error occured while retreiving command stats: ", e);
-            event.replyError("Unable to load commands stats! Thats **not** good.");
+            LOG.error("Error occurred while retrieving command stats: ", e);
+            event.reply(errorResponseEmbed("Unable to load commands stats! That's **not** good.", e));
         }
 
     }

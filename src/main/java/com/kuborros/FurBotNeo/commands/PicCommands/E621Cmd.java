@@ -17,6 +17,7 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import static com.kuborros.FurBotNeo.BotMain.db;
+import static com.kuborros.FurBotNeo.BotMain.randomResponse;
 
 @CommandInfo(
         name = "E621",
@@ -48,8 +49,13 @@ public class E621Cmd extends PicCommand {
         Slideshow.Builder builder = new Slideshow.Builder();
         db.updateCommandStats(event.getAuthor().getId(), this.name);
 
-        if (!event.getTextChannel().isNSFW()){
-            event.replyWarning("This command works only on NSFW channels! (For obvious reasons)");
+        if (!guildNSFW) {
+            LOG.info("Image commands disabled by server owner, ignoring.");
+            return;
+        }
+
+        if (!event.getTextChannel().isNSFW()) {
+            event.replyWarning(randomResponse.getRandomNotNSFWMessage());
             return;
         }
 

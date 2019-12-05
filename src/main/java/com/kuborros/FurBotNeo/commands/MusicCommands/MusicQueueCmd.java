@@ -29,7 +29,7 @@ public class MusicQueueCmd extends MusicCommand{
     @Override
     public void doCommand(CommandEvent event){
 
-        /* Paginator implementation, looks worse than old one, might be more usefull however
+        /* Paginator implementation, looks worse than old one, might be more useful however
 
         Paginator.Builder builder = new Paginator.Builder();
 
@@ -68,7 +68,7 @@ public class MusicQueueCmd extends MusicCommand{
 
             StringBuilder sb = new StringBuilder();
             Set<AudioInfo> queue = getTrackManager(guild).getQueuedTracks();
-            ArrayList<String> tracks = new ArrayList<>();
+            ArrayList<String> tracks = new ArrayList<>(queue.size());
 
             queue.forEach(audioInfo -> tracks.add(buildQueueMessage(audioInfo)));
 

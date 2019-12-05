@@ -80,10 +80,10 @@ public class TrackManager extends AudioEventAdapter {
 
     @Override
     public void onTrackException(AudioPlayer player, AudioTrack track, FriendlyException exception) {
-        LOG.warn("Playback error occured on track: " + track.getInfo().title, exception);
+        LOG.warn("Playback error occurred on track: " + track.getInfo().title, exception);
         EmbedBuilder eb = new EmbedBuilder()
                 .setColor(Color.CYAN)
-                .setTitle("\u274C" + " **An playback error has occured!**")
+                .setTitle("\u274C" + " **An playback error has occurred!**")
                 .addField("Exception on playback of track: " + track.getInfo().title, exception.getLocalizedMessage(), false);
         getTrackInfo(track).getBotchat().sendMessage(eb.build()).queue();
     }

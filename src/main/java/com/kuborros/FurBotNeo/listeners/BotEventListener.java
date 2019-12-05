@@ -44,7 +44,7 @@ public class BotEventListener extends ListenerAdapter{
         Guild guild = event.getGuild();
         LOG.info("Joining guild: {}! It's main channel is: {}", guild.getName(), Objects.requireNonNull(guild.getDefaultChannel()).getName());
         if (!guild.isAvailable()) {
-            LOG.warn("...But it's unavaible right now!");
+            LOG.warn("...But it's unavailable right now!");
             return;
         }
         else if (!guild.checkVerification()) {
