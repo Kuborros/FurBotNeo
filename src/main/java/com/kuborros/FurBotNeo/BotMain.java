@@ -38,13 +38,20 @@ public class BotMain {
         if (!System.getProperty("file.encoding").equals("UTF-8")) {
             LOG.info("Not running in UTF-8 mode! This ~might~ end badly for us!");
         }
+        boolean invidio = false;
+        for (String s : args) {
+            if (s.equals("-i")) {
+                invidio = true;
+                break;
+            }
+        }
 
         EventWaiter waiter = new EventWaiter();
 
         db = new Database();
         db.createTables();
 
-        cfg = new Config(false);
+        cfg = new Config(invidio);
 
         randomResponse = new RandomResponse(settingsManager);
 
