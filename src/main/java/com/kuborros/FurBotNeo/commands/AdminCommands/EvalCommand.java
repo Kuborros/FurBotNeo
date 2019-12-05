@@ -56,7 +56,7 @@ public class EvalCommand extends AdminCommand {
         engine.put("channel", event.getChannel());
         try {
             event.reply(event.getClient().getSuccess() + " Evaluated Successfully:\n```\n" + engine.eval(event.getArgs()) + " ```");
-        } catch (ScriptException e) {
+        } catch (Exception e) {
             event.reply(event.getClient().getError() + " An exception was thrown:\n```\n" + e + " ```");
         }
     }

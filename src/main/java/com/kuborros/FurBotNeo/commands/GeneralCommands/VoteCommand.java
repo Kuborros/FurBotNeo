@@ -6,6 +6,7 @@ import com.jagrosh.jdautilities.command.CommandEvent;
 import com.jagrosh.jdautilities.doc.standard.CommandInfo;
 import com.jagrosh.jdautilities.examples.doc.Author;
 import net.dv8tion.jda.api.EmbedBuilder;
+import net.dv8tion.jda.api.Permission;
 import net.dv8tion.jda.api.entities.MessageEmbed;
 import net.dv8tion.jda.api.entities.MessageReaction;
 import net.dv8tion.jda.api.entities.TextChannel;
@@ -33,6 +34,7 @@ public class VoteCommand extends GeneralCommand {
         this.ownerCommand = false;
         this.cooldown = 60;
         this.cooldownScope = CooldownScope.GUILD;
+        this.userPermissions = new Permission[]{Permission.KICK_MEMBERS};
         this.category = new Command.Category("Basic");
     }
 

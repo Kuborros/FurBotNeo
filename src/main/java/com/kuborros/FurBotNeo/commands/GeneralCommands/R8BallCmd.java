@@ -46,7 +46,7 @@ public class R8BallCmd extends GeneralCommand {
                 event.reply("nope.avi");
                 break;
                 case 6:
-                event.reply("Definietly yes!");
+                    event.reply("Definitely yes!");
                 break;
                 case 7:
                 event.reply("Absolutely not!");

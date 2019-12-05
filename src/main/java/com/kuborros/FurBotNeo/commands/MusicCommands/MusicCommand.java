@@ -7,6 +7,7 @@ import com.jagrosh.jdautilities.command.CommandEvent;
 import com.kuborros.FurBotNeo.utils.audio.AudioInfo;
 import com.kuborros.FurBotNeo.utils.audio.AudioPlayerSendHandler;
 import com.kuborros.FurBotNeo.utils.audio.TrackManager;
+import com.kuborros.FurBotNeo.utils.audio.invidious.InvidiousAudioSourceManager;
 import com.kuborros.FurBotNeo.utils.config.FurConfig;
 import com.sedmelluq.discord.lavaplayer.player.AudioLoadResultHandler;
 import com.sedmelluq.discord.lavaplayer.player.AudioPlayer;
@@ -37,8 +38,7 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.*;
 
-import static com.kuborros.FurBotNeo.BotMain.db;
-import static com.kuborros.FurBotNeo.BotMain.randomResponse;
+import static com.kuborros.FurBotNeo.BotMain.*;
 
 
 abstract class MusicCommand extends Command {
@@ -47,7 +47,7 @@ abstract class MusicCommand extends Command {
 
     static final String NOTE = ":musical_note:  ";
 
-    protected static Guild guild;
+    static Guild guild;
     private static CommandClient client;
     private static FurConfig config;
     String input;
@@ -72,7 +72,7 @@ abstract class MusicCommand extends Command {
                         .setColor(Color.CYAN)
                         .setDescription(NOTE + "   **Now Playing**   ")
                         .addField("Current Track", "`(" + getTimestamp(track.getDuration()) + ")`  " + track.getInfo().title, false);
-                if (tracks.size() > 1){
+                if (tracks.size() > 1) {
                     eb.addField("Next Track", "`(" + getTimestamp(tracks.get(1).getTrack().getDuration()) + ")`  " + tracks.get(1).getTrack().getInfo().title, false);
                 }
                 Objects.requireNonNull(guild.getTextChannelById(config.getAudioChannel())).sendMessage(eb.build()).queue();
@@ -83,13 +83,18 @@ abstract class MusicCommand extends Command {
         YoutubeAudioSourceManager youtubeAudioSourceManager = new YoutubeAudioSourceManager(true);
         youtubeAudioSourceManager.configureRequests(config -> RequestConfig.copy(config).setCookieSpec(CookieSpecs.IGNORE_COOKIES).build());
 
-        myManager.registerSourceManager(new SoundCloudAudioSourceManager());
+
+        myManager.registerSourceManager(SoundCloudAudioSourceManager.createDefault());
         myManager.registerSourceManager(new BandcampAudioSourceManager());
         myManager.registerSourceManager(new VimeoAudioSourceManager());
         myManager.registerSourceManager(new TwitchStreamAudioSourceManager());
         myManager.registerSourceManager(new BeamAudioSourceManager());
-        myManager.registerSourceManager(youtubeAudioSourceManager);
+
+        if (cfg.isINVIDIOUS()) myManager.registerSourceManager(new InvidiousAudioSourceManager());
+        else myManager.registerSourceManager(youtubeAudioSourceManager);
+
         myManager.registerSourceManager(new HttpAudioSourceManager()); //Might be not that safe
+
     }
 
     boolean hasPlayer(Guild guild) {
