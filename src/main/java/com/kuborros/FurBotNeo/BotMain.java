@@ -62,14 +62,18 @@ public class BotMain {
         client.setGuildSettingsManager(settingsManager);
         client.addCommands(
 
+                //Default about command
+
                 new AboutCommand(Color.CYAN, "and im here to make this server a better place!",
-                                        new String[]{"Picture commands!","Music player!","Cute furry mascot!"},
-                                        Permission.ADMINISTRATOR, Permission.MANAGE_ROLES,
-                                        Permission.MANAGE_SERVER, Permission.MESSAGE_ADD_REACTION, Permission.MESSAGE_ATTACH_FILES, Permission.MESSAGE_READ,
-                                        Permission.MESSAGE_WRITE,Permission.MESSAGE_EMBED_LINKS, Permission.MESSAGE_HISTORY, Permission.MESSAGE_EXT_EMOJI,
-                                        Permission.MESSAGE_MANAGE, Permission.VOICE_CONNECT, Permission.VOICE_MOVE_OTHERS, Permission.VOICE_DEAF_OTHERS, 
-                                        Permission.VOICE_MUTE_OTHERS, Permission.NICKNAME_CHANGE, Permission.NICKNAME_MANAGE),
+                        new String[]{"Picture commands!", "Music player!", "Cute furry mascot!"},
+                        Permission.ADMINISTRATOR, Permission.MANAGE_ROLES,
+                        Permission.MANAGE_SERVER, Permission.MESSAGE_ADD_REACTION, Permission.MESSAGE_ATTACH_FILES, Permission.MESSAGE_READ,
+                        Permission.MESSAGE_WRITE, Permission.MESSAGE_EMBED_LINKS, Permission.MESSAGE_HISTORY, Permission.MESSAGE_EXT_EMOJI,
+                        Permission.MESSAGE_MANAGE, Permission.VOICE_CONNECT, Permission.VOICE_MOVE_OTHERS, Permission.VOICE_DEAF_OTHERS,
+                        Permission.VOICE_MUTE_OTHERS, Permission.NICKNAME_CHANGE, Permission.NICKNAME_MANAGE),
+
                 //General
+                //Intended for simple commands with next to no interaction, and basic text response.
 
                 new R8BallCmd(),
                 new ProfPicCmd(),
@@ -77,8 +81,9 @@ public class BotMain {
                 new BadJokeCmd(),
                 new VoteCommand(),
                 new BigTextCmd(),
-                
+
                 //Imageboards
+                //All picture search commands go here:
 
                 new E621Cmd(waiter),
                 new PokeCmd(waiter),
@@ -87,8 +92,9 @@ public class BotMain {
                 new SafeCmd(waiter),
                 new E926Cmd(waiter),
                 new R34Cmd(waiter),
-                
+
                 //Music
+                //All music player commands here:
 
                 new PlayCommand(),
                 new PlayNextCmd(),
@@ -105,6 +111,7 @@ public class BotMain {
                 new MusicVolumeCmd(),
 
                 //Admin
+                //These commands are usually restricted to server admins or owner.
 
                 new InfoCommand(),
                 new BotBanCmd(),
@@ -115,6 +122,7 @@ public class BotMain {
                 new ShutdownCommand(),
 
                 //Lewd
+                //All NSFW commands go here, along with all questionable ones.
 
                 new CommandStatCmd());
 
