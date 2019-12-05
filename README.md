@@ -79,7 +79,7 @@ Remaining commands assume: Moderators can kick members, Admins can ban them.
 | **Command**   | **Owner Only** |  **Arguments:**   |             **Description:**              |
 | :------------ |:--------------:|:----------:| :----------------------------------------:|
 | stats         |  **yes**       |  ----      | Prints backed stats of the bot (ping,mem,etc.) |
-| vote          |   *no*         | time topic | 
+| vote          |   *no*         | time topic | Starts a vote lasting specified amount of time, about given topic.|
 | info          |   *no*         |  mention   | Displays information about server member mentioned. |
 | guildcfg      |   *no*         |  key value | Sets per-guild settings. When ran without arguments, it will print available options, and their values.|
 | eval          |  **yes**       |  code      | Directly runs code on the bot. Best only used for debugging.|
