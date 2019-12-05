@@ -4,8 +4,8 @@ import com.kuborros.FurBotNeo.utils.config.FurConfig;
 import com.kuborros.FurBotNeo.utils.config.FurrySettingsManager;
 import net.dv8tion.jda.api.entities.Guild;
 
+import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.LinkedList;
 import java.util.Random;
 
 public class RandomResponse {
@@ -18,19 +18,58 @@ public class RandomResponse {
 
 
     public String getRandomBootupMessage() {
-        return "";
+        ArrayList<String> messageList = new ArrayList<>(Arrays.asList(
+                "*Floppy drive seek noises*",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "*yawn*",
+                "",
+                "",
+                ""));
+        return messageList.get(new Random().nextInt(messageList.size()));
     }
 
     public String getRandomShutdownMessage() {
-        return "";
+        ArrayList<String> messageList = new ArrayList<>(Arrays.asList(
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                ""));
+        return messageList.get(new Random().nextInt(messageList.size()));
     }
 
+    public String getRandomNotNSFWMessage() {
+        ArrayList<String> messageList = new ArrayList<>(Arrays.asList(
+                "This command works only on NSFW channels! (For obvious reasons)",
+                "OwO That's naughty~. (But do that on NSFW channel)",
+                "This is not place for these *indecent* actions! (Do them over at NSFW channel)",
+                "*Get that stuff over to NSFW channel before they kick us both!*",
+                "T-That's lewd! Don't do that *here*. (But its ok over at NSFW channels)",
+                "Please go and be dirty somewhere else. (Like NSFW channel)",
+                "Can i see your \"Lewds in public\" permit? I thought so. Off to NSFW channel with you~",
+                "That's an UwU from me on that. (But it's OwO at NSFW channels~)",
+                "But that's illegal! (But not on NSFW channels~)",
+                "How about we take it over to NSFW channel?",
+                "I'm not allowed to do that here! (But we can hang out over at NSFW channels ;3 )"));
+        return messageList.get(new Random().nextInt(messageList.size()));
+    }
 
     public String getRandomDeniedMessage(Guild guild) {
 
         FurConfig config = settings.getSettings(guild);
 
-        LinkedList<String> messageList = new LinkedList<>(Arrays.asList(
+        ArrayList<String> messageList = new ArrayList<>(Arrays.asList(
                 "You can't order me like that~.",
                 "I don't listen to users you, silly.",
                 "Your attempt at using 'Very sad kitty eyes' has failed.",
@@ -58,7 +97,7 @@ public class RandomResponse {
         FurConfig config = settings.getSettings(guild);
 
 
-        LinkedList<String> messageList = new LinkedList<>(Arrays.asList(
+        ArrayList<String> messageList = new ArrayList<>(Arrays.asList(
                 "I think i did something wrong...",
                 "Its not my fault, i swear.",
                 "The server is currently on fire, please wait.",

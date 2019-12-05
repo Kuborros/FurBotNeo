@@ -1,5 +1,5 @@
 
-package com.kuborros.FurBotNeo.commands.GeneralCommands;
+package com.kuborros.FurBotNeo.commands.LewdCommands;
 
 import com.jagrosh.jdautilities.command.Command;
 import com.jagrosh.jdautilities.command.CommandEvent;
@@ -22,10 +22,9 @@ import static com.kuborros.FurBotNeo.BotMain.db;
         description = "Prints list of times player used picture commands."
 )
 @Author("Kuborros")
-public class CommandStatCmd extends GeneralCommand {
+public class CommandStatCmd extends LewdCommand {
 
-    public CommandStatCmd()
-    {
+    public CommandStatCmd() {
         this.name = "picstat";
         this.help = "Tells you how perverted someone is!";
         this.arguments = "@user";

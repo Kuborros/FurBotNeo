@@ -17,6 +17,7 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import static com.kuborros.FurBotNeo.BotMain.db;
+import static com.kuborros.FurBotNeo.BotMain.randomResponse;
 
 @CommandInfo(
         name = "E621",
@@ -54,7 +55,7 @@ public class E621Cmd extends PicCommand {
         }
 
         if (!event.getTextChannel().isNSFW()) {
-            event.replyWarning("This command works only on NSFW channels! (For obvious reasons)");
+            event.replyWarning(randomResponse.getRandomNotNSFWMessage());
             return;
         }
 
