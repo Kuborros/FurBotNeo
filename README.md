@@ -1,3 +1,8 @@
+<!-- Badges -->
+[![GitHub issues](https://img.shields.io/github/issues/Kuborros/FurbotNeo?style=flat-square)](https://github.com/Kuborros/FurbotNeo/issues)
+[![GitHub forks](https://img.shields.io/github/forks/Kuborros/FurbotNeo?style=flat-square)](https://github.com/Kuborros/FurbotNeo/network)
+[![GitHub stars](https://img.shields.io/github/stars/Kuborros/FurbotNeo?style=flat-square)](https://github.com/Kuborros/FurbotNeo/stargazers)
+[![GitHub license](https://img.shields.io/github/license/Kuborros/FurbotNeo?style=flat-square)](https://github.com/Kuborros/FurbotNeo/blob/master/LICENSE)
 # FurbotNeo
 
 An old discord bot made using Java, filled with references and "features".
@@ -9,7 +14,7 @@ To change it use command ``!guildcfg nsfw true`` (replace "!" with used prefix).
 
 It uses database to track statistics and per guild configs, in varying state of use or completion.
 
-There is no proper documentation of the code, shamefully commented version of code got lost in transision between pcs.
+There is no proper documentation of the code, shamefully commented version of code got lost in transition between pcs.
 
 If this code helps you learn something that's great :3
 And if you think its really bad.. well we all have to start somewhere, and skilled advice will be appreciated!
@@ -22,7 +27,7 @@ And if you think its really bad.. well we all have to start somewhere, and skill
 
 Minimum JDK version required is **11**. (Current LTS release.)
 
-_Use maven_ (Should be avaible in your distribution repositories.)
+_Use maven_ (Should be available in your distribution repositories.)
 
 For simple compilation and package into .jar archives, run this command in project root directory:
 ```bash

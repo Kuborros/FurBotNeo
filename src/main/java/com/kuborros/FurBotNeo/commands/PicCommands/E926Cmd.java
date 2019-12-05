@@ -54,7 +54,7 @@ public class E926Cmd extends PicCommand {
                 .setColor(Color.PINK)
                 .setEventWaiter(waiter)
                 .setText("")
-                .setDescription("E621")
+                .setDescription("E926")
                 .setFinalAction(message -> message.clearReactions().queue())
                 .setTimeout(5, TimeUnit.MINUTES);
 

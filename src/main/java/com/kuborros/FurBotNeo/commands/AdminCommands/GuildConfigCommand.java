@@ -86,7 +86,7 @@ public class GuildConfigCommand extends AdminCommand {
         if (success) {
             event.reply("Configuration option changed!");
         } else {
-            event.replyWarning("An error has occured in internal configuration system! This is **bad**");
+            event.replyWarning("An error has occurred in internal configuration system! This is **bad**");
         }
 
     }

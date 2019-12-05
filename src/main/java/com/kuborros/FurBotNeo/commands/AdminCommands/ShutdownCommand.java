@@ -7,7 +7,7 @@ import net.dv8tion.jda.api.Permission;
 
 @CommandInfo(
         name = "Shutdown",
-        description = "Performs gracefull shutdown of the bot."
+        description = "Performs graceful shutdown of the bot."
 )
 @Author("Kuborros")
 public class ShutdownCommand extends AdminCommand {
