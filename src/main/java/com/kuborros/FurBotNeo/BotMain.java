@@ -76,10 +76,10 @@ public class BotMain {
                 new DiceCmd(),
                 new BadJokeCmd(),
                 new VoteCommand(),
-                new CommandStatCmd(),
                 new BigTextCmd(),
                 
                 //Imageboards
+
                 new E621Cmd(waiter),
                 new PokeCmd(waiter),
                 new DanCmd(waiter),
@@ -112,7 +112,11 @@ public class BotMain {
                 new StatsCommand(),
                 new GuildConfigCommand(),
                 new EvalCommand(),
-                new ShutdownCommand());
+                new ShutdownCommand(),
+
+                //Lewd
+
+                new CommandStatCmd());
 
 
         try {
