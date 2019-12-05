@@ -18,18 +18,16 @@ Steps to reproduce the behavior:
 **Screenshots**
 If applicable, add screenshots to help explain your problem.
 
-**Discord client information (If issue is visual):**
- - OS: [e.g. iOS]
- - Browser [e.g. chrome, safari] or Desktop application
- - Version [e.g. 22]
+### Required:
+**Stacktrace**
+ If present, otherwise printed Exception.
+ (Preferably the stacktrace should be posted on pastebin and link provided here.)
 
+### Optional:
 **Guild (Server) information:**
  - Members: [10]
  - Region: [EU,NA]
  - Channels + info (private,nsfw): []
-
-**Bot configuration:**
-- Modified config options: []
 
 **Additional context**
 Add any other context about the problem here.
