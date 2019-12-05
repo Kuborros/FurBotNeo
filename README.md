@@ -107,7 +107,15 @@ Music commands are only accepted from dedicated channel to prevent spamming main
 ### Lewd:
 All commands are classified as NSFW as such only work on servers with nsfw flag + nsfw channel.
 On SFW servers NSFW commands are fully hidden and do not produce a response.
+Guildcfg key is ``nsfw``
 
 | **Command**   |  **Arguments:**   |             **Description:**              |
 | :------------ |:-----------------:| :----------------------------------------:|
 | picstat       | mention           | Prints image command usage statistics of mentioned user. |
+
+### Furry:
+*Currently none.*
+Can be disabled and hidden server wide with guild configuration, with key ``furry``
+
+| **Command**   |  **Arguments:**   |             **Description:**              |
+| :------------ |:-----------------:| :----------------------------------------:|
