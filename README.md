@@ -115,6 +115,7 @@ Guildcfg key is ``nsfw``
 
 ### Furry:
 *Currently none.*
+
 Can be disabled and hidden server wide with guild configuration, with key ``furry``
 
 | **Command**   |  **Arguments:**   |             **Description:**              |
