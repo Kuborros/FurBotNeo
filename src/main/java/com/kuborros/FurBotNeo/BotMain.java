@@ -14,6 +14,7 @@ import com.kuborros.FurBotNeo.listeners.MemberEventListener;
 import com.kuborros.FurBotNeo.utils.config.Config;
 import com.kuborros.FurBotNeo.utils.config.Database;
 import com.kuborros.FurBotNeo.utils.config.FurrySettingsManager;
+import com.kuborros.FurBotNeo.utils.msg.HelpConsumer;
 import com.kuborros.FurBotNeo.utils.msg.RandomResponse;
 import net.dv8tion.jda.api.AccountType;
 import net.dv8tion.jda.api.JDABuilder;
@@ -60,6 +61,7 @@ public class BotMain {
         client.setEmojis("\u2705", "\u2757", "\u274C");
         client.setPrefix("!");
         client.setGuildSettingsManager(settingsManager);
+        client.setHelpConsumer(new HelpConsumer());
         client.addCommands(
 
                 //Default about command

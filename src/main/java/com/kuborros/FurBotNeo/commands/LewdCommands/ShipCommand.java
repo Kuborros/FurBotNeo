@@ -14,7 +14,7 @@ public class ShipCommand extends LewdCommand {
     public ShipCommand() {
         this.name = "ship";
         this.help = "Allows you to ship someone!";
-        this.arguments = "<@user>";
+        this.arguments = "<@user> <@user>";
         this.guildOnly = true;
         this.ownerCommand = false;
         this.category = new Category("Lewd");

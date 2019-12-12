@@ -30,7 +30,7 @@ public class CommandStatCmd extends LewdCommand {
         this.arguments = "@user";
         this.guildOnly = true;
         this.ownerCommand = false;
-        this.category = new Command.Category("Basic");
+        this.category = new Command.Category("Lewd");
         this.botPermissions = new Permission[]{Permission.MESSAGE_EMBED_LINKS};
     }
     
