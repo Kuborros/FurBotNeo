@@ -112,11 +112,10 @@ Guildcfg key is ``nsfw``
 | **Command**   |  **Arguments:**   |             **Description:**              |
 | :------------ |:-----------------:| :----------------------------------------:|
 | picstat       | mention           | Prints image command usage statistics of mentioned user. |
-
-### Furry:
-*Currently none.*
-
-Can be disabled and hidden server wide with guild configuration, with key ``furry``
-
-| **Command**   |  **Arguments:**   |             **Description:**              |
-| :------------ |:-----------------:| :----------------------------------------:|
+| boop          | mention           | Boop someone :3 |
+| cuddle        | mention           | Cuddle with someone! |
+| fuck          | mention           | Fuk another person (if they agree ofcourse)! |
+| hug           | mention           | Hug someone :3 |
+| kiss          | mention           | Kiss with someone. |
+| lick          | mention           | Licc~ |
+| pet           | mention           | *Pat,pat on the head* |
