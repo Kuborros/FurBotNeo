@@ -5,15 +5,15 @@ import com.jagrosh.jdautilities.doc.standard.CommandInfo;
 import com.jagrosh.jdautilities.examples.doc.Author;
 
 @CommandInfo(
-        name = "Fuck",
-        description = "Allows you to fuck someone!"
+        name = "Boop",
+        description = "Allows you to boop someone!"
 )
 @Author("Kuborros")
-public class FuckCommand extends LewdCommand {
+public class BoopCommand extends LewdCommand {
 
-    public FuckCommand() {
-        this.name = "fuck";
-        this.help = "Allows you to fuck someone!";
+    public BoopCommand() {
+        this.name = "boop";
+        this.help = "Allows you to boop someone!";
         this.arguments = "<@user>";
         this.guildOnly = true;
         this.ownerCommand = false;
