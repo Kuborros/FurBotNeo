@@ -129,7 +129,6 @@ public class BotMain {
                 new CommandStatCmd(),
                 new BoopCommand(),
                 new CuddleCommand(),
-                new FuckCommand(waiter),
                 new HugCommand(),
                 new KissCommand(),
                 new PetCommand(),
