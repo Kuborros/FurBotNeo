@@ -129,13 +129,12 @@ public class BotMain {
                 new CommandStatCmd(),
                 new BoopCommand(),
                 new CuddleCommand(),
-                new FuckCommand(),
+                new FuckCommand(waiter),
                 new HugCommand(),
                 new KissCommand(),
                 new PetCommand(),
                 new LickCommand(),
                 new ShipCommand());
-
 
         try {
             JDABuilder builder = new JDABuilder(AccountType.BOT);
@@ -154,7 +153,7 @@ public class BotMain {
             System.exit(101);
         }
         catch (LoginException e) {
-            LOG.error("Stored token was rejected!");
+            LOG.error("Stored token was rejected!", e);
             LOG.error("Please double-check your token.");
             System.exit(102);
         }
