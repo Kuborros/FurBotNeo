@@ -32,13 +32,13 @@ public class ShipCommand extends LewdCommand {
     protected void doCommand(CommandEvent event) {
 
         List<Member> members = event.getMessage().getMentionedMembers();
-        boolean adminOverride = false;
         Member member1, member2;
 
         String override100 = "Calculating love levels... \n" +
-                "**[WARN]** (*LoveThread-1*) Admin override detected! \n" +
+                "``` \n [WARN] (LoveThread-1) Admin override detected! \n" +
                 ">>Set love 100 \n" +
-                "**[INFO]** (*AiThread-621*) Resuming. \n\n" +
+                "[INFO] (AiThread-621) Resuming.``` \n\n" +
+                "The results are: \n" +
                 "... We are a match made in heaven! ❤";
 
         if (members.isEmpty()) {
@@ -59,15 +59,44 @@ public class ShipCommand extends LewdCommand {
                 return;
             }
         }
-
-        if (member1.getUser().isBot() || member2.getUser().isBot()) {
-            event.reply("You can't ship normal bots! They don't really undestand love... unlike me!");
+        if (!members.contains(event.getSelfMember()) && (member1.getUser().isBot() || member2.getUser().isBot())) {
+            event.reply("You can't ship normal bots! They don't really understand love... unlike me!");
             return;
         }
 
+        event.reply("Calculating love levels... \n\n" +
+                "The results are: \n" +
+                member1.getEffectiveName() + " and " + member2.getEffectiveName() + " are" +
+                getLoveLevel()
+        );
+
     }
 
-    private String getLoveLevel(int level) {
-        return "";
+    private String getLoveLevel() {
+        int level = random.nextInt(101);
+
+        if (level == 100) {
+            return " *a match made in heaven*! ❤";
+        } else if ((level <= 99) && (level > 90)) {
+            return " propably planning a wedding already :3";
+        } else if ((level <= 90) && (level > 80)) {
+            return " in close possibility of marriage!";
+        } else if ((level <= 80) && (level > 70)) {
+            return " together forever~!";
+        } else if ((level <= 70) && (level > 60)) {
+            return " in for a long relationship.";
+        } else if ((level <= 60) && (level > 50)) {
+            return "... **kissing right now!**";
+        } else if ((level <= 50) && (level > 40)) {
+            return " definietly a couple!";
+        } else if ((level <= 40) && (level > 30)) {
+            return " close to being a couple!";
+        } else if ((level <= 30) && (level > 20)) {
+            return " friends with benefits!";
+        } else if ((level <= 20) && (level > 10)) {
+            return " in the realm of *friendzone*! UwU";
+        } else if ((level <= 10) && (level >= 0)) {
+            return " not even friends...";
+        } else return " so far away they broke the love machine!";
     }
 }
