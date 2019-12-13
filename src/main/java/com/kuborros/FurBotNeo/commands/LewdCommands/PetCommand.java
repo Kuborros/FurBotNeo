@@ -8,15 +8,15 @@ import net.dv8tion.jda.api.entities.Member;
 import java.util.List;
 
 @CommandInfo(
-        name = "Kiss",
-        description = "Allows you to kiss someone!"
+        name = "Pet",
+        description = "Allows you to pet someone!"
 )
 @Author("Kuborros")
-public class KissCommand extends LewdCommand {
+public class PetCommand extends LewdCommand {
 
-    public KissCommand() {
-        this.name = "kiss";
-        this.help = "Allows you to kiss someone!";
+    public PetCommand() {
+        this.name = "pet";
+        this.help = "Allows you to pet someone!";
         this.arguments = "<@user>";
         this.guildOnly = true;
         this.ownerCommand = false;
@@ -30,22 +30,22 @@ public class KissCommand extends LewdCommand {
         Member member = event.getMember();
 
         if (members.isEmpty()) {
-            event.reply("You have to mention _someone_ to kiss!");
+            event.reply("You have to mention _someone_ to pet!");
             return;
         }
 
         if (members.contains(event.getMember())) {
-            String rep = isFurry ? "Im sure theres a lonely *someone* around here..." : "Would kissing a mirror count \uD83E\uDD14";
-            event.reply("You want to kiss... yourself? \n" + rep);
+            String rep = isFurry ? "But i would love some petting, if you are up to it~" : "That's not as fun as it sounds sadly.";
+            event.reply("You want to pet... yourself? \n" + rep);
             return;
         }
 
         if (members.contains(guild.getSelfMember())) {
-            if (isFurry) event.reply("**OwO** *Kisses you back*");
-            else event.reply("*Smooch!* \n *You just kissed an overblown text file*. Was it worth it? (It was)");
+            if (isFurry) event.reply("**Purrs**, *even though is definietly not a cat*");
+            else event.reply("*Pet,pet!* \n Just dont bend my case with excessive pats~");
             return;
         }
 
-        event.reply(member.getEffectiveName() + " kisses " + members.get(0).getEffectiveName() + " on their lips!");
+        event.reply(member.getEffectiveName() + " pets " + members.get(0).getEffectiveName() + "! So cute!");
     }
 }

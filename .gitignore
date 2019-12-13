@@ -9,3 +9,4 @@ target/
 config.cfg
 src/main/java/com/kuborros/FurBotNeo/commands/GameCommands/
 src/main/java/com/kuborros/FurBotNeo/utils/game/
+.idea/misc.xml

@@ -24,6 +24,8 @@ abstract class LewdCommand extends Command {
     private static CommandClient client;
     protected Guild guild;
 
+    protected boolean isFurry;
+
     private MessageEmbed bannedResponseEmbed() {
         String random = randomResponse.getRandomDeniedMessage(guild);
         EmbedBuilder builder = new EmbedBuilder();
@@ -69,6 +71,8 @@ abstract class LewdCommand extends Command {
 
 
         if (!config.isNSFW()) return;
+
+        isFurry = config.isFurry();
 
         if (event.getTextChannel().isNSFW()) doCommand(event);
         else event.replyWarning(randomResponse.getRandomNotNSFWMessage());

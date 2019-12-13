@@ -23,7 +23,7 @@ public class BotBanCmd extends AdminCommand {
     public BotBanCmd() {
         this.name = "botban";
         this.help = "Bans user from using bot commands";
-        this.arguments = "<@user> [time]";
+        this.arguments = "<@user>";
         this.guildOnly = true;
         this.ownerCommand = false;
         this.category = new Category("Moderation");

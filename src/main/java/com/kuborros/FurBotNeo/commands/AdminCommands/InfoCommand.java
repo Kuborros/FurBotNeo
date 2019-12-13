@@ -52,33 +52,29 @@ public class InfoCommand extends AdminCommand {
     protected void doCommand(CommandEvent event) {
 
         FurConfig config = (FurConfig) event.getClient().getSettingsManager().getSettings(guild);
-        
-        if (event.getMessage().getMentionedUsers().isEmpty())
-                {
-                    event.reply("You must mention User to be scanned by the NSA!");
-                }
-                else
-                {
-                    StringBuilder rolebuild = new StringBuilder();
-                    List<User> mentionedUsers = event.getMessage().getMentionedUsers();
-                    mentionedUsers.forEach((User user) -> {
-                        String roles;
-                        String online = "OFFLINE";
-                        String ownerguy = "";
-                        String bot = "";
-                        Member member = guild.getMember(user);
-                        assert member != null;
-                        boolean me = member.getUser() == event.getJDA().getSelfUser();
-                        String name;
-                        if (!member.getRoles().isEmpty())
-                            for (Role role : member.getRoles()) {
-                                rolebuild.append(role.getName());
-                                rolebuild.append(" , ");
-                            }
-                          if (rolebuild.length() >3 ) {
-                              rolebuild.delete(rolebuild.length()-3, rolebuild.length());
-                          }
-                          else rolebuild.append("None");
+
+        if (event.getMessage().getMentionedUsers().isEmpty()) {
+            event.reply("You must mention User to be scanned by the NSA!");
+        } else {
+            StringBuilder rolebuild = new StringBuilder();
+            List<User> mentionedUsers = event.getMessage().getMentionedUsers();
+            mentionedUsers.forEach((User user) -> {
+                String roles;
+                String online = "OFFLINE";
+                String ownerguy = "";
+                String bot = "";
+                Member member = guild.getMember(user);
+                assert member != null;
+                boolean me = member.getUser() == event.getJDA().getSelfUser();
+                String name;
+                if (!member.getRoles().isEmpty())
+                    for (Role role : member.getRoles()) {
+                        rolebuild.append(role.getName());
+                        rolebuild.append(" , ");
+                    }
+                if (rolebuild.length() > 3) {
+                    rolebuild.delete(rolebuild.length() - 3, rolebuild.length());
+                } else rolebuild.append("None");
                           roles = rolebuild.toString();
                         if (member.getOnlineStatus() != OnlineStatus.OFFLINE) {
                             online = "ONLINE";

@@ -43,15 +43,10 @@ public class BotEventListener extends ListenerAdapter{
     public void onGuildJoin(GuildJoinEvent event) {
         Guild guild = event.getGuild();
         LOG.info("Joining guild: {}! It's main channel is: {}", guild.getName(), Objects.requireNonNull(guild.getDefaultChannel()).getName());
-        if (!guild.isAvailable()) {
-            LOG.warn("...But it's unavailable right now!");
-            return;
-        }
-        else if (!guild.checkVerification()) {
+        if (!guild.checkVerification()) {
             LOG.warn("...But my verification level is too low to do anything there!");
             return;
-        }
-        else if (!guild.getDefaultChannel().canTalk()) {
+        } else if (!guild.getDefaultChannel().canTalk()) {
             LOG.warn("...But i can't write on it's public channel? This ~might~ be a problem!");
             return;
         }

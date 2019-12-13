@@ -5,7 +5,7 @@ import com.jagrosh.jdautilities.commons.waiter.EventWaiter;
 import com.jagrosh.jdautilities.examples.command.AboutCommand;
 import com.kuborros.FurBotNeo.commands.AdminCommands.*;
 import com.kuborros.FurBotNeo.commands.GeneralCommands.*;
-import com.kuborros.FurBotNeo.commands.LewdCommands.CommandStatCmd;
+import com.kuborros.FurBotNeo.commands.LewdCommands.*;
 import com.kuborros.FurBotNeo.commands.MusicCommands.*;
 import com.kuborros.FurBotNeo.commands.PicCommands.*;
 import com.kuborros.FurBotNeo.listeners.BotEventListener;
@@ -14,6 +14,7 @@ import com.kuborros.FurBotNeo.listeners.MemberEventListener;
 import com.kuborros.FurBotNeo.utils.config.Config;
 import com.kuborros.FurBotNeo.utils.config.Database;
 import com.kuborros.FurBotNeo.utils.config.FurrySettingsManager;
+import com.kuborros.FurBotNeo.utils.msg.HelpConsumer;
 import com.kuborros.FurBotNeo.utils.msg.RandomResponse;
 import net.dv8tion.jda.api.AccountType;
 import net.dv8tion.jda.api.JDABuilder;
@@ -60,6 +61,7 @@ public class BotMain {
         client.setEmojis("\u2705", "\u2757", "\u274C");
         client.setPrefix("!");
         client.setGuildSettingsManager(settingsManager);
+        client.setHelpConsumer(new HelpConsumer());
         client.addCommands(
 
                 //Default about command
@@ -124,8 +126,14 @@ public class BotMain {
                 //Lewd
                 //All NSFW commands go here, along with all questionable ones.
 
-                new CommandStatCmd());
-
+                new CommandStatCmd(),
+                new BoopCommand(),
+                new CuddleCommand(),
+                new HugCommand(),
+                new KissCommand(),
+                new PetCommand(),
+                new LickCommand(),
+                new ShipCommand());
 
         try {
             JDABuilder builder = new JDABuilder(AccountType.BOT);
@@ -144,7 +152,7 @@ public class BotMain {
             System.exit(101);
         }
         catch (LoginException e) {
-            LOG.error("Stored token was rejected!");
+            LOG.error("Stored token was rejected!", e);
             LOG.error("Please double-check your token.");
             System.exit(102);
         }
