@@ -5,7 +5,7 @@ import com.jagrosh.jdautilities.commons.waiter.EventWaiter;
 import com.jagrosh.jdautilities.examples.command.AboutCommand;
 import com.kuborros.FurBotNeo.commands.AdminCommands.*;
 import com.kuborros.FurBotNeo.commands.GeneralCommands.*;
-import com.kuborros.FurBotNeo.commands.LewdCommands.CommandStatCmd;
+import com.kuborros.FurBotNeo.commands.LewdCommands.*;
 import com.kuborros.FurBotNeo.commands.MusicCommands.*;
 import com.kuborros.FurBotNeo.commands.PicCommands.*;
 import com.kuborros.FurBotNeo.listeners.BotEventListener;
@@ -126,7 +126,15 @@ public class BotMain {
                 //Lewd
                 //All NSFW commands go here, along with all questionable ones.
 
-                new CommandStatCmd());
+                new CommandStatCmd(),
+                new BoopCommand(),
+                new CuddleCommand(),
+                new FuckCommand(),
+                new HugCommand(),
+                new KissCommand(),
+                new PetCommand(),
+                new LickCommand(),
+                new ShipCommand());
 
 
         try {
