@@ -35,9 +35,9 @@ public class ShipCommand extends LewdCommand {
         Member member1, member2;
 
         String override100 = "Calculating love levels... \n" +
-                "``` \n [WARN] (LoveThread-1) Admin override detected! \n" +
+                "```[WARN] (LoveThread-1) Admin override detected! \n" +
                 ">>Set love 100 \n" +
-                "[INFO] (AiThread-621) Resuming.``` \n\n" +
+                "[INFO] (AiThread-621) Resuming.``` \n" +
                 "The results are: \n" +
                 "... We are a match made in heaven! ❤";
 
