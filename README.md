@@ -12,6 +12,8 @@ Mostly learning ground for writing in java it holds basic functionality, as well
 By default operates in SFW mode restricting access to more risky commands.
 To change it use command ``!guildcfg nsfw true`` (replace "!" with used prefix).
 
+Alternative backend for youtube search/playback is available with ``-i`` startup parameter. When passed at launch , invidio.us will be used to proxy youtube links and searches. Best used when google hands out another banwave. Do note however, that this method is *noticably slower* than querying youtube directly.
+
 It uses database to track statistics and per guild configs, in varying state of use or completion.
 
 There is no proper documentation of the code, shamefully commented version of code got lost in transition between pcs.
