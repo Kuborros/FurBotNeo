@@ -5,7 +5,7 @@ import com.jagrosh.jdautilities.commons.waiter.EventWaiter;
 import com.jagrosh.jdautilities.examples.command.AboutCommand;
 import com.kuborros.FurBotNeo.commands.AdminCommands.*;
 import com.kuborros.FurBotNeo.commands.GeneralCommands.*;
-import com.kuborros.FurBotNeo.commands.LewdCommands.CommandStatCmd;
+import com.kuborros.FurBotNeo.commands.LewdCommands.*;
 import com.kuborros.FurBotNeo.commands.MusicCommands.*;
 import com.kuborros.FurBotNeo.commands.PicCommands.*;
 import com.kuborros.FurBotNeo.listeners.BotEventListener;
@@ -14,6 +14,7 @@ import com.kuborros.FurBotNeo.listeners.MemberEventListener;
 import com.kuborros.FurBotNeo.utils.config.Config;
 import com.kuborros.FurBotNeo.utils.config.Database;
 import com.kuborros.FurBotNeo.utils.config.FurrySettingsManager;
+import com.kuborros.FurBotNeo.utils.msg.HelpConsumer;
 import com.kuborros.FurBotNeo.utils.msg.RandomResponse;
 import net.dv8tion.jda.api.AccountType;
 import net.dv8tion.jda.api.JDABuilder;
@@ -60,16 +61,21 @@ public class BotMain {
         client.setEmojis("\u2705", "\u2757", "\u274C");
         client.setPrefix("!");
         client.setGuildSettingsManager(settingsManager);
+        client.setHelpConsumer(new HelpConsumer());
         client.addCommands(
 
+                //Default about command
+
                 new AboutCommand(Color.CYAN, "and im here to make this server a better place!",
-                                        new String[]{"Picture commands!","Music player!","Cute furry mascot!"},
-                                        Permission.ADMINISTRATOR, Permission.MANAGE_ROLES,
-                                        Permission.MANAGE_SERVER, Permission.MESSAGE_ADD_REACTION, Permission.MESSAGE_ATTACH_FILES, Permission.MESSAGE_READ,
-                                        Permission.MESSAGE_WRITE,Permission.MESSAGE_EMBED_LINKS, Permission.MESSAGE_HISTORY, Permission.MESSAGE_EXT_EMOJI,
-                                        Permission.MESSAGE_MANAGE, Permission.VOICE_CONNECT, Permission.VOICE_MOVE_OTHERS, Permission.VOICE_DEAF_OTHERS, 
-                                        Permission.VOICE_MUTE_OTHERS, Permission.NICKNAME_CHANGE, Permission.NICKNAME_MANAGE),
+                        new String[]{"Picture commands!", "Music player!", "Cute furry mascot!"},
+                        Permission.ADMINISTRATOR, Permission.MANAGE_ROLES,
+                        Permission.MANAGE_SERVER, Permission.MESSAGE_ADD_REACTION, Permission.MESSAGE_ATTACH_FILES, Permission.MESSAGE_READ,
+                        Permission.MESSAGE_WRITE, Permission.MESSAGE_EMBED_LINKS, Permission.MESSAGE_HISTORY, Permission.MESSAGE_EXT_EMOJI,
+                        Permission.MESSAGE_MANAGE, Permission.VOICE_CONNECT, Permission.VOICE_MOVE_OTHERS, Permission.VOICE_DEAF_OTHERS,
+                        Permission.VOICE_MUTE_OTHERS, Permission.NICKNAME_CHANGE, Permission.NICKNAME_MANAGE),
+
                 //General
+                //Intended for simple commands with next to no interaction, and basic text response.
 
                 new R8BallCmd(),
                 new ProfPicCmd(),
@@ -77,8 +83,9 @@ public class BotMain {
                 new BadJokeCmd(),
                 new VoteCommand(),
                 new BigTextCmd(),
-                
+
                 //Imageboards
+                //All picture search commands go here:
 
                 new E621Cmd(waiter),
                 new PokeCmd(waiter),
@@ -87,8 +94,9 @@ public class BotMain {
                 new SafeCmd(waiter),
                 new E926Cmd(waiter),
                 new R34Cmd(waiter),
-                
+
                 //Music
+                //All music player commands here:
 
                 new PlayCommand(),
                 new PlayNextCmd(),
@@ -105,6 +113,7 @@ public class BotMain {
                 new MusicVolumeCmd(),
 
                 //Admin
+                //These commands are usually restricted to server admins or owner.
 
                 new InfoCommand(),
                 new BotBanCmd(),
@@ -115,9 +124,16 @@ public class BotMain {
                 new ShutdownCommand(),
 
                 //Lewd
+                //All NSFW commands go here, along with all questionable ones.
 
-                new CommandStatCmd());
-
+                new CommandStatCmd(),
+                new BoopCommand(),
+                new CuddleCommand(),
+                new HugCommand(),
+                new KissCommand(),
+                new PetCommand(),
+                new LickCommand(),
+                new ShipCommand());
 
         try {
             JDABuilder builder = new JDABuilder(AccountType.BOT);
@@ -136,7 +152,7 @@ public class BotMain {
             System.exit(101);
         }
         catch (LoginException e) {
-            LOG.error("Stored token was rejected!");
+            LOG.error("Stored token was rejected!", e);
             LOG.error("Please double-check your token.");
             System.exit(102);
         }

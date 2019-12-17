@@ -8,15 +8,15 @@ import net.dv8tion.jda.api.entities.Member;
 import java.util.List;
 
 @CommandInfo(
-        name = "Kiss",
-        description = "Allows you to kiss someone!"
+        name = "Boop",
+        description = "Allows you to boop someone!"
 )
 @Author("Kuborros")
-public class KissCommand extends LewdCommand {
+public class BoopCommand extends LewdCommand {
 
-    public KissCommand() {
-        this.name = "kiss";
-        this.help = "Allows you to kiss someone!";
+    public BoopCommand() {
+        this.name = "boop";
+        this.help = "Allows you to boop someone!";
         this.arguments = "<@user>";
         this.guildOnly = true;
         this.ownerCommand = false;
@@ -30,22 +30,22 @@ public class KissCommand extends LewdCommand {
         Member member = event.getMember();
 
         if (members.isEmpty()) {
-            event.reply("You have to mention _someone_ to kiss!");
+            event.reply("You have to mention _someone_ to boop!");
             return;
         }
 
         if (members.contains(event.getMember())) {
-            String rep = isFurry ? "Im sure theres a lonely *someone* around here..." : "Would kissing a mirror count \uD83E\uDD14";
-            event.reply("You want to kiss... yourself? \n" + rep);
+            String rep = isFurry ? "I mean its not like there's a bat girl *right here* you can boop or anything." : "That would be *slightly* weird.";
+            event.reply("You want to boop... yourself? \n" + rep);
             return;
         }
 
         if (members.contains(guild.getSelfMember())) {
-            if (isFurry) event.reply("**OwO** *Kisses you back*");
-            else event.reply("*Smooch!* \n *You just kissed an overblown text file*. Was it worth it? (It was)");
+            if (isFurry) event.reply("**=w=** *Gets booped*");
+            else event.reply("*Boop!* \n ");
             return;
         }
 
-        event.reply(member.getEffectiveName() + " kisses " + members.get(0).getEffectiveName() + " on their lips!");
+        event.reply(member.getEffectiveName() + " boops " + members.get(0).getEffectiveName() + " right on their nose!");
     }
 }

@@ -8,15 +8,16 @@ import net.dv8tion.jda.api.entities.Member;
 import java.util.List;
 
 @CommandInfo(
-        name = "Kiss",
-        description = "Allows you to kiss someone!"
+        name = "Cuddle",
+        description = "Allows you to cuddle someone!"
 )
 @Author("Kuborros")
-public class KissCommand extends LewdCommand {
+public class CuddleCommand extends LewdCommand {
 
-    public KissCommand() {
-        this.name = "kiss";
-        this.help = "Allows you to kiss someone!";
+    public CuddleCommand() {
+        this.name = "cuddle";
+        this.aliases = new String[]{"snuggle"};
+        this.help = "Allows you to cuddle with someone!";
         this.arguments = "<@user>";
         this.guildOnly = true;
         this.ownerCommand = false;
@@ -30,22 +31,22 @@ public class KissCommand extends LewdCommand {
         Member member = event.getMember();
 
         if (members.isEmpty()) {
-            event.reply("You have to mention _someone_ to kiss!");
+            event.reply("You have to mention _someone_ to cuddle with!");
             return;
         }
 
         if (members.contains(event.getMember())) {
-            String rep = isFurry ? "Im sure theres a lonely *someone* around here..." : "Would kissing a mirror count \uD83E\uDD14";
-            event.reply("You want to kiss... yourself? \n" + rep);
+            event.reply("You want to cuddle with... yourself? \n Honestly, you can cuddle with _me_ if you want~");
             return;
         }
 
         if (members.contains(guild.getSelfMember())) {
-            if (isFurry) event.reply("**OwO** *Kisses you back*");
-            else event.reply("*Smooch!* \n *You just kissed an overblown text file*. Was it worth it? (It was)");
+            if (isFurry) event.reply("\uD83D\uDE3B *Cuddles up with you*");
+            else
+                event.reply("Ofcourse you can cuddle with me \uD83D\uDE0A \n Afterall my server is comfortably warm at 31°C");
             return;
         }
 
-        event.reply(member.getEffectiveName() + " kisses " + members.get(0).getEffectiveName() + " on their lips!");
+        event.reply(member.getEffectiveName() + " softly cuddles with " + members.get(0).getEffectiveName());
     }
 }

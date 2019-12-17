@@ -120,5 +120,4 @@ public class RandomResponse {
         }
         return messageList.get(new Random().nextInt(messageList.size()));
     }
-
 }
