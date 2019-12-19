@@ -14,29 +14,39 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.annotation.Nonnull;
+import java.io.IOException;
 import java.util.Objects;
+import java.util.Properties;
 
-import static com.kuborros.FurBotNeo.BotMain.cfg;
-import static com.kuborros.FurBotNeo.BotMain.db;
+import static com.kuborros.FurBotNeo.BotMain.*;
 import static net.dv8tion.jda.api.entities.Activity.watching;
 
 
 public class BotEventListener extends ListenerAdapter{
 
     private static final Logger LOG = LoggerFactory.getLogger("BotInfo");
+    private static final Properties versionInfo = new Properties();
 
-    
     @Override
-    public void onReady(ReadyEvent event) {
-        ClearConsole();
-        LOG.info("FurryBot - Startup completed!");
-        event.getJDA().getPresence().setActivity(watching(" furry lewds"));
-        
-        if (cfg.getOWNER_ID().equals("0")) {
-           LOG.warn("Please set your own user ID in config.cfg! This gives you sudo powers in bot commands!");
+    public void onReady(@Nonnull ReadyEvent event) {
+
+        String version = "Unable to retrieve version information";
+        try {
+            versionInfo.load(Objects.requireNonNull(this.getClass().getClassLoader().getResourceAsStream("version.info")));
+            version = versionInfo.getProperty("version");
+        } catch (IOException e) {
+            LOG.warn("IO error occurred while reading version.info", e);
         }
-    db.setGuilds(event.getJDA());
-    db.setCommandStats(event.getJDA());
+
+        ClearConsole();
+        LOG.info("FurryBot Version {} - {}", version, randomResponse.getRandomBootupMessage());
+        event.getJDA().getPresence().setActivity(watching(" furry lewds"));
+
+        if (cfg.getOWNER_ID().equals("0")) {
+            LOG.warn("Please set your own user ID in config.cfg! This gives you sudo powers in bot commands!");
+        }
+        db.setGuilds(event.getJDA());
+        db.setCommandStats(event.getJDA());
     }
     
     @Override

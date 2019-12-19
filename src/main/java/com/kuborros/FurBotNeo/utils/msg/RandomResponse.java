@@ -20,32 +20,27 @@ public class RandomResponse {
     public String getRandomBootupMessage() {
         ArrayList<String> messageList = new ArrayList<>(Arrays.asList(
                 "*Floppy drive seek noises*",
-                "",
-                "",
-                "",
-                "",
-                "",
-                "",
+                "Node graph out of date, rebuilding...",
+                "Starting up...",
+                "It's alive!",
+                "Showtime~",
+                "Connecting to *the world wide web*",
+                "OwO",
                 "*yawn*",
-                "",
-                "",
-                ""));
+                "Waking up!",
+                "(Some funny startup message here)",
+                "Hi!"));
         return messageList.get(new Random().nextInt(messageList.size()));
     }
 
     public String getRandomShutdownMessage() {
         ArrayList<String> messageList = new ArrayList<>(Arrays.asList(
-                "",
-                "",
-                "",
-                "",
-                "",
-                "",
-                "",
-                "",
-                "",
-                "",
-                ""));
+                "Sleepy time!",
+                "If you say so...",
+                "See you later!",
+                "Bye~",
+                "I needed a break anyways...",
+                "..."));
         return messageList.get(new Random().nextInt(messageList.size()));
     }
 

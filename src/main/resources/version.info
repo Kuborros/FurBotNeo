@@ -1,2 +1,3 @@
 version=${pom.version}
+artifactId=${project.artifactId}
 build.date=${timestamp}

@@ -5,6 +5,8 @@ import com.jagrosh.jdautilities.doc.standard.CommandInfo;
 import com.jagrosh.jdautilities.examples.doc.Author;
 import net.dv8tion.jda.api.Permission;
 
+import static com.kuborros.FurBotNeo.BotMain.randomResponse;
+
 @CommandInfo(
         name = "Shutdown",
         description = "Performs graceful shutdown of the bot."
@@ -25,7 +27,7 @@ public class ShutdownCommand extends AdminCommand {
 
     @Override
     protected void doCommand(CommandEvent event) {
-        event.reply("If you say so... Commencing shut down!");
+        event.reply(randomResponse.getRandomShutdownMessage());
         event.getJDA().shutdown();
         LOG.info("Bot shutting down");
         System.exit(0);
