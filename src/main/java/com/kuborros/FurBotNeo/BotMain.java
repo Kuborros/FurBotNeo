@@ -43,6 +43,7 @@ public class BotMain {
         for (String s : args) {
             if (s.equals("-i")) {
                 invidio = true;
+                LOG.info("Youtube links will be handled by invidio.us");
                 break;
             }
         }
