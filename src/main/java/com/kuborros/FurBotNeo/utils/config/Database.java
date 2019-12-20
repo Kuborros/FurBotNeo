@@ -158,15 +158,6 @@ public class Database {
         pstmt.executeUpdate();
     }
 
-    public void delGuild(Guild guild) {
-        try {
-            stat = conn.createStatement();
-            stat.executeUpdate("DELETE FROM Guilds WHERE guild_id =" + guild.getId());
-        } catch (SQLException e) {
-            LOG.error("Failure while removing guild from database: ", e);
-        }
-    }
-
     public boolean updateGuildBotName(String name, Guild guild) {
         try {
             stat = conn.createStatement();

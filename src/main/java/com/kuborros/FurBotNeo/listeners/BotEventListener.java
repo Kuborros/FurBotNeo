@@ -97,7 +97,6 @@ public class BotEventListener extends ListenerAdapter{
     public void onGuildLeave(GuildLeaveEvent event){
         Guild guild = event.getGuild();
         LOG.info("Left guild: {}!", guild.getName());
-        db.delGuild(guild);
     }
     
     @Override
