@@ -73,6 +73,8 @@ On SFW servers NSFW commands are fully hidden and do not produce a response.
 | safe          |   *no*    |  tags      | Searches for up to 100 pictures on safebooru.|
 | poke          |  **yes**  |  tags      | Searches for up to 100 pictures on AGNPH. |
 | r34           |  **yes**  |  tags      | Searches for up to 100 pictures on r34.xxx.|
+| yan           |  **yes**  |  tags      | Searches for up to 100 pictures on yande.re. |
+| kona          |  **yes**  |  tags      | Searches for up to 100 pictures on konachan.|
 
 ### Admin:
 Administrative commands, some restricted only to bot owner due to possible abuse.
