@@ -29,14 +29,13 @@ public class YandereCmd extends PicCommand {
 
     public YandereCmd(EventWaiter waiter) {
         this.name = "yan";
-        this.help = "Searches for _pictures_ on Yande.re";
+        this.help = "Searches for _pictures_ on Yande.re (They are **huge** and take long to load)";
         this.arguments = "<Tags>";
         this.guildOnly = true;
         this.ownerCommand = false;
         this.cooldown = 5;
         this.botPermissions = new Permission[]{Permission.MESSAGE_EMBED_LINKS, Permission.MANAGE_EMOTES};
         this.category = new Category("ImageBoards");
-        this.hidden = true;
         this.waiter = waiter;
         db.registerCommand(this.name);
     }

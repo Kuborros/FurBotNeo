@@ -35,7 +35,7 @@ public class ShipCommand extends LewdCommand {
         Member member1, member2;
 
         String override100 = "Calculating love levels... \n" +
-                "```[INFO] (AiThread-621) Feelings subsystem requesting override in subprocess LT-1. \n" +
+                "```[INFO] (AiThread-621) Feelings subsystem requesting override in subprocess ST-1. \n" +
                 "[WARN] (ShippingThread-1) Override detected! \n" +
                 ">>Set love 100 \n" +
                 "[INFO] (AiThread-621) Resuming normal operation.```" +
