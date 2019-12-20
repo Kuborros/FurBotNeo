@@ -66,11 +66,11 @@ On SFW servers NSFW commands are fully hidden and do not produce a response.
 
 | **Command**   | **NSFW?** |  **Arguments:**   |             **Description:**              |
 | :------------ |:---------:|:----------:| :----------------------------------------:|
-| e621          |  **yes**  |  tags      | Searches for up to 100 pictures on e621. |
 | e926          |   *no*    |  tags      | Searches for up to 100 pictures on sfw version of e621 - e926. |
+| safe          |   *no*    |  tags      | Searches for up to 100 pictures on safebooru.|
 | dan           |  **yes**  |  tags      | Searches for up to 100 pictures on danbooru.|
 | gel           |  **yes**  |  tags      | Searches for up to 100 pictures on gelbooru.|
-| safe          |   *no*    |  tags      | Searches for up to 100 pictures on safebooru.|
+| e621          |  **yes**  |  tags      | Searches for up to 100 pictures on e621. |
 | poke          |  **yes**  |  tags      | Searches for up to 100 pictures on AGNPH. |
 | r34           |  **yes**  |  tags      | Searches for up to 100 pictures on r34.xxx.|
 | yan           |  **yes**  |  tags      | Searches for up to 100 pictures on yande.re. |
