@@ -92,6 +92,8 @@ public class BotMain {
                 new PokeCmd(waiter),
                 new DanCmd(waiter),
                 new GelCmd(waiter),
+                new KonachanCmd(waiter),
+                new YandereCmd(waiter),
                 new SafeCmd(waiter),
                 new E926Cmd(waiter),
                 new R34Cmd(waiter),
