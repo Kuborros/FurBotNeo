@@ -99,5 +99,6 @@ public class ShipCommand extends LewdCommand {
         } else if ((level <= 10) && (level >= 0)) {
             return " not even friends...";
         } else return " so far away they broke the love machine!";
+
     }
 }
