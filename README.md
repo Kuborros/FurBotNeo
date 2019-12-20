@@ -43,6 +43,12 @@ Project is set so it can be ran directly without repackaging with
 mvn exec:java
 ```
 
+## Libraries used:
+
+* [JDA](https://github.com/DV8FromTheWorld/JDA)
+* [JDA-Utilities](https://github.com/JDA-Applications/JDA-Utilities)
+* [LavaPlayer](https://github.com/sedmelluq/lavaplayer)
+
 ## Supported chat commands:
 
 ### General:
