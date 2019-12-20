@@ -36,7 +36,6 @@ public class DanCmd extends PicCommand {
         this.cooldown = 5;
         this.botPermissions = new Permission[]{Permission.MESSAGE_EMBED_LINKS, Permission.MANAGE_EMOTES};
         this.category = new Category("ImageBoards");
-        this.hidden = true;
         this.waiter = waiter;
         db.registerCommand(this.name);
     }

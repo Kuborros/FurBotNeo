@@ -36,7 +36,6 @@ public class KonachanCmd extends PicCommand {
         this.cooldown = 5;
         this.botPermissions = new Permission[]{Permission.MESSAGE_EMBED_LINKS, Permission.MANAGE_EMOTES};
         this.category = new Category("ImageBoards");
-        this.hidden = true;
         this.waiter = waiter;
         db.registerCommand(this.name);
     }
@@ -69,7 +68,7 @@ public class KonachanCmd extends PicCommand {
                 .setTimeout(5, TimeUnit.MINUTES);
 
 
-        api = new DanApi("https://konachan.com/posts.json?random=true&limit=100");
+        api = new DanApi("https://konachan.com/post.json?random=true&limit=100");
 
 
         try {

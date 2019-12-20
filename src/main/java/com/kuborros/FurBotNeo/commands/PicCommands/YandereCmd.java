@@ -69,7 +69,7 @@ public class YandereCmd extends PicCommand {
                 .setTimeout(5, TimeUnit.MINUTES);
 
 
-        api = new DanApi("https://yande.re/posts.json?random=true&limit=100");
+        api = new DanApi("https://yande.re/post.json?random=true&limit=100");
 
 
         try {
