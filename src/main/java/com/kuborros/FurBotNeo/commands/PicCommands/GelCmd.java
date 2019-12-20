@@ -50,7 +50,7 @@ public class GelCmd extends PicCommand {
         db.updateCommandStats(event.getAuthor().getId(), this.name);
 
         if (!guildNSFW) {
-            LOG.info("Image commands disabled by server owner, ignoring.");
+            LOG.info("NSFW commands disabled by server owner, ignoring.");
             return;
         }
 
