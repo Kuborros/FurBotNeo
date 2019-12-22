@@ -19,8 +19,8 @@ abstract class AdminCommand extends Command {
 
     static final Logger LOG = LoggerFactory.getLogger("AdminCommands");
 
-    Guild guild;
-    private CommandClient client;
+    protected Guild guild;
+    protected CommandClient client;
 
     private MessageEmbed bannedResponseEmbed() {
         String random = randomResponse.getRandomDeniedMessage(guild);
