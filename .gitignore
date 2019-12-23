@@ -1,12 +1,9 @@
-.idea/**/workspace.xml
-.idea/**/dataSources.local.xml
-.idea/**/libraries
+.idea/
 database.*
-.idea/deployment.xml
-.idea/discord.xml
-.idea/**/dictionaries
 target/
 config.cfg
 src/main/java/com/kuborros/FurBotNeo/commands/GameCommands/
 src/main/java/com/kuborros/FurBotNeo/utils/game/
-.idea/misc.xml
+FurBotNeo.iml
+dependency-reduced-pom.xml
+logs/

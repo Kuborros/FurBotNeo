@@ -36,7 +36,6 @@ public class DanCmd extends PicCommand {
         this.cooldown = 5;
         this.botPermissions = new Permission[]{Permission.MESSAGE_EMBED_LINKS, Permission.MANAGE_EMOTES};
         this.category = new Category("ImageBoards");
-        this.hidden = true;
         this.waiter = waiter;
         db.registerCommand(this.name);
     }
@@ -49,7 +48,7 @@ public class DanCmd extends PicCommand {
         db.updateCommandStats(event.getAuthor().getId(), this.name);
 
         if (!guildNSFW) {
-            LOG.info("Image commands disabled by server owner, ignoring.");
+            LOG.info("NSFW commands disabled by server owner, ignoring.");
             return;
         }
 

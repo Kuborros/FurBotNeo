@@ -56,7 +56,8 @@ public class HelpConsumer implements Consumer<CommandEvent> {
 
         User owner = event.getJDA().getUserById(cfg.getOWNER_ID());
         if (owner != null) {
-            builder.append("\n\n\n For additional help, contact **").append(owner.getName()).append("**#").append(owner.getDiscriminator());
+            builder.append(" \n");
+            builder.append("For additional help, contact **").append(owner.getName()).append("**#").append(owner.getDiscriminator());
         }
         event.replyInDm(builder.toString());
         if (event.isFromType(ChannelType.TEXT)) event.reactSuccess();

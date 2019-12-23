@@ -5,6 +5,7 @@ import com.jagrosh.jdautilities.command.CommandEvent;
 import com.jagrosh.jdautilities.doc.standard.CommandInfo;
 import com.jagrosh.jdautilities.examples.doc.Author;
 import net.dv8tion.jda.api.Permission;
+import net.dv8tion.jda.api.sharding.ShardManager;
 
 import java.time.OffsetDateTime;
 import java.time.format.DateTimeFormatter;
@@ -30,14 +31,30 @@ public class StatsCommand extends AdminCommand {
     
     @Override
     protected void doCommand(CommandEvent event) {
-        long totalMb = Runtime.getRuntime().totalMemory()/(1024*1024);
-        long usedMb = (Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory())/(1024*1024);
-        event.reply("**"+event.getSelfUser().getName()+"** statistics:"
-                + "\nLast Startup: "+start.format(DateTimeFormatter.RFC_1123_DATE_TIME)
-                + "\nGuilds: "+event.getJDA().getGuilds().size()
-                + "\nMemory: "+usedMb+"Mb / "+totalMb+"Mb"
-                + "\nCurrent ping: " + event.getJDA().getGatewayPing()
-                + "\nResponse Total: "+event.getJDA().getResponseTotal());
+
+        boolean sharded = event.getJDA().getShardManager() != null;
+
+        long totalMb = Runtime.getRuntime().totalMemory() / (1024 * 1024);
+        long usedMb = (Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory()) / (1024 * 1024);
+
+        StringBuilder builder = new StringBuilder();
+
+        builder.append("**").append(event.getSelfUser().getName()).append("** statistics:")
+                .append("\nLast Startup: ").append(start.format(DateTimeFormatter.RFC_1123_DATE_TIME))
+                .append("\nMemory: ").append(usedMb).append("Mb / ").append(totalMb).append("Mb")
+                .append("\nResponse Total: ").append(event.getJDA().getResponseTotal());
+
+        if (sharded) {
+            ShardManager shardman = event.getJDA().getShardManager();
+            builder.append("\nGuilds: ").append(shardman.getGuilds().size())
+                    .append("\nAverage ping: ").append(shardman.getAverageGatewayPing())
+                    .append("\nTotal shards: ").append(shardman.getShardsRunning());
+        } else {
+            builder.append("\nGuilds: ").append(event.getJDA().getGuilds().size())
+                    .append("\nCurrent ping: ").append(event.getJDA().getGatewayPing());
+        }
+
+        event.reply(builder.toString());
     }
     
 }

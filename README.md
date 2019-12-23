@@ -14,6 +14,8 @@ To change it use command ``!guildcfg nsfw true`` (replace "!" with used prefix).
 
 Alternative backend for youtube search/playback is available with ``-i`` startup parameter. When passed at launch , invidio.us will be used to proxy youtube links and searches. Best used when google hands out another banwave. Do note however, that this method is *noticably slower* than querying youtube directly.
 
+Bot can be started in sharded mode with ``-s`` parameter. _This feature is not completely tested_.
+
 It uses database to track statistics and per guild configs, in varying state of use or completion.
 
 There is no proper documentation of the code, shamefully commented version of code got lost in transition between pcs.
@@ -72,13 +74,15 @@ On SFW servers NSFW commands are fully hidden and do not produce a response.
 
 | **Command**   | **NSFW?** |  **Arguments:**   |             **Description:**              |
 | :------------ |:---------:|:----------:| :----------------------------------------:|
-| e621          |  **yes**  |  tags      | Searches for up to 100 pictures on e621. |
 | e926          |   *no*    |  tags      | Searches for up to 100 pictures on sfw version of e621 - e926. |
+| safe          |   *no*    |  tags      | Searches for up to 100 pictures on safebooru.|
 | dan           |  **yes**  |  tags      | Searches for up to 100 pictures on danbooru.|
 | gel           |  **yes**  |  tags      | Searches for up to 100 pictures on gelbooru.|
-| safe          |   *no*    |  tags      | Searches for up to 100 pictures on safebooru.|
+| e621          |  **yes**  |  tags      | Searches for up to 100 pictures on e621. |
 | poke          |  **yes**  |  tags      | Searches for up to 100 pictures on AGNPH. |
 | r34           |  **yes**  |  tags      | Searches for up to 100 pictures on r34.xxx.|
+| yan           |  **yes**  |  tags      | Searches for up to 100 pictures on yande.re. |
+| kona          |  **yes**  |  tags      | Searches for up to 100 pictures on konachan.|
 
 ### Admin:
 Administrative commands, some restricted only to bot owner due to possible abuse.
@@ -87,13 +91,13 @@ Remaining commands assume: Moderators can kick members, Admins can ban them.
 | **Command**   | **Owner Only** |  **Arguments:**   |             **Description:**              |
 | :------------ |:--------------:|:----------:| :----------------------------------------:|
 | stats         |  **yes**       |  ----      | Prints backed stats of the bot (ping,mem,etc.) |
+| shutdown      |  **yes**       |  ----      | Shuts down the bot.|
+| eval          |  **yes**       |  code      | Directly runs code on the bot. Best only used for debugging.|
 | vote          |   *no*         | time topic | Starts a vote lasting specified amount of time, about given topic.|
 | info          |   *no*         |  mention   | Displays information about server member mentioned. |
 | guildcfg      |   *no*         |  key value | Sets per-guild settings. When ran without arguments, it will print available options, and their values.|
-| eval          |  **yes**       |  code      | Directly runs code on the bot. Best only used for debugging.|
 | botban        |   *no*         |  mention   | Bans user from using any bot commands on the server.|
 | botunban      |   *no*         |  mention   | Removes command ban from user. |
-| shutdown      |  **yes**       |  ----      | Shuts down the bot.|
 
 ### Music:
 Bot joins same voice channel as user who ran the command.
