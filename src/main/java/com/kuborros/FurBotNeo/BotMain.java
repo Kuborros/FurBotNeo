@@ -20,6 +20,8 @@ import net.dv8tion.jda.api.AccountType;
 import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.OnlineStatus;
 import net.dv8tion.jda.api.Permission;
+import net.dv8tion.jda.api.sharding.DefaultShardManagerBuilder;
+import net.dv8tion.jda.api.utils.SessionController;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -33,20 +35,25 @@ public class BotMain {
     public static Database db;
     public static RandomResponse randomResponse;
     public static final FurrySettingsManager settingsManager = new FurrySettingsManager();
+    public static SessionController controller;
 
     public static void main(String[] args) {
 
         if (!System.getProperty("file.encoding").equals("UTF-8")) {
             LOG.info("Not running in UTF-8 mode! This ~might~ end badly for us!");
         }
-        boolean invidio = false;
+        boolean invidio = false, shard = false;
         for (String s : args) {
-            if (s.equals("-i")) {
-                invidio = true;
-                LOG.info("Youtube links will be handled by invidio.us");
-                break;
+            switch (s) {
+                case "-i":
+                    invidio = true;
+                    LOG.info("Youtube links will be handled by invidio.us");
+                case "-s":
+                    shard = true;
+                    LOG.info("Sharding enabled.");
             }
         }
+
 
         EventWaiter waiter = new EventWaiter();
 
@@ -139,15 +146,30 @@ public class BotMain {
                 new ShipCommand());
 
         try {
-            JDABuilder builder = new JDABuilder(AccountType.BOT);
-            builder.setToken(cfg.getBOT_TOKEN())
-                    .setStatus(OnlineStatus.ONLINE)
-                    .addEventListeners(waiter, client.build(), new LogListener(), new MemberEventListener(), new BotEventListener())
-                    .setAutoReconnect(true)
-                    .setEnableShutdownHook(true);
-            builder.build();
 
+            if (shard) {
 
+                DefaultShardManagerBuilder builder = new DefaultShardManagerBuilder();
+                builder.setToken(cfg.getBOT_TOKEN())
+                        .setStatus(OnlineStatus.ONLINE)
+                        .addEventListeners(waiter, client.build(), new LogListener(), new MemberEventListener(), new BotEventListener())
+                        .setAutoReconnect(true)
+                        .setSessionController(controller)
+                        .setShardsTotal(-1)
+                        .setContextEnabled(true)
+                        .setEnableShutdownHook(true);
+                builder.build();
+
+            } else {
+
+                JDABuilder builder = new JDABuilder(AccountType.BOT);
+                builder.setToken(cfg.getBOT_TOKEN())
+                        .setStatus(OnlineStatus.ONLINE)
+                        .addEventListeners(waiter, client.build(), new LogListener(), new MemberEventListener(), new BotEventListener())
+                        .setAutoReconnect(true)
+                        .setEnableShutdownHook(true);
+                builder.build();
+            }
         }
         catch (IllegalArgumentException e) {
             LOG.error("Error occurred while starting: ", e);
