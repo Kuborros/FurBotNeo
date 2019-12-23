@@ -50,7 +50,8 @@ public class BotEventListener extends ListenerAdapter{
         db.setGuilds(event.getJDA());
         db.setCommandStats(event.getJDA());
     }
-    
+
+
     @Override
     public void onGuildJoin(GuildJoinEvent event) {
 
