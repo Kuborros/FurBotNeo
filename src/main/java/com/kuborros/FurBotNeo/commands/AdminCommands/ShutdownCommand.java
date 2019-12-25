@@ -28,7 +28,11 @@ public class ShutdownCommand extends AdminCommand {
     @Override
     protected void doCommand(CommandEvent event) {
         event.reply(randomResponse.getRandomShutdownMessage());
-        event.getJDA().shutdown();
+
+        if (event.getJDA().getShardManager() != null) {
+            event.getJDA().getShardManager().shutdown();
+        } else event.getJDA().shutdown();
+
         LOG.info("Bot shutting down");
         System.exit(0);
     }
