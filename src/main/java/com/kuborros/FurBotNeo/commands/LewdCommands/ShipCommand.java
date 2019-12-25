@@ -17,7 +17,7 @@ import static com.kuborros.FurBotNeo.BotMain.cfg;
 @Author("Kuborros")
 public class ShipCommand extends LewdCommand {
 
-    Random random = new Random();
+    final Random random = new Random();
 
     public ShipCommand() {
         this.name = "ship";
