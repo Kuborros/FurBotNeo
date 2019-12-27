@@ -25,7 +25,7 @@ public class MusicTimeCommand extends MusicCommand {
     public void doCommand(CommandEvent event) {
 
         if (isIdle(guild)) {
-            event.replyWarning("No music is being played at the moment!");
+            event.reply(sendFailEmbed("No music is being played at the moment!", ""));
             return;
         }
 
@@ -43,14 +43,15 @@ public class MusicTimeCommand extends MusicCommand {
         try {
             seconds = (min ? 60 : 1) * Integer.parseInt(val);
             long milis = (seconds * 1000);
-            if (getPlayer(guild).getPlayingTrack().getDuration() <= milis) {
-                event.replyWarning("This track is not long enough to skip that far!");
+            long duration = getPlayer(guild).getPlayingTrack().getDuration();
+            if (duration <= milis) {
+                event.reply(sendFailEmbed("This track is not long enough to skip that far!", "Track lenght is " + getTimestamp(duration)));
                 return;
             }
             getTrackManager(guild).skipToTime(milis);
-            event.reply("Skipping to: " + seconds + "s!");
+            event.reply(sendGenericEmbed("Skipping to: " + seconds + "s!", "", ":fast_forward:"));
         } catch (NumberFormatException ex) {
-            event.replyWarning("Hm. I can't seem to get a number from that.");
+            event.reply(sendFailEmbed("Heeey... That's not a valid number!", "Don't be silly like that."));
         }
     }
 

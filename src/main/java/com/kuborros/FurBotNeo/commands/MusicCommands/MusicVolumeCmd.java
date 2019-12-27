@@ -25,17 +25,17 @@ public class MusicVolumeCmd extends MusicCommand{
     @Override
     public void doCommand(CommandEvent event){
         if (event.getArgs().isEmpty()) {
-            event.replyWarning("Please set valid volume! <0-1000>.");
+            event.reply(sendFailEmbed("Please set valid volume!", "Correct values are anywhere from 0 (muted) to 1000 (horrible noise)"));
         } else {
             int vol = 100;
             try {
                 vol = Integer.decode(event.getArgs());
                 }
             catch (NumberFormatException e) {
-                event.replyWarning("Please set valid volume! <0-1000>.");
+                event.reply(sendFailEmbed("Please type in a valid number!", "Correct values are anywhere from 0 (muted) to 1000 (horrible noise)"));
             }
-            setVolume(guild,vol);
-            event.reply(String.format("Volume set to: %d", getPlayer(guild).getVolume()));
+            setVolume(guild, vol);
+            event.reply(sendGenericEmbed(String.format("Volume set to: %d", getPlayer(guild).getVolume()), ""));
             }
     }
 }

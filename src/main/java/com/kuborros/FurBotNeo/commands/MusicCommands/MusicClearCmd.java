@@ -23,10 +23,10 @@ public class MusicClearCmd extends MusicCommand {
     @Override
     public void doCommand(CommandEvent event) {
         if (isIdle(guild)) {
-            event.reply("There is no playlist to clear!");
+            event.reply(sendFailEmbed("There is no playlist to clear!", "Duh."));
             return;
         }
         getTrackManager(guild).clearQueue();
-        event.reply(NOTE + "Cleared queue!");
+        event.reply(sendGenericEmbed("Playlist cleared!", ""));
     }
 }

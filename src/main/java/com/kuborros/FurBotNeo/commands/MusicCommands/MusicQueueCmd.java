@@ -8,7 +8,6 @@ import com.kuborros.FurBotNeo.utils.audio.AudioInfo;
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.Permission;
 
-import java.awt.*;
 import java.util.ArrayList;
 import java.util.Set;
 
@@ -65,7 +64,7 @@ public class MusicQueueCmd extends MusicCommand{
         EmbedBuilder eb = new EmbedBuilder();
 
         if (!hasPlayer(guild) || getTrackManager(guild).getQueuedTracks().isEmpty()) {
-            event.reply(NOTE + "The queue is currently empty!");
+            event.reply(sendGenericEmbed("The queue is currently empty!", ""));
         } else {
 
             StringBuilder sb = new StringBuilder();
@@ -76,13 +75,9 @@ public class MusicQueueCmd extends MusicCommand{
 
             tracks.forEach(sb::append);
 
-            eb.setColor(Color.GREEN).setDescription(
-                    NOTE + "**QUEUE**\n\n" +
-                            "*[" + queue.size() + " Tracks" + "]*\n\n" +
-                    sb
-            );
-
-            event.reply(eb.build());
+            event.reply(sendGenericEmbed("**QUEUE**",
+                    "*[" + queue.size() + " Tracks" + "]*\n\n" + sb
+            ));
 
         }
     }

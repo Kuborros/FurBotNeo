@@ -11,11 +11,31 @@ import java.util.Random;
 public class RandomResponse {
 
     private static FurrySettingsManager settings;
+    private Random rando = new Random();
 
     public RandomResponse(FurrySettingsManager settingsManager) {
         settings = settingsManager;
     }
 
+    public static String getRandomBaseErrorMessage() {
+        ArrayList<String> messageList = getGenericErrorMsg();
+        return messageList.get(new Random().nextInt(messageList.size()));
+    }
+
+    private static ArrayList<String> getGenericErrorMsg() {
+        return new ArrayList<>(Arrays.asList(
+                "I think i did something wrong...",
+                "Its not my fault, i swear.",
+                "The server is currently on fire, please wait.",
+                "--AI core reboot in progress--",
+                "That's a bad sign.",
+                "No, i have no idea why.",
+                "Hopefully the error message is useful...",
+                "Segmentation fault at 0xOHNO621",
+                "Aaaaaaaaa",
+                "Connection interrupted. Disconnecting in 39.5s...",
+                "Bot machine broke."));
+    }
 
     public String getRandomBootupMessage() {
         ArrayList<String> messageList = new ArrayList<>(Arrays.asList(
@@ -30,7 +50,7 @@ public class RandomResponse {
                 "Waking up!",
                 "(Some funny startup message here)",
                 "Hi!"));
-        return messageList.get(new Random().nextInt(messageList.size()));
+        return messageList.get(rando.nextInt(messageList.size()));
     }
 
     public String getRandomShutdownMessage() {
@@ -41,7 +61,7 @@ public class RandomResponse {
                 "Bye~",
                 "I needed a break anyways...",
                 "..."));
-        return messageList.get(new Random().nextInt(messageList.size()));
+        return messageList.get(rando.nextInt(messageList.size()));
     }
 
     public String getRandomNotNSFWMessage() {
@@ -57,7 +77,7 @@ public class RandomResponse {
                 "But that's illegal! (But not on NSFW channels~)",
                 "How about we take it over to NSFW channel?",
                 "I'm not allowed to do that here! (But we can hang out over at NSFW channels ;3 )"));
-        return messageList.get(new Random().nextInt(messageList.size()));
+        return messageList.get(rando.nextInt(messageList.size()));
     }
 
     public String getRandomDeniedMessage(Guild guild) {
@@ -84,26 +104,15 @@ public class RandomResponse {
         if (config.isNSFW()) {
             messageList.add("Succ me, then we can talk~");
         }
-        return messageList.get(new Random().nextInt(messageList.size()));
+        return messageList.get(rando.nextInt(messageList.size()));
     }
 
     public String getRandomErrorMessage(Guild guild) {
 
         FurConfig config = settings.getSettings(guild);
 
+        ArrayList<String> messageList = getGenericErrorMsg();
 
-        ArrayList<String> messageList = new ArrayList<>(Arrays.asList(
-                "I think i did something wrong...",
-                "Its not my fault, i swear.",
-                "The server is currently on fire, please wait.",
-                "--AI core reboot in progress--",
-                "That's a bad sign.",
-                "No, i have no idea why.",
-                "Hopefully the error message is useful...",
-                "Segmentation fault at 0xOHNO621",
-                "Aaaaaaaaa",
-                "Connection interrupted. Disconnecting in 39.5s...",
-                "Bot machine broke."));
         if (config.isFurry()) {
             messageList.addAll(Arrays.asList(
                     "Im sowwy UwU",
@@ -113,6 +122,6 @@ public class RandomResponse {
         if (config.isNSFW()) {
             messageList.add("That's what you get for lewding me!");
         }
-        return messageList.get(new Random().nextInt(messageList.size()));
+        return messageList.get(rando.nextInt(messageList.size()));
     }
 }

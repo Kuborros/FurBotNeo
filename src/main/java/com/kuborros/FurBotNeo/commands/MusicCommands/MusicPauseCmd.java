@@ -28,10 +28,10 @@ public class MusicPauseCmd extends MusicCommand{
     public void doCommand(CommandEvent event){
         if (getPlayer(guild).isPaused()) {
             getPlayer(guild).setPaused(false);
-            event.reply(NOTE + "Player resumed.");
+            event.reply(sendGenericEmbed("Player resumed!", ""));
         } else {
             getPlayer(guild).setPaused(true);
-            event.reply(NOTE + "Player paused.");
+            event.reply(sendGenericEmbed("Player paused!", "(Don't forget to unpause it later!)"));
         }
     } 
 }

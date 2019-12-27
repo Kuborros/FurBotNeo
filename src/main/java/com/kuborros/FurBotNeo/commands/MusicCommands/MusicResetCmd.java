@@ -26,7 +26,7 @@ public class MusicResetCmd extends MusicCommand{
     @Override
     public void doCommand(CommandEvent event){
         reset(guild);
-        event.reply("\uD83D\uDD04 Resetting the music player..");
-        event.getTextChannel().getManager().setTopic("Player restarted.").queue();   
+        event.reply(sendGenericEmbed("Resetting the music player!", "", "\uD83D\uDD04"));
+        event.getTextChannel().getManager().setTopic("Music player has been restarted.").queue();
     }
 }

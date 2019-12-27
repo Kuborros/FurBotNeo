@@ -28,9 +28,12 @@ public class PlayNextCmd extends MusicCommand {
         this.input = (input != null && input.startsWith("http")) ? input : "ytsearch: " + input;
 
         if (event.getArgs().isEmpty()) {
-            event.replyWarning("Please include a valid source.");
+            event.reply(sendFailEmbed("Please include a valid search.", "\"Valid\" means supported url, or a search term (that will be searched on youtube)"));
         } else {
             loadTrackNext(input, event.getMember(), event.getMessage());
+            if (getPlayer(guild).isPaused()) {
+                getPlayer(guild).setPaused(false);
+            }
         }
     }
 }
