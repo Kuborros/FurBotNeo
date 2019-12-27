@@ -16,6 +16,7 @@ import com.kuborros.FurBotNeo.utils.config.Database;
 import com.kuborros.FurBotNeo.utils.config.FurrySettingsManager;
 import com.kuborros.FurBotNeo.utils.msg.HelpConsumer;
 import com.kuborros.FurBotNeo.utils.msg.RandomResponse;
+import com.sedmelluq.discord.lavaplayer.jdaudp.NativeAudioSendFactory;
 import net.dv8tion.jda.api.AccountType;
 import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.OnlineStatus;
@@ -42,6 +43,10 @@ public class BotMain {
         if (!System.getProperty("file.encoding").equals("UTF-8")) {
             LOG.info("Not running in UTF-8 mode! This ~might~ end badly for us!");
         }
+
+        String arch = System.getProperty("os.arch");
+        boolean x86 = (arch.contains("x86") || arch.contains("amd64"));
+
         boolean invidio = false, shard = false;
         for (String s : args) {
             switch (s) {
@@ -158,6 +163,8 @@ public class BotMain {
                         .setShardsTotal(-1)
                         .setContextEnabled(true)
                         .setEnableShutdownHook(true);
+                if (x86) builder.setAudioSendFactory(new NativeAudioSendFactory());
+
                 builder.build();
 
             } else {
@@ -168,6 +175,7 @@ public class BotMain {
                         .addEventListeners(waiter, client.build(), new LogListener(), new MemberEventListener(), new BotEventListener())
                         .setAutoReconnect(true)
                         .setEnableShutdownHook(true);
+                if (x86) builder.setAudioSendFactory(new NativeAudioSendFactory());
                 builder.build();
             }
         }
