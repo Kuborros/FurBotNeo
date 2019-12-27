@@ -6,6 +6,7 @@ import com.jagrosh.jdautilities.doc.standard.CommandInfo;
 import com.jagrosh.jdautilities.examples.doc.Author;
 import com.kuborros.FurBotNeo.utils.audio.AudioInfo;
 import net.dv8tion.jda.api.EmbedBuilder;
+import net.dv8tion.jda.api.Permission;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -24,6 +25,7 @@ public class MusicQueueCmd extends MusicCommand{
         this.name = "queue";
         this.aliases = new String[]{"playlist"};
         this.help = "Shows current playlist";
+        this.botPermissions = new Permission[]{Permission.MESSAGE_EMBED_LINKS, Permission.VOICE_CONNECT, Permission.VOICE_SPEAK};
         this.category = new Category("Music");
 }
     @Override

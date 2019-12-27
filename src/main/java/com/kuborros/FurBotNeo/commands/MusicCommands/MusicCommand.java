@@ -215,7 +215,7 @@ abstract class MusicCommand extends Command {
                     EmbedBuilder eb = new EmbedBuilder()
                             .setColor(Color.CYAN)
                             .setDescription(client.getError() + "**Error while fetching music:**")
-                            .addField("", exception.getMessage(), true);
+                            .addField("", exception.getLocalizedMessage(), true);
                     Objects.requireNonNull(botchat).sendMessage(eb.build()).queue();
                 }
             }
@@ -286,7 +286,7 @@ abstract class MusicCommand extends Command {
                     EmbedBuilder eb = new EmbedBuilder()
                             .setColor(Color.CYAN)
                             .setDescription(client.getError() + "**Error while fetching music:**")
-                            .addField("", exception.getMessage(), true);
+                            .addField("", exception.getLocalizedMessage(), true);
                     Objects.requireNonNull(botchat).sendMessage(eb.build()).queue();
                 }
             }

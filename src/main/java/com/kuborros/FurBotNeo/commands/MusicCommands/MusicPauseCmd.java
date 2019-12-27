@@ -18,11 +18,12 @@ public class MusicPauseCmd extends MusicCommand{
         this.name = "pause";
         this.aliases = new String[]{"resume"};
         this.help = "Pauses music playback";
-        this.guildOnly = true;       
-        this.userPermissions = new Permission[]{Permission.MESSAGE_READ};
-        this.category = new Category("Music");  
-       
-}
+        this.guildOnly = true;
+        this.userPermissions = new Permission[]{Permission.KICK_MEMBERS};
+        this.botPermissions = new Permission[]{Permission.MESSAGE_EMBED_LINKS, Permission.VOICE_CONNECT, Permission.VOICE_SPEAK};
+        this.category = new Category("Music");
+
+    }
     @Override
     public void doCommand(CommandEvent event){
         if (getPlayer(guild).isPaused()) {
