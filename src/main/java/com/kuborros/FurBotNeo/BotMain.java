@@ -14,6 +14,7 @@ import com.kuborros.FurBotNeo.listeners.MemberEventListener;
 import com.kuborros.FurBotNeo.utils.config.Config;
 import com.kuborros.FurBotNeo.utils.config.Database;
 import com.kuborros.FurBotNeo.utils.config.FurrySettingsManager;
+import com.kuborros.FurBotNeo.utils.config.JConfig;
 import com.kuborros.FurBotNeo.utils.msg.HelpConsumer;
 import com.kuborros.FurBotNeo.utils.msg.RandomResponse;
 import com.sedmelluq.discord.lavaplayer.jdaudp.NativeAudioSendFactory;
@@ -33,6 +34,7 @@ public class BotMain {
 
     private static final Logger LOG = LoggerFactory.getLogger("Main");
     public static Config cfg;
+    public static JConfig jcfg;
     public static Database db;
     public static RandomResponse randomResponse;
     public static final FurrySettingsManager settingsManager = new FurrySettingsManager();
@@ -45,7 +47,7 @@ public class BotMain {
         }
 
         String arch = System.getProperty("os.arch");
-        boolean x86 = (arch.contains("x86") || arch.contains("amd64"));
+        boolean x86 = (arch.contains("x86") || arch.contains("amd64") || arch.contains("i386"));
 
         boolean invidio = false, shard = false;
         for (String s : args) {
@@ -66,6 +68,7 @@ public class BotMain {
         db.createTables();
 
         cfg = new Config(invidio);
+        jcfg = new JConfig();
 
         randomResponse = new RandomResponse(settingsManager);
 

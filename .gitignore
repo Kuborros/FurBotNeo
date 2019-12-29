@@ -1,7 +1,7 @@
 .idea/
 database.*
 target/
-config.cfg
+config.*
 src/main/java/com/kuborros/FurBotNeo/commands/GameCommands/
 src/main/java/com/kuborros/FurBotNeo/utils/game/
 FurBotNeo.iml
