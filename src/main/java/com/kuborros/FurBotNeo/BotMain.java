@@ -11,7 +11,6 @@ import com.kuborros.FurBotNeo.commands.PicCommands.*;
 import com.kuborros.FurBotNeo.listeners.BotEventListener;
 import com.kuborros.FurBotNeo.listeners.LogListener;
 import com.kuborros.FurBotNeo.listeners.MemberEventListener;
-import com.kuborros.FurBotNeo.utils.config.Config;
 import com.kuborros.FurBotNeo.utils.config.Database;
 import com.kuborros.FurBotNeo.utils.config.FurrySettingsManager;
 import com.kuborros.FurBotNeo.utils.config.JConfig;
@@ -33,8 +32,7 @@ import java.awt.*;
 public class BotMain {
 
     private static final Logger LOG = LoggerFactory.getLogger("Main");
-    public static Config cfg;
-    public static JConfig jcfg;
+    public static JConfig cfg;
     public static Database db;
     public static RandomResponse randomResponse;
     public static final FurrySettingsManager settingsManager = new FurrySettingsManager();
@@ -49,31 +47,17 @@ public class BotMain {
         String arch = System.getProperty("os.arch");
         boolean x86 = (arch.contains("x86") || arch.contains("amd64") || arch.contains("i386"));
 
-        boolean invidio = false, shard = false;
-        for (String s : args) {
-            switch (s) {
-                case "-i":
-                    invidio = true;
-                    LOG.info("Youtube links will be handled by invidio.us");
-                case "-s":
-                    shard = true;
-                    LOG.info("Sharding enabled.");
-            }
-        }
-
-
         EventWaiter waiter = new EventWaiter();
 
         db = new Database();
         db.createTables();
 
-        cfg = new Config(invidio);
-        jcfg = new JConfig();
+        cfg = new JConfig();
 
         randomResponse = new RandomResponse(settingsManager);
 
         CommandClientBuilder client = new CommandClientBuilder();
-        client.setOwnerId(cfg.getOWNER_ID());
+        client.setOwnerId(cfg.getOwnerId());
         client.setEmojis("\u2705", "\u2757", "\u274C");
         client.setPrefix("!");
         client.setGuildSettingsManager(settingsManager);
@@ -155,10 +139,10 @@ public class BotMain {
 
         try {
 
-            if (shard) {
+            if (cfg.isShardingEnabled()) {
 
                 DefaultShardManagerBuilder builder = new DefaultShardManagerBuilder();
-                builder.setToken(cfg.getBOT_TOKEN())
+                builder.setToken(cfg.getBotToken())
                         .setStatus(OnlineStatus.ONLINE)
                         .addEventListeners(waiter, client.build(), new LogListener(), new MemberEventListener(), new BotEventListener())
                         .setAutoReconnect(true)
@@ -173,7 +157,7 @@ public class BotMain {
             } else {
 
                 JDABuilder builder = new JDABuilder(AccountType.BOT);
-                builder.setToken(cfg.getBOT_TOKEN())
+                builder.setToken(cfg.getBotToken())
                         .setStatus(OnlineStatus.ONLINE)
                         .addEventListeners(waiter, client.build(), new LogListener(), new MemberEventListener(), new BotEventListener())
                         .setAutoReconnect(true)

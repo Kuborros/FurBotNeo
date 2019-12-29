@@ -90,7 +90,7 @@ abstract class MusicCommand extends Command {
         myManager.registerSourceManager(new TwitchStreamAudioSourceManager());
         myManager.registerSourceManager(new BeamAudioSourceManager());
 
-        if (cfg.isINVIDIOUS()) myManager.registerSourceManager(new InvidiousAudioSourceManager());
+        if (cfg.isInvidioEnabled()) myManager.registerSourceManager(new InvidiousAudioSourceManager());
         else myManager.registerSourceManager(youtubeAudioSourceManager);
 
         myManager.registerSourceManager(new HttpAudioSourceManager()); //Might be not that safe

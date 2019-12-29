@@ -50,7 +50,7 @@ abstract class AdminCommand extends Command {
         guild = event.getGuild();
         client = event.getClient();
         if (event.getChannelType() == ChannelType.TEXT) {
-            if (!event.getMember().isOwner() || !event.getMember().getId().equals(cfg.getOWNER_ID())) {
+            if (!event.getMember().isOwner() || !event.getMember().getId().equals(cfg.getOwnerId())) {
                 try {
                     if (db.getBanStatus(event.getMember().getId(), guild.getId())) {
                         event.reply(bannedResponseEmbed());

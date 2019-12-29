@@ -54,7 +54,7 @@ public class ShipCommand extends LewdCommand {
             member2 = event.getMember();
         }
 
-        if (member1.getId().contains(cfg.getOWNER_ID()) || member2.getId().contains(cfg.getOWNER_ID())) {
+        if (member1.getId().contains(cfg.getOwnerId()) || member2.getId().contains(cfg.getOwnerId())) {
             if (members.contains(event.getSelfMember())) {
                 event.reply(override100);
                 return;

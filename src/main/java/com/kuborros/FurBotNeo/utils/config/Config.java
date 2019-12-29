@@ -6,7 +6,7 @@ import org.slf4j.LoggerFactory;
 import java.io.*;
 import java.util.Properties;
 
-
+@Deprecated
 public class Config {
 
     private final String BOT_TOKEN;
@@ -24,6 +24,7 @@ public class Config {
         return OWNER_ID;
     }
 
+    @Deprecated
     public Config(boolean invidio) {
         ConFileCheck();
         Properties properties = getProperties();

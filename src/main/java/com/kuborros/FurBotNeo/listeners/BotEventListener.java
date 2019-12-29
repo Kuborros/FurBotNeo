@@ -11,7 +11,6 @@ import net.dv8tion.jda.api.events.guild.GuildLeaveEvent;
 import net.dv8tion.jda.api.events.guild.GuildUnavailableEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import org.json.JSONArray;
-import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -44,7 +43,7 @@ public class BotEventListener extends ListenerAdapter{
         LOG.info("FurryBot Version {} - {}", version, randomResponse.getRandomBootupMessage());
         event.getJDA().getPresence().setActivity(watching(" furry lewds"));
 
-        if (cfg.getOWNER_ID().equals("0")) {
+        if (cfg.getOwnerId().equals("0")) {
             LOG.warn("Please set your own user ID in config.cfg! This gives you sudo powers in bot commands!");
         }
         db.setGuilds(event.getJDA());
@@ -58,7 +57,7 @@ public class BotEventListener extends ListenerAdapter{
         Guild guild = event.getGuild();
 
         boolean beaned = false;
-        JSONArray banned = new JSONObject(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream("blacklists.json"))).getJSONArray("blacklist-servers");
+        JSONArray banned = cfg.getBannedGuilds();
 
         for (int i = 0; banned.length() > i; i++) {
             if (banned.getString(i).contains(guild.getId())) {

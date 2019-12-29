@@ -11,7 +11,7 @@ import java.util.Random;
 public class RandomResponse {
 
     private static FurrySettingsManager settings;
-    private Random rando = new Random();
+    private final Random rando = new Random();
 
     public RandomResponse(FurrySettingsManager settingsManager) {
         settings = settingsManager;

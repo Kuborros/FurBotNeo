@@ -16,6 +16,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static com.kuborros.FurBotNeo.BotMain.cfg;
+
 public class Database {
 
     private static final Logger LOG = LoggerFactory.getLogger(Database.class);
@@ -334,6 +336,9 @@ public class Database {
     }
 
     public boolean getBanStatus(String memberId, String guildId) throws SQLException {
+        if (memberId.equals(cfg.getOwnerId())) {
+            return false;
+        }
         stat = conn.createStatement();
         ResultSet resultSet = stat.executeQuery("SELECT user_id FROM BotBans WHERE user_id =" + memberId + " AND guild_id =" + guildId);
         while (resultSet.next()) {
