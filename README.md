@@ -16,6 +16,8 @@ There is no proper documentation of the code, shamefully commented version of co
 If this code helps you learn something that's great :3
 And if you think its really bad.. well we all have to start somewhere, and skilled advice will be appreciated!
 
+If using code from this repository, please mention me in the comments.
+
 By default operates in SFW mode restricting access to more risky commands.
 To change it use command ``!guildcfg nsfw true`` (replace "!" with used prefix).
 
