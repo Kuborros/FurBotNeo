@@ -28,8 +28,10 @@ public class JConfig {
         Optional<JSONObject> configOpt = Optional.ofNullable(loadOrCreateConfig());
         if (configOpt.isEmpty()) {
             //We assume file just got created, or we failed at creating/reading it. As such we heve no way of obtaining token, so we should just terminate right here.
-            LOG.error("Unable to obtain token - the configuration file is not filled or broken. Shutting down, since there's not much we can do.");
-            //System.exit(255);
+            LOG.error("Unable to obtain token - the configuration file is not filled or broken. \n" +
+                    "If file was generated in this run, please fill in the token and owner id! \n" +
+                    "Shutting down, since there's not much we can do.");
+            System.exit(255);
         } else {
             JSONObject config = configOpt.get();
             if (config.getInt("version") < confVersion) {
@@ -39,6 +41,17 @@ public class JConfig {
             //These always should exist, no matter the file version.
             bot_token = config.getString("bot_token");
             owner_id = config.getString("owner_id");
+
+            //Make sure they are set to something that makes sense
+            if (bot_token.equals("0")) {
+                //Fatal, also means the configuration file was likely not filled in
+                LOG.error("Unable to obtain token - the configuration file is not filled in or broken. Shutting down, since there's not much we can do.");
+                System.exit(255);
+            }
+            if (owner_id.equals("0")) {
+                //Non-fatal, we can continue but at degraded functionality
+                LOG.warn("Owner id in configuration set to 0! That means noone can use owner-specific features! Functionality will be degraded when option is not set.");
+            }
 
             //Remaining options are optional, and do not need to exist in config file to work - they will use default values if not present.
 
