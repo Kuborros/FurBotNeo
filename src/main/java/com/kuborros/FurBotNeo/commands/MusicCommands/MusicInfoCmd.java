@@ -10,6 +10,7 @@ import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.Permission;
 
 import java.awt.*;
+import java.util.Optional;
 
 @CommandInfo(
         name = "MusicInfo",
@@ -35,12 +36,14 @@ public class MusicInfoCmd extends MusicCommand {
         } else {
             AudioTrack track = getPlayer(guild).getPlayingTrack();
             AudioTrackInfo info = track.getInfo();
+            String requester = (String) Optional.ofNullable(track.getUserData()).orElse("Unknown");
             EmbedBuilder eb = new EmbedBuilder();
             eb.setColor(Color.CYAN)
                     .setTitle(NOTE + "**Current Track Info**")
                     .addField(":cd:  Title", info.title, false)
                     .addField(":stopwatch:  Duration", "`[ " + getTimestamp(track.getPosition()) + " / " + getTimestamp(track.getInfo().length) + " ]`", false)
-                    .addField(":microphone:  Channel / Author", info.author, false);
+                    .addField(":microphone:  Channel / Author", info.author, false)
+                    .setFooter("Requested by: " + requester);
             event.reply(eb.build());
         }
     }

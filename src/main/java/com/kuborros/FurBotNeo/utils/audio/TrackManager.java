@@ -38,6 +38,7 @@ public class TrackManager extends AudioEventAdapter {
     }
 
     public void queue(AudioTrack track, Member author, TextChannel botchat) {
+        track.setUserData(author.getEffectiveName());
         AudioInfo info = new AudioInfo(track, author, botchat);
         queue.add(info);
 
