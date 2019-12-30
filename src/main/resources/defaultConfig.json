@@ -1,0 +1,10 @@
+{
+  "version": 1,
+  "bot_token": "0",
+  "owner_id": "0",
+  "config_options": {
+    "invidio": false,
+    "shard": false
+  },
+  "blacklist_servers": []
+}
