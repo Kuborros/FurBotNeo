@@ -4,6 +4,7 @@ package com.kuborros.FurBotNeo.commands.MusicCommands;
 import com.jagrosh.jdautilities.command.CommandEvent;
 import com.jagrosh.jdautilities.doc.standard.CommandInfo;
 import com.jagrosh.jdautilities.examples.doc.Author;
+import net.dv8tion.jda.api.Permission;
 
 
 @CommandInfo(
@@ -20,6 +21,7 @@ public class PlayCommand extends MusicCommand{
         this.arguments = "<title|URL>";
         this.help = "Adds the song to current music queue";
         this.guildOnly = true;
+        this.botPermissions = new Permission[]{Permission.MESSAGE_EMBED_LINKS, Permission.VOICE_CONNECT, Permission.VOICE_SPEAK};
         this.category = new Category("Music");  
 }
     @Override
@@ -28,7 +30,7 @@ public class PlayCommand extends MusicCommand{
         this.input = (input != null && input.startsWith("http")) ? input : "ytsearch: " + input;
 
         if (event.getArgs().isEmpty()) {
-            event.replyWarning("Please include a valid source.");
+            event.reply(sendFailEmbed("Please include a valid search.", "\"Valid\" means supported url, or a search term (that will be searched on youtube)"));
         } else {
             loadTrack(input, event.getMember(), event.getMessage());
             if (getPlayer(guild).isPaused())

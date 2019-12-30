@@ -2,6 +2,7 @@
 package com.kuborros.FurBotNeo.utils.audio;
 
 
+import com.kuborros.FurBotNeo.utils.msg.RandomResponse;
 import com.sedmelluq.discord.lavaplayer.player.AudioPlayer;
 import com.sedmelluq.discord.lavaplayer.player.event.AudioEventAdapter;
 import com.sedmelluq.discord.lavaplayer.tools.FriendlyException;
@@ -37,6 +38,7 @@ public class TrackManager extends AudioEventAdapter {
     }
 
     public void queue(AudioTrack track, Member author, TextChannel botchat) {
+        track.setUserData(author.getEffectiveName());
         AudioInfo info = new AudioInfo(track, author, botchat);
         queue.add(info);
 
@@ -82,7 +84,8 @@ public class TrackManager extends AudioEventAdapter {
     public void onTrackException(AudioPlayer player, AudioTrack track, FriendlyException exception) {
         LOG.warn("Playback error occurred on track: " + track.getInfo().title, exception);
         EmbedBuilder eb = new EmbedBuilder()
-                .setColor(Color.CYAN)
+                .setColor(Color.RED)
+                .setDescription(RandomResponse.getRandomBaseErrorMessage())
                 .setTitle("\u274C" + " **An playback error has occurred!**")
                 .addField("Exception on playback of track: " + track.getInfo().title, exception.getLocalizedMessage(), false);
         getTrackInfo(track).getBotchat().sendMessage(eb.build()).queue();

@@ -16,7 +16,7 @@ import static com.kuborros.FurBotNeo.BotMain.cfg;
 
 public class HelpConsumer implements Consumer<CommandEvent> {
 
-    boolean isNSFW = true, isFurry = true;
+    boolean isNSFW = true;
     Guild guild;
     CommandClient client;
 
@@ -30,7 +30,6 @@ public class HelpConsumer implements Consumer<CommandEvent> {
             FurConfig config = (FurConfig) event.getClient().getSettingsManager().getSettings(guild);
             assert config != null;
             isNSFW = config.isNSFW();
-            isFurry = config.isFurry();
         }
 
         List<Command> commands = client.getCommands();
@@ -54,7 +53,7 @@ public class HelpConsumer implements Consumer<CommandEvent> {
             }
         }
 
-        User owner = event.getJDA().getUserById(cfg.getOWNER_ID());
+        User owner = event.getJDA().getUserById(cfg.getOwnerId());
         if (owner != null) {
             builder.append(" \n");
             builder.append("For additional help, contact **").append(owner.getName()).append("**#").append(owner.getDiscriminator());

@@ -1,8 +1,8 @@
 package com.kuborros.FurBotNeo.utils.config;
 
-import com.kuborros.FurBotNeo.utils.msg.ChannelFinder;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.entities.Guild;
+import net.dv8tion.jda.api.entities.TextChannel;
 import net.dv8tion.jda.api.entities.User;
 import net.dv8tion.jda.api.events.guild.member.GuildMemberJoinEvent;
 import net.dv8tion.jda.api.events.guild.member.GuildMemberLeaveEvent;
@@ -15,6 +15,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import static com.kuborros.FurBotNeo.BotMain.cfg;
 
 public class Database {
 
@@ -147,7 +149,7 @@ public class Database {
         String sql = "INSERT OR IGNORE INTO Guilds(guild_id,music_id,name,members,bot_name,bot_prefix,isNSFW,isFurry,welcomeMsg) VALUES(?,?,?,?,?,?,?,?,?)";
         PreparedStatement pstmt = conn.prepareStatement(sql);
         pstmt.setString(1, guild.getId());
-        pstmt.setString(2, new ChannelFinder(guild).FindBotChat().getId());
+        pstmt.setString(2, findBotChat(guild).getId());
         pstmt.setString(3, guild.getName());
         pstmt.setInt(4, guild.getMembers().size());
         pstmt.setString(5, guild.getJDA().getSelfUser().getName());
@@ -156,6 +158,15 @@ public class Database {
         pstmt.setBoolean(8, true);
         pstmt.setBoolean(9, false);
         pstmt.executeUpdate();
+    }
+
+    private TextChannel findBotChat(Guild guild) {
+        List<TextChannel> channels = guild.getTextChannels();
+        for (TextChannel channel : channels) {
+            if (channel.getName().contains("bot"))
+                return channel;
+        }
+        return guild.getDefaultChannel();
     }
 
     public boolean updateGuildBotName(String name, Guild guild) {
@@ -325,6 +336,9 @@ public class Database {
     }
 
     public boolean getBanStatus(String memberId, String guildId) throws SQLException {
+        if (memberId.equals(cfg.getOwnerId())) {
+            return false;
+        }
         stat = conn.createStatement();
         ResultSet resultSet = stat.executeQuery("SELECT user_id FROM BotBans WHERE user_id =" + memberId + " AND guild_id =" + guildId);
         while (resultSet.next()) {

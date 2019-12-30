@@ -45,7 +45,7 @@ abstract class MusicCommand extends Command {
 
     private static final Logger LOG = LoggerFactory.getLogger("MusicCommands");
 
-    static final String NOTE = ":musical_note:  ";
+    static final String NOTE = ":musical_note:";
 
     static Guild guild;
     private static CommandClient client;
@@ -70,7 +70,7 @@ abstract class MusicCommand extends Command {
 
                 EmbedBuilder eb = new EmbedBuilder()
                         .setColor(Color.CYAN)
-                        .setDescription(NOTE + "   **Now Playing**   ")
+                        .setTitle(NOTE + "   **Now Playing**   ")
                         .addField("Current Track", "`(" + getTimestamp(track.getDuration()) + ")`  " + track.getInfo().title, false);
                 if (tracks.size() > 1) {
                     eb.addField("Next Track", "`(" + getTimestamp(tracks.get(1).getTrack().getDuration()) + ")`  " + tracks.get(1).getTrack().getInfo().title, false);
@@ -90,7 +90,7 @@ abstract class MusicCommand extends Command {
         myManager.registerSourceManager(new TwitchStreamAudioSourceManager());
         myManager.registerSourceManager(new BeamAudioSourceManager());
 
-        if (cfg.isINVIDIOUS()) myManager.registerSourceManager(new InvidiousAudioSourceManager());
+        if (cfg.isInvidioEnabled()) myManager.registerSourceManager(new InvidiousAudioSourceManager());
         else myManager.registerSourceManager(youtubeAudioSourceManager);
 
         myManager.registerSourceManager(new HttpAudioSourceManager()); //Might be not that safe
@@ -138,7 +138,7 @@ abstract class MusicCommand extends Command {
 
     void loadTrackNext(String identifier, Member author, Message msg) {
         if (Objects.requireNonNull(author.getVoiceState()).getChannel() == null) {
-            msg.getChannel().sendMessage(client.getError() + "You are not in a Voice Channel!").queue();
+            msg.getChannel().sendMessage(sendFailEmbed("You are not in a voice channel!", "I cannot join you, if you aren't there~")).queue();
             return;
         }
 
@@ -153,11 +153,9 @@ abstract class MusicCommand extends Command {
             public void trackLoaded(AudioTrack track) {
 
                 if (!isIdle(guild)) {
-                    EmbedBuilder eb = new EmbedBuilder()
-                            .setColor(Color.CYAN)
-                            .setTitle(NOTE + "**Added Track**")
-                            .addField("", "`(" + getTimestamp(track.getDuration()) + ")`  " + track.getInfo().title, true);
-                    Objects.requireNonNull(botchat).sendMessage(eb.build()).queue();
+                    Objects.requireNonNull(botchat).sendMessage(sendGenericEmbed("**Added Track**",
+                            "`(" + getTimestamp(track.getDuration()) + ")`  " + track.getInfo().title)
+                    ).queue();
                 }
 
                 AudioInfo currentTrack = getTrackManager(guild).getQueuedTracks().iterator().next();
@@ -176,14 +174,11 @@ abstract class MusicCommand extends Command {
                 } else if (playlist.isSearchResult()) {
                     trackLoaded(playlist.getTracks().get(0));
                 } else {
-
                     TextChannel botchat = guild.getTextChannelById(config.getAudioChannel());
 
-                    EmbedBuilder eb = new EmbedBuilder()
-                            .setColor(Color.CYAN)
-                            .setDescription(NOTE + "**Added Playlist**")
-                            .addField("", "`(" + "Tracks: " + playlist.getTracks().size() + ")`  " + playlist.getName(), true);
-                    Objects.requireNonNull(botchat).sendMessage(eb.build()).queue();
+                    Objects.requireNonNull(botchat).sendMessage(sendGenericEmbed("**Added Playlist**",
+                            "`(" + "Tracks: " + playlist.getTracks().size() + ")`  " + playlist.getName())
+                    ).queue();
 
                     AudioInfo currentTrack = getTrackManager(guild).getQueuedTracks().iterator().next();
                     Set<AudioInfo> queuedTracks = getTrackManager(guild).getQueuedTracks();
@@ -199,24 +194,14 @@ abstract class MusicCommand extends Command {
 
             @Override
             public void noMatches() {
-                EmbedBuilder eb = new EmbedBuilder()
-                        .setColor(Color.CYAN)
-                        .setDescription(client.getError() + "**Search failed**")
-                        .addField("", "No playable tracks have been found!", true);
-                Objects.requireNonNull(botchat).sendMessage(eb.build()).queue();
+                Objects.requireNonNull(botchat).sendMessage(sendFailEmbed("**Search failed**", "No playable tracks have been found!")).queue();
             }
 
             @Override
             public void loadFailed(FriendlyException exception) {
-
                 LOG.warn("Error loading track: ", exception);
-
                 if (exception.severity != FriendlyException.Severity.FAULT) {
-                    EmbedBuilder eb = new EmbedBuilder()
-                            .setColor(Color.CYAN)
-                            .setDescription(client.getError() + "**Error while fetching music:**")
-                            .addField("", exception.getMessage(), true);
-                    Objects.requireNonNull(botchat).sendMessage(eb.build()).queue();
+                    Objects.requireNonNull(botchat).sendMessage(sendErrorEmbed("**Error while fetching music:**", exception)).queue();
                 }
             }
         });
@@ -224,7 +209,7 @@ abstract class MusicCommand extends Command {
 
     void loadTrack(String identifier, Member author, Message msg) {
         if (Objects.requireNonNull(author.getVoiceState()).getChannel() == null) {
-            msg.getChannel().sendMessage(client.getError() + "You are not in a Voice Channel!").queue();
+            msg.getChannel().sendMessage(sendFailEmbed("You are not in a voice channel!", "I cannot join you, if you aren't there~")).queue();
             return;
         }
 
@@ -239,11 +224,9 @@ abstract class MusicCommand extends Command {
             public void trackLoaded(AudioTrack track) {
 
                 if (!isIdle(guild)) {
-                    EmbedBuilder eb = new EmbedBuilder()
-                            .setColor(Color.CYAN)
-                            .setDescription(NOTE + "**Added Track**")
-                            .addField("", "`(" + getTimestamp(track.getDuration()) + ")`  " + track.getInfo().title, true);
-                    Objects.requireNonNull(botchat).sendMessage(eb.build()).queue();
+                    Objects.requireNonNull(botchat).sendMessage(sendGenericEmbed("**Added Track**",
+                            "`(" + getTimestamp(track.getDuration()) + ")`  " + track.getInfo().title)
+                    ).queue();
                 }
                 getTrackManager(guild).queue(track, author, botchat);
             }
@@ -256,11 +239,9 @@ abstract class MusicCommand extends Command {
                     trackLoaded(playlist.getTracks().get(0));
                 } else {
 
-                    EmbedBuilder eb = new EmbedBuilder()
-                            .setColor(Color.CYAN)
-                            .setDescription(NOTE + "**Added Playlist**")
-                            .addField("", "`(" + "Tracks: " + playlist.getTracks().size() + ")`  " + playlist.getName(), true);
-                    Objects.requireNonNull(botchat).sendMessage(eb.build()).queue();
+                    Objects.requireNonNull(botchat).sendMessage(sendGenericEmbed("**Added Playlist**",
+                            "`(" + "Tracks: " + playlist.getTracks().size() + ")`  " + playlist.getName())
+                    ).queue();
 
                     for (int i = 0; i < Math.min(playlist.getTracks().size(), PLAYLIST_LIMIT); i++) {
                         getTrackManager(guild).queue(playlist.getTracks().get(i), author, botchat);
@@ -270,24 +251,14 @@ abstract class MusicCommand extends Command {
 
             @Override
             public void noMatches() {
-                EmbedBuilder eb = new EmbedBuilder()
-                        .setColor(Color.CYAN)
-                        .setDescription(client.getError() + "**Search failed**")
-                        .addField("", "No playable tracks have been found!", true);
-                Objects.requireNonNull(botchat).sendMessage(eb.build()).queue();
+                Objects.requireNonNull(botchat).sendMessage(sendFailEmbed("**Search failed**", "No playable tracks have been found!")).queue();
             }
 
             @Override
             public void loadFailed(FriendlyException exception) {
-
                 LOG.warn("Error loading track: ", exception);
-
                 if (exception.severity != FriendlyException.Severity.FAULT) {
-                    EmbedBuilder eb = new EmbedBuilder()
-                            .setColor(Color.CYAN)
-                            .setDescription(client.getError() + "**Error while fetching music:**")
-                            .addField("", exception.getMessage(), true);
-                    Objects.requireNonNull(botchat).sendMessage(eb.build()).queue();
+                    Objects.requireNonNull(botchat).sendMessage(sendErrorEmbed("**Error while fetching music:**", exception)).queue();
                 }
             }
         });
@@ -298,9 +269,12 @@ abstract class MusicCommand extends Command {
         return (!hasPlayer(guild) || getPlayer(guild).getPlayingTrack() == null);
     }
 
-    void forceSkipTrack(Guild guild) {
+    boolean forceSkipTrack(Guild guild) {
+        if (isIdle(guild)) {
+            return false;
+        }
         getPlayer(guild).stopTrack();
-        
+        return true;
     }
 
     String buildQueueMessage(AudioInfo info) {
@@ -342,13 +316,48 @@ abstract class MusicCommand extends Command {
         }
         config = (FurConfig) event.getClient().getSettingsManager().getSettings(guild);
         if (!event.getTextChannel().equals(guild.getTextChannelById(config.getAudioChannel()))) return;
-            if (!event.getAuthor().isBot()) {            
-                getPlayer(guild).removeListener(audioEventListener);
-                getPlayer(guild).addListener(audioEventListener);
-                input = event.getArgs();
-                doCommand(event);
-            }
+        if (!event.getAuthor().isBot()) {
+            getPlayer(guild).removeListener(audioEventListener);
+            getPlayer(guild).addListener(audioEventListener);
+            input = event.getArgs();
+            doCommand(event);
+        }
     }
+
+    protected MessageEmbed sendErrorEmbed(String msg, Exception e) {
+        return sendErrorEmbed(msg, e.getLocalizedMessage());
+    }
+
+    protected MessageEmbed sendErrorEmbed(String msg, String ex) {
+        String random = randomResponse.getRandomErrorMessage(guild);
+        EmbedBuilder eb = new EmbedBuilder()
+                .setColor(Color.RED)
+                .setTitle(client.getError() + "  " + msg)
+                .setDescription(random);
+        if (!ex.isBlank()) {
+            eb.addField("", "`` " + ex + " ``", true);
+        }
+        return eb.build();
+    }
+
+    protected MessageEmbed sendFailEmbed(String title, String msg) {
+        return sendGenericEmbed(title, msg, client.getError());
+    }
+
+    protected MessageEmbed sendGenericEmbed(String title, String msg) {
+        return sendGenericEmbed(title, msg, NOTE);
+    }
+
+    protected MessageEmbed sendGenericEmbed(String title, String msg, String emote) {
+        EmbedBuilder eb = new EmbedBuilder()
+                .setColor(Color.CYAN)
+                .setTitle(emote + "  " + title);
+        if (!msg.isBlank()) {
+            eb.addField("", msg, true);
+        }
+        return eb.build();
+    }
+
 
     protected abstract void doCommand(CommandEvent event);
 }

@@ -36,7 +36,7 @@ public class BotBanCmd extends AdminCommand {
             event.replyWarning("You must mention someone for me to ignore!");
         } else {
             Member member = event.getMessage().getMentionedMembers().get(0);
-            if (Objects.equals(member.getId(), cfg.getOWNER_ID())) {
+            if (Objects.equals(member.getId(), cfg.getOwnerId())) {
                 event.reply("Can't ban my owner, silly.");
                 return;
             }

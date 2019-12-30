@@ -6,8 +6,8 @@ import com.jagrosh.jdautilities.doc.standard.CommandInfo;
 import com.jagrosh.jdautilities.examples.doc.Author;
 import com.kuborros.FurBotNeo.utils.audio.AudioInfo;
 import net.dv8tion.jda.api.EmbedBuilder;
+import net.dv8tion.jda.api.Permission;
 
-import java.awt.*;
 import java.util.ArrayList;
 import java.util.Set;
 
@@ -24,6 +24,7 @@ public class MusicQueueCmd extends MusicCommand{
         this.name = "queue";
         this.aliases = new String[]{"playlist"};
         this.help = "Shows current playlist";
+        this.botPermissions = new Permission[]{Permission.MESSAGE_EMBED_LINKS, Permission.VOICE_CONNECT, Permission.VOICE_SPEAK};
         this.category = new Category("Music");
 }
     @Override
@@ -63,7 +64,7 @@ public class MusicQueueCmd extends MusicCommand{
         EmbedBuilder eb = new EmbedBuilder();
 
         if (!hasPlayer(guild) || getTrackManager(guild).getQueuedTracks().isEmpty()) {
-            event.reply(NOTE + "The queue is currently empty!");
+            event.reply(sendGenericEmbed("The queue is currently empty!", ""));
         } else {
 
             StringBuilder sb = new StringBuilder();
@@ -74,13 +75,9 @@ public class MusicQueueCmd extends MusicCommand{
 
             tracks.forEach(sb::append);
 
-            eb.setColor(Color.GREEN).setDescription(
-                    NOTE + "**QUEUE**\n\n" +
-                            "*[" + queue.size() + " Tracks" + "]*\n\n" +
-                    sb
-            );
-
-            event.reply(eb.build());
+            event.reply(sendGenericEmbed("**QUEUE**",
+                    "*[" + queue.size() + " Tracks" + "]*\n\n" + sb
+            ));
 
         }
     }

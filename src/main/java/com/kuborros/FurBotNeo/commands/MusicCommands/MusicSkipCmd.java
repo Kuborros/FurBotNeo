@@ -4,6 +4,7 @@ package com.kuborros.FurBotNeo.commands.MusicCommands;
 import com.jagrosh.jdautilities.command.CommandEvent;
 import com.jagrosh.jdautilities.doc.standard.CommandInfo;
 import com.jagrosh.jdautilities.examples.doc.Author;
+import net.dv8tion.jda.api.Permission;
 
 @CommandInfo(
         name = "MusicSkip",
@@ -17,10 +18,13 @@ public class MusicSkipCmd extends MusicCommand{
         this.name = "skip";
         this.help = "Skips currently played track";
         this.guildOnly = true;
+        this.botPermissions = new Permission[]{Permission.MESSAGE_EMBED_LINKS, Permission.VOICE_CONNECT, Permission.VOICE_SPEAK};
         this.category = new Category("Music");          
 }
     @Override
     public void doCommand(CommandEvent event){
-                forceSkipTrack(guild);        
+        if (forceSkipTrack(guild)) {
+            event.reply(sendGenericEmbed("Skipped track!", "", ":fast_forward:"));
+        }
     }
 }

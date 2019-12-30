@@ -20,12 +20,13 @@ public class MusicResetCmd extends MusicCommand{
         this.ownerCommand = true;
         this.guildOnly = true;        
         this.userPermissions = new Permission[]{Permission.KICK_MEMBERS};
+        this.botPermissions = new Permission[]{Permission.MESSAGE_EMBED_LINKS, Permission.VOICE_CONNECT, Permission.VOICE_SPEAK};
         this.category = new Category("Music");          
 }
     @Override
     public void doCommand(CommandEvent event){
         reset(guild);
-        event.reply("\uD83D\uDD04 Resetting the music player..");
-        event.getTextChannel().getManager().setTopic("Player restarted.").queue();   
+        event.reply(sendGenericEmbed("Resetting the music player!", "", "\uD83D\uDD04"));
+        event.getTextChannel().getManager().setTopic("Music player has been restarted.").queue();
     }
 }
