@@ -57,7 +57,7 @@ public class JConfig {
 
             Optional<JSONObject> bools = Optional.ofNullable(config.optJSONObject("config_options"));
             if (bools.isPresent()) {
-                //Returns "false" if key not found. This wau more options can be added later, and if missing, will default to false.
+                //Returns "false" if key not found. This way more options can be added later, and if missing, will default to false.
                 //Add new bools here
                 invidio_enabled = bools.get().optBoolean("invidio");
                 sharding_enabled = bools.get().optBoolean("shard");
