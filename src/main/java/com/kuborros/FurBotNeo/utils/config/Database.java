@@ -104,6 +104,8 @@ public class Database {
 
                   " balance INTEGER DEFAULT 0, " +
 
+                  " level INTEGER DEFAULT 0, " +
+
                   " items_owned TEXT," +
 
                   " role_owned TEXT," +
@@ -427,9 +429,19 @@ public class Database {
     public void memberSetTokens(String id, String guild, int tokens) {
         try {
             stat = conn.createStatement();
-            stat.executeUpdate("UPDATE Shop SET balance" + tokens + " WHERE member_id=" + id + " AND guild_id=" + guild);
+            stat.executeUpdate("UPDATE Shop SET balance=" + tokens + " WHERE member_id=" + id + " AND guild_id=" + guild);
         } catch (SQLException e) {
             LOG.error("Exception while setting BatToken status:", e);
+        }
+    }
+
+    //You can only go up in levels, and only one at the time
+    public void memberUpLevel(String id, String guild) {
+        try {
+            stat = conn.createStatement();
+            stat.executeUpdate("UPDATE Shop SET level=level + 1 WHERE member_id=" + id + " AND guild_id=" + guild);
+        } catch (SQLException e) {
+            LOG.error("Exception while levelling up:", e);
         }
     }
 
@@ -442,7 +454,7 @@ public class Database {
             return Arrays.asList(rs.getString(1).split(","));
         } catch (SQLException e) {
             LOG.error("Exception while setting owned items status:", e);
-            return new ArrayList<String>();
+            return new ArrayList<>();
         }
     }
 
@@ -454,7 +466,7 @@ public class Database {
             return Arrays.asList(rs.getString(1).split(","));
         } catch (SQLException e) {
             LOG.error("Exception while setting owned items status:", e);
-            return new ArrayList<String>();
+            return new ArrayList<>();
         }
     }
 

@@ -84,6 +84,7 @@ Mostly simple chat commands.
 
 ### Images:
 NSFW commands only work on servers with nsfw setting enabled, and on channels marked as nsfw.
+
 Results are displayed as single embed with controlls.
 
 On SFW servers NSFW commands are fully hidden and do not produce a response.
@@ -102,6 +103,7 @@ On SFW servers NSFW commands are fully hidden and do not produce a response.
 
 ### Admin:
 Administrative commands, some restricted only to bot owner due to possible abuse.
+
 Remaining commands assume: Moderators can kick members, Admins can ban them.
 
 | **Command**   | **Owner Only** |  **Arguments:**   |             **Description:**              |
@@ -117,6 +119,7 @@ Remaining commands assume: Moderators can kick members, Admins can ban them.
 
 ### Music:
 Bot joins same voice channel as user who ran the command.
+
 Music commands are only accepted from dedicated channel to prevent spamming main text channels, and can be set in guild configuration (defaults to any channel with "bot" in name).
 
 | **Command**   |  **Arguments:**   |             **Description:**              |
@@ -134,7 +137,9 @@ Music commands are only accepted from dedicated channel to prevent spamming main
 
 ### Lewd:
 All commands are classified as NSFW as such only work on servers with nsfw flag + nsfw channel.
+
 On SFW servers NSFW commands are fully hidden and do not produce a response.
+
 Guildcfg key is ``nsfw``
 
 | **Command**   |  **Arguments:**   |             **Description:**              |
@@ -149,9 +154,13 @@ Guildcfg key is ``nsfw``
 
 ### Shop: WIPWIPWIPWIPWIPWIPWIPWIPWIPWIPWIPWIPWIPWIPWIPWIPWIPWIPWIPWIPWIPWIPWIPWIPWIPWIPWIPWIPWIPWIPWIPWIPWIPWIPWIPWIPWIPWIPWIPWIPWIPWIPWIPWIPWIPWIPWIPWIPWIP
 Commands that allow users to gain and spend BatTokens, to purchase badges, coloured roles, and more.
+
 Tokens are earned automatically by partaking in chatting and using commands.
+
 Store and vip functionality can be disabled per-instance to save up on memory.
+
 If disabled, they will remain shown in the command list (_shameless promotion right here_), but not function.
+
 _If VIP is disabled, everyone is considered VIP_
 
 | **Command**   |  **Subcommand:**   |             **Description:**              |
@@ -160,6 +169,7 @@ _If VIP is disabled, everyone is considered VIP_
 | ----          | item           | Purchase items here |
 | ----          | role           | Purchase roles here |
 | ----          | vip            | Purchase vip status here (if enabled) |
+| level         | ----           | Spend your tokens to level up!  (or just check your level i guess) |
 | tokens        | ----           | Check your token balance |
 | ----          | give           | Give your tokens away to mentioned user |
 
