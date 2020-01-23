@@ -97,24 +97,30 @@ public class Database {
 
           stat.executeUpdate(guild);
           
-          String game = "CREATE TABLE IF NOT EXISTS Games " +
+          String shop = "CREATE TABLE IF NOT EXISTS Shop " +
 
                   "(id INTEGER PRIMARY KEY AUTOINCREMENT," +
 
+                  " member_id TEXT NOT NULL," +
+
                   " guild_id TEXT NOT NULL, " +
 
-                  " game_id TEXT NOT NULL, " +
+                  " balance INTEGER DEFAULT 0, " +
 
-                  " priority INTEGER) ";
+                  " items_owned TEXT," +
 
-          stat.executeUpdate(game);
-          
+                  " role_owned TEXT," +
+
+                  " isVIP BOOLEAN DEFAULT FALSE) ";
+
+          stat.executeUpdate(shop);
+
           String count = "CREATE TABLE IF NOT EXISTS CommandStats " +
 
                   "(user_id TEXT UNIQUE PRIMARY KEY NOT NULL) ";
 
-          stat.executeUpdate(count);          
-          
+          stat.executeUpdate(count);
+
       } catch (SQLException e){
           LOG.error("Failure while creating database tables: ", e);
         }
@@ -320,6 +326,75 @@ public class Database {
         return map;
 
     }
+
+    //Takes all members from guilds we are in and makes sure they all have their store data
+    //This also should allow to update store table to newer versions (if any)
+    public void setUpStore() {
+
+    }
+
+    //Same member can exist in multiple guilds, and for each needs separate set of store tables
+    private boolean addMemberToStore(String id, String guild) {
+        return false;
+    }
+
+    //Item Addition methods
+    //Slow, and not recommended if faster method available (ex. memberSetItems, memberSetRoles)
+    //Add newly bought item at the end of the "array" of owned items (sqlite does not support arrays so we make it a string)
+    public void memberAddItem(String id, String guild, String item) {
+
+    }
+
+    //We keep all bought roles, so they can remain in users inventory (same deal with "array")
+    public void memberAddRole(String id, String guild, String role) {
+
+    }
+
+    //Set vip status for member
+    public void memberSetVip(String id, String guild, boolean vip) {
+
+    }
+
+    //Item removal methods:
+    //Slower, and not recommended if faster method available (ex. memberSetItems, memberSetRoles)
+    //Remove item from "array"
+    public void memberRemItem(String id, String guild, String item) {
+
+    }
+
+    //Remove role from "array"
+    public void memberRemRole(String id, String guild, String role) {
+
+    }
+
+    //Item set methods:
+    //Overwrites existing item list
+    //Set whole new array of items (if we did that already in other place, no reason to redo this here)
+    public void memberSetItems(String id, String guild, List<String> items) {
+
+    }
+
+    //Set whole new array of roles
+    public void memberSetRoles(String id, String guild, List<String> roles) {
+
+    }
+
+    //Money balance:
+    //Add tokens
+    public void memberAddTokens(String id, String guild, int tokens) {
+
+    }
+
+    //Remove tokens
+    public void memberRemTokens(String id, String guild, int tokens) {
+
+    }
+
+    //Set tokens
+    public void memberSetTokens(String id, String guild, int tokens) {
+
+    }
+
 
     FurConfig getGuildConfig(Guild guild) throws SQLException {
         stat = conn.createStatement();
