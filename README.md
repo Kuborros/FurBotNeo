@@ -146,3 +146,20 @@ Guildcfg key is ``nsfw``
 | kiss          | mention           | Kiss with someone. |
 | lick          | mention           | Licc~ |
 | pet           | mention           | *Pat,pat on the head* |
+
+### Shop: WIPWIPWIPWIPWIPWIPWIPWIPWIPWIPWIPWIPWIPWIPWIPWIPWIPWIPWIPWIPWIPWIPWIPWIPWIPWIPWIPWIPWIPWIPWIPWIPWIPWIPWIPWIPWIPWIPWIPWIPWIPWIPWIPWIPWIPWIPWIPWIPWIP
+Commands that allow users to gain and spend BatTokens, to purchase badges, coloured roles, and more.
+Tokens are earned automatically by partaking in chatting and using commands.
+Store and vip functionality can be disabled per-instance to save up on memory.
+If disabled, they will remain shown in the command list (_shameless promotion right here_), but not function.
+_If VIP is disabled, everyone is considered VIP_
+
+| **Command**   |  **Subcommand:**   |             **Description:**              |
+| :------------ |:-----------------:| :----------------------------------------:|
+| shop          | ----           | Base shop interface, lists deals and stuff (wip) |
+| ----          | item           | Purchase items here |
+| ----          | role           | Purchase roles here |
+| ----          | vip            | Purchase vip status here (if enabled) |
+| tokens        | ----           | Check your token balance |
+| ----          | give           | Give your tokens away to mentioned user |
+
