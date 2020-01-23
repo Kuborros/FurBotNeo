@@ -15,13 +15,12 @@ import java.util.Optional;
 
 public class JConfig {
 
-    private static final int confVersion = 1;
+    private static final int confVersion = 2;
     private static final Logger LOG = LoggerFactory.getLogger(JConfig.class);
     private static final File CONFILE = new File("config.json");
     private String bot_token;
     private String owner_id;
-    private boolean invidio_enabled = false;
-    private boolean sharding_enabled = false;
+    private boolean invidio_enabled, sharding_enabled, shop_enabled, buy_vip_enabled;
     private JSONArray bannedGuilds = new JSONArray();
 
     public JConfig() {
@@ -58,9 +57,12 @@ public class JConfig {
             Optional<JSONObject> bools = Optional.ofNullable(config.optJSONObject("config_options"));
             if (bools.isPresent()) {
                 //Returns "false" if key not found. This way more options can be added later, and if missing, will default to false.
-                //Add new bools here
+                //Version 1 booleans:
                 invidio_enabled = bools.get().optBoolean("invidio");
                 sharding_enabled = bools.get().optBoolean("shard");
+                //Version 2 booleans:
+                shop_enabled = bools.get().optBoolean("shop");
+                buy_vip_enabled = bools.get().optBoolean("buy_vip");
             }
 
             Optional<JSONArray> banned = Optional.ofNullable(config.optJSONArray("blacklist_servers"));
@@ -83,6 +85,14 @@ public class JConfig {
 
     public boolean isShardingEnabled() {
         return sharding_enabled;
+    }
+
+    public boolean isShopEnabled() {
+        return shop_enabled;
+    }
+
+    public boolean isBuyVipEnabled() {
+        return buy_vip_enabled;
     }
 
     public JSONArray getBannedGuilds() {
