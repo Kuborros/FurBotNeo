@@ -10,7 +10,7 @@ public class ShopCommand extends GameCommand {
 
     public ShopCommand() {
         this.name = "shop";
-        this.children = new Command[]{new BuyItemCommand(), new BuyRoleCommand()};
+        this.children = new Command[]{new BuyItemCommand(), new BuyRoleCommand(), new BuyVipCommand()};
         this.help = "Lets you access _the shop_";
         this.guildOnly = true;
         this.botPermissions = new Permission[]{Permission.MESSAGE_EMBED_LINKS};
