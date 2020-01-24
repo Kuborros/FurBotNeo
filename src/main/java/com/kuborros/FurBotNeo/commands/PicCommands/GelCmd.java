@@ -79,7 +79,7 @@ public class GelCmd extends PicCommand {
                     event.replyWarning("No results found!");
                     return;
                 } catch (ParserConfigurationException | IOException | SAXException e) {
-            event.reply(errorResponseEmbed(e));
+                    event.reply(errorResponseEmbed(e));
                     return;
                 }
         builder.build().display(event.getTextChannel());

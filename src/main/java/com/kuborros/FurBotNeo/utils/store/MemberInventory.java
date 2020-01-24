@@ -2,6 +2,8 @@ package com.kuborros.FurBotNeo.utils.store;
 
 import java.util.ArrayList;
 
+import static com.kuborros.FurBotNeo.BotMain.cfg;
+
 public class MemberInventory {
 
     String memberId, guildId;
@@ -12,8 +14,15 @@ public class MemberInventory {
     public MemberInventory(String memberId, String guildId) {
         this.memberId = memberId;
         this.guildId = guildId;
-        this.balance = 0;
-        this.level = 0;
+        if (cfg.isDebugMode()) {
+            //If in debug mode, give all new users unholy amount of tokens for testing
+            this.balance = Integer.MAX_VALUE / 2;
+            //Also give high level to test high level token costs
+            this.level = 9001;
+        } else {
+            this.balance = 0;
+            this.level = 0;
+        }
     }
 
     //Initialise inventory with existing data

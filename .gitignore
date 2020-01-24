@@ -2,7 +2,6 @@
 database.*
 target/
 config.*
-src/main/java/com/kuborros/FurBotNeo/utils/game/
 FurBotNeo.iml
 dependency-reduced-pom.xml
 logs/

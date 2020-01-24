@@ -20,7 +20,7 @@ public class JConfig {
     private static final File CONFILE = new File("config.json");
     private String bot_token;
     private String owner_id;
-    private boolean invidio_enabled, sharding_enabled, shop_enabled, buy_vip_enabled;
+    private boolean debug_mode, invidio_enabled, sharding_enabled, shop_enabled, buy_vip_enabled;
     private JSONArray bannedGuilds = new JSONArray();
 
     public JConfig() {
@@ -33,7 +33,9 @@ public class JConfig {
             System.exit(255);
         } else {
             JSONObject config = configOpt.get();
-            if (config.getInt("version") < confVersion) {
+            //Setting version to -1 is an (outside of here) undocumented switch to enable debug mode - several sanity checks are ignored and store lets you do anything.
+            debug_mode = (config.getInt("version") == -1);
+            if (config.getInt("version") < confVersion && !debug_mode) {
                 LOG.error("Your configuration file is outdated! I can still use it, but i recommend recreating it, as you might miss out on some new cool features!");
             }
 
@@ -93,6 +95,10 @@ public class JConfig {
 
     public boolean isBuyVipEnabled() {
         return buy_vip_enabled;
+    }
+
+    public boolean isDebugMode() {
+        return debug_mode;
     }
 
     public JSONArray getBannedGuilds() {
