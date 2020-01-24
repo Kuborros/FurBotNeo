@@ -35,8 +35,10 @@ public class JConfig {
             JSONObject config = configOpt.get();
             //Setting version to -1 is an (outside of here) undocumented switch to enable debug mode - several sanity checks are ignored and store lets you do anything.
             debug_mode = (config.getInt("version") == -1);
-            if (config.getInt("version") < confVersion && !debug_mode) {
-                LOG.error("Your configuration file is outdated! I can still use it, but i recommend recreating it, as you might miss out on some new cool features!");
+            if (config.getInt("version") < confVersion) {
+                if (debug_mode) LOG.warn("Debug mode engaged!");
+                else
+                    LOG.error("Your configuration file is outdated! I can still use it, but i recommend recreating it, as you might miss out on some new cool features!");
             }
 
             //These always should exist, no matter the file version.
