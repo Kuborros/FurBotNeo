@@ -1,5 +1,6 @@
 package com.kuborros.FurBotNeo.utils.config;
 
+import com.kuborros.FurBotNeo.utils.store.MemberInventory;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.entities.Guild;
 import net.dv8tion.jda.api.entities.TextChannel;
@@ -45,15 +46,12 @@ public class Database {
 
     void close() {
         try {
-            conn.close();
             stat.close();
+            conn.commit();
+            conn.close();
         } catch (SQLException ignored) {
         }
     }
-
-    //public Connection getConn() {
-    //    return conn;
-    //}
     
     public void createTables() {
 
@@ -106,9 +104,9 @@ public class Database {
 
                   " level INTEGER DEFAULT 0, " +
 
-                  " items_owned TEXT," +
+                  " items_owned TEXT DEFAULT ''," +
 
-                  " role_owned TEXT," +
+                  " role_owned TEXT DEFAULT ''," +
 
                   " isVIP BOOLEAN DEFAULT FALSE) ";
 
@@ -124,7 +122,8 @@ public class Database {
           LOG.error("Failure while creating database tables: ", e);
         }
     }
-    
+
+    //TODO: Will mess up horribly when sharded! Needs fix.
     public void setGuilds(JDA jda) {
         
         List<Guild> guilds = jda.getGuilds();
@@ -327,63 +326,20 @@ public class Database {
     }
 
     //Same member can exist in multiple guilds, and for each needs separate set of store tables
+    //Member id and guild id are kept separate for reasons of clarity. If it becomes problematic they can be turned into single unique value
     //Returns true if created, false if already exists.
-    private boolean addMemberToStore(String id, String guild) {
+    public boolean addMemberToStore(String id, String guild) {
         try {
             stat = conn.createStatement();
-            stat.executeUpdate("INSERT OR IGNORE INTO Shop (member_id, guild_id) VALUES (" + id + "," + guild + ")");
+            stat.executeUpdate("INSERT INTO Shop (member_id, guild_id) VALUES (" + id + "," + guild + ")");
             return true;
         } catch (SQLException e) {
-            LOG.error("Unable to add member to configuration : ", e);
+            LOG.debug("User likely already exists: ", e);
             return false;
         }
     }
 
-    //Item Addition methods
-    //Slower, and not recommended if faster method available (ex. memberSetItems, memberSetRoles)
-    //Add newly bought item at the end of the "array" of owned items (sqlite does not support arrays so we make it a string)
-    public void memberAddItem(String id, String guild, String item) {
-        List<String> items = memberGetItems(id, guild);
-        items.add(item);
-        memberSetItems(id, guild, items);
-    }
-
-    //We keep all bought roles, so they can remain in users inventory (same deal with "array")
-    public void memberAddRole(String id, String guild, String role) {
-        List<String> roles = memberGetRoles(id, guild);
-        roles.add(role);
-        memberSetRoles(id, guild, roles);
-    }
-
-    //Set vip status for member
-    public void memberSetVip(String id, String guild, boolean vip) {
-        try {
-            stat = conn.createStatement();
-            stat.executeUpdate("UPDATE Shop SET isVIP=" + vip + " WHERE member_id=" + id + " AND guild_id=" + guild);
-        } catch (SQLException e) {
-            LOG.error("Exception while setting VIP status:", e);
-        }
-    }
-
-    //Item removal methods:
-    //Slower, and not recommended if faster method available (ex. memberSetItems, memberSetRoles)
-    //Remove item from "array"
-    public void memberRemItem(String id, String guild, String item) {
-        List<String> items = memberGetItems(id, guild);
-        items.remove(item);
-        memberSetItems(id, guild, items);
-    }
-
-    //Remove role from "array"
-    public void memberRemRole(String id, String guild, String role) {
-        List<String> roles = memberGetRoles(id, guild);
-        roles.remove(role);
-        memberSetRoles(id, guild, roles);
-    }
-
-    //Item set methods:
-    //Overwrites existing item list
-    //Set whole new array of items (if we made whole list already in other place, no reason to redo this here)
+    //Set items, by converting list to string that sqlite accepts
     public void memberSetItems(String id, String guild, List<String> items) {
         //Turn list into string with comma separated values
         StringBuilder builder = new StringBuilder();
@@ -396,7 +352,7 @@ public class Database {
         }
     }
 
-    //Set whole new array of roles
+    //Set roles, by converting list to string that sqlite accepts
     public void memberSetRoles(String id, String guild, List<String> roles) {
         //Turn list into string with comma separated values
         StringBuilder builder = new StringBuilder();
@@ -409,33 +365,8 @@ public class Database {
         }
     }
 
-    //Money balance:
-    //Add tokens
-    public void memberAddTokens(String id, String guild, int tokens) {
-        memberSetTokens(id, guild, memberGetTokens(id, guild) + tokens);
-    }
 
-    //Remove tokens
-    //Returns true on success, and false if user would end up in debt.
-    public boolean memberRemTokens(String id, String guild, int tokens) {
-        int currTokens = memberGetTokens(id, guild);
-        if ((currTokens - tokens) >= 0) {
-            memberSetTokens(id, guild, currTokens - tokens);
-            return true;
-        } else return false;
-    }
-
-    //Set tokens
-    public void memberSetTokens(String id, String guild, int tokens) {
-        try {
-            stat = conn.createStatement();
-            stat.executeUpdate("UPDATE Shop SET balance=" + tokens + " WHERE member_id=" + id + " AND guild_id=" + guild);
-        } catch (SQLException e) {
-            LOG.error("Exception while setting BatToken status:", e);
-        }
-    }
-
-    //You can only go up in levels, and only one at the time
+    //Singular levelup (convenience method)
     public void memberUpLevel(String id, String guild) {
         try {
             stat = conn.createStatement();
@@ -445,28 +376,13 @@ public class Database {
         }
     }
 
-    //Value getters for shop tables:
-    //Get all items owned by member
-    public List<String> memberGetItems(String member, String guild) {
+    //Set level
+    public void memberSetLevel(String id, String guild, int level) {
         try {
             stat = conn.createStatement();
-            ResultSet rs = stat.executeQuery("SELECT items_owned FROM Shop WHERE guild_id=" + guild + " AND member_id=" + member);
-            return Arrays.asList(rs.getString(1).split(","));
+            stat.executeUpdate("UPDATE Shop SET level=" + level + " WHERE member_id=" + id + " AND guild_id=" + guild);
         } catch (SQLException e) {
-            LOG.error("Exception while setting owned items status:", e);
-            return new ArrayList<>();
-        }
-    }
-
-    //Get all (store bought) roles owned by member
-    public List<String> memberGetRoles(String member, String guild) {
-        try {
-            stat = conn.createStatement();
-            ResultSet rs = stat.executeQuery("SELECT role_owned FROM Shop WHERE guild_id=" + guild + " AND member_id=" + member);
-            return Arrays.asList(rs.getString(1).split(","));
-        } catch (SQLException e) {
-            LOG.error("Exception while setting owned items status:", e);
-            return new ArrayList<>();
+            LOG.error("Exception while levelling up:", e);
         }
     }
 
@@ -485,6 +401,16 @@ public class Database {
         } else return true;
     }
 
+    //Set vip status for member
+    public void memberSetVip(String id, String guild, boolean vip) {
+        try {
+            stat = conn.createStatement();
+            stat.executeUpdate("UPDATE Shop SET isVIP=" + vip + " WHERE member_id=" + id + " AND guild_id=" + guild);
+        } catch (SQLException e) {
+            LOG.error("Exception while setting VIP status:", e);
+        }
+    }
+
     //Get tokens
     public int memberGetTokens(String member, String guild) {
         try {
@@ -497,6 +423,63 @@ public class Database {
         }
     }
 
+    //Set tokens
+    public void memberSetTokens(String id, String guild, int tokens) {
+        try {
+            stat = conn.createStatement();
+            stat.executeUpdate("UPDATE Shop SET balance=" + tokens + " WHERE member_id=" + id + " AND guild_id=" + guild);
+        } catch (SQLException e) {
+            LOG.error("Exception while setting BatToken status:", e);
+        }
+    }
+
+    //Get whole inventory
+    public MemberInventory memberGetInventory(String member, String guild) {
+        try {
+            stat = conn.createStatement();
+            ResultSet rs = stat.executeQuery("SELECT * FROM Shop WHERE guild_id=" + guild + " AND member_id=" + member);
+            List<String> items = Arrays.asList(rs.getString(6).split(","));
+            List<String> roles = Arrays.asList(rs.getString(7).split(","));
+            return new MemberInventory(member, guild, rs.getInt(4), rs.getInt(5), items, roles, rs.getBoolean(8));
+        } catch (SQLException e) {
+            LOG.error("Exception while obtaining user inventory:", e);
+            return new MemberInventory(member, guild);
+        }
+    }
+
+    //Set whole inventory at once
+    public void memberSetInventory(MemberInventory inventory) {
+        String items, roles;
+        StringBuilder builder = new StringBuilder();
+        if (inventory.getOwnedItems().isEmpty()) {
+            items = "";
+        } else {
+            inventory.getOwnedItems().forEach(item -> builder.append(item).append(","));
+            items = builder.toString();
+            builder.delete(0, builder.length());
+        }
+        if (inventory.getOwnedRoles().isEmpty()) {
+            roles = "";
+        } else {
+            inventory.getOwnedRoles().forEach(item -> builder.append(item).append(","));
+            roles = builder.toString();
+            builder.delete(0, builder.length());
+        }
+
+        try {
+            stat = conn.createStatement();
+            stat.executeUpdate(
+                    "UPDATE Shop SET (balance,level,items_owned,role_owned,isVIP)=(" +
+                            inventory.getBalance() + "," +
+                            inventory.getLevel() + "," +
+                            items + "," +
+                            roles + "," +
+                            inventory.isVIP() +
+                            ") WHERE member_id=" + inventory.getMemberId() + " AND guild_id=" + inventory.getGuildId());
+        } catch (SQLException e) {
+            LOG.error("Exception while writing user inventory:", e);
+        }
+    }
 
     FurConfig getGuildConfig(Guild guild) throws SQLException {
         stat = conn.createStatement();
