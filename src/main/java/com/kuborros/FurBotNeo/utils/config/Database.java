@@ -105,9 +105,9 @@ public class Database {
 
                   " level INTEGER DEFAULT 0, " +
 
-                  " items_owned TEXT DEFAULT ''," +
+                  " items_owned TEXT DEFAULT 'user_badge'," +
 
-                  " role_owned TEXT DEFAULT ''," +
+                  " role_owned TEXT DEFAULT 'default'," +
 
                   " isVIP BOOLEAN DEFAULT FALSE) ";
 
@@ -417,8 +417,8 @@ public class Database {
                     "UPDATE Shop SET (balance,level,items_owned,role_owned,isVIP)=(" +
                             inventory.getBalance() + "," +
                             inventory.getLevel() + "," +
-                            items + "," +
-                            roles + "," +
+                            "'" + items + "'" + "," +
+                            "'" + roles + "'" + "," +
                             inventory.isVIP() +
                             ") WHERE member_id=" + inventory.getMemberId() + " AND guild_id=" + inventory.getGuildId());
         } catch (SQLException e) {
