@@ -46,11 +46,11 @@ public class StatsCommand extends AdminCommand {
 
         if (sharded) {
             ShardManager shardman = event.getJDA().getShardManager();
-            builder.append("\nGuilds: ").append(shardman.getGuilds().size())
+            builder.append("\nGuilds: ").append(shardman.getGuildCache().size())
                     .append("\nAverage ping: ").append(shardman.getAverageGatewayPing())
                     .append("\nTotal shards: ").append(shardman.getShardsRunning());
         } else {
-            builder.append("\nGuilds: ").append(event.getJDA().getGuilds().size())
+            builder.append("\nGuilds: ").append(event.getJDA().getGuildCache().size())
                     .append("\nCurrent ping: ").append(event.getJDA().getGatewayPing());
         }
 

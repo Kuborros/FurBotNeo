@@ -320,6 +320,11 @@ abstract class MusicCommand extends Command {
             getPlayer(guild).removeListener(audioEventListener);
             getPlayer(guild).addListener(audioEventListener);
             input = event.getArgs();
+            //Token award per command use. Inventories are not likely to be used in these commands, so they are not kept around
+            //Should be tweaked later
+            inventoryCache.setInventory(
+                    inventoryCache.getInventory(event.getMember().getId(), guild.getId()).addTokens(10)
+            );
             doCommand(event);
         }
     }

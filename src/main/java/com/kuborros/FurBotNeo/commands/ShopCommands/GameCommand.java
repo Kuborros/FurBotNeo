@@ -3,6 +3,7 @@ package com.kuborros.FurBotNeo.commands.ShopCommands;
 import com.jagrosh.jdautilities.command.Command;
 import com.jagrosh.jdautilities.command.CommandClient;
 import com.jagrosh.jdautilities.command.CommandEvent;
+import com.kuborros.FurBotNeo.utils.store.MemberInventory;
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.entities.Guild;
 import net.dv8tion.jda.api.entities.MessageEmbed;
@@ -12,8 +13,7 @@ import org.slf4j.LoggerFactory;
 import java.awt.*;
 import java.sql.SQLException;
 
-import static com.kuborros.FurBotNeo.BotMain.db;
-import static com.kuborros.FurBotNeo.BotMain.randomResponse;
+import static com.kuborros.FurBotNeo.BotMain.*;
 
 public abstract class GameCommand extends Command {
 
@@ -21,6 +21,7 @@ public abstract class GameCommand extends Command {
 
     Guild guild;
     private CommandClient client;
+    protected MemberInventory inventory;
 
     private MessageEmbed bannedResponseEmbed() {
         String random = randomResponse.getRandomDeniedMessage(guild);
@@ -57,6 +58,8 @@ public abstract class GameCommand extends Command {
         } catch (SQLException e) {
             LOG.error("Error while contacting database: ", e);
         }
+        //Shop commands themselves do not award tokens, they do however need inventory
+        inventory = inventoryCache.getInventory(event.getMember().getId(), guild.getId());
         doCommand(event);
     }
 

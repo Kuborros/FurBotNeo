@@ -13,8 +13,7 @@ import org.slf4j.LoggerFactory;
 import java.awt.*;
 import java.sql.SQLException;
 
-import static com.kuborros.FurBotNeo.BotMain.db;
-import static com.kuborros.FurBotNeo.BotMain.randomResponse;
+import static com.kuborros.FurBotNeo.BotMain.*;
 
 
 abstract class LewdCommand extends Command {
@@ -74,7 +73,15 @@ abstract class LewdCommand extends Command {
 
         isFurry = config.isFurry();
 
-        if (event.getTextChannel().isNSFW()) doCommand(event);
+        if (event.getTextChannel().isNSFW()) {
+            //Token award per command use. Inventories are not likely to be used in these commands, so they are not kept around
+            //Should be tweaked later
+            inventoryCache.setInventory(
+                    inventoryCache.getInventory(event.getMember().getId(), guild.getId()).addTokens(10)
+            );
+            doCommand(event);
+        }
+        //No tokens if command is used on sfw channel
         else event.replyWarning(randomResponse.getRandomNotNSFWMessage());
     }
 

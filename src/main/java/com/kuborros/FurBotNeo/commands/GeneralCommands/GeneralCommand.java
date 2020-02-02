@@ -12,8 +12,7 @@ import org.slf4j.LoggerFactory;
 import java.awt.*;
 import java.sql.SQLException;
 
-import static com.kuborros.FurBotNeo.BotMain.db;
-import static com.kuborros.FurBotNeo.BotMain.randomResponse;
+import static com.kuborros.FurBotNeo.BotMain.*;
 
 abstract class GeneralCommand extends Command {
 
@@ -49,14 +48,20 @@ abstract class GeneralCommand extends Command {
     protected void execute(CommandEvent event) {
         guild = event.getGuild();
         client = event.getClient();
+        String member = event.getMember().getId();
         try {
-            if (db.getBanStatus(event.getMember().getId(), guild.getId())) {
+            if (db.getBanStatus(member, guild.getId())) {
                 event.reply(bannedResponseEmbed());
                 return;
             }
         } catch (SQLException e) {
             LOG.error("Error while contacting database: ", e);
         }
+        //Token award per command use. Inventories are not likely to be used in these commands, so they are not kept around
+        //Should be tweaked later
+        inventoryCache.setInventory(
+                inventoryCache.getInventory(member, guild.getId()).addTokens(1)
+        );
         doCommand(event);
     }
 

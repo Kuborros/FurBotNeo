@@ -45,6 +45,8 @@ abstract class AdminCommand extends Command {
         return builder.build();
     }
 
+
+    //Being service commands meant for admins, these do not award tokens for use.
     @Override
     protected void execute(CommandEvent event) {
         guild = event.getGuild();

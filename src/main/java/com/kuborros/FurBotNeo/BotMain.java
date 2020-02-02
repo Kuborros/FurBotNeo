@@ -18,6 +18,8 @@ import com.kuborros.FurBotNeo.utils.config.FurrySettingsManager;
 import com.kuborros.FurBotNeo.utils.config.JConfig;
 import com.kuborros.FurBotNeo.utils.msg.HelpConsumer;
 import com.kuborros.FurBotNeo.utils.msg.RandomResponse;
+import com.kuborros.FurBotNeo.utils.store.MemberInventoryCache;
+import com.kuborros.FurBotNeo.utils.store.MemberInventoryCacheImpl;
 import com.sedmelluq.discord.lavaplayer.jdaudp.NativeAudioSendFactory;
 import net.dv8tion.jda.api.AccountType;
 import net.dv8tion.jda.api.JDABuilder;
@@ -39,6 +41,7 @@ public class BotMain {
     public static RandomResponse randomResponse;
     public static final FurrySettingsManager settingsManager = new FurrySettingsManager();
     public static SessionController controller;
+    public static MemberInventoryCache inventoryCache;
 
     public static void main(String[] args) {
 
@@ -57,6 +60,7 @@ public class BotMain {
         cfg = new JConfig();
 
         randomResponse = new RandomResponse(settingsManager);
+        inventoryCache = new MemberInventoryCacheImpl();
 
         CommandClientBuilder client = new CommandClientBuilder();
         client.setOwnerId(cfg.getOwnerId());
