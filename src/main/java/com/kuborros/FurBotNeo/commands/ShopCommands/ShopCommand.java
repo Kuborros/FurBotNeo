@@ -12,8 +12,7 @@ import org.slf4j.LoggerFactory;
 
 import java.awt.*;
 
-import static com.kuborros.FurBotNeo.BotMain.inventoryCache;
-import static com.kuborros.FurBotNeo.BotMain.randomResponse;
+import static com.kuborros.FurBotNeo.BotMain.*;
 
 public abstract class ShopCommand extends Command {
 
@@ -47,6 +46,10 @@ public abstract class ShopCommand extends Command {
 
     @Override
     protected void execute(CommandEvent event) {
+        if (!cfg.isShopEnabled()) {
+            LOG.info("Shop disabled by instance owner, ignoring.");
+            return;
+        }
         guild = event.getGuild();
         client = event.getClient();
         //Shop commands themselves do not award tokens, they do however need inventory

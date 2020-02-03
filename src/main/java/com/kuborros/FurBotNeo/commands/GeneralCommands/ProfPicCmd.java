@@ -32,12 +32,12 @@ public class ProfPicCmd extends GeneralCommand {
             if (message.getMentionedUsers().isEmpty()) return;
             User user = message.getMentionedUsers().get(0);
             
-            event.getTextChannel().sendMessage(
-                new EmbedBuilder().setColor(Color.ORANGE)
-                                  .setTitle("Profile picture of: " + user.getName())
-                                  .setThumbnail(user.getAvatarUrl())
-                                  .setDescription("[Click **here** to view it in full size!](" + user.getAvatarUrl() + ")" + "\n"
-                                                + "[Click **here** to reverse google search it!](https://images.google.com/searchbyimage?image_url=" + user.getAvatarUrl() + ")" + "\n")
-                                  .build()).queue();    
+            event.reply(
+                    new EmbedBuilder().setColor(Color.ORANGE)
+                            .setTitle("Profile picture of: " + user.getName())
+                            .setThumbnail(user.getAvatarUrl())
+                            .setDescription("[Click **here** to view it in full size!](" + user.getAvatarUrl() + ")" + "\n"
+                                    + "[Click **here** to reverse google search it!](https://images.google.com/searchbyimage?image_url=" + user.getAvatarUrl() + ")" + "\n")
+                            .build());
     }  
 }

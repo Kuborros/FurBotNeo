@@ -2,16 +2,18 @@ package com.kuborros.FurBotNeo.commands.ShopCommands;
 
 import com.jagrosh.jdautilities.command.Command;
 import com.jagrosh.jdautilities.command.CommandEvent;
+import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.Permission;
 
-import static com.kuborros.FurBotNeo.BotMain.cfg;
+import java.awt.*;
 
 public class CoinsCommand extends ShopCommand {
 
     public CoinsCommand() {
         this.name = "coins";
+        this.aliases = new String[]{"tokens", "wallet"};
         this.children = new Command[]{new GiveCoinsCmd()};
-        this.help = "Shows your FurToken:tm: balance!";
+        this.help = "Shows your BatToken:tm: balance!";
         this.guildOnly = true;
         this.botPermissions = new Permission[]{Permission.MESSAGE_EMBED_LINKS};
         this.category = new Command.Category("Shop");
@@ -20,10 +22,28 @@ public class CoinsCommand extends ShopCommand {
     @Override
     protected void doCommand(CommandEvent event) {
 
-        if (!cfg.isShopEnabled()) {
-            LOG.info("Shop disabled by instance owner, ignoring.");
-            return;
+        int moneys = inventory.getBalance();
+        String footer;
+        switch (moneys) {
+            case 69:
+            case 621:
+                footer = "OwO";
+                break;
+            case 420:
+                footer = "It's da weed number!";
+                break;
+            case 9001:
+                footer = "Its over nine thousaaaaand";
+                break;
+            default:
+                footer = "";
         }
+        EmbedBuilder builder = new EmbedBuilder()
+                .setTitle("Token balance of " + event.getAuthor().getName())
+                .setColor(Color.ORANGE)
+                .setDescription(String.format("** %d **", moneys))
+                .setFooter(footer);
+        event.reply(builder.build());
 
     }
 }

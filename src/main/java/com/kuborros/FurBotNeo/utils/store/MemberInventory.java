@@ -7,7 +7,9 @@ import static com.kuborros.FurBotNeo.BotMain.db;
 
 public class MemberInventory {
 
-    String memberId, guildId, uId;
+    final String memberId;
+    final String guildId;
+    final String uId;
     List<String> ownedItems, ownedRoles;
     int balance, level;
     boolean VIP, banned;

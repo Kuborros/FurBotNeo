@@ -4,8 +4,6 @@ import com.jagrosh.jdautilities.command.Command;
 import com.jagrosh.jdautilities.command.CommandEvent;
 import net.dv8tion.jda.api.Permission;
 
-import static com.kuborros.FurBotNeo.BotMain.cfg;
-
 public class BuyCommand extends ShopCommand {
 
     public BuyCommand() {
@@ -20,10 +18,6 @@ public class BuyCommand extends ShopCommand {
     @Override
     protected void doCommand(CommandEvent event) {
 
-        if (!cfg.isShopEnabled()) {
-            LOG.info("Shop disabled by instance owner, ignoring.");
-            return;
-        }
 
 
     }
