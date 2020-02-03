@@ -36,7 +36,7 @@ public class GiveCoinsCmd extends ShopCommand {
             return;
         }
         MemberInventory reveiverInv = inventoryCache.getInventory(member.getId(), event.getGuild().getId());
-        int amount = 0;
+        int amount;
         int ownerBalance = inventory.getBalance();
         try {
             amount = Integer.parseInt(event.getArgs().replaceFirst(member.getAsMention(), ""));

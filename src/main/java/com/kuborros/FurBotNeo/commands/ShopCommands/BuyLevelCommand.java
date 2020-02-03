@@ -14,11 +14,12 @@ import java.util.concurrent.TimeUnit;
 
 import static com.kuborros.FurBotNeo.BotMain.inventoryCache;
 
+@SuppressWarnings("ConstantConditions")
 public class BuyLevelCommand extends ShopCommand {
 
     static final String OKAY = "\u2705";
     static final String NO = "\u274C";
-    EventWaiter waiter;
+    final EventWaiter waiter;
     String authorId;
     int levelcost, level;
 

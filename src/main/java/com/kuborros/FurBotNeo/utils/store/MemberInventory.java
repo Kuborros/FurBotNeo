@@ -98,6 +98,11 @@ public class MemberInventory {
         return this;
     }
 
+    public MemberInventory setVIP(boolean vip) {
+        this.VIP = vip;
+        return this;
+    }
+
     public String getMemberId() {
         return memberId;
     }
