@@ -13,6 +13,7 @@ import com.kuborros.FurBotNeo.commands.ShopCommands.CoinsCommand;
 import com.kuborros.FurBotNeo.listeners.BotEventListener;
 import com.kuborros.FurBotNeo.listeners.LogListener;
 import com.kuborros.FurBotNeo.listeners.MemberEventListener;
+import com.kuborros.FurBotNeo.listeners.ShopTokenListener;
 import com.kuborros.FurBotNeo.utils.config.Database;
 import com.kuborros.FurBotNeo.utils.config.FurrySettingsManager;
 import com.kuborros.FurBotNeo.utils.config.JConfig;
@@ -166,6 +167,7 @@ public class BotMain {
                         .setContextEnabled(true)
                         .setEnableShutdownHook(true);
                 if (x86) builder.setAudioSendFactory(new NativeAudioSendFactory());
+                if (cfg.isShopEnabled()) builder.addEventListeners(new ShopTokenListener());
 
                 builder.build();
 
@@ -178,6 +180,8 @@ public class BotMain {
                         .setAutoReconnect(true)
                         .setEnableShutdownHook(true);
                 if (x86) builder.setAudioSendFactory(new NativeAudioSendFactory());
+                if (cfg.isShopEnabled()) builder.addEventListeners(new ShopTokenListener());
+
                 builder.build();
             }
         }
