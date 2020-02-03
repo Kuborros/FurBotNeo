@@ -80,14 +80,45 @@ public class BuyLevelCommand extends ShopCommand {
             message.clearReactions().queue();
             return;
         }
-
         if (event.getReaction().getReactionEmote().getName().equals(OKAY)) {
             inventoryCache.setInventory(inventory.spendTokens(levelcost).addLevel());
             EmbedBuilder builder = new EmbedBuilder()
                     .setColor(Color.ORANGE)
                     .setTitle(String.format("Welcome to level %d, %s!", level, event.getUser().getName()))
-                    .setDescription(String.format("Your next level-up will cost you %d tokens!", levelCost(level++)))
+                    .setDescription(String.format("Your next level-up will cost you %d tokens!", levelCost(level++))) //Note that level var gets increased here!
                     .setThumbnail(event.getUser().getEffectiveAvatarUrl());
+            //Leveling rewards
+            switch (level) {
+                case 10:
+                    inventoryCache.setInventory(inventory.addToInventory("lvl10"));
+                    builder.addField("You got a loot drop!", "Level 10 badge", true);
+                    break;
+                case 25:
+                    inventoryCache.setInventory(inventory.addToInventory("lvl25"));
+                    builder.addField("You got a loot drop!", "Level 25 badge", true);
+                    break;
+                case 50:
+                    inventoryCache.setInventory(inventory.addToInventory("lvl50"));
+                    builder.addField("You got a loot drop!", "Level 50 badge", true);
+                    break;
+                case 100:
+                    inventoryCache.setInventory(inventory.addToInventory("lvl100"));
+                    builder.addField("You got a loot drop!", "Level 100 badge", true);
+                    break;
+                case 250:
+                    inventoryCache.setInventory(inventory.addToInventory("lvl250"));
+                    builder.addField("You got a loot drop!", "Level 250 badge", true);
+                    break;
+                case 500:
+                    inventoryCache.setInventory(inventory.addToInventory("lvl500"));
+                    builder.addField("You got a loot drop!", "Level 500 badge", true);
+                    break;
+                case 1000:
+                    inventoryCache.setInventory(inventory.addToInventory("lvl1000"));
+                    builder.addField("You got a loot drop!", "Level 1000 badge", true);
+                    break;
+            }
+
             try {
                 message.editMessage(builder.build()).queue();
                 message.clearReactions().queue();
