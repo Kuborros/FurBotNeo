@@ -6,11 +6,10 @@ import com.jagrosh.jdautilities.examples.doc.Author;
 import net.dv8tion.jda.api.Permission;
 import net.dv8tion.jda.api.entities.Member;
 
-import java.sql.SQLException;
 import java.util.Objects;
 
 import static com.kuborros.FurBotNeo.BotMain.cfg;
-import static com.kuborros.FurBotNeo.BotMain.db;
+import static com.kuborros.FurBotNeo.BotMain.inventoryCache;
 
 
 @CommandInfo(
@@ -40,19 +39,11 @@ public class BotBanCmd extends AdminCommand {
                 event.reply("Can't ban my owner, silly.");
                 return;
             }
-            try {
-                db.addBannedUser(member.getId(), guild.getId());
-            } catch (SQLException e) {
-                LOG.error("Error while banning member: ", e);
-                event.reply(errorResponseEmbed(e));
-            }
-            try {
-                if (db.getBanStatus(member.getId(), guild.getId())) {
-                    event.reply("User has been blocked from bot commands!");
-                }
-            } catch (SQLException e) {
-                LOG.error("Error while contacting database: ", e);
-                event.reply(errorResponseEmbed(e));
+            inventoryCache.setInventory(inventoryCache.getInventory(member.getId(), event.getGuild().getId()).setBotBan(true));
+            if (inventoryCache.getInventory(member.getId(), event.getGuild().getId()).isBanned()) {
+                event.reply("User has been blocked from bot commands!");
+            } else {
+                errorResponseEmbed("Something went wrong while applying ban!");
             }
         }
     }

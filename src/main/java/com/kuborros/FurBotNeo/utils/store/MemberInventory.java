@@ -10,13 +10,14 @@ public class MemberInventory {
     String memberId, guildId, uId;
     List<String> ownedItems, ownedRoles;
     int balance, level;
-    boolean VIP;
+    boolean VIP, banned;
 
     //Initialises empty inventory
     public MemberInventory(String memberId, String guildId) {
         this.memberId = memberId;
         this.guildId = guildId;
         this.uId = memberId + "," + guildId;
+        this.banned = false;
         if (cfg.isDebugMode()) {
             //If in debug mode, give all new users unholy amount of tokens for testing
             this.balance = Integer.MAX_VALUE / 2;
@@ -32,7 +33,7 @@ public class MemberInventory {
     }
 
     //Initialise inventory with existing data
-    public MemberInventory(String memberId, String guildId, int balance, int level, List<String> ownedItems, List<String> ownedRoles, boolean vip) {
+    public MemberInventory(String memberId, String guildId, int balance, int level, List<String> ownedItems, List<String> ownedRoles, boolean vip, boolean banned) {
         this.memberId = memberId;
         this.guildId = guildId;
         this.uId = memberId + "," + guildId;
@@ -40,6 +41,7 @@ public class MemberInventory {
         this.level = level;
         this.ownedItems = ownedItems;
         this.ownedRoles = ownedRoles;
+        this.banned = banned;
         if (cfg.isBuyVipEnabled()) this.VIP = vip;
         else this.VIP = true;
     }
@@ -48,6 +50,7 @@ public class MemberInventory {
         db.memberSetInventory(this);
     }
 
+    //All add/remove methods return Memberinventory for easy chaining
     public MemberInventory addToInventory(String item) {
         ownedItems.add(item);
         return this;
@@ -88,6 +91,11 @@ public class MemberInventory {
         return this;
     }
 
+    public MemberInventory setBotBan(boolean beaned) {
+        this.banned = beaned;
+        return this;
+    }
+
     public String getMemberId() {
         return memberId;
     }
@@ -118,5 +126,11 @@ public class MemberInventory {
 
     public boolean isVIP() {
         return VIP;
+    }
+
+    public boolean isBanned() {
+        //Owner is never banned, even if db says so, to avoid permament lockout
+        if (memberId.equals(cfg.getOwnerId())) return false;
+        return banned;
     }
 }

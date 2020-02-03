@@ -8,8 +8,8 @@ import com.kuborros.FurBotNeo.commands.GeneralCommands.*;
 import com.kuborros.FurBotNeo.commands.LewdCommands.*;
 import com.kuborros.FurBotNeo.commands.MusicCommands.*;
 import com.kuborros.FurBotNeo.commands.PicCommands.*;
+import com.kuborros.FurBotNeo.commands.ShopCommands.BuyCommand;
 import com.kuborros.FurBotNeo.commands.ShopCommands.CoinsCommand;
-import com.kuborros.FurBotNeo.commands.ShopCommands.ShopCommand;
 import com.kuborros.FurBotNeo.listeners.BotEventListener;
 import com.kuborros.FurBotNeo.listeners.LogListener;
 import com.kuborros.FurBotNeo.listeners.MemberEventListener;
@@ -148,7 +148,7 @@ public class BotMain {
         //All shop commands are currently gated behind debug mode, as they are for now intended *only for testing*
         if (cfg.isDebugMode()) {
             client.addCommands(
-                    new ShopCommand(),
+                    new BuyCommand(),
                     new CoinsCommand());
         }
 

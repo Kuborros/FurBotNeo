@@ -1,30 +1,62 @@
 package com.kuborros.FurBotNeo.commands.ShopCommands;
 
 import com.jagrosh.jdautilities.command.Command;
+import com.jagrosh.jdautilities.command.CommandClient;
 import com.jagrosh.jdautilities.command.CommandEvent;
-import net.dv8tion.jda.api.Permission;
+import com.kuborros.FurBotNeo.utils.store.MemberInventory;
+import net.dv8tion.jda.api.EmbedBuilder;
+import net.dv8tion.jda.api.entities.Guild;
+import net.dv8tion.jda.api.entities.MessageEmbed;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-import static com.kuborros.FurBotNeo.BotMain.cfg;
+import java.awt.*;
 
-public class ShopCommand extends GameCommand {
+import static com.kuborros.FurBotNeo.BotMain.inventoryCache;
+import static com.kuborros.FurBotNeo.BotMain.randomResponse;
 
-    public ShopCommand() {
-        this.name = "shop";
-        this.children = new Command[]{new BuyItemCommand(), new BuyRoleCommand(), new BuyVipCommand()};
-        this.help = "Lets you access _the shop_";
-        this.guildOnly = true;
-        this.botPermissions = new Permission[]{Permission.MESSAGE_EMBED_LINKS};
-        this.category = new Command.Category("Shop");
+public abstract class ShopCommand extends Command {
+
+    static final Logger LOG = LoggerFactory.getLogger("GameCommands");
+    protected MemberInventory inventory;
+    Guild guild;
+    private CommandClient client;
+
+    private MessageEmbed bannedResponseEmbed() {
+        String random = randomResponse.getRandomDeniedMessage(guild);
+        EmbedBuilder builder = new EmbedBuilder();
+        builder.setTitle("You are blocked from bot commands!")
+                .setDescription(random)
+                .setColor(Color.ORANGE);
+        return builder.build();
+    }
+
+    MessageEmbed errorResponseEmbed(String message, Exception exception) {
+        return errorResponseEmbed(message, exception.getLocalizedMessage());
+    }
+
+    MessageEmbed errorResponseEmbed(String message, String ex) {
+        String random = randomResponse.getRandomErrorMessage(guild);
+        EmbedBuilder builder = new EmbedBuilder();
+        builder.setTitle(client.getError() + message)
+                .setDescription(random)
+                .addField("Error details: ", "`` " + ex + " ``", false)
+                .setColor(Color.RED);
+        return builder.build();
     }
 
     @Override
-    protected void doCommand(CommandEvent event) {
-
-        if (!cfg.isShopEnabled()) {
-            LOG.info("Shop disabled by instance owner, ignoring.");
+    protected void execute(CommandEvent event) {
+        guild = event.getGuild();
+        client = event.getClient();
+        //Shop commands themselves do not award tokens, they do however need inventory
+        inventory = inventoryCache.getInventory(event.getMember().getId(), guild.getId());
+        if (inventory.isBanned()) {
+            event.reply(bannedResponseEmbed());
             return;
         }
-
-
+        doCommand(event);
     }
+
+    protected abstract void doCommand(CommandEvent event);
 }

@@ -5,7 +5,7 @@ import com.jagrosh.jdautilities.command.CommandEvent;
 import net.dv8tion.jda.api.Permission;
 
 
-public class GiveCoinsCmd extends GameCommand {
+public class GiveCoinsCmd extends ShopCommand {
 
     public GiveCoinsCmd() {
         this.name = "give";

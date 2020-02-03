@@ -6,9 +6,7 @@ import com.jagrosh.jdautilities.examples.doc.Author;
 import net.dv8tion.jda.api.Permission;
 import net.dv8tion.jda.api.entities.Member;
 
-import java.sql.SQLException;
-
-import static com.kuborros.FurBotNeo.BotMain.db;
+import static com.kuborros.FurBotNeo.BotMain.inventoryCache;
 
 @CommandInfo(
         name = "BotUnBan",
@@ -33,14 +31,12 @@ public class BotUnBanCmd extends AdminCommand {
             event.replyWarning("You must mention someone for me to unban!");
         } else {
             Member member = event.getMessage().getMentionedMembers().get(0);
-            try {
-                db.unbanUser(member.getId(), guild.getId());
-            } catch (SQLException e) {
-                LOG.error("Error while unbanning member: ", e);
-                event.reply(errorResponseEmbed(e));
-                return;
+            inventoryCache.setInventory(inventoryCache.getInventory(member.getId(), event.getGuild().getId()).setBotBan(false));
+            if (!inventoryCache.getInventory(member.getId(), event.getGuild().getId()).isBanned()) {
+                event.reply("User has been unbanned!");
+            } else {
+                errorResponseEmbed("Something went wrong while removing ban!");
             }
-            event.reply("User has been unbanned!");
         }
     }
 }

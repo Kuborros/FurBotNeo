@@ -59,18 +59,6 @@ public class Database {
       try {
           stat = conn.createStatement();
 
-          String bans = "CREATE TABLE IF NOT EXISTS BotBans " +
-
-                  "(id INTEGER PRIMARY KEY AUTOINCREMENT," +
-
-                  " user_id TEXT NOT NULL, " +
-
-                  " guild_id TEXT NOT NULL, " +
-
-                  " time_start TEXT DEFAULT CURRENT_TIMESTAMP) ";
-
-          stat.executeUpdate(bans);
-
           String guild = "CREATE TABLE IF NOT EXISTS Guilds " +
 
                   "(guild_id TEXT UNIQUE PRIMARY KEY NOT NULL, " +
@@ -109,7 +97,9 @@ public class Database {
 
                   " role_owned TEXT DEFAULT 'default'," +
 
-                  " isVIP BOOLEAN DEFAULT FALSE) ";
+                  " isVIP BOOLEAN DEFAULT FALSE," +
+
+                  " isBanned BOOLEAN DEFAULT FALSE) ";
 
           stat.executeUpdate(shop);
 
@@ -344,33 +334,6 @@ public class Database {
         }
     }
 
-    //Get VIP status
-    //If buying VIP is disabled, everyone gets VIP privileges
-    public boolean memberGetVIP(String id) {
-        if (cfg.isBuyVipEnabled()) {
-            try {
-                String[] ids = id.split(",");
-                stat = conn.createStatement();
-                ResultSet rs = stat.executeQuery("SELECT isVIP FROM Shop WHERE guild_id=" + ids[1] + " AND member_id=" + ids[0]);
-                return rs.getBoolean(1);
-            } catch (SQLException e) {
-                LOG.error("Exception while setting owned items status:", e);
-                return false;
-            }
-        } else return true;
-    }
-
-    //Set vip status for member
-    public void memberSetVip(String id, boolean vip) {
-        try {
-            String[] ids = id.split(",");
-            stat = conn.createStatement();
-            stat.executeUpdate("UPDATE Shop SET isVIP=" + vip + " WHERE member_id=" + ids[0] + " AND guild_id=" + ids[1]);
-        } catch (SQLException e) {
-            LOG.error("Exception while setting VIP status:", e);
-        }
-    }
-
     //Get whole inventory
     public MemberInventory memberGetInventory(String id) {
         String[] ids = id.split(",");
@@ -379,7 +342,7 @@ public class Database {
             ResultSet rs = stat.executeQuery("SELECT * FROM Shop WHERE guild_id=" + ids[1] + " AND member_id=" + ids[0]);
             List<String> items = Arrays.asList(rs.getString(6).split(","));
             List<String> roles = Arrays.asList(rs.getString(7).split(","));
-            return new MemberInventory(ids[0], ids[1], rs.getInt(4), rs.getInt(5), items, roles, rs.getBoolean(8));
+            return new MemberInventory(ids[0], ids[1], rs.getInt(4), rs.getInt(5), items, roles, rs.getBoolean(8), rs.getBoolean(9));
         } catch (SQLException e) {
             if (addMemberToStore(id)) {
                 //They might just not exist in store database!
@@ -414,12 +377,13 @@ public class Database {
         try {
             stat = conn.createStatement();
             stat.executeUpdate(
-                    "UPDATE Shop SET (balance,level,items_owned,role_owned,isVIP)=(" +
+                    "UPDATE Shop SET (balance,level,items_owned,role_owned,isVIP,isBanned)=(" +
                             inventory.getBalance() + "," +
                             inventory.getLevel() + "," +
                             "'" + items + "'" + "," +
                             "'" + roles + "'" + "," +
-                            inventory.isVIP() +
+                            inventory.isVIP() + "," +
+                            inventory.isBanned() +
                             ") WHERE member_id=" + inventory.getMemberId() + " AND guild_id=" + inventory.getGuildId());
         } catch (SQLException e) {
             LOG.error("Exception while writing user inventory:", e);
@@ -434,12 +398,14 @@ public class Database {
 
     }
 
+    @Deprecated
     public void addBannedUser(String memberId, String guildId) throws SQLException {
         if (getBanStatus(memberId, guildId)) return;
         stat = conn.createStatement();
         stat.executeUpdate("INSERT INTO BotBans (user_id, guild_id) VALUES (" + memberId + "," + guildId + ")");
     }
 
+    @Deprecated
     public boolean getBanStatus(String memberId, String guildId) throws SQLException {
         if (memberId.equals(cfg.getOwnerId())) {
             return false;
@@ -452,6 +418,7 @@ public class Database {
         return false;
     }
 
+    @Deprecated
     public void unbanUser(String memberId, String guildId) throws SQLException {
         stat = conn.createStatement();
         stat.executeUpdate("DELETE FROM BotBans WHERE user_id =" + memberId + " AND guild_id =" + guildId);

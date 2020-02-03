@@ -3,6 +3,7 @@ package com.kuborros.FurBotNeo.commands.GeneralCommands;
 import com.jagrosh.jdautilities.command.Command;
 import com.jagrosh.jdautilities.command.CommandClient;
 import com.jagrosh.jdautilities.command.CommandEvent;
+import com.kuborros.FurBotNeo.utils.store.MemberInventory;
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.entities.Guild;
 import net.dv8tion.jda.api.entities.MessageEmbed;
@@ -10,9 +11,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.awt.*;
-import java.sql.SQLException;
 
-import static com.kuborros.FurBotNeo.BotMain.*;
+import static com.kuborros.FurBotNeo.BotMain.inventoryCache;
+import static com.kuborros.FurBotNeo.BotMain.randomResponse;
 
 abstract class GeneralCommand extends Command {
 
@@ -48,20 +49,14 @@ abstract class GeneralCommand extends Command {
     protected void execute(CommandEvent event) {
         guild = event.getGuild();
         client = event.getClient();
-        String member = event.getMember().getId();
-        try {
-            if (db.getBanStatus(member, guild.getId())) {
-                event.reply(bannedResponseEmbed());
-                return;
-            }
-        } catch (SQLException e) {
-            LOG.error("Error while contacting database: ", e);
+        MemberInventory inventory = inventoryCache.getInventory(event.getMember().getId(), guild.getId());
+        if (inventory.isBanned()) {
+            event.reply(bannedResponseEmbed());
+            return;
         }
-        //Token award per command use. Inventories are not likely to be used in these commands, so they are not kept around
+        //Token award per command use.
         //Should be tweaked later
-        inventoryCache.setInventory(
-                inventoryCache.getInventory(member, guild.getId()).addTokens(1)
-        );
+        inventoryCache.setInventory(inventory.addTokens(1));
         doCommand(event);
     }
 

@@ -9,6 +9,7 @@ import com.kuborros.FurBotNeo.utils.audio.AudioPlayerSendHandler;
 import com.kuborros.FurBotNeo.utils.audio.TrackManager;
 import com.kuborros.FurBotNeo.utils.audio.invidious.InvidiousAudioSourceManager;
 import com.kuborros.FurBotNeo.utils.config.FurConfig;
+import com.kuborros.FurBotNeo.utils.store.MemberInventory;
 import com.sedmelluq.discord.lavaplayer.player.AudioLoadResultHandler;
 import com.sedmelluq.discord.lavaplayer.player.AudioPlayer;
 import com.sedmelluq.discord.lavaplayer.player.AudioPlayerManager;
@@ -34,7 +35,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.awt.*;
-import java.sql.SQLException;
 import java.util.List;
 import java.util.*;
 
@@ -306,25 +306,22 @@ abstract class MusicCommand extends Command {
     protected void execute(CommandEvent event) {
         guild = event.getGuild();
         client = event.getClient();
-        try {
-            if (db.getBanStatus(event.getMember().getId(), guild.getId())) {
-                event.reply(bannedResponseEmbed());
-                return;
-            }
-        } catch (SQLException e) {
-            LOG.error("Error while contacting database: ", e);
+
+        MemberInventory inventory = inventoryCache.getInventory(event.getMember().getId(), guild.getId());
+        if (inventory.isBanned()) {
+            event.reply(bannedResponseEmbed());
+            return;
         }
+        //Token award per command use.
+        //Should be tweaked later
+        inventoryCache.setInventory(inventory.addTokens(10));
+
         config = (FurConfig) event.getClient().getSettingsManager().getSettings(guild);
         if (!event.getTextChannel().equals(guild.getTextChannelById(config.getAudioChannel()))) return;
         if (!event.getAuthor().isBot()) {
             getPlayer(guild).removeListener(audioEventListener);
             getPlayer(guild).addListener(audioEventListener);
             input = event.getArgs();
-            //Token award per command use. Inventories are not likely to be used in these commands, so they are not kept around
-            //Should be tweaked later
-            inventoryCache.setInventory(
-                    inventoryCache.getInventory(event.getMember().getId(), guild.getId()).addTokens(10)
-            );
             doCommand(event);
         }
     }

@@ -68,7 +68,7 @@ public class JConfig {
                 shop_enabled = bools.get().optBoolean("shop");
                 buy_vip_enabled = bools.get().optBoolean("buy_vip");
             }
-
+            //Version 1 arrays:
             Optional<JSONArray> banned = Optional.ofNullable(config.optJSONArray("blacklist_servers"));
             banned.ifPresent(objects -> bannedGuilds = objects);
 
