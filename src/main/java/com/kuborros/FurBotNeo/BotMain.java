@@ -148,7 +148,7 @@ public class BotMain {
         //All shop commands are currently gated behind debug mode, as they are for now intended *only for testing*
         if (cfg.isDebugMode()) {
             client.addCommands(
-                    new BuyCommand(),
+                    new BuyCommand(waiter),
                     new CoinsCommand());
         }
 
