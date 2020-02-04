@@ -52,7 +52,7 @@ public class MemberInventory {
         db.memberSetInventory(this);
     }
 
-    //All add/remove methods return Memberinventory for easy chaining
+    //All add/remove methods return MemberInventory for easy chaining
     public MemberInventory addToInventory(String item) {
         ownedItems.add(item);
         return this;
