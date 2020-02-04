@@ -16,7 +16,10 @@ public class BuyCommand extends ShopCommand {
 
     public BuyCommand(EventWaiter waiter) {
         this.name = "shop";
-        this.children = new Command[]{new BuyItemCommand(), new BuyRoleCommand(), new BuyVipCommand(), new BuyLevelCommand(waiter)};
+        this.children = new Command[]{
+                new BuyItemCommand(), new BuyRoleCommand(), new BuyVipCommand(waiter),
+                new BuyLevelCommand(waiter), new FullInventoryCommand(waiter), new FullRolesCommand(waiter)
+        };
         this.help = "Lets you access _the shop_";
         this.guildOnly = true;
         this.botPermissions = new Permission[]{Permission.MESSAGE_EMBED_LINKS};

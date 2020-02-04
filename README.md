@@ -33,6 +33,10 @@ When:
 
 * ``"shard" = true``, sharding will be used to handle bigger guild numbers. This feature is not completely tested.
 
+* ``"shop" = true``, shop features will be enabled, as will token earnings for chatting.
+
+* ``"buy_vip" = true``, VIP role will be purchasable using tokens. it is intended to provide extra features for long time community members. If disabled, everyone gets VIP features.
+
 
 ``blacklist_servers`` array alows you to ban guilds from your instance - bot will not join any of the servers added here.
 

@@ -12,6 +12,8 @@ import javax.script.ScriptEngine;
 import javax.script.ScriptEngineManager;
 import javax.script.ScriptException;
 
+import static com.kuborros.FurBotNeo.BotMain.db;
+
 @CommandInfo(
         name = "Eval",
         description = "Runs code using nashorn engine."
@@ -53,6 +55,7 @@ public class EvalCommand extends AdminCommand {
         engine.put("event", event);
         engine.put("jda", event.getJDA());
         engine.put("guild", guild);
+        engine.put("db", db);
         engine.put("channel", event.getChannel());
         try {
             event.reply(event.getClient().getSuccess() + " Evaluated Successfully:\n```\n" + engine.eval(event.getArgs()) + " ```");

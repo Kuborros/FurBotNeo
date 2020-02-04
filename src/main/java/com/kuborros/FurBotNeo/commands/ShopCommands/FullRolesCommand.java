@@ -15,13 +15,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-public class FullInventoryCommand extends ShopCommand {
+public class FullRolesCommand extends ShopCommand {
 
     final EventWaiter waiter;
 
-    public FullInventoryCommand(EventWaiter waiter) {
-        this.name = "inventory";
-        this.help = "List your entire inventory.";
+    public FullRolesCommand(EventWaiter waiter) {
+        this.name = "myroles";
+        this.help = "List all your owned roles.";
         this.guildOnly = true;
         this.botPermissions = new Permission[]{Permission.MESSAGE_EMBED_LINKS};
         this.category = new Command.Category("Shop");
@@ -32,9 +32,9 @@ public class FullInventoryCommand extends ShopCommand {
     protected void doCommand(CommandEvent event) {
 
         Paginator.Builder builder = new Paginator.Builder();
-        List<String> inv = inventory.getOwnedItems();
+        List<String> inv = inventory.getOwnedRoles();
         if (inv.isEmpty()) {
-            EmbedBuilder eBuilder = new EmbedBuilder().setTitle("**Contents of %s 's inventory:**")
+            EmbedBuilder eBuilder = new EmbedBuilder().setTitle("**Contents of %s 's role backpack:**")
                     .setColor(Color.ORANGE)
                     .setDescription("You have nothing!");
             event.reply(eBuilder.build());
@@ -49,16 +49,16 @@ public class FullInventoryCommand extends ShopCommand {
                 .setItemsPerPage(10)
                 .useNumberedItems(true)
                 .setEventWaiter(waiter)
-                .setText(String.format("**Contents of %s 's inventory:**", event.getMember().getEffectiveName()))
+                .setText(String.format("**Contents of %s 's role backpack:**", event.getMember().getEffectiveName()))
                 .setFinalAction(message -> message.clearReactions().queue())
                 .setTimeout(5, TimeUnit.MINUTES);
 
-        builder.addItems(getPrettyItemNames(inv));
+        builder.addItems(getPrettyRoleNames(inv));
         builder.build().display(event.getTextChannel());
 
     }
 
-    private String[] getPrettyItemNames(List<String> items) {
+    private String[] getPrettyRoleNames(List<String> items) {
         ArrayList<String> names = new ArrayList<>();
 
         String json = "";
@@ -71,7 +71,7 @@ public class FullInventoryCommand extends ShopCommand {
             LOG.error("Things went wrong while loading internal resource: ", e);
         }
 
-        JSONObject iNames = new JSONObject(json).getJSONObject("items");
+        JSONObject iNames = new JSONObject(json).getJSONObject("roles");
 
         for (String item : items) {
             if (item.isBlank()) {
@@ -82,7 +82,7 @@ public class FullInventoryCommand extends ShopCommand {
                 names.add(iNames.getJSONObject(item).getString("name"));
             } catch (JSONException e) {
                 LOG.debug("Item not in items.json? {}", item);
-                names.add("Broken item!");
+                names.add("Broken role!");
             }
         }
         return names.toArray(new String[0]);

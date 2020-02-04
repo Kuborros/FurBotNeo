@@ -21,6 +21,9 @@ public abstract class ShopCommand extends Command {
     Guild guild;
     private CommandClient client;
 
+    static final String OKAY = "\u2705";
+    static final String NO = "\u274C";
+
     private MessageEmbed bannedResponseEmbed() {
         String random = randomResponse.getRandomDeniedMessage(guild);
         EmbedBuilder builder = new EmbedBuilder();

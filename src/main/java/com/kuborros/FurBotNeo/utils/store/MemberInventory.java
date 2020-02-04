@@ -1,7 +1,6 @@
 package com.kuborros.FurBotNeo.utils.store;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import static com.kuborros.FurBotNeo.BotMain.cfg;
 import static com.kuborros.FurBotNeo.BotMain.db;
@@ -21,8 +20,8 @@ public class MemberInventory {
         this.guildId = guildId;
         this.uId = memberId + "," + guildId;
         this.banned = false;
-        this.ownedRoles = new ArrayList<String>();
-        this.ownedItems = new ArrayList<String>();
+        this.ownedRoles = new ArrayList<>();
+        this.ownedItems = new ArrayList<>();
         if (cfg.isDebugMode()) {
             //If in debug mode, give all new users unholy amount of tokens for testing
             this.balance = Integer.MAX_VALUE / 2;
@@ -118,11 +117,11 @@ public class MemberInventory {
         return uId;
     }
 
-    public List<String> getOwnedItems() {
+    public ArrayList<String> getOwnedItems() {
         return ownedItems;
     }
 
-    public List<String> getOwnedRoles() {
+    public ArrayList<String> getOwnedRoles() {
         return ownedRoles;
     }
 

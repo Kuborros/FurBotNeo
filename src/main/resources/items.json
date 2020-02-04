@@ -45,8 +45,23 @@
   "roles": {
     "default": {
       "name": "Default color",
-      "role_color": "default",
+      "role_color": "#808080",
       "extra": "default"
+    },
+    "red": {
+      "name": "Fire red",
+      "role_color": "#FF0000",
+      "extra": ""
+    },
+    "green": {
+      "name": "Leaf green",
+      "role_color": "#008000",
+      "extra": ""
+    },
+    "blue": {
+      "name": "Water blue",
+      "role_color": "#0000FF",
+      "extra": ""
     },
     "pink": {
       "name": "Princess pink",

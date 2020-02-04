@@ -142,12 +142,13 @@ public class BotMain {
                 new KissCommand(),
                 new PetCommand(),
                 new LickCommand(),
-                new ShipCommand(),
+                new ShipCommand());
 
-                //Shop
-
-                new BuyCommand(waiter),
-                new CoinsCommand());
+        //Shop
+        if (cfg.isShopEnabled()) {
+            client.addCommands(new BuyCommand(waiter),
+                    new CoinsCommand());
+        }
 
         try {
 
