@@ -1,6 +1,11 @@
 {
   "version": 1,
   "items": {
+    "user_badge": {
+      "name": "User badge",
+      "pic_url": "",
+      "extra": "default"
+    },
     "lvl10": {
       "name": "Level 10 Badge",
       "pic_url": "",
@@ -38,6 +43,11 @@
     }
   },
   "roles": {
+    "default": {
+      "name": "Default color",
+      "role_color": "default",
+      "extra": "default"
+    },
     "pink": {
       "name": "Princess pink",
       "role_color": "#FFC0CB",

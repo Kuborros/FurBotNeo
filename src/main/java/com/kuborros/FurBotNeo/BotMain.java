@@ -142,16 +142,12 @@ public class BotMain {
                 new KissCommand(),
                 new PetCommand(),
                 new LickCommand(),
-                new ShipCommand());
+                new ShipCommand(),
 
+                //Shop
 
-        //Shop
-        //All shop commands are currently gated behind debug mode, as they are for now intended *only for testing*
-        if (cfg.isDebugMode()) {
-            client.addCommands(
-                    new BuyCommand(waiter),
-                    new CoinsCommand());
-        }
+                new BuyCommand(waiter),
+                new CoinsCommand());
 
         try {
 

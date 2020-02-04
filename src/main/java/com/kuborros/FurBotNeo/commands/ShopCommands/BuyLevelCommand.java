@@ -85,8 +85,8 @@ public class BuyLevelCommand extends ShopCommand {
             inventoryCache.setInventory(inventory.spendTokens(levelcost).addLevel());
             EmbedBuilder builder = new EmbedBuilder()
                     .setColor(Color.ORANGE)
-                    .setTitle(String.format("Welcome to level %d, %s!", level, event.getUser().getName()))
-                    .setDescription(String.format("Your next level-up will cost you %d tokens!", levelCost(level++))) //Note that level var gets increased here!
+                    .setTitle(String.format("Welcome to level %d, %s!", ++level, event.getUser().getName()))
+                    .setDescription(String.format("Your next level-up will cost you %d tokens!", levelCost(level))) //Note that level var gets increased here!
                     .setThumbnail(event.getUser().getEffectiveAvatarUrl());
             //Leveling rewards
             switch (level) {

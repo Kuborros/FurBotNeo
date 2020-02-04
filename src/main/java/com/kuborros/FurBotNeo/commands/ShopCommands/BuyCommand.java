@@ -59,7 +59,10 @@ public class BuyCommand extends ShopCommand {
         JSONObject iNames = new JSONObject(json).getJSONObject("items");
 
         for (String item : items) {
-            if (item.isBlank()) inv.append("Nothing!__");
+            if (item.isBlank()) {
+                inv.append("Nothing!__");
+                break;
+            }
             try {
                 inv.append(iNames.getJSONObject(item).getString("name")).append(", ");
             } catch (JSONException e) {
@@ -90,7 +93,10 @@ public class BuyCommand extends ShopCommand {
         JSONObject iNames = new JSONObject(json).getJSONObject("roles");
 
         for (String item : items) {
-            if (item.isBlank()) inv.append("Nothing!__");
+            if (item.isBlank()) {
+                inv.append("Nothing!__");
+                break;
+            }
             try {
                 inv.append(iNames.getJSONObject(item).getString("name")).append(", ");
             } catch (JSONException e) {

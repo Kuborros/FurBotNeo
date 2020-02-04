@@ -93,9 +93,9 @@ public class Database {
 
                   " level INTEGER DEFAULT 0, " +
 
-                  " items_owned TEXT DEFAULT 'user_badge'," +
+                  " items_owned TEXT DEFAULT 'not_a_null'," +
 
-                  " role_owned TEXT DEFAULT 'default'," +
+                  " role_owned TEXT DEFAULT 'not_a_null'," +
 
                   " isVIP BOOLEAN DEFAULT FALSE," +
 
