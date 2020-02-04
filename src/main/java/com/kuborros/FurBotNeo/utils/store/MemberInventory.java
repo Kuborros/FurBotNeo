@@ -1,5 +1,6 @@
 package com.kuborros.FurBotNeo.utils.store;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static com.kuborros.FurBotNeo.BotMain.cfg;
@@ -10,7 +11,7 @@ public class MemberInventory {
     final String memberId;
     final String guildId;
     final String uId;
-    List<String> ownedItems, ownedRoles;
+    ArrayList<String> ownedItems, ownedRoles;
     int balance, level;
     boolean VIP, banned;
 
@@ -20,8 +21,8 @@ public class MemberInventory {
         this.guildId = guildId;
         this.uId = memberId + "," + guildId;
         this.banned = false;
-        this.ownedRoles = List.of("");
-        this.ownedItems = List.of("");
+        this.ownedRoles = new ArrayList<String>();
+        this.ownedItems = new ArrayList<String>();
         if (cfg.isDebugMode()) {
             //If in debug mode, give all new users unholy amount of tokens for testing
             this.balance = Integer.MAX_VALUE / 2;
@@ -37,7 +38,7 @@ public class MemberInventory {
     }
 
     //Initialise inventory with existing data
-    public MemberInventory(String memberId, String guildId, int balance, int level, List<String> ownedItems, List<String> ownedRoles, boolean vip, boolean banned) {
+    public MemberInventory(String memberId, String guildId, int balance, int level, ArrayList<String> ownedItems, ArrayList<String> ownedRoles, boolean vip, boolean banned) {
         this.memberId = memberId;
         this.guildId = guildId;
         this.uId = memberId + "," + guildId;

@@ -338,10 +338,12 @@ public class Database {
     public MemberInventory memberGetInventory(String id) {
         String[] ids = id.split(",");
         try {
+            ArrayList<String> items = new ArrayList<>();
+            ArrayList<String> roles = new ArrayList<>();
             stat = conn.createStatement();
             ResultSet rs = stat.executeQuery("SELECT * FROM Shop WHERE guild_id=" + ids[1] + " AND member_id=" + ids[0]);
-            List<String> items = Arrays.asList(rs.getString(6).split(","));
-            List<String> roles = Arrays.asList(rs.getString(7).split(","));
+            Collections.addAll(items, rs.getString(6).split(","));
+            Collections.addAll(roles, rs.getString(7).split(","));
             return new MemberInventory(ids[0], ids[1], rs.getInt(4), rs.getInt(5), items, roles, rs.getBoolean(8), rs.getBoolean(9));
         } catch (SQLException | NullPointerException e) {
             if (addMemberToStore(id)) {
