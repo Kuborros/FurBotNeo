@@ -163,8 +163,6 @@ Tokens are earned automatically by partaking in chatting and using commands.
 
 Store and vip functionality can be disabled per-instance to save up on memory.
 
-If disabled, they will remain shown in the command list (_shameless promotion right here_), but not function.
-
 _If VIP is disabled, everyone is considered VIP_
 
 | **Command**   |  **Subcommand:**   |             **Description:**              |
