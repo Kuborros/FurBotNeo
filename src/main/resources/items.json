@@ -1,0 +1,47 @@
+{
+  "version": 1,
+  "items": {
+    "lvl10": {
+      "name": "Level 10 Badge",
+      "pic_url": "",
+      "extra": ""
+    },
+    "lvl25": {
+      "name": "Level 25 Badge",
+      "pic_url": "",
+      "extra": ""
+    },
+    "lvl50": {
+      "name": "Level 50 Badge",
+      "pic_url": "",
+      "extra": ""
+    },
+    "lvl100": {
+      "name": "Level 100 Badge",
+      "pic_url": "",
+      "extra": ""
+    },
+    "lvl250": {
+      "name": "Level 250 Badge",
+      "pic_url": "",
+      "extra": ""
+    },
+    "lvl500": {
+      "name": "Level 500 Badge",
+      "pic_url": "",
+      "extra": ""
+    },
+    "lvl1000": {
+      "name": "Level 1000 Badge",
+      "pic_url": "",
+      "extra": ""
+    }
+  },
+  "roles": {
+    "pink": {
+      "name": "Princess pink",
+      "role_color": "#FFC0CB",
+      "extra": ""
+    }
+  }
+}

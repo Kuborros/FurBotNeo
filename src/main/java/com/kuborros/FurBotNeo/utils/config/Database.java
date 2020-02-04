@@ -343,7 +343,7 @@ public class Database {
             List<String> items = Arrays.asList(rs.getString(6).split(","));
             List<String> roles = Arrays.asList(rs.getString(7).split(","));
             return new MemberInventory(ids[0], ids[1], rs.getInt(4), rs.getInt(5), items, roles, rs.getBoolean(8), rs.getBoolean(9));
-        } catch (SQLException e) {
+        } catch (SQLException | NullPointerException e) {
             if (addMemberToStore(id)) {
                 //They might just not exist in store database!
                 LOG.debug("Added user to store with internal id: {}", id);

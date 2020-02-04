@@ -20,6 +20,8 @@ public class MemberInventory {
         this.guildId = guildId;
         this.uId = memberId + "," + guildId;
         this.banned = false;
+        this.ownedRoles = List.of("");
+        this.ownedItems = List.of("");
         if (cfg.isDebugMode()) {
             //If in debug mode, give all new users unholy amount of tokens for testing
             this.balance = Integer.MAX_VALUE / 2;
