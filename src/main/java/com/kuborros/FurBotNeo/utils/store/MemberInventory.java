@@ -119,6 +119,11 @@ public class MemberInventory {
         return this;
     }
 
+    public MemberInventory setCurrentRole(String role) {
+        this.currentRole = role;
+        return this;
+    }
+
     public String getMemberId() {
         return memberId;
     }
@@ -129,11 +134,6 @@ public class MemberInventory {
 
     public String getCurrentRole() {
         return currentRole;
-    }
-
-    public MemberInventory setCurrentRole(String role) {
-        this.currentRole = role;
-        return this;
     }
 
     public ArrayList<String> getOwnedItems() {
