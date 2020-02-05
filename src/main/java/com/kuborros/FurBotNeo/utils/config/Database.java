@@ -97,6 +97,10 @@ public class Database {
 
                   " role_owned TEXT DEFAULT 'not_a_null'," +
 
+                  " currItem TEXT DEFAULT 'user_badge'," +
+
+                  " currRole TEXT DEFAULT 'default'," +
+
                   " isVIP BOOLEAN DEFAULT FALSE," +
 
                   " isBanned BOOLEAN DEFAULT FALSE) ";
@@ -344,7 +348,7 @@ public class Database {
             ResultSet rs = stat.executeQuery("SELECT * FROM Shop WHERE guild_id=" + ids[1] + " AND member_id=" + ids[0]);
             Collections.addAll(items, rs.getString(6).split(","));
             Collections.addAll(roles, rs.getString(7).split(","));
-            return new MemberInventory(ids[0], ids[1], rs.getInt(4), rs.getInt(5), items, roles, rs.getBoolean(8), rs.getBoolean(9));
+            return new MemberInventory(ids[0], ids[1], rs.getInt(4), rs.getInt(5), items, roles, rs.getString(8), rs.getString(9), rs.getBoolean(10), rs.getBoolean(11));
         } catch (SQLException | NullPointerException e) {
             if (addMemberToStore(id)) {
                 //They might just not exist in store database!
@@ -379,11 +383,13 @@ public class Database {
         try {
             stat = conn.createStatement();
             stat.executeUpdate(
-                    "UPDATE Shop SET (balance,level,items_owned,role_owned,isVIP,isBanned)=(" +
+                    "UPDATE Shop SET (balance,level,items_owned,role_owned,currItem,currRole,isVIP,isBanned)=(" +
                             inventory.getBalance() + "," +
                             inventory.getLevel() + "," +
                             "'" + items + "'" + "," +
                             "'" + roles + "'" + "," +
+                            inventory.getCurrentItem() + "," +
+                            inventory.getCurrentRole() + "," +
                             inventory.isVIP() + "," +
                             inventory.isBanned() +
                             ") WHERE member_id=" + inventory.getMemberId() + " AND guild_id=" + inventory.getGuildId());

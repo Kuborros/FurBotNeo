@@ -13,6 +13,7 @@ public class MemberInventory {
     ArrayList<String> ownedItems, ownedRoles;
     int balance, level;
     boolean VIP, banned;
+    String currentItem, currentRole;
 
     //Initialises empty inventory
     public MemberInventory(String memberId, String guildId) {
@@ -22,6 +23,8 @@ public class MemberInventory {
         this.banned = false;
         this.ownedRoles = new ArrayList<>();
         this.ownedItems = new ArrayList<>();
+        this.currentItem = "";
+        this.currentRole = "";
         if (cfg.isDebugMode()) {
             //If in debug mode, give all new users unholy amount of tokens for testing
             this.balance = Integer.MAX_VALUE / 2;
@@ -37,7 +40,7 @@ public class MemberInventory {
     }
 
     //Initialise inventory with existing data
-    public MemberInventory(String memberId, String guildId, int balance, int level, ArrayList<String> ownedItems, ArrayList<String> ownedRoles, boolean vip, boolean banned) {
+    public MemberInventory(String memberId, String guildId, int balance, int level, ArrayList<String> ownedItems, ArrayList<String> ownedRoles, String currItem, String currRole, boolean vip, boolean banned) {
         this.memberId = memberId;
         this.guildId = guildId;
         this.uId = memberId + "," + guildId;
@@ -45,6 +48,8 @@ public class MemberInventory {
         this.level = level;
         this.ownedItems = ownedItems;
         this.ownedRoles = ownedRoles;
+        this.currentItem = currItem;
+        this.currentRole = currRole;
         this.banned = banned;
         if (cfg.isBuyVipEnabled()) this.VIP = vip;
         else this.VIP = true;
@@ -105,6 +110,15 @@ public class MemberInventory {
         return this;
     }
 
+    public String getCurrentItem() {
+        return currentItem;
+    }
+
+    public MemberInventory setCurrentItem(String item) {
+        this.currentItem = item;
+        return this;
+    }
+
     public String getMemberId() {
         return memberId;
     }
@@ -113,8 +127,13 @@ public class MemberInventory {
         return guildId;
     }
 
-    public String getUId() {
-        return uId;
+    public String getCurrentRole() {
+        return currentRole;
+    }
+
+    public MemberInventory setCurrentRole(String role) {
+        this.currentRole = role;
+        return this;
     }
 
     public ArrayList<String> getOwnedItems() {

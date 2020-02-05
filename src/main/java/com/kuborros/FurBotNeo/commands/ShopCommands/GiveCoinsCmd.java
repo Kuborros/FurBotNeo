@@ -35,6 +35,11 @@ public class GiveCoinsCmd extends ShopCommand {
             event.reply("You want to give money to... me? Im flattered, but i also have to refuse~");
             return;
         }
+        if (member.getId().equals(event.getMember().getId())) {
+            event.reply("You want to give money to... yourself?");
+            return;
+        }
+
         MemberInventory reveiverInv = inventoryCache.getInventory(member.getId(), event.getGuild().getId());
         int amount;
         int ownerBalance = inventory.getBalance();

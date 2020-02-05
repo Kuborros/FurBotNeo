@@ -19,12 +19,15 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.concurrent.TimeUnit;
 
+import static com.kuborros.FurBotNeo.BotMain.inventoryCache;
+
 @SuppressWarnings("ConstantConditions")
 public class SetRoleCommand extends ShopCommand {
 
     final EventWaiter waiter;
     ArrayList<String> roles;
     HashMap<String, String> roleInfo;
+    Member sender;
 
     public SetRoleCommand(EventWaiter waiter) {
         this.name = "role";
@@ -50,6 +53,7 @@ public class SetRoleCommand extends ShopCommand {
         }
 
         roleInfo = getRoles();
+        sender = event.getMember();
 
         builder.setUsers(event.getAuthor())
                 .setColor(Color.ORANGE)
@@ -69,21 +73,20 @@ public class SetRoleCommand extends ShopCommand {
 
     private void setSelectedRole(Message message, int selection) {
         String selectedRole = roleInfo.keySet().toArray(new String[0])[selection - 1];
-        Member member = message.getMember();
-        assert member != null;
-        Guild guild = member.getGuild();
+        Guild guild = sender.getGuild();
         //Take previous roles away, if member has one.
         for (String role : roleInfo.keySet()) {
             try {
                 //As a positive (i hope) side effect will always regenerate all roles that exist in users inventory but not in guild.
-                guild.removeRoleFromMember(member, findGuildRole(guild, role)).queue();
+                guild.removeRoleFromMember(sender, findGuildRole(guild, role)).queue();
             } catch (Exception e) {
                 LOG.error("Ohno.", e);
             }
         }
-        //Give member his new role.
+        //Give member their new role.
         try {
-            guild.addRoleToMember(member, findGuildRole(guild, selectedRole)).reason("Store role use.").queue();
+            guild.addRoleToMember(sender, findGuildRole(guild, selectedRole)).reason("Store role use.").queue();
+            inventoryCache.setInventory(inventory.setCurrentRole(roles.get(selection)));
         } catch (Exception e) {
             LOG.error("Ohno.", e);
         }
