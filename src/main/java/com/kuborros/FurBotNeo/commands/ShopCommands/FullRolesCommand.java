@@ -34,7 +34,7 @@ public class FullRolesCommand extends ShopCommand {
         Paginator.Builder builder = new Paginator.Builder();
         List<String> inv = inventory.getOwnedRoles();
         if (inv.isEmpty()) {
-            EmbedBuilder eBuilder = new EmbedBuilder().setTitle("**Contents of %s 's role backpack:**")
+            EmbedBuilder eBuilder = new EmbedBuilder().setTitle("**Contents of your role backpack:**")
                     .setColor(Color.ORANGE)
                     .setDescription("You have nothing!");
             event.reply(eBuilder.build());

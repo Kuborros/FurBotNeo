@@ -21,6 +21,7 @@ public class FullInventoryCommand extends ShopCommand {
 
     public FullInventoryCommand(EventWaiter waiter) {
         this.name = "inventory";
+        this.aliases = new String[]{"myitems"};
         this.help = "List your entire inventory.";
         this.guildOnly = true;
         this.botPermissions = new Permission[]{Permission.MESSAGE_EMBED_LINKS};
@@ -34,7 +35,7 @@ public class FullInventoryCommand extends ShopCommand {
         Paginator.Builder builder = new Paginator.Builder();
         List<String> inv = inventory.getOwnedItems();
         if (inv.isEmpty()) {
-            EmbedBuilder eBuilder = new EmbedBuilder().setTitle("**Contents of %s 's inventory:**")
+            EmbedBuilder eBuilder = new EmbedBuilder().setTitle("**Contents of your inventory:**")
                     .setColor(Color.ORANGE)
                     .setDescription("You have nothing!");
             event.reply(eBuilder.build());
