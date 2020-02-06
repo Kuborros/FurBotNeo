@@ -58,7 +58,7 @@ public class BuyItemCommand extends ShopCommand {
 
         builder.setUsers(event.getAuthor())
                 .setColor(Color.ORANGE)
-                .setItemsPerPage(10)
+                .setItemsPerPage(6)
                 .useNumberedItems(true)
                 .showPageNumbers(true)
                 .setEventWaiter(waiter)

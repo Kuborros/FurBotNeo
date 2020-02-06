@@ -56,7 +56,7 @@ public class BuyRoleCommand extends ShopCommand {
 
         builder.setUsers(event.getAuthor())
                 .setColor(Color.ORANGE)
-                .setItemsPerPage(10)
+                .setItemsPerPage(6)
                 .useNumberedItems(true)
                 .setEventWaiter(waiter)
                 .showPageNumbers(true)
