@@ -69,7 +69,7 @@ public class StoreDialog extends Menu {
     private final BiConsumer<Message, Integer> success;
     private final Consumer<Message> cancel;
     int bulkSkipNumber = 2;
-    boolean noUpdate;
+    boolean noUpdate = false;
 
     StoreDialog(EventWaiter waiter, Set<User> users, Set<Role> roles, long timeout, TimeUnit unit,
                 List<ShopItem> choices, String leftEnd, String rightEnd, int itemsPerPage, boolean showPageNumbers,
@@ -161,12 +161,12 @@ public class StoreDialog extends Menu {
                 m.addReaction(UP).queue();
                 m.addReaction(SELECT).queue();
                 m.addReaction(CANCEL).queue();
-                m.addReaction(DOWN).queue();
             } else {
                 m.addReaction(SELECT).queue();
                 m.addReaction(CANCEL).queue(v -> selectionDialog(m, selection, pageNum), v -> selectionDialog(m, selection, pageNum));
             }
             if (pages > 1) {
+                m.addReaction(DOWN).queue();
                 if (bulkSkipNumber > 1)
                     m.addReaction(BIG_LEFT).queue();
                 m.addReaction(LEFT).queue();
@@ -174,6 +174,8 @@ public class StoreDialog extends Menu {
                     m.addReaction(RIGHT).queue();
                 m.addReaction(bulkSkipNumber > 1 ? BIG_RIGHT : RIGHT).queue(
                         v -> selectionDialog(m, selection, pageNum), v -> selectionDialog(m, selection, pageNum));
+            } else {
+                m.addReaction(DOWN).queue(v -> selectionDialog(m, selection, 1), v -> selectionDialog(m, selection, 1));
             }
         });
     }
@@ -249,8 +251,8 @@ public class StoreDialog extends Menu {
                 event.getReaction().removeReaction(event.getUser()).queue();
             } catch (PermissionException ignored) {
             }
-            int n = newSelection;
-            int o = newPageNum;
+            int o = newSelection;
+            int n = newPageNum;
             if (!noUpdate) {
                 message.editMessage(renderPage(n, o)).queue(m -> selectionDialog(m, n, o));
             }
