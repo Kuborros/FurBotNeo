@@ -10,6 +10,7 @@ import net.dv8tion.jda.api.events.message.react.MessageReactionAddEvent;
 import net.dv8tion.jda.api.exceptions.PermissionException;
 
 import java.awt.*;
+import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
 import static com.kuborros.FurBotNeo.BotMain.inventoryCache;
@@ -68,7 +69,7 @@ public class BuyVipCommand extends ShopCommand {
         switch (event.getReactionEmote().getName()) {
             case OKAY:
             case NO:
-                return (event.getMember()).getId().equals(authorId);
+                return (Objects.requireNonNull(event.getMember())).getId().equals(authorId);
             default:
                 return false;
         }
@@ -84,7 +85,7 @@ public class BuyVipCommand extends ShopCommand {
             inventoryCache.setInventory(inventory.setVIP(true).spendTokens(vipCost));
             EmbedBuilder builder = new EmbedBuilder()
                     .setColor(Color.ORANGE)
-                    .setTitle(String.format("Congratulations on becoming VIP, %s!", event.getUser().getName()))
+                    .setTitle(String.format("Congratulations on becoming VIP, %s!", Objects.requireNonNull(event.getUser()).getName()))
                     .setDescription("Enjoy your new benefits~")
                     .setThumbnail(event.getUser().getEffectiveAvatarUrl());
             try {

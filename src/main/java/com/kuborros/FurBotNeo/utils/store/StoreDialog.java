@@ -31,6 +31,7 @@ import net.dv8tion.jda.internal.utils.Checks;
 import java.awt.*;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 import java.util.function.BiConsumer;
@@ -68,7 +69,7 @@ public class StoreDialog extends Menu {
     private final BiFunction<Integer, Integer, String> text;
     private final BiConsumer<Message, Integer> success;
     private final Consumer<Message> cancel;
-    int bulkSkipNumber = 2;
+    final int bulkSkipNumber = 2;
     boolean noUpdate = false;
 
     StoreDialog(EventWaiter waiter, Set<User> users, Set<Role> roles, long timeout, TimeUnit unit,
@@ -193,7 +194,7 @@ public class StoreDialog extends Menu {
                     || BIG_RIGHT.equals(event.getReaction().getReactionEmote().getName())
                     || SELECT.equals(event.getReaction().getReactionEmote().getName())))
                 return false;
-            return isValidUser(event.getUser(), event.isFromGuild() ? event.getGuild() : null);
+            return isValidUser(Objects.requireNonNull(event.getUser()), event.isFromGuild() ? event.getGuild() : null);
         }, event -> {
             int newPageNum = pageNum;
             int newSelection = selection;
@@ -248,7 +249,7 @@ public class StoreDialog extends Menu {
 
             }
             try {
-                event.getReaction().removeReaction(event.getUser()).queue();
+                event.getReaction().removeReaction(Objects.requireNonNull(event.getUser())).queue();
             } catch (PermissionException ignored) {
             }
             int n = newSelection;

@@ -11,6 +11,7 @@ import org.json.JSONObject;
 import java.awt.*;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
+import java.util.Objects;
 
 public class BuyCommand extends ShopCommand {
 
@@ -54,7 +55,7 @@ public class BuyCommand extends ShopCommand {
         }
 
         try {
-            json = new String(getClass().getClassLoader().getResourceAsStream("items.json").readAllBytes(), StandardCharsets.UTF_8);
+            json = new String(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream("items.json")).readAllBytes(), StandardCharsets.UTF_8);
         } catch (Exception e) {
             LOG.error("Things went wrong while loading internal resource: ", e);
         }
@@ -88,7 +89,7 @@ public class BuyCommand extends ShopCommand {
         }
 
         try {
-            json = new String(getClass().getClassLoader().getResourceAsStream("items.json").readAllBytes(), StandardCharsets.UTF_8);
+            json = new String(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream("items.json")).readAllBytes(), StandardCharsets.UTF_8);
         } catch (Exception e) {
             LOG.error("Things went wrong while loading internal resource: ", e);
         }

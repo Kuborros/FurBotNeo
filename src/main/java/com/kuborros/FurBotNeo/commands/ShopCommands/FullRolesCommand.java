@@ -13,6 +13,7 @@ import java.awt.*;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
 public class FullRolesCommand extends ShopCommand {
@@ -66,7 +67,7 @@ public class FullRolesCommand extends ShopCommand {
         if (items.isEmpty()) return new String[]{""};
 
         try {
-            json = new String(getClass().getClassLoader().getResourceAsStream("items.json").readAllBytes(), StandardCharsets.UTF_8);
+            json = new String(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream("items.json")).readAllBytes(), StandardCharsets.UTF_8);
         } catch (Exception e) {
             LOG.error("Things went wrong while loading internal resource: ", e);
         }

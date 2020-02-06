@@ -17,14 +17,15 @@ import org.json.JSONObject;
 import java.awt.*;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
+import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
 import static com.kuborros.FurBotNeo.BotMain.inventoryCache;
 
 public class BuyRoleCommand extends ShopCommand {
 
-    static ArrayList<ShopItem> availableRoles = new ArrayList<>();
-    EventWaiter waiter;
+    static final ArrayList<ShopItem> availableRoles = new ArrayList<>();
+    final EventWaiter waiter;
     ShopItem currRole;
     Member author;
     StoreDialog storeDialog;
@@ -112,7 +113,7 @@ public class BuyRoleCommand extends ShopCommand {
         switch (event.getReactionEmote().getName()) {
             case OKAY:
             case NO:
-                return (event.getMember()).getId().equals(authorId);
+                return (Objects.requireNonNull(event.getMember())).getId().equals(authorId);
             default:
                 return false;
         }
@@ -128,7 +129,7 @@ public class BuyRoleCommand extends ShopCommand {
             inventoryCache.setInventory(inventory.addToInventory(currRole.getDbName()).spendTokens(currRole.getValue()));
             EmbedBuilder builder = new EmbedBuilder()
                     .setColor(Color.ORANGE)
-                    .setTitle(String.format("Congratulations on your purchase of %s, %s!", currRole.getItemName(), event.getUser().getName()))
+                    .setTitle(String.format("Congratulations on your purchase of %s, %s!", currRole.getItemName(), Objects.requireNonNull(event.getUser()).getName()))
                     .setDescription("Enjoy your new color~")
                     .setThumbnail(currRole.getUrl());
             try {
@@ -143,7 +144,7 @@ public class BuyRoleCommand extends ShopCommand {
         String json = "";
 
         try {
-            json = new String(getClass().getClassLoader().getResourceAsStream("items.json").readAllBytes(), StandardCharsets.UTF_8);
+            json = new String(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream("items.json")).readAllBytes(), StandardCharsets.UTF_8);
         } catch (Exception e) {
             LOG.error("Things went wrong while loading internal resource: ", e);
         }

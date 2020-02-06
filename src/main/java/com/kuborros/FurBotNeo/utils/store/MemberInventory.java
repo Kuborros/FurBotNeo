@@ -10,7 +10,8 @@ public class MemberInventory {
     final String memberId;
     final String guildId;
     final String uId;
-    ArrayList<String> ownedItems, ownedRoles;
+    final ArrayList<String> ownedItems;
+    final ArrayList<String> ownedRoles;
     int balance, level;
     boolean VIP, banned;
     String currentItem, currentRole;

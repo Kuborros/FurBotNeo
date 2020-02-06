@@ -6,9 +6,11 @@ public class ShopItem {
 
     Color color;
 
-    String dbName, itemName, url;
-    ItemType type;
-    int value;
+    final String dbName;
+    final String itemName;
+    final ItemType type;
+    final int value;
+    String url;
 
     public ShopItem(String dbName, String itemName, String data, int value, ItemType type) {
         this.dbName = dbName;
