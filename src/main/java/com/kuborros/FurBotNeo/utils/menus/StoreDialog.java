@@ -13,10 +13,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.kuborros.FurBotNeo.utils.store;
+package com.kuborros.FurBotNeo.utils.menus;
 
 import com.jagrosh.jdautilities.commons.waiter.EventWaiter;
 import com.jagrosh.jdautilities.menu.Menu;
+import com.kuborros.FurBotNeo.utils.store.ShopItem;
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.MessageBuilder;
 import net.dv8tion.jda.api.entities.Message;
@@ -29,45 +30,63 @@ import net.dv8tion.jda.api.requests.RestAction;
 import net.dv8tion.jda.internal.utils.Checks;
 
 import java.awt.*;
-import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 import java.util.function.BiConsumer;
+import java.util.function.BiFunction;
 import java.util.function.Consumer;
 import java.util.function.Function;
 
 /**
  * A {@link Menu Menu} implementation that creates
  * a listed display of text choices horizontally that users can scroll through
- * using reactions and make selections.
+ * using reactions and make selections. Results can span multiple pages
  *
  * @author John Grosh
+ * @author Kuborros
  */
-public class SelectionTitleDialog extends Menu {
+public class StoreDialog extends Menu {
     public static final String UP = "\uD83D\uDD3C";
     public static final String DOWN = "\uD83D\uDD3D";
     public static final String SELECT = "\u2705";
     public static final String CANCEL = "\u274E";
-    private final List<String> choices;
+    public static final String BIG_LEFT = "\u23EA";
+    public static final String LEFT = "\u25C0";
+    public static final String RIGHT = "\u25B6";
+    public static final String BIG_RIGHT = "\u23E9";
+    private final List<ShopItem> choices;
     private final String leftEnd, rightEnd;
+    private final int itemsPerPage;
+    private final boolean showPageNumbers;
+    private final boolean numberItems;
+    private final int pages;
+    private final boolean wrapPageEnds;
     private final String defaultLeft, defaultRight;
-    private final Function<Integer, Color> color;
+    private final BiFunction<Integer, Integer, Color> color;
     private final boolean loop;
-    private final Function<Integer, String> text;
-    private final Function<Integer, String> title;
+    private final BiFunction<Integer, Integer, String> text;
     private final BiConsumer<Message, Integer> success;
     private final Consumer<Message> cancel;
+    final int bulkSkipNumber = 2;
+    boolean noUpdate = false;
 
-    SelectionTitleDialog(EventWaiter waiter, Set<User> users, Set<Role> roles, long timeout, TimeUnit unit,
-                         List<String> choices, String leftEnd, String rightEnd, String defaultLeft, String defaultRight,
-                         Function<Integer, Color> color, boolean loop, BiConsumer<Message, Integer> success,
-                         Consumer<Message> cancel, Function<Integer, String> text, Function<Integer, String> title) {
+    StoreDialog(EventWaiter waiter, Set<User> users, Set<Role> roles, long timeout, TimeUnit unit,
+                List<ShopItem> choices, String leftEnd, String rightEnd, int itemsPerPage, boolean showPageNumbers,
+                boolean numberItems, String defaultLeft, String defaultRight,
+                BiFunction<Integer, Integer, Color> color, boolean loop, BiConsumer<Message, Integer> success,
+                Consumer<Message> cancel, BiFunction<Integer, Integer, String> text) {
         super(waiter, users, roles, timeout, unit);
         this.choices = choices;
         this.leftEnd = leftEnd;
         this.rightEnd = rightEnd;
+        this.itemsPerPage = itemsPerPage;
+        this.showPageNumbers = showPageNumbers;
+        this.numberItems = numberItems;
+        this.pages = (int) Math.ceil((double) choices.size() / itemsPerPage);
+        this.wrapPageEnds = true;
         this.defaultLeft = defaultLeft;
         this.defaultRight = defaultRight;
         this.color = color;
@@ -75,7 +94,6 @@ public class SelectionTitleDialog extends Menu {
         this.success = success;
         this.cancel = cancel;
         this.text = text;
-        this.title = title;
     }
 
     /**
@@ -87,7 +105,7 @@ public class SelectionTitleDialog extends Menu {
      */
     @Override
     public void display(MessageChannel channel) {
-        showDialog(channel, 1);
+        showDialog(channel, 1, 1);
     }
 
     /**
@@ -98,7 +116,7 @@ public class SelectionTitleDialog extends Menu {
      */
     @Override
     public void display(Message message) {
-        showDialog(message, 1);
+        showDialog(message, 1, 1);
     }
 
     /**
@@ -109,13 +127,13 @@ public class SelectionTitleDialog extends Menu {
      * @param channel   The MessageChannel to send the new Message to
      * @param selection The number selection to start on
      */
-    public void showDialog(MessageChannel channel, int selection) {
+    public void showDialog(MessageChannel channel, int selection, int pageNum) {
         if (selection < 1)
             selection = 1;
         else if (selection > choices.size())
             selection = choices.size();
-        Message msg = render(selection);
-        initialize(channel.sendMessage(msg), selection);
+        Message msg = renderPage(pageNum, selection);
+        initialize(channel.sendMessage(msg), selection, pageNum);
     }
 
     /**
@@ -126,40 +144,58 @@ public class SelectionTitleDialog extends Menu {
      * @param message   The Message to display the Menu in
      * @param selection The number selection to start on
      */
-    public void showDialog(Message message, int selection) {
+    public void showDialog(Message message, int selection, int pageNum) {
         if (selection < 1)
             selection = 1;
         else if (selection > choices.size())
             selection = choices.size();
-        Message msg = render(selection);
-        initialize(message.editMessage(msg), selection);
+        if (pageNum < 1)
+            pageNum = 1;
+        else if (pageNum > pages)
+            pageNum = pages;
+        Message msg = renderPage(pageNum, selection);
+        initialize(message.editMessage(msg), selection, pageNum);
     }
 
-    private void initialize(RestAction<Message> action, int selection) {
+    private void initialize(RestAction<Message> action, int selection, int pageNum) {
         action.queue(m -> {
             if (choices.size() > 1) {
                 m.addReaction(UP).queue();
                 m.addReaction(SELECT).queue();
                 m.addReaction(CANCEL).queue();
-                m.addReaction(DOWN).queue(v -> selectionDialog(m, selection), v -> selectionDialog(m, selection));
             } else {
                 m.addReaction(SELECT).queue();
-                m.addReaction(CANCEL).queue(v -> selectionDialog(m, selection), v -> selectionDialog(m, selection));
+                m.addReaction(CANCEL).queue(v -> selectionDialog(m, selection, pageNum), v -> selectionDialog(m, selection, pageNum));
+            }
+            if (pages > 1) {
+                m.addReaction(DOWN).queue();
+                m.addReaction(BIG_LEFT).queue();
+                m.addReaction(LEFT).queue();
+                m.addReaction(RIGHT).queue();
+                m.addReaction(BIG_RIGHT).queue(
+                        v -> selectionDialog(m, selection, pageNum), v -> selectionDialog(m, selection, pageNum));
+            } else {
+                m.addReaction(DOWN).queue(v -> selectionDialog(m, selection, 1), v -> selectionDialog(m, selection, 1));
             }
         });
     }
 
-    private void selectionDialog(Message message, int selection) {
+    private void selectionDialog(Message message, int selection, int pageNum) {
         waiter.waitForEvent(MessageReactionAddEvent.class, event -> {
             if (!event.getMessageId().equals(message.getId()))
                 return false;
             if (!(UP.equals(event.getReaction().getReactionEmote().getName())
                     || DOWN.equals(event.getReaction().getReactionEmote().getName())
                     || CANCEL.equals(event.getReaction().getReactionEmote().getName())
+                    || LEFT.equals(event.getReaction().getReactionEmote().getName())
+                    || RIGHT.equals(event.getReaction().getReactionEmote().getName())
+                    || BIG_LEFT.equals(event.getReaction().getReactionEmote().getName())
+                    || BIG_RIGHT.equals(event.getReaction().getReactionEmote().getName())
                     || SELECT.equals(event.getReaction().getReactionEmote().getName())))
                 return false;
-            return isValidUser(event.getUser(), event.isFromGuild() ? event.getGuild() : null);
+            return isValidUser(Objects.requireNonNull(event.getUser()), event.isFromGuild() ? event.getGuild() : null);
         }, event -> {
+            int newPageNum = pageNum;
             int newSelection = selection;
             switch (event.getReaction().getReactionEmote().getName()) {
                 case UP:
@@ -174,6 +210,35 @@ public class SelectionTitleDialog extends Menu {
                     else if (loop)
                         newSelection = 1;
                     break;
+                case LEFT:
+                    if (newPageNum == 1 && wrapPageEnds)
+                        newPageNum = pages + 1;
+                    if (newPageNum > 1)
+                        newPageNum--;
+                    break;
+                case RIGHT:
+                    if (newPageNum == pages && wrapPageEnds)
+                        newPageNum = 0;
+                    if (newPageNum < pages)
+                        newPageNum++;
+                    break;
+                case BIG_LEFT:
+                    if (newPageNum > 1 || wrapPageEnds) {
+                        for (int i = 1; (newPageNum > 1 || wrapPageEnds) && i < bulkSkipNumber; i++) {
+                            if (newPageNum == 1)
+                                newPageNum = pages + 1;
+                            newPageNum--;
+                        }
+                    }
+                    break;
+                case BIG_RIGHT:
+                    if (newPageNum < pages || wrapPageEnds) {
+                        for (int i = 1; (newPageNum < pages || wrapPageEnds) && i < bulkSkipNumber; i++) {
+                            if (newPageNum == pages)
+                                newPageNum = 0;
+                            newPageNum++;
+                        }
+                    }
                 case SELECT:
                     success.accept(message, selection);
                     break;
@@ -183,54 +248,70 @@ public class SelectionTitleDialog extends Menu {
 
             }
             try {
-                event.getReaction().removeReaction(event.getUser()).queue();
+                event.getReaction().removeReaction(Objects.requireNonNull(event.getUser())).queue();
             } catch (PermissionException ignored) {
             }
             int n = newSelection;
-            message.editMessage(render(n)).queue(m -> selectionDialog(m, n));
+            int o = newPageNum;
+            if (!noUpdate) {
+                message.editMessage(renderPage(n, o)).queue(m -> selectionDialog(m, n, o));
+            }
         }, timeout, unit, () -> cancel.accept(message));
     }
 
-    private Message render(int selection) {
-        StringBuilder sbuilder = new StringBuilder();
-        for (int i = 0; i < choices.size(); i++)
-            if (i + 1 == selection)
-                sbuilder.append("\n").append(leftEnd).append(choices.get(i)).append(rightEnd);
-            else
-                sbuilder.append("\n").append(defaultLeft).append(choices.get(i)).append(defaultRight);
+    public void setNoUpdate(boolean update) {
+        noUpdate = update;
+    }
+
+    private Message renderPage(int selection, int pageNum) {
         MessageBuilder mbuilder = new MessageBuilder();
-        String content = text.apply(selection);
-        if (content != null)
-            mbuilder.append(content);
-        return mbuilder.setEmbed(new EmbedBuilder()
-                .setTitle(title.apply(selection))
-                .setColor(color.apply(selection))
-                .setDescription(sbuilder.toString())
-                .build()).build();
+        EmbedBuilder ebuilder = new EmbedBuilder();
+        int start = (pageNum - 1) * itemsPerPage;
+        int end = Math.min(choices.size(), pageNum * itemsPerPage);
+
+
+        for (int i = start; i < end; i++) {
+            if (i + 1 == selection) {
+                ebuilder.addField((numberItems ? "`" + (i + 1) + ".` " : "") + leftEnd + choices.get(i).getItemName() + rightEnd, "Price: " + choices.get(i).getValue(), true);
+            } else {
+                ebuilder.addField((numberItems ? "`" + (i + 1) + ".` " : "") + defaultLeft + choices.get(i).getItemName() + defaultRight, "Price: " + choices.get(i).getValue(), true);
+            }
+        }
+
+        ebuilder.setColor(color.apply(pageNum, pages));
+        if (showPageNumbers)
+            ebuilder.setFooter("Page " + pageNum + "/" + pages, null);
+        mbuilder.setEmbed(ebuilder.build());
+        if (text != null)
+            mbuilder.append(text.apply(pageNum, pages));
+        return mbuilder.build();
     }
 
     /**
      * The {@link Menu.Builder Menu.Builder} for
-     * a {@link SelectionTitleDialog SelectuibDialog}.
+     * a {@link StoreDialog SelectuibDialog}.
      *
      * @author John Grosh
      */
-    public static class Builder extends Menu.Builder<Builder, SelectionTitleDialog> {
-        private final List<String> choices = new LinkedList<>();
+    @SuppressWarnings({"UnusedReturnValue", "unused"})
+    public static class Builder extends Menu.Builder<Builder, StoreDialog> {
+        private List<ShopItem> choices = new LinkedList<>();
         private String leftEnd = "";
         private String rightEnd = "";
+        private int itemsPerPage = 12;
+        private boolean showPageNumbers = true;
+        private boolean numberItems = false;
         private String defaultLeft = "";
         private String defaultRight = "";
-        private Function<Integer, Color> color = i -> null;
         private boolean loop = true;
-        private Function<Integer, String> text = i -> null;
-        private Function<Integer, String> title = i -> null;
+        private BiFunction<Integer, Integer, Color> color = (page, pages) -> null;
+        private BiFunction<Integer, Integer, String> text = (page, pages) -> null;
         private BiConsumer<Message, Integer> selection;
         private Consumer<Message> cancel = (m) -> {
         };
 
         /**
-         * Builds the {@link SelectionTitleDialog SelectionDialog}
+         * Builds the {@link StoreDialog SelectionDialog}
          * with this Builder.
          *
          * @return The OrderedMenu built from this Builder.
@@ -242,13 +323,13 @@ public class SelectionTitleDialog extends Menu {
          *                                  </ul>
          */
         @Override
-        public SelectionTitleDialog build() {
+        public StoreDialog build() {
             Checks.check(waiter != null, "Must set an EventWaiter");
             Checks.check(!choices.isEmpty(), "Must have at least one choice");
             Checks.check(selection != null, "Must provide a selection consumer");
 
-            return new SelectionTitleDialog(waiter, users, roles, timeout, unit, choices, leftEnd, rightEnd,
-                    defaultLeft, defaultRight, color, loop, selection, cancel, text, title);
+            return new StoreDialog(waiter, users, roles, timeout, unit, choices, leftEnd, rightEnd, itemsPerPage, showPageNumbers, numberItems,
+                    defaultLeft, defaultRight, color, loop, selection, cancel, text);
         }
 
         /**
@@ -258,7 +339,7 @@ public class SelectionTitleDialog extends Menu {
          * @return This builder
          */
         public Builder setColor(Color color) {
-            this.color = i -> color;
+            this.color = (i0, i1) -> color;
             return this;
         }
 
@@ -272,14 +353,14 @@ public class SelectionTitleDialog extends Menu {
          * @param color A Function that uses current selection number to get a Color for the MessageEmbed
          * @return This builder
          */
-        public Builder setColor(Function<Integer, Color> color) {
+        public Builder setColor(BiFunction<Integer, Integer, Color> color) {
             this.color = color;
             return this;
         }
 
         /**
          * Sets the text of the {@link Message Message} to be displayed
-         * when the {@link SelectionTitleDialog SelectionDialog} is built.
+         * when the {@link StoreDialog SelectionDialog} is built.
          *
          * <p>This is displayed directly above the embed.
          *
@@ -287,21 +368,7 @@ public class SelectionTitleDialog extends Menu {
          * @return This builder
          */
         public Builder setText(String text) {
-            this.text = i -> text;
-            return this;
-        }
-
-        /**
-         * Sets the title of {@link EmbedBuilder embed} to be displayed
-         * when the {@link SelectionTitleDialog SelectionDialog} is built.
-         *
-         * <p>This is displayed directly above the embed.
-         *
-         * @param text The Message content to be displayed above the embed when the SelectionDialog is built
-         * @return This builder
-         */
-        public Builder setTitle(String text) {
-            this.title = i -> text;
+            this.text = (i0, i1) -> text;
             return this;
         }
 
@@ -312,22 +379,44 @@ public class SelectionTitleDialog extends Menu {
          * <br>As the selection changes, the Function will re-process the current selection number,
          * allowing for the displayed text of the Message to change depending on the selection number.
          *
-         * @param text A Function that uses current selection number to get a text for the Message
+         * @param textBiFunction A Function that uses current selection number to get a text for the Message
          * @return This builder
          */
-        public Builder setText(Function<Integer, String> text) {
-            this.text = text;
+        public Builder setText(BiFunction<Integer, Integer, String> textBiFunction) {
+            this.text = textBiFunction;
+            return this;
+        }
+
+        public Builder setItemsPerPage(int num) {
+            if (num < 1)
+                throw new IllegalArgumentException("There must be at least one item per page");
+            this.itemsPerPage = num;
             return this;
         }
 
         /**
-         * Sets the text to use on either end of the selected item.
-         * <br>Usage is primarily to mark which item is currently selected.
+         * Sets whether or not the page number will be shown.
          *
-         * @param left  The left selection end
-         * @param right The right selection end
+         * @param show {@code true} if the page number should be shown, {@code false} if it should not
          * @return This builder
          */
+        public Builder showPageNumbers(boolean show) {
+            this.showPageNumbers = show;
+            return this;
+        }
+
+        /**
+         * Sets whether or not the items will be automatically numbered.
+         *
+         * @param number {@code true} if the items should be numbered, {@code false} if it should not
+         * @return This builder
+         */
+        public Builder useNumberedItems(boolean number) {
+            this.numberItems = number;
+            return this;
+        }
+
+
         public Builder setSelectedEnds(String left, String right) {
             this.leftEnd = left;
             this.rightEnd = right;
@@ -403,9 +492,9 @@ public class SelectionTitleDialog extends Menu {
          * @param choices The String choices to show
          * @return the builder
          */
-        public Builder setChoices(String... choices) {
+        public Builder setChoices(LinkedList<ShopItem> choices) {
             this.choices.clear();
-            this.choices.addAll(Arrays.asList(choices));
+            this.choices = choices;
             return this;
         }
 
@@ -415,8 +504,8 @@ public class SelectionTitleDialog extends Menu {
          * @param choices The String choices to add
          * @return This builder
          */
-        public Builder addChoices(String... choices) {
-            this.choices.addAll(Arrays.asList(choices));
+        public Builder addChoices(List<ShopItem> choices) {
+            this.choices.addAll(choices);
             return this;
         }
     }

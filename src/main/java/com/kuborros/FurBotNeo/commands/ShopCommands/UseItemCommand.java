@@ -6,7 +6,7 @@ import com.jagrosh.jdautilities.command.CommandEvent;
 import com.jagrosh.jdautilities.commons.waiter.EventWaiter;
 import com.jagrosh.jdautilities.doc.standard.CommandInfo;
 import com.jagrosh.jdautilities.examples.doc.Author;
-import com.kuborros.FurBotNeo.utils.store.SelectionTitleDialog;
+import com.kuborros.FurBotNeo.utils.menus.SelectionTitleDialog;
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.Permission;
 import net.dv8tion.jda.api.entities.Member;
@@ -18,6 +18,7 @@ import java.awt.*;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
 @CommandInfo(
@@ -74,6 +75,7 @@ public class UseItemCommand extends ShopCommand {
 
     }
 
+    @SuppressWarnings("EmptyMethod")
     private void useItem(Message message, int selection) {
         //TODO: Decide what items are actually supposed to do!
     }
@@ -84,7 +86,7 @@ public class UseItemCommand extends ShopCommand {
         String json = "";
 
         try {
-            json = new String(getClass().getClassLoader().getResourceAsStream("items.json").readAllBytes(), StandardCharsets.UTF_8);
+            json = new String(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream("items.json")).readAllBytes(), StandardCharsets.UTF_8);
         } catch (Exception e) {
             LOG.error("Things went wrong while loading internal resource: ", e);
         }

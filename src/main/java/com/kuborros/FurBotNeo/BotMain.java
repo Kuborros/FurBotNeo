@@ -11,6 +11,7 @@ import com.kuborros.FurBotNeo.commands.PicCommands.*;
 import com.kuborros.FurBotNeo.commands.ShopCommands.BuyCommand;
 import com.kuborros.FurBotNeo.commands.ShopCommands.CoinsCommand;
 import com.kuborros.FurBotNeo.commands.ShopCommands.SetRoleCommand;
+import com.kuborros.FurBotNeo.commands.ShopCommands.UseItemCommand;
 import com.kuborros.FurBotNeo.listeners.BotEventListener;
 import com.kuborros.FurBotNeo.listeners.LogListener;
 import com.kuborros.FurBotNeo.listeners.MemberEventListener;
@@ -149,7 +150,8 @@ public class BotMain {
         if (cfg.isShopEnabled()) {
             client.addCommands(new BuyCommand(waiter),
                     new CoinsCommand(),
-                    new SetRoleCommand(waiter));
+                    new SetRoleCommand(waiter),
+                    new UseItemCommand(waiter));
         }
 
         try {
