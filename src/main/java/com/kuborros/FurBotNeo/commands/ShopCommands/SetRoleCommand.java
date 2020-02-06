@@ -5,7 +5,7 @@ import com.jagrosh.jdautilities.command.CommandEvent;
 import com.jagrosh.jdautilities.commons.waiter.EventWaiter;
 import com.jagrosh.jdautilities.doc.standard.CommandInfo;
 import com.jagrosh.jdautilities.examples.doc.Author;
-import com.jagrosh.jdautilities.menu.SelectionDialog;
+import com.kuborros.FurBotNeo.utils.store.SelectionTitleDialog;
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.Permission;
 import net.dv8tion.jda.api.entities.Guild;
@@ -48,7 +48,7 @@ public class SetRoleCommand extends ShopCommand {
     @Override
     protected void doCommand(CommandEvent event) {
 
-        SelectionDialog.Builder builder = new SelectionDialog.Builder();
+        SelectionTitleDialog.Builder builder = new SelectionTitleDialog.Builder();
         roles = inventory.getOwnedRoles();
 
         if (roles.isEmpty()) {
@@ -68,7 +68,7 @@ public class SetRoleCommand extends ShopCommand {
                 .setSelectedEnds("**", "**")
                 .setEventWaiter(waiter)
                 .setChoices(roleInfo.keySet().toArray(new String[0]))
-                .setText(String.format("**Pick your new role, %s:**", event.getMember().getEffectiveName()))
+                .setTitle(String.format("**Pick your new role, %s:**", event.getMember().getEffectiveName()))
                 .setSelectionConsumer(this::setSelectedRole)
                 .setCanceled(message -> message.clearReactions().queue())
                 .useLooping(true)
