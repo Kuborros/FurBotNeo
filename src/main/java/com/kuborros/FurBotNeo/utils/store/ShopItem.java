@@ -1,15 +1,31 @@
 package com.kuborros.FurBotNeo.utils.store;
 
+import java.awt.*;
+
 public class ShopItem {
 
+    Color color;
+
     String dbName, itemName, url;
+    ItemType type;
     int value;
 
-    public ShopItem(String dbName, String itemName, String url, int value) {
+    public ShopItem(String dbName, String itemName, String data, int value, ItemType type) {
         this.dbName = dbName;
         this.itemName = itemName;
         this.value = value;
-        this.url = url;
+        if (type == ItemType.ITEM) {
+            this.url = data;
+            this.color = Color.BLACK;
+        } else if (type == ItemType.ROLE) {
+            this.url = "";
+            this.color = Color.decode(data);
+        }
+        this.type = type;
+    }
+
+    public Color getColor() {
+        return color;
     }
 
     public String getDbName() {
@@ -27,4 +43,10 @@ public class ShopItem {
     public int getValue() {
         return value;
     }
+
+    public ItemType getType() {
+        return type;
+    }
+
+    public enum ItemType {ITEM, ROLE}
 }

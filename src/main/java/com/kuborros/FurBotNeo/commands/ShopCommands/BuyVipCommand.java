@@ -24,7 +24,7 @@ public class BuyVipCommand extends ShopCommand {
         this.name = "vip";
         this.help = "Purchase VIP status here!";
         this.guildOnly = true;
-        this.botPermissions = new Permission[]{Permission.MESSAGE_EMBED_LINKS};
+        this.botPermissions = new Permission[]{Permission.MESSAGE_EMBED_LINKS, Permission.MESSAGE_MANAGE};
         this.category = new Command.Category("Shop");
         this.waiter = waiter;
     }
@@ -81,7 +81,7 @@ public class BuyVipCommand extends ShopCommand {
             return;
         }
         if (event.getReaction().getReactionEmote().getName().equals(OKAY)) {
-            inventoryCache.setInventory(inventory.setVIP(true));
+            inventoryCache.setInventory(inventory.setVIP(true).spendTokens(vipCost));
             EmbedBuilder builder = new EmbedBuilder()
                     .setColor(Color.ORANGE)
                     .setTitle(String.format("Congratulations on becoming VIP, %s!", event.getUser().getName()))

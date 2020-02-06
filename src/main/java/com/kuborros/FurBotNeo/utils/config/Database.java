@@ -388,8 +388,8 @@ public class Database {
                             inventory.getLevel() + "," +
                             "'" + items + "'" + "," +
                             "'" + roles + "'" + "," +
-                            inventory.getCurrentItem() + "," +
-                            inventory.getCurrentRole() + "," +
+                            "'" + inventory.getCurrentItem() + "'" + "," +
+                            "'" + inventory.getCurrentRole() + "'" + "," +
                             inventory.isVIP() + "," +
                             inventory.isBanned() +
                             ") WHERE member_id=" + inventory.getMemberId() + " AND guild_id=" + inventory.getGuildId());

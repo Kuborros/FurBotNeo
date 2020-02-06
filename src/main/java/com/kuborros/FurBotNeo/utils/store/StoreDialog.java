@@ -69,6 +69,7 @@ public class StoreDialog extends Menu {
     private final BiConsumer<Message, Integer> success;
     private final Consumer<Message> cancel;
     int bulkSkipNumber = 2;
+    boolean noUpdate;
 
     StoreDialog(EventWaiter waiter, Set<User> users, Set<Role> roles, long timeout, TimeUnit unit,
                 List<ShopItem> choices, String leftEnd, String rightEnd, int itemsPerPage, boolean showPageNumbers,
@@ -250,8 +251,14 @@ public class StoreDialog extends Menu {
             }
             int n = newSelection;
             int o = newPageNum;
-            message.editMessage(renderPage(n, o)).queue(m -> selectionDialog(m, n, o));
+            if (!noUpdate) {
+                message.editMessage(renderPage(n, o)).queue(m -> selectionDialog(m, n, o));
+            }
         }, timeout, unit, () -> cancel.accept(message));
+    }
+
+    public void setNoUpdate(boolean update) {
+        noUpdate = update;
     }
 
     private Message renderPage(int pageNum, int selection) {
@@ -284,6 +291,7 @@ public class StoreDialog extends Menu {
      *
      * @author John Grosh
      */
+    @SuppressWarnings({"UnusedReturnValue", "unused"})
     public static class Builder extends Menu.Builder<Builder, StoreDialog> {
         private List<ShopItem> choices = new LinkedList<>();
         private String leftEnd = "";
