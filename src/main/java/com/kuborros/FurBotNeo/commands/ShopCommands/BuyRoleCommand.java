@@ -3,6 +3,8 @@ package com.kuborros.FurBotNeo.commands.ShopCommands;
 import com.jagrosh.jdautilities.command.Command;
 import com.jagrosh.jdautilities.command.CommandEvent;
 import com.jagrosh.jdautilities.commons.waiter.EventWaiter;
+import com.jagrosh.jdautilities.doc.standard.CommandInfo;
+import com.jagrosh.jdautilities.examples.doc.Author;
 import com.kuborros.FurBotNeo.utils.store.ShopItem;
 import com.kuborros.FurBotNeo.utils.store.StoreDialog;
 import net.dv8tion.jda.api.EmbedBuilder;
@@ -22,6 +24,11 @@ import java.util.concurrent.TimeUnit;
 
 import static com.kuborros.FurBotNeo.BotMain.inventoryCache;
 
+@CommandInfo(
+        name = "Role",
+        description = "Purchase special roles here."
+)
+@Author("Kuborros")
 public class BuyRoleCommand extends ShopCommand {
 
     static final ArrayList<ShopItem> availableRoles = new ArrayList<>();

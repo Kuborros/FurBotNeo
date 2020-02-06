@@ -2,11 +2,19 @@ package com.kuborros.FurBotNeo.commands.ShopCommands;
 
 import com.jagrosh.jdautilities.command.Command;
 import com.jagrosh.jdautilities.command.CommandEvent;
+import com.jagrosh.jdautilities.doc.standard.CommandInfo;
+import com.jagrosh.jdautilities.examples.doc.Author;
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.Permission;
 
 import java.awt.*;
 
+
+@CommandInfo(
+        name = "Coins",
+        description = "Shows your token balance."
+)
+@Author("Kuborros")
 public class CoinsCommand extends ShopCommand {
 
     public CoinsCommand() {

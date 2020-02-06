@@ -3,6 +3,8 @@ package com.kuborros.FurBotNeo.commands.ShopCommands;
 import com.jagrosh.jdautilities.command.Command;
 import com.jagrosh.jdautilities.command.CommandEvent;
 import com.jagrosh.jdautilities.commons.waiter.EventWaiter;
+import com.jagrosh.jdautilities.doc.standard.CommandInfo;
+import com.jagrosh.jdautilities.examples.doc.Author;
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.Permission;
 import net.dv8tion.jda.api.entities.Message;
@@ -15,6 +17,12 @@ import java.util.concurrent.TimeUnit;
 
 import static com.kuborros.FurBotNeo.BotMain.inventoryCache;
 
+
+@CommandInfo(
+        name = "Vip",
+        description = "Purchase VIP status here."
+)
+@Author("Kuborros")
 public class BuyVipCommand extends ShopCommand {
 
     final EventWaiter waiter;

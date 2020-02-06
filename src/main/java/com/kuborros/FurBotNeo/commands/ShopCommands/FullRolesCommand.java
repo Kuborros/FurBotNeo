@@ -3,6 +3,8 @@ package com.kuborros.FurBotNeo.commands.ShopCommands;
 import com.jagrosh.jdautilities.command.Command;
 import com.jagrosh.jdautilities.command.CommandEvent;
 import com.jagrosh.jdautilities.commons.waiter.EventWaiter;
+import com.jagrosh.jdautilities.doc.standard.CommandInfo;
+import com.jagrosh.jdautilities.examples.doc.Author;
 import com.jagrosh.jdautilities.menu.Paginator;
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.Permission;
@@ -16,6 +18,12 @@ import java.util.List;
 import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
+
+@CommandInfo(
+        name = "MyRoles",
+        description = "Lists all your owned roles."
+)
+@Author("Kuborros")
 public class FullRolesCommand extends ShopCommand {
 
     final EventWaiter waiter;

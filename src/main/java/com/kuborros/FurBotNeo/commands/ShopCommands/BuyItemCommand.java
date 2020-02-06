@@ -3,6 +3,8 @@ package com.kuborros.FurBotNeo.commands.ShopCommands;
 import com.jagrosh.jdautilities.command.Command;
 import com.jagrosh.jdautilities.command.CommandEvent;
 import com.jagrosh.jdautilities.commons.waiter.EventWaiter;
+import com.jagrosh.jdautilities.doc.standard.CommandInfo;
+import com.jagrosh.jdautilities.examples.doc.Author;
 import com.kuborros.FurBotNeo.utils.store.ShopItem;
 import com.kuborros.FurBotNeo.utils.store.StoreDialog;
 import net.dv8tion.jda.api.EmbedBuilder;
@@ -22,6 +24,12 @@ import java.util.concurrent.TimeUnit;
 
 import static com.kuborros.FurBotNeo.BotMain.inventoryCache;
 
+
+@CommandInfo(
+        name = "Item",
+        description = "Purchase items here. Also losit some inventory info with no parameters."
+)
+@Author("Kuborros")
 public class BuyItemCommand extends ShopCommand {
 
     static final ArrayList<ShopItem> availableItems = new ArrayList<>();
@@ -29,6 +37,7 @@ public class BuyItemCommand extends ShopCommand {
     ShopItem currItem;
     Member author;
     StoreDialog storeDialog;
+
 
     public BuyItemCommand(EventWaiter waiter) {
         this.name = "item";

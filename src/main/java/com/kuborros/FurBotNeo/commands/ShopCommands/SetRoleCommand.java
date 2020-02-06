@@ -3,6 +3,8 @@ package com.kuborros.FurBotNeo.commands.ShopCommands;
 import com.jagrosh.jdautilities.command.Command;
 import com.jagrosh.jdautilities.command.CommandEvent;
 import com.jagrosh.jdautilities.commons.waiter.EventWaiter;
+import com.jagrosh.jdautilities.doc.standard.CommandInfo;
+import com.jagrosh.jdautilities.examples.doc.Author;
 import com.jagrosh.jdautilities.menu.SelectionDialog;
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.Permission;
@@ -22,6 +24,11 @@ import java.util.concurrent.TimeUnit;
 import static com.kuborros.FurBotNeo.BotMain.inventoryCache;
 
 @SuppressWarnings("ConstantConditions")
+@CommandInfo(
+        name = "role",
+        description = "Sets your active role."
+)
+@Author("Kuborros")
 public class SetRoleCommand extends ShopCommand {
 
     final EventWaiter waiter;
