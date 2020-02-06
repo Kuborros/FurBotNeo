@@ -13,8 +13,7 @@ import org.slf4j.LoggerFactory;
 
 import java.awt.*;
 
-import static com.kuborros.FurBotNeo.BotMain.inventoryCache;
-import static com.kuborros.FurBotNeo.BotMain.randomResponse;
+import static com.kuborros.FurBotNeo.BotMain.*;
 
 
 abstract class LewdCommand extends Command {
@@ -73,7 +72,7 @@ abstract class LewdCommand extends Command {
         if (event.getTextChannel().isNSFW()) {
             //Token award per command use. Inventories are not likely to be used in these commands, so they are not kept around
             //Should be tweaked later
-            inventoryCache.setInventory(inventory.addTokens(10));
+            if (cfg.isShopEnabled()) inventoryCache.setInventory(inventory.addTokens(10));
             doCommand(event);
         }
         //No tokens if command is used on sfw channel

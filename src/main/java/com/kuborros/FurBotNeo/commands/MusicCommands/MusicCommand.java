@@ -314,7 +314,7 @@ abstract class MusicCommand extends Command {
         }
         //Token award per command use.
         //Should be tweaked later
-        inventoryCache.setInventory(inventory.addTokens(10));
+        if (cfg.isShopEnabled()) inventoryCache.setInventory(inventory.addTokens(10));
 
         config = (FurConfig) event.getClient().getSettingsManager().getSettings(guild);
         if (!event.getTextChannel().equals(guild.getTextChannelById(config.getAudioChannel()))) return;

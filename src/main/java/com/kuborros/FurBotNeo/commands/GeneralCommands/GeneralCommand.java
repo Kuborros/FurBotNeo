@@ -12,8 +12,7 @@ import org.slf4j.LoggerFactory;
 
 import java.awt.*;
 
-import static com.kuborros.FurBotNeo.BotMain.inventoryCache;
-import static com.kuborros.FurBotNeo.BotMain.randomResponse;
+import static com.kuborros.FurBotNeo.BotMain.*;
 
 abstract class GeneralCommand extends Command {
 
@@ -56,7 +55,7 @@ abstract class GeneralCommand extends Command {
         }
         //Token award per command use.
         //Should be tweaked later
-        inventoryCache.setInventory(inventory.addTokens(1));
+        if (cfg.isShopEnabled()) inventoryCache.setInventory(inventory.addTokens(1));
         doCommand(event);
     }
 
