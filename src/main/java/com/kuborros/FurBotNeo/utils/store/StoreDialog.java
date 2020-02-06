@@ -251,8 +251,8 @@ public class StoreDialog extends Menu {
                 event.getReaction().removeReaction(event.getUser()).queue();
             } catch (PermissionException ignored) {
             }
-            int o = newSelection;
-            int n = newPageNum;
+            int n = newSelection;
+            int o = newPageNum;
             if (!noUpdate) {
                 message.editMessage(renderPage(n, o)).queue(m -> selectionDialog(m, n, o));
             }
@@ -263,7 +263,7 @@ public class StoreDialog extends Menu {
         noUpdate = update;
     }
 
-    private Message renderPage(int pageNum, int selection) {
+    private Message renderPage(int selection, int pageNum) {
         MessageBuilder mbuilder = new MessageBuilder();
         EmbedBuilder ebuilder = new EmbedBuilder();
         int start = (pageNum - 1) * itemsPerPage;
