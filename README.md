@@ -156,7 +156,7 @@ Guildcfg key is ``nsfw``
 | lick          | mention           | Licc~ |
 | pet           | mention           | *Pat,pat on the head* |
 
-### Shop: WIPWIPWIPWIPWIPWIPWIPWIPWIPWIPWIPWIPWIPWIPWIPWIPWIPWIPWIPWIPWIPWIPWIPWIPWIPWIPWIPWIPWIPWIPWIPWIPWIPWIPWIPWIPWIPWIPWIPWIPWIPWIPWIPWIPWIPWIPWIPWIPWIP
+### Shop: 
 Commands that allow users to gain and spend BatTokens, to purchase badges, coloured roles, and more.
 
 Tokens are earned automatically by partaking in chatting and using commands.
@@ -167,11 +167,15 @@ _If VIP is disabled, everyone is considered VIP_
 
 | **Command**   |  **Subcommand:**   |             **Description:**              |
 | :------------ |:-----------------:| :----------------------------------------:|
-| shop          | ----           | Base shop interface, lists deals and stuff (wip) |
+| myroles       | ----           | Check all your owned roles |
+| inventory     | ----           | Check all your owned items |
+| role          | ----           | Set your current active role |
+| item          | ----           | Use your owned item (WIP) |
+| shop          | ----           | Base shop interface, lists some of your items, level, and token balance |
 | ----          | item           | Purchase items here |
 | ----          | role           | Purchase roles here |
 | ----          | vip            | Purchase vip status here (if enabled) |
-| level         | ----           | Spend your tokens to level up!  (or just check your level i guess) |
+| ----          | level          | Spend your tokens to level up!  (or just check your level i guess) |
 | tokens        | ----           | Check your token balance |
 | ----          | give           | Give your tokens away to mentioned user |
 
