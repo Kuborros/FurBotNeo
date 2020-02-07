@@ -326,11 +326,10 @@ public class Database {
     //Same member can exist in multiple guilds, and for each needs separate set of store tables
     //Member id and guild id are kept separate for reasons of clarity. If it becomes problematic they can be turned into single unique value
     //Returns true if created, false if already exists.
-    private boolean addMemberToStore(String id) {
+    private boolean addMemberToStore(String memberId, String guildID) {
         try {
-            String[] ids = id.split(",");
             stat = conn.createStatement();
-            stat.executeUpdate("INSERT INTO Shop (member_id, guild_id) VALUES (" + ids[0] + "," + ids[1] + ")");
+            stat.executeUpdate("INSERT INTO Shop (member_id, guild_id) VALUES (" + memberId + "," + guildID + ")");
             return true;
         } catch (SQLException e) {
             LOG.debug("User likely already exists: ", e);
@@ -339,25 +338,24 @@ public class Database {
     }
 
     //Get whole inventory
-    public MemberInventory memberGetInventory(String id) {
-        String[] ids = id.split(",");
+    public MemberInventory memberGetInventory(String memberId, String guildId) {
         try {
             ArrayList<String> items = new ArrayList<>();
             ArrayList<String> roles = new ArrayList<>();
             stat = conn.createStatement();
-            ResultSet rs = stat.executeQuery("SELECT * FROM Shop WHERE guild_id=" + ids[1] + " AND member_id=" + ids[0]);
+            ResultSet rs = stat.executeQuery("SELECT * FROM Shop WHERE member_id=" + memberId + " AND guild_id=" + guildId);
             Collections.addAll(items, rs.getString(6).split(","));
             Collections.addAll(roles, rs.getString(7).split(","));
-            return new MemberInventory(ids[0], ids[1], rs.getInt(4), rs.getInt(5), items, roles, rs.getString(8), rs.getString(9), rs.getBoolean(10), rs.getBoolean(11));
+            return new MemberInventory(memberId, guildId, rs.getInt(4), rs.getInt(5), items, roles, rs.getString(8), rs.getString(9), rs.getBoolean(10), rs.getBoolean(11));
         } catch (SQLException | NullPointerException e) {
-            if (addMemberToStore(id)) {
+            if (addMemberToStore(memberId, guildId)) {
                 //They might just not exist in store database!
-                LOG.debug("Added user to store with internal id: {}", id);
+                LOG.debug("Added user to store with member id: {}, and guild id: {}", memberId, guildId);
             } else {
                 //If they exist and we messed up print the stacktrace
                 LOG.error("Exception while obtaining user inventory:", e);
             }
-            return new MemberInventory(ids[0], ids[1]);
+            return new MemberInventory(memberId, guildId);
         }
     }
 

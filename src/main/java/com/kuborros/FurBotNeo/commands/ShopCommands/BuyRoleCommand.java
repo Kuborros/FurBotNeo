@@ -87,7 +87,7 @@ public class BuyRoleCommand extends ShopCommand {
                     .setDescription(String.format("It seems you cannot afford it! \n It would cost you %d tokens to purchase this role.", currRole.getValue()))
                     .setColor(currRole.getColor());
             canBuy = false;
-        } else if (inventory.getOwnedItems().contains(currRole.getDbName())) {
+        } else if (inventory.getOwnedRoles().contains(currRole.getDbName())) {
             builder.setTitle(String.format("Buying role: %s", currRole.getItemName()))
                     .setDescription("Wait a second... You already own it!")
                     .setColor(currRole.getColor());
@@ -100,6 +100,7 @@ public class BuyRoleCommand extends ShopCommand {
         }
         message.editMessage(new MessageBuilder().setEmbed(builder.build()).setContent("").build()).queue();
         if (canBuy) awaitResponse(message);
+        else message.clearReactions().complete();
     }
 
     private void awaitResponse(Message message) {
@@ -133,12 +134,11 @@ public class BuyRoleCommand extends ShopCommand {
             return;
         }
         if (event.getReaction().getReactionEmote().getName().equals(OKAY)) {
-            inventoryCache.setInventory(inventory.addToInventory(currRole.getDbName()).spendTokens(currRole.getValue()));
+            inventoryCache.setInventory(inventory.addToRoles(currRole.getDbName()).spendTokens(currRole.getValue()));
             EmbedBuilder builder = new EmbedBuilder()
-                    .setColor(Color.ORANGE)
+                    .setColor(currRole.getColor())
                     .setTitle(String.format("Congratulations on your purchase of %s, %s!", currRole.getItemName(), Objects.requireNonNull(event.getUser()).getName()))
-                    .setDescription("Enjoy your new color~")
-                    .setThumbnail(currRole.getUrl());
+                    .setDescription("Enjoy your new color~");
             try {
                 message.editMessage(builder.build()).queue();
                 message.clearReactions().queue();
@@ -160,7 +160,7 @@ public class BuyRoleCommand extends ShopCommand {
         jsonObj.keySet().forEach(keyStr -> {
             JSONObject item = jsonObj.getJSONObject(keyStr);
             int value = item.getInt("price");
-            //Items with value 0 are not for sale.
+            // Roles with value 0 are not for sale.
             if (value > 0) {
                 availableRoles.add(new ShopItem(keyStr, item.getString("name"), item.getString("role_color"), value, ShopItem.ItemType.ROLE));
             }

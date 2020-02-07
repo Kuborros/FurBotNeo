@@ -20,7 +20,8 @@ public class MemberInventoryCacheImpl implements MemberInventoryCache {
                 .loader(new CacheLoader<>() {
                     @Override
                     public MemberInventory load(final String key) {
-                        return db.memberGetInventory(key);
+                        String[] id = key.split(",");
+                        return db.memberGetInventory(id[0], id[1]);
                     }
                 })
                 .eternal(true)
