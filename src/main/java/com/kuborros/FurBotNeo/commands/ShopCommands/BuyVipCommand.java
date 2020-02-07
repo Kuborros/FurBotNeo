@@ -15,6 +15,7 @@ import java.awt.*;
 import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
+import static com.kuborros.FurBotNeo.BotMain.cfg;
 import static com.kuborros.FurBotNeo.BotMain.inventoryCache;
 
 
@@ -40,15 +41,20 @@ public class BuyVipCommand extends ShopCommand {
 
     @Override
     protected void doCommand(CommandEvent event) {
+
         boolean vip = inventory.isVIP();
+        boolean canBuy;
         vipCost = 10000; //Make it reasonable before release
         String desc;
-        if (inventory.getBalance() > vipCost) {
-            desc = String.format("You are not a VIP yet! \n You can however, afford becoming one for %d tokens~ \n Would you like to buy it?", vipCost);
-        } else if (vip) {
+        if (vip || !cfg.isBuyVipEnabled()) {
             desc = "You are a VIP already! \n Congratulations!";
+            canBuy = false;
+        } else if (inventory.getBalance() > vipCost) {
+            desc = String.format("You are not a VIP yet! \n You can however, afford becoming one for %d tokens~ \n Would you like to buy it?", vipCost);
+            canBuy = true;
         } else {
             desc = String.format("You are not a VIP yet! \n It costs %d to become a VIP!", vipCost);
+            canBuy = false;
         }
         EmbedBuilder builder = new EmbedBuilder()
                 .setTitle(String.format("Vip status for: %s", event.getMember().getEffectiveName()))
@@ -57,7 +63,8 @@ public class BuyVipCommand extends ShopCommand {
                 .setDescription(desc);
 
         authorId = event.getAuthor().getId();
-        awaitResponse(event.getTextChannel().sendMessage(builder.build()).complete());
+        if (canBuy) awaitResponse(event.getTextChannel().sendMessage(builder.build()).complete());
+        else event.getMessage().clearReactions().complete();
     }
 
     private void awaitResponse(Message message) {

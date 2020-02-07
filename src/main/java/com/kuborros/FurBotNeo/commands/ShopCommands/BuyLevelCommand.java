@@ -34,11 +34,14 @@ public class BuyLevelCommand extends ShopCommand {
     protected void doCommand(CommandEvent event) {
         level = inventory.getLevel();
         levelcost = levelCost(level);
+        boolean canBuy;
         String desc;
         if (inventory.getBalance() > levelcost) {
             desc = String.format("Your current level is %d! \n You can afford a level up for %d tokens~ \n Would you like to level up now?", level, levelcost);
+            canBuy = true;
         } else {
             desc = String.format("Your current level is %d! \n A level up would cost you %d tokens.", level, levelcost);
+            canBuy = false;
         }
         EmbedBuilder builder = new EmbedBuilder()
                 .setTitle(String.format("Level info for: %s", event.getMember().getEffectiveName()))
@@ -47,7 +50,8 @@ public class BuyLevelCommand extends ShopCommand {
                 .setDescription(desc);
 
         authorId = event.getAuthor().getId();
-        awaitResponse(event.getTextChannel().sendMessage(builder.build()).complete());
+        if (canBuy) awaitResponse(event.getTextChannel().sendMessage(builder.build()).complete());
+        else event.getMessage().clearReactions().complete();
     }
 
     private void awaitResponse(Message message) {
