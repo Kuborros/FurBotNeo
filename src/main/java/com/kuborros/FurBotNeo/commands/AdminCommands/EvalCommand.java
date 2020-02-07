@@ -39,6 +39,8 @@ public class EvalCommand extends AdminCommand {
                     "java.io," +
                     "java.lang," +
                     "java.util," +
+                    "Packages.com.kuborros.FurBotNeo.utils.store," +
+                    "Packages.com.kuborros.FurBotNeo.utils.config," +
                     "Packages.net.dv8tion.jda.api," +
                     "Packages.net.dv8tion.jda.api.entities," +
                     "Packages.net.dv8tion.jda.api.entities.impl," +
