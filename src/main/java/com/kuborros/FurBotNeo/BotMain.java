@@ -4,14 +4,12 @@ import com.jagrosh.jdautilities.command.CommandClientBuilder;
 import com.jagrosh.jdautilities.commons.waiter.EventWaiter;
 import com.jagrosh.jdautilities.examples.command.AboutCommand;
 import com.kuborros.FurBotNeo.commands.AdminCommands.*;
+import com.kuborros.FurBotNeo.commands.DebugCommands.*;
 import com.kuborros.FurBotNeo.commands.GeneralCommands.*;
 import com.kuborros.FurBotNeo.commands.LewdCommands.*;
 import com.kuborros.FurBotNeo.commands.MusicCommands.*;
 import com.kuborros.FurBotNeo.commands.PicCommands.*;
-import com.kuborros.FurBotNeo.commands.ShopCommands.BuyCommand;
-import com.kuborros.FurBotNeo.commands.ShopCommands.CoinsCommand;
-import com.kuborros.FurBotNeo.commands.ShopCommands.SetRoleCommand;
-import com.kuborros.FurBotNeo.commands.ShopCommands.UseItemCommand;
+import com.kuborros.FurBotNeo.commands.ShopCommands.*;
 import com.kuborros.FurBotNeo.listeners.BotEventListener;
 import com.kuborros.FurBotNeo.listeners.LogListener;
 import com.kuborros.FurBotNeo.listeners.MemberEventListener;
@@ -147,12 +145,27 @@ public class BotMain {
                 new ShipCommand());
 
         //Shop
+        //Most store commands are subcommands.
         if (cfg.isShopEnabled()) {
-            client.addCommands(new BuyCommand(waiter),
+            client.addCommands(
+                    new BuyCommand(waiter),
                     new CoinsCommand(),
                     new SetRoleCommand(waiter),
                     new UseItemCommand(waiter));
         }
+
+        //Debug
+        //Currently mostly only store-based commands. It is assumed you know what your doing when using these.
+        if (cfg.isDebugMode()) {
+            client.addCommands(
+                    new GiveCoinsCmd(),
+                    new GiveItemCommand(),
+                    new GiveRoleCommand(),
+                    new GiveVIPCommand(),
+                    new SetCoinCommand(),
+                    new SetLevelCommand());
+        }
+
 
         try {
 

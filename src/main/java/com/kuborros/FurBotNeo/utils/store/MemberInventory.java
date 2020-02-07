@@ -92,6 +92,11 @@ public class MemberInventory {
         return this;
     }
 
+    public MemberInventory setTokens(int amount) {
+        balance = amount;
+        return this;
+    }
+
     public MemberInventory addLevel() {
         level++;
         return this;
@@ -99,6 +104,11 @@ public class MemberInventory {
 
     public MemberInventory addLevel(int levels) {
         level += levels;
+        return this;
+    }
+
+    public MemberInventory setLevel(int levels) {
+        level = levels;
         return this;
     }
 

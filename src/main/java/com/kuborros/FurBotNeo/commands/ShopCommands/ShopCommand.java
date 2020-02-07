@@ -16,7 +16,7 @@ import static com.kuborros.FurBotNeo.BotMain.*;
 
 public abstract class ShopCommand extends Command {
 
-    static final Logger LOG = LoggerFactory.getLogger("GameCommands");
+    static final Logger LOG = LoggerFactory.getLogger("ShopCommands");
     protected MemberInventory inventory;
     Guild guild;
     private CommandClient client;
