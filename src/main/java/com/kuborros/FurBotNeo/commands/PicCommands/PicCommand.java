@@ -55,6 +55,9 @@ abstract class PicCommand extends Command {
         client = event.getClient();
         FurConfig config = (FurConfig) event.getClient().getSettingsManager().getSettings(guild);
         assert config != null;
+
+        if (event.getAuthor().isBot()) return;
+
         inventory = inventoryCache.getInventory(event.getMember().getId(), guild.getId());
         if (inventory.isBanned()) {
             event.reply(bannedResponseEmbed());

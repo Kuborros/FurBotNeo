@@ -50,6 +50,8 @@ abstract class AdminCommand extends Command {
     //Being service commands meant for admins, these do not award tokens for use.
     @Override
     protected void execute(CommandEvent event) {
+        if (event.getAuthor().isBot()) return;
+
         guild = event.getGuild();
         client = event.getClient();
         if (event.getChannelType() == ChannelType.TEXT) {

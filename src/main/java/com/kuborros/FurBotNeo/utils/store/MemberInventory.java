@@ -62,7 +62,8 @@ public class MemberInventory {
 
     //All add/remove methods return MemberInventory for easy chaining
     public MemberInventory addToInventory(String item) {
-        ownedItems.add(item);
+        //Prevent copies of items in case it somehow slips trough.
+        if (!ownedItems.contains(item)) ownedItems.add(item);
         return this;
     }
 

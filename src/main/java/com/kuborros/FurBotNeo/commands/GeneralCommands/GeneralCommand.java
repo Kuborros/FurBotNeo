@@ -48,6 +48,9 @@ abstract class GeneralCommand extends Command {
     protected void execute(CommandEvent event) {
         guild = event.getGuild();
         client = event.getClient();
+
+        if (event.getAuthor().isBot()) return;
+
         MemberInventory inventory = inventoryCache.getInventory(event.getMember().getId(), guild.getId());
         if (inventory.isBanned()) {
             event.reply(bannedResponseEmbed());

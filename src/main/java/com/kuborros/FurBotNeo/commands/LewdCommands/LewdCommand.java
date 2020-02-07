@@ -57,6 +57,9 @@ abstract class LewdCommand extends Command {
     protected void execute(CommandEvent event) {
         guild = event.getGuild();
         client = event.getClient();
+
+        if (event.getAuthor().isBot()) return;
+
         FurConfig config = (FurConfig) event.getClient().getSettingsManager().getSettings(guild);
         assert config != null;
         MemberInventory inventory = inventoryCache.getInventory(event.getMember().getId(), guild.getId());

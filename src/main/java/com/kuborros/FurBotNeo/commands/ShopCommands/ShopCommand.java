@@ -53,6 +53,9 @@ public abstract class ShopCommand extends Command {
             LOG.info("Shop disabled by instance owner, ignoring.");
             return;
         }
+
+        if (event.getAuthor().isBot()) return;
+
         guild = event.getGuild();
         client = event.getClient();
         //Shop commands themselves do not award tokens, they do however need inventory

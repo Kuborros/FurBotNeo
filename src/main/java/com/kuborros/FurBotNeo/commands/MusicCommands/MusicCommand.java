@@ -307,6 +307,8 @@ abstract class MusicCommand extends Command {
         guild = event.getGuild();
         client = event.getClient();
 
+        if (event.getAuthor().isBot()) return;
+
         MemberInventory inventory = inventoryCache.getInventory(event.getMember().getId(), guild.getId());
         if (inventory.isBanned()) {
             event.reply(bannedResponseEmbed());
