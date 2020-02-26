@@ -53,6 +53,8 @@ abstract class MusicCommand extends Command {
     String input;
     private static AudioEventListener audioEventListener;
 
+    protected MemberInventory inventory;
+
     private final int PLAYLIST_LIMIT = 40;
     private static final AudioPlayerManager myManager = new DefaultAudioPlayerManager();
     private static final Map<String, Map.Entry<AudioPlayer, TrackManager>> players = new HashMap<>();
@@ -309,7 +311,7 @@ abstract class MusicCommand extends Command {
 
         if (event.getAuthor().isBot()) return;
 
-        MemberInventory inventory = inventoryCache.getInventory(event.getMember().getId(), guild.getId());
+        inventory = inventoryCache.getInventory(event.getMember().getId(), guild.getId());
         if (inventory.isBanned()) {
             event.reply(bannedResponseEmbed());
             return;

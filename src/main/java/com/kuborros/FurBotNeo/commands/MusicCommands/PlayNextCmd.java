@@ -16,7 +16,7 @@ public class PlayNextCmd extends MusicCommand {
     public PlayNextCmd() {
         this.name = "playnext";
         this.arguments = "<title|URL>";
-        this.help = "Add song to playlist and makes it the next song";
+        this.help = "Add song to playlist and makes it the next song (VIP Only!)";
         this.guildOnly = true;
         this.botPermissions = new Permission[]{Permission.MESSAGE_EMBED_LINKS, Permission.VOICE_CONNECT, Permission.VOICE_SPEAK};
         this.category = new Category("Music");
@@ -25,15 +25,19 @@ public class PlayNextCmd extends MusicCommand {
     @Override
     public void doCommand(CommandEvent event) {
 
-        this.input = (input != null && input.startsWith("http")) ? input : "ytsearch: " + input;
+        if (inventory.isVIP()) {
+            this.input = (input != null && input.startsWith("http")) ? input : "ytsearch: " + input;
 
-        if (event.getArgs().isEmpty()) {
-            event.reply(sendFailEmbed("Please include a valid search.", "\"Valid\" means supported url, or a search term (that will be searched on youtube)"));
-        } else {
-            loadTrackNext(input, event.getMember(), event.getMessage());
-            if (getPlayer(guild).isPaused()) {
-                getPlayer(guild).setPaused(false);
+            if (event.getArgs().isEmpty()) {
+                event.reply(sendFailEmbed("Please include a valid search.", "\"Valid\" means supported url, or a search term (that will be searched on youtube)"));
+            } else {
+                loadTrackNext(input, event.getMember(), event.getMessage());
+                if (getPlayer(guild).isPaused()) {
+                    getPlayer(guild).setPaused(false);
+                }
             }
+        } else {
+            event.reply(sendFailEmbed("You are not a vip!", "Only vip members can skip the queue!"));
         }
     }
 }
