@@ -8,8 +8,8 @@ import net.dv8tion.jda.api.Permission;
 import static com.kuborros.FurBotNeo.BotMain.inventoryCache;
 
 @CommandInfo(
-        name = "GiveItem",
-        description = "Gives useritem with provided it (It is not validated against items.json!)!"
+        name = "GiveVIP",
+        description = "Sets VIP status of mentioned user."
 )
 @Author("Kuborros")
 public class GiveVIPCommand extends DebugCommand {

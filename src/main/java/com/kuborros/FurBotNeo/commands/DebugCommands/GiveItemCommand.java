@@ -9,7 +9,7 @@ import static com.kuborros.FurBotNeo.BotMain.inventoryCache;
 
 @CommandInfo(
         name = "GiveItem",
-        description = "Gives useritem with provided it (It is not validated against items.json!)!"
+        description = "Gives user item with provided id (It is not validated against items.json!)!"
 )
 @Author("Kuborros")
 public class GiveItemCommand extends DebugCommand {

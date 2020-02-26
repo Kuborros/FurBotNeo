@@ -8,8 +8,8 @@ import net.dv8tion.jda.api.Permission;
 import static com.kuborros.FurBotNeo.BotMain.inventoryCache;
 
 @CommandInfo(
-        name = "GiveItem",
-        description = "Gives useritem with provided it (It is not validated against items.json!)!"
+        name = "SetLevel",
+        description = "Sets level of mentioned user"
 )
 @Author("Kuborros")
 public class SetLevelCommand extends DebugCommand {

@@ -41,7 +41,7 @@ public class PetCommand extends LewdCommand {
         }
 
         if (members.contains(guild.getSelfMember())) {
-            if (isFurry) event.reply("**Purrs**, *even though is definietly not a cat*");
+            if (isFurry) event.reply("**Purrs**, *even though is definitely not a cat*");
             else event.reply("*Pet,pet!* \n Just dont bend my case with excessive pats~");
             return;
         }
