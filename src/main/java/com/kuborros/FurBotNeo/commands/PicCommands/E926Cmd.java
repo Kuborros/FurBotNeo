@@ -16,7 +16,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-import static com.kuborros.FurBotNeo.BotMain.db;
+import static com.kuborros.FurBotNeo.BotMain.*;
 
 @CommandInfo(
         name = "E926",
@@ -47,6 +47,8 @@ public class E926Cmd extends PicCommand {
         List<String> result;
         Slideshow.Builder builder = new Slideshow.Builder();
         db.updateCommandStats(event.getAuthor().getId(), this.name);
+        if (cfg.isShopEnabled()) inventoryCache.setInventory(inventory.addTokens(25));
+
 
         builder.allowTextInput(false)
                 .setBulkSkipNumber(5)

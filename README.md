@@ -21,7 +21,6 @@ If using code from this repository, please mention me in the comments.
 By default operates in SFW mode restricting access to more risky commands.
 To change it use command ``!guildcfg nsfw true`` (replace "!" with used prefix).
 
-
 ## Compilation instructions: 
 
 Minimum JDK version required is **11**. (Current LTS release.)
@@ -59,6 +58,10 @@ When:
 
 * ``"shard" = true``, sharding will be used to handle bigger guild numbers. This feature is not completely tested.
 
+* ``"shop" = true``, shop features will be enabled, as will token earnings for chatting.
+
+* ``"buy_vip" = true``, VIP role will be purchasable using tokens. it is intended to provide extra features for long time community members. If disabled, everyone gets VIP features.
+
 
 ``blacklist_servers`` array alows you to ban guilds from your instance - bot will not join any of the servers added here.
 
@@ -85,6 +88,7 @@ Mostly simple chat commands.
 
 ### Images:
 NSFW commands only work on servers with nsfw setting enabled, and on channels marked as nsfw.
+
 Results are displayed as single embed with controlls.
 
 On SFW servers NSFW commands are fully hidden and do not produce a response.
@@ -103,6 +107,7 @@ On SFW servers NSFW commands are fully hidden and do not produce a response.
 
 ### Admin:
 Administrative commands, some restricted only to bot owner due to possible abuse.
+
 Remaining commands assume: Moderators can kick members, Admins can ban them.
 
 | **Command**   | **Owner Only** |  **Arguments:**   |             **Description:**              |
@@ -118,6 +123,7 @@ Remaining commands assume: Moderators can kick members, Admins can ban them.
 
 ### Music:
 Bot joins same voice channel as user who ran the command.
+
 Music commands are only accepted from dedicated channel to prevent spamming main text channels, and can be set in guild configuration (defaults to any channel with "bot" in name).
 
 | **Command**   |  **Arguments:**   |             **Description:**              |
@@ -135,7 +141,9 @@ Music commands are only accepted from dedicated channel to prevent spamming main
 
 ### Lewd:
 All commands are classified as NSFW as such only work on servers with nsfw flag + nsfw channel.
+
 On SFW servers NSFW commands are fully hidden and do not produce a response.
+
 Guildcfg key is ``nsfw``
 
 | **Command**   |  **Arguments:**   |             **Description:**              |
@@ -147,3 +155,27 @@ Guildcfg key is ``nsfw``
 | kiss          | mention           | Kiss with someone. |
 | lick          | mention           | Licc~ |
 | pet           | mention           | *Pat,pat on the head* |
+
+### Shop: 
+Commands that allow users to gain and spend BatTokens, to purchase badges, coloured roles, and more.
+
+Tokens are earned automatically by partaking in chatting and using commands.
+
+Store and vip functionality can be disabled per-instance to save up on memory.
+
+_If VIP is disabled, everyone is considered VIP_
+
+| **Command**   |  **Subcommand:**   |             **Description:**              |
+| :------------ |:-----------------:| :----------------------------------------:|
+| myroles       | ----           | Check all your owned roles |
+| inventory     | ----           | Check all your owned items |
+| role          | ----           | Set your current active role |
+| item          | ----           | Use your owned item (WIP) |
+| shop          | ----           | Base shop interface, lists some of your items, level, and token balance |
+| ----          | item           | Purchase items here |
+| ----          | role           | Purchase roles here |
+| ----          | vip            | Purchase vip status here (if enabled) |
+| ----          | level          | Spend your tokens to level up!  (or just check your level i guess) |
+| tokens        | ----           | Check your token balance |
+| ----          | give           | Give your tokens away to mentioned user |
+

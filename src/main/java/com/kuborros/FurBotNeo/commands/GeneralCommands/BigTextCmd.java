@@ -16,6 +16,7 @@ import java.util.List;
 
 public class BigTextCmd extends GeneralCommand {
     private final StringBuilder result = new StringBuilder();
+    //Galaxy brain right here
     private static final List<String> alphabet = Arrays.asList("abcdefghijklmnopqrstuvwxyz".split(""));
 
     public BigTextCmd() {

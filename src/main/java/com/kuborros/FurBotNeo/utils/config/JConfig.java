@@ -15,13 +15,12 @@ import java.util.Optional;
 
 public class JConfig {
 
-    private static final int confVersion = 1;
+    private static final int confVersion = 2;
     private static final Logger LOG = LoggerFactory.getLogger(JConfig.class);
     private static final File CONFILE = new File("config.json");
     private String bot_token;
     private String owner_id;
-    private boolean invidio_enabled = false;
-    private boolean sharding_enabled = false;
+    private boolean debug_mode, invidio_enabled, sharding_enabled, shop_enabled, buy_vip_enabled;
     private JSONArray bannedGuilds = new JSONArray();
 
     public JConfig() {
@@ -34,8 +33,12 @@ public class JConfig {
             System.exit(255);
         } else {
             JSONObject config = configOpt.get();
+            //Setting version to -1 is an (outside of here) undocumented switch to enable debug mode - several sanity checks are ignored and store lets you do anything.
+            debug_mode = (config.getInt("version") == -1);
             if (config.getInt("version") < confVersion) {
-                LOG.error("Your configuration file is outdated! I can still use it, but i recommend recreating it, as you might miss out on some new cool features!");
+                if (debug_mode) LOG.warn("Debug mode engaged!");
+                else
+                    LOG.error("Your configuration file is outdated! I can still use it, but i recommend recreating it, as you might miss out on some new cool features!");
             }
 
             //These always should exist, no matter the file version.
@@ -58,11 +61,14 @@ public class JConfig {
             Optional<JSONObject> bools = Optional.ofNullable(config.optJSONObject("config_options"));
             if (bools.isPresent()) {
                 //Returns "false" if key not found. This way more options can be added later, and if missing, will default to false.
-                //Add new bools here
+                //Version 1 booleans:
                 invidio_enabled = bools.get().optBoolean("invidio");
                 sharding_enabled = bools.get().optBoolean("shard");
+                //Version 2 booleans:
+                shop_enabled = bools.get().optBoolean("shop");
+                buy_vip_enabled = bools.get().optBoolean("buy_vip");
             }
-
+            //Version 1 arrays:
             Optional<JSONArray> banned = Optional.ofNullable(config.optJSONArray("blacklist_servers"));
             banned.ifPresent(objects -> bannedGuilds = objects);
 
@@ -83,6 +89,18 @@ public class JConfig {
 
     public boolean isShardingEnabled() {
         return sharding_enabled;
+    }
+
+    public boolean isShopEnabled() {
+        return shop_enabled;
+    }
+
+    public boolean isBuyVipEnabled() {
+        return buy_vip_enabled;
+    }
+
+    public boolean isDebugMode() {
+        return debug_mode;
     }
 
     public JSONArray getBannedGuilds() {

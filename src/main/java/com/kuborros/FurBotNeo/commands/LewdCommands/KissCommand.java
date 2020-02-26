@@ -35,7 +35,7 @@ public class KissCommand extends LewdCommand {
         }
 
         if (members.contains(event.getMember())) {
-            String rep = isFurry ? "Im sure theres a lonely *someone* around here..." : "Would kissing a mirror count \uD83E\uDD14";
+            String rep = isFurry ? "Im sure there's a lonely *someone* around here..." : "Would kissing a mirror count \uD83E\uDD14";
             event.reply("You want to kiss... yourself? \n" + rep);
             return;
         }

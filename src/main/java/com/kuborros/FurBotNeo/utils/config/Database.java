@@ -1,20 +1,19 @@
 package com.kuborros.FurBotNeo.utils.config;
 
+import com.kuborros.FurBotNeo.utils.store.MemberInventory;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.entities.Guild;
 import net.dv8tion.jda.api.entities.TextChannel;
 import net.dv8tion.jda.api.entities.User;
 import net.dv8tion.jda.api.events.guild.member.GuildMemberJoinEvent;
 import net.dv8tion.jda.api.events.guild.member.GuildMemberLeaveEvent;
+import net.dv8tion.jda.api.utils.cache.SnowflakeCacheView;
 import org.jetbrains.annotations.NotNull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import static com.kuborros.FurBotNeo.BotMain.cfg;
 
@@ -48,32 +47,17 @@ public class Database {
 
     void close() {
         try {
-            conn.close();
             stat.close();
+            conn.commit();
+            conn.close();
         } catch (SQLException ignored) {
         }
     }
-
-    //public Connection getConn() {
-    //    return conn;
-    //}
     
     public void createTables() {
 
       try {
           stat = conn.createStatement();
-
-          String bans = "CREATE TABLE IF NOT EXISTS BotBans " +
-
-                  "(id INTEGER PRIMARY KEY AUTOINCREMENT," +
-
-                  " user_id TEXT NOT NULL, " +
-
-                  " guild_id TEXT NOT NULL, " +
-
-                  " time_start TEXT DEFAULT CURRENT_TIMESTAMP) ";
-
-          stat.executeUpdate(bans);
 
           String guild = "CREATE TABLE IF NOT EXISTS Guilds " +
 
@@ -97,32 +81,50 @@ public class Database {
 
           stat.executeUpdate(guild);
           
-          String game = "CREATE TABLE IF NOT EXISTS Games " +
+          String shop = "CREATE TABLE IF NOT EXISTS Shop " +
 
                   "(id INTEGER PRIMARY KEY AUTOINCREMENT," +
 
+                  " member_id TEXT NOT NULL," +
+
                   " guild_id TEXT NOT NULL, " +
 
-                  " game_id TEXT NOT NULL, " +
+                  " balance INTEGER DEFAULT 0, " +
 
-                  " priority INTEGER) ";
+                  " level INTEGER DEFAULT 0, " +
 
-          stat.executeUpdate(game);
-          
+                  " items_owned TEXT DEFAULT 'not_a_null'," +
+
+                  " role_owned TEXT DEFAULT 'not_a_null'," +
+
+                  " currItem TEXT DEFAULT 'user_badge'," +
+
+                  " currRole TEXT DEFAULT 'default'," +
+
+                  " isVIP BOOLEAN DEFAULT FALSE," +
+
+                  " isBanned BOOLEAN DEFAULT FALSE) ";
+
+          stat.executeUpdate(shop);
+
           String count = "CREATE TABLE IF NOT EXISTS CommandStats " +
 
                   "(user_id TEXT UNIQUE PRIMARY KEY NOT NULL) ";
 
-          stat.executeUpdate(count);          
-          
+          stat.executeUpdate(count);
+
       } catch (SQLException e){
           LOG.error("Failure while creating database tables: ", e);
         }
     }
-    
+
     public void setGuilds(JDA jda) {
-        
-        List<Guild> guilds = jda.getGuilds();
+        SnowflakeCacheView<Guild> guilds;
+        if (jda.getShardManager() != null) {
+            guilds = jda.getShardManager().getGuildCache();
+        } else {
+            guilds = jda.getGuildCache();
+        }
         if (guilds.isEmpty()) return;
         try {
             for (Guild guild : guilds) {
@@ -321,6 +323,79 @@ public class Database {
 
     }
 
+    //Same member can exist in multiple guilds, and for each needs separate set of store tables
+    //Member id and guild id are kept separate for reasons of clarity. If it becomes problematic they can be turned into single unique value
+    //Returns true if created, false if already exists.
+    private boolean addMemberToStore(String memberId, String guildID) {
+        try {
+            stat = conn.createStatement();
+            stat.executeUpdate("INSERT INTO Shop (member_id, guild_id) VALUES (" + memberId + "," + guildID + ")");
+            return true;
+        } catch (SQLException e) {
+            LOG.debug("User likely already exists: ", e);
+            return false;
+        }
+    }
+
+    //Get whole inventory
+    public MemberInventory memberGetInventory(String memberId, String guildId) {
+        try {
+            ArrayList<String> items = new ArrayList<>();
+            ArrayList<String> roles = new ArrayList<>();
+            stat = conn.createStatement();
+            ResultSet rs = stat.executeQuery("SELECT * FROM Shop WHERE member_id=" + memberId + " AND guild_id=" + guildId);
+            Collections.addAll(items, rs.getString(6).split(","));
+            Collections.addAll(roles, rs.getString(7).split(","));
+            return new MemberInventory(memberId, guildId, rs.getInt(4), rs.getInt(5), items, roles, rs.getString(8), rs.getString(9), rs.getBoolean(10), rs.getBoolean(11));
+        } catch (SQLException | NullPointerException e) {
+            if (addMemberToStore(memberId, guildId)) {
+                //They might just not exist in store database!
+                LOG.debug("Added user to store with member id: {}, and guild id: {}", memberId, guildId);
+            } else {
+                //If they exist and we messed up print the stacktrace
+                LOG.error("Exception while obtaining user inventory:", e);
+            }
+            return new MemberInventory(memberId, guildId);
+        }
+    }
+
+    //Set whole inventory at once
+    public void memberSetInventory(MemberInventory inventory) {
+        String items, roles;
+        StringBuilder builder = new StringBuilder();
+        if (inventory.getOwnedItems().isEmpty()) {
+            items = "";
+        } else {
+            inventory.getOwnedItems().forEach(item -> builder.append(item).append(","));
+            items = builder.toString();
+            builder.delete(0, builder.length());
+        }
+        if (inventory.getOwnedRoles().isEmpty()) {
+            roles = "";
+        } else {
+            inventory.getOwnedRoles().forEach(item -> builder.append(item).append(","));
+            roles = builder.toString();
+            builder.delete(0, builder.length());
+        }
+
+        try {
+            stat = conn.createStatement();
+            stat.executeUpdate(
+                    "UPDATE Shop SET (balance,level,items_owned,role_owned,currItem,currRole,isVIP,isBanned)=(" +
+                            inventory.getBalance() + "," +
+                            inventory.getLevel() + "," +
+                            "'" + items + "'" + "," +
+                            "'" + roles + "'" + "," +
+                            "'" + inventory.getCurrentItem() + "'" + "," +
+                            "'" + inventory.getCurrentRole() + "'" + "," +
+                            inventory.isVIP() + "," +
+                            inventory.isBanned() +
+                            ") WHERE member_id=" + inventory.getMemberId() + " AND guild_id=" + inventory.getGuildId());
+        } catch (SQLException e) {
+            LOG.error("Exception while writing user inventory:", e);
+        }
+    }
+
     FurConfig getGuildConfig(Guild guild) throws SQLException {
         stat = conn.createStatement();
         ResultSet rs = stat.executeQuery("SELECT * FROM Guilds WHERE guild_id=" + guild.getId());
@@ -329,12 +404,14 @@ public class Database {
 
     }
 
+    @Deprecated
     public void addBannedUser(String memberId, String guildId) throws SQLException {
         if (getBanStatus(memberId, guildId)) return;
         stat = conn.createStatement();
         stat.executeUpdate("INSERT INTO BotBans (user_id, guild_id) VALUES (" + memberId + "," + guildId + ")");
     }
 
+    @Deprecated
     public boolean getBanStatus(String memberId, String guildId) throws SQLException {
         if (memberId.equals(cfg.getOwnerId())) {
             return false;
@@ -347,6 +424,7 @@ public class Database {
         return false;
     }
 
+    @Deprecated
     public void unbanUser(String memberId, String guildId) throws SQLException {
         stat = conn.createStatement();
         stat.executeUpdate("DELETE FROM BotBans WHERE user_id =" + memberId + " AND guild_id =" + guildId);

@@ -23,7 +23,7 @@ import java.util.List;
 import java.util.Objects;
 
 
-public class GelEngine {
+public class GelApi {
 
 
     private final List<String> urls = new ArrayList<>(100);
@@ -31,7 +31,7 @@ public class GelEngine {
     private final Logger LOG = LoggerFactory.getLogger("ImageBoardApi");
     private final OkHttpClient client = new OkHttpClient();
 
-    public GelEngine(String baseUrl) {
+    public GelApi(String baseUrl) {
         this.url = baseUrl;
     }
 

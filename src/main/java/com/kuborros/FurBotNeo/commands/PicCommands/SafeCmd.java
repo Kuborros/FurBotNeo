@@ -6,7 +6,7 @@ import com.jagrosh.jdautilities.commons.waiter.EventWaiter;
 import com.jagrosh.jdautilities.doc.standard.CommandInfo;
 import com.jagrosh.jdautilities.examples.doc.Author;
 import com.jagrosh.jdautilities.menu.Slideshow;
-import com.kuborros.FurBotNeo.net.apis.GelEngine;
+import com.kuborros.FurBotNeo.net.apis.GelApi;
 import com.kuborros.FurBotNeo.net.apis.NoImgException;
 import net.dv8tion.jda.api.Permission;
 import org.xml.sax.SAXException;
@@ -17,7 +17,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-import static com.kuborros.FurBotNeo.BotMain.db;
+import static com.kuborros.FurBotNeo.BotMain.*;
 
 @CommandInfo(
         name = "Safe",
@@ -43,10 +43,12 @@ public class SafeCmd extends PicCommand {
     
     @Override
     protected void doCommand(CommandEvent event) {
-        GelEngine api;
+        GelApi api;
         List<String> result;
         Slideshow.Builder builder = new Slideshow.Builder();
         db.updateCommandStats(event.getAuthor().getId(), this.name);
+
+        if (cfg.isShopEnabled()) inventoryCache.setInventory(inventory.addTokens(25));
 
 
         builder.allowTextInput(false)
@@ -60,7 +62,7 @@ public class SafeCmd extends PicCommand {
                 .setTimeout(5, TimeUnit.MINUTES);
 
 
-        api = new GelEngine("https://safebooru.org/index.php?page=dapi&s=post&q=index&limit=100");
+        api = new GelApi("https://safebooru.org/index.php?page=dapi&s=post&q=index&limit=100");
 
         try {
             result = !event.getArgs().isEmpty() ? api.getImageSetTags(event.getArgs()) : api.getImageSetRandom();

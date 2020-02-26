@@ -44,7 +44,7 @@ public class BotEventListener extends ListenerAdapter{
         event.getJDA().getPresence().setActivity(watching(" furry lewds"));
 
         if (cfg.getOwnerId().equals("0")) {
-            LOG.warn("Please set your own user ID in config.cfg! This gives you sudo powers in bot commands!");
+            LOG.warn("Please set your own user ID in config.json! This gives you sudo powers in bot commands!");
         }
         db.setGuilds(event.getJDA());
         db.setCommandStats(event.getJDA());
