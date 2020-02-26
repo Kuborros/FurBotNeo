@@ -17,8 +17,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-import static com.kuborros.FurBotNeo.BotMain.db;
-import static com.kuborros.FurBotNeo.BotMain.randomResponse;
+import static com.kuborros.FurBotNeo.BotMain.*;
 
 @CommandInfo(
         name = "Gel",
@@ -59,6 +58,8 @@ public class GelCmd extends PicCommand {
             return;
         }
 
+        if (cfg.isShopEnabled()) inventoryCache.setInventory(inventory.addTokens(25));
+
         builder.allowTextInput(false)
                 .setBulkSkipNumber(5)
                 .waitOnSinglePage(false)
@@ -79,7 +80,7 @@ public class GelCmd extends PicCommand {
                     event.replyWarning("No results found!");
                     return;
                 } catch (ParserConfigurationException | IOException | SAXException e) {
-            event.reply(errorResponseEmbed(e));
+                    event.reply(errorResponseEmbed(e));
                     return;
                 }
         builder.build().display(event.getTextChannel());

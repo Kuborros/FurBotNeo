@@ -1,0 +1,77 @@
+{
+  "version": 1,
+  "items": {
+    "user_badge": {
+      "name": "User badge",
+      "pic_url": "",
+      "price": 0
+    },
+    "lvl10": {
+      "name": "Level 10 Badge",
+      "pic_url": "",
+      "price": 0
+    },
+    "lvl25": {
+      "name": "Level 25 Badge",
+      "pic_url": "",
+      "price": 0
+    },
+    "lvl50": {
+      "name": "Level 50 Badge",
+      "pic_url": "",
+      "price": 0
+    },
+    "lvl100": {
+      "name": "Level 100 Badge",
+      "pic_url": "",
+      "price": 0
+    },
+    "lvl250": {
+      "name": "Level 250 Badge",
+      "pic_url": "",
+      "price": 0
+    },
+    "lvl500": {
+      "name": "Level 500 Badge",
+      "pic_url": "",
+      "price": 0
+    },
+    "lvl1000": {
+      "name": "Level 1000 Badge",
+      "pic_url": "",
+      "price": 0
+    },
+    "test": {
+      "name": "Test item",
+      "pic_url": "https://cdn.discordapp.com/attachments/298909392097509377/674664280288919562/MariaToken.png",
+      "price": 1000
+    }
+  },
+  "roles": {
+    "default": {
+      "name": "Default color",
+      "role_color": "#808080",
+      "price": 0
+    },
+    "red": {
+      "name": "Fire red",
+      "role_color": "#FF0000",
+      "price": 250
+    },
+    "green": {
+      "name": "Leaf green",
+      "role_color": "#008000",
+      "price": 250
+    },
+    "blue": {
+      "name": "Water blue",
+      "role_color": "#0000FF",
+      "price": 250
+    },
+    "pink": {
+      "name": "Princess pink",
+      "role_color": "#FFC0CB",
+      "price": 1000
+    }
+  }
+}

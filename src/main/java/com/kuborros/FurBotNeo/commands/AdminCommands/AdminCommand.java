@@ -3,6 +3,7 @@ package com.kuborros.FurBotNeo.commands.AdminCommands;
 import com.jagrosh.jdautilities.command.Command;
 import com.jagrosh.jdautilities.command.CommandClient;
 import com.jagrosh.jdautilities.command.CommandEvent;
+import com.kuborros.FurBotNeo.utils.store.MemberInventory;
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.entities.ChannelType;
 import net.dv8tion.jda.api.entities.Guild;
@@ -11,9 +12,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.awt.*;
-import java.sql.SQLException;
 
-import static com.kuborros.FurBotNeo.BotMain.*;
+import static com.kuborros.FurBotNeo.BotMain.inventoryCache;
+import static com.kuborros.FurBotNeo.BotMain.randomResponse;
 
 abstract class AdminCommand extends Command {
 
@@ -35,7 +36,7 @@ abstract class AdminCommand extends Command {
         return errorResponseEmbed(exception.getLocalizedMessage());
     }
 
-    private MessageEmbed errorResponseEmbed(String ex) {
+    MessageEmbed errorResponseEmbed(String ex) {
         String random = randomResponse.getRandomErrorMessage(guild);
         EmbedBuilder builder = new EmbedBuilder();
         builder.setTitle(client.getError() + "Internal error has occurred! ")
@@ -45,20 +46,20 @@ abstract class AdminCommand extends Command {
         return builder.build();
     }
 
+
+    //Being service commands meant for admins, these do not award tokens for use.
     @Override
     protected void execute(CommandEvent event) {
+        if (event.getAuthor().isBot()) return;
+
         guild = event.getGuild();
         client = event.getClient();
         if (event.getChannelType() == ChannelType.TEXT) {
-            if (!event.getMember().isOwner() || !event.getMember().getId().equals(cfg.getOwnerId())) {
-                try {
-                    if (db.getBanStatus(event.getMember().getId(), guild.getId())) {
-                        event.reply(bannedResponseEmbed());
-                        return;
-                    }
-                } catch (SQLException e) {
-                    LOG.error("Error while contacting database: ", e);
-                }
+            MemberInventory inventory = inventoryCache.getInventory(event.getMember().getId(), guild.getId());
+            //Make sure we allow bot owner to do commands anyways
+            if (inventory.isBanned() && !event.isOwner()) {
+                event.reply(bannedResponseEmbed());
+                return;
             }
         }
         doCommand(event);

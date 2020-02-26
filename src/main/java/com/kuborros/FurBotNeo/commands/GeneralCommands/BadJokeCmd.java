@@ -5,10 +5,12 @@ import com.jagrosh.jdautilities.command.Command;
 import com.jagrosh.jdautilities.command.CommandEvent;
 import com.jagrosh.jdautilities.doc.standard.CommandInfo;
 import com.jagrosh.jdautilities.examples.doc.Author;
+import com.kuborros.FurBotNeo.utils.config.FurConfig;
 import net.dv8tion.jda.api.entities.Message;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -19,7 +21,7 @@ import java.util.Scanner;
 
 @CommandInfo(
         name = "Joke",
-        description = "Pulls a Chuck Norris joke and he permits himself to be replaced with mentioned user"
+        description = "Creates a joke about mentioned user."
 )
 @Author("Kuborros")
 public class BadJokeCmd extends GeneralCommand {
@@ -36,7 +38,11 @@ public class BadJokeCmd extends GeneralCommand {
 }
     @Override
     public void doCommand(CommandEvent event) {
-            Message message = event.getMessage();
+        Message message = event.getMessage();
+
+        FurConfig config = (FurConfig) event.getClient().getSettingsManager().getSettings(guild);
+        assert config != null;
+        boolean guildNSFW = config.isNSFW();
 
         Request request = new Request.Builder()
                 .url("http://api.icndb.com/jokes/random")
@@ -50,27 +56,35 @@ public class BadJokeCmd extends GeneralCommand {
             if (!response.isSuccessful()) throw new IOException("Received error response code: " + response);
             InputStream r = Objects.requireNonNull(response.body()).byteStream();
 
-                StringBuilder str;
+            StringBuilder str;
             try (Scanner scan = new Scanner(r)) {
                 str = new StringBuilder();
                 while (scan.hasNext()) {
                     str.append(scan.nextLine());
                 }
             }
-                JSONObject object = new JSONObject(str.toString());
-                if (!"success".equals(object.getString("type"))) {
-                    LOG.error("Error while retrieving joke.");
-                    event.reply(errorResponseEmbed("Unable to obtain joke! ", "Api reports external failure."));
+            JSONObject object = new JSONObject(str.toString());
+            if (!"success".equals(object.getString("type"))) {
+                LOG.error("Error while retrieving joke.");
+                event.reply(errorResponseEmbed("Unable to obtain joke! ", "Api reports external failure."));
+                return;
+            }
+            if (!guildNSFW) {
+                JSONArray categories = object.getJSONObject("value").getJSONArray("categories");
+                if (!categories.isEmpty()) { //Not-empty categories mean most likely "explicit" category tag. Better not post it on SFW server!
+                    event.reply("*Squeak!* Indecent joke detected!");
+                    return;
                 }
+            }
 
-                String joke = object.getJSONObject("value").getString("joke");
-                String remainder = event.getArgs();
+            String joke = object.getJSONObject("value").getString("joke");
+            String remainder = event.getArgs();
 
-                if (!message.getMentionedUsers().isEmpty()) {
-                    joke = joke.replaceAll("Chuck Norris", "<@" + message.getMentionedUsers().get(0).getId() + ">");
-                } else if (!remainder.isEmpty()) {
-                    joke = joke.replaceAll("Chuck Norris", remainder);
-                }
+            if (!message.getMentionedUsers().isEmpty()) {
+                joke = joke.replaceAll("Chuck Norris", "<@" + message.getMentionedUsers().get(0).getId() + ">");
+            } else if (!remainder.isEmpty()) {
+                joke = joke.replaceAll("Chuck Norris", remainder);
+            }
 
                 joke = joke.replaceAll("&quot;", "\"");
 

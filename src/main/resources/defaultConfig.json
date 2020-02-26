@@ -1,10 +1,12 @@
 {
-  "version": 1,
+  "version": 2,
   "bot_token": "0",
   "owner_id": "0",
   "config_options": {
     "invidio": false,
-    "shard": false
+    "shard": false,
+    "shop": true,
+    "buy_vip": false
   },
   "blacklist_servers": []
 }

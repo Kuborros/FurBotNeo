@@ -4,18 +4,23 @@ import com.jagrosh.jdautilities.command.CommandClientBuilder;
 import com.jagrosh.jdautilities.commons.waiter.EventWaiter;
 import com.jagrosh.jdautilities.examples.command.AboutCommand;
 import com.kuborros.FurBotNeo.commands.AdminCommands.*;
+import com.kuborros.FurBotNeo.commands.DebugCommands.*;
 import com.kuborros.FurBotNeo.commands.GeneralCommands.*;
 import com.kuborros.FurBotNeo.commands.LewdCommands.*;
 import com.kuborros.FurBotNeo.commands.MusicCommands.*;
 import com.kuborros.FurBotNeo.commands.PicCommands.*;
+import com.kuborros.FurBotNeo.commands.ShopCommands.*;
 import com.kuborros.FurBotNeo.listeners.BotEventListener;
 import com.kuborros.FurBotNeo.listeners.LogListener;
 import com.kuborros.FurBotNeo.listeners.MemberEventListener;
+import com.kuborros.FurBotNeo.listeners.ShopTokenListener;
 import com.kuborros.FurBotNeo.utils.config.Database;
 import com.kuborros.FurBotNeo.utils.config.FurrySettingsManager;
 import com.kuborros.FurBotNeo.utils.config.JConfig;
 import com.kuborros.FurBotNeo.utils.msg.HelpConsumer;
 import com.kuborros.FurBotNeo.utils.msg.RandomResponse;
+import com.kuborros.FurBotNeo.utils.store.MemberInventoryCache;
+import com.kuborros.FurBotNeo.utils.store.MemberInventoryCacheImpl;
 import com.sedmelluq.discord.lavaplayer.jdaudp.NativeAudioSendFactory;
 import net.dv8tion.jda.api.AccountType;
 import net.dv8tion.jda.api.JDABuilder;
@@ -37,6 +42,7 @@ public class BotMain {
     public static RandomResponse randomResponse;
     public static final FurrySettingsManager settingsManager = new FurrySettingsManager();
     public static SessionController controller;
+    public static MemberInventoryCache inventoryCache;
 
     public static void main(String[] args) {
 
@@ -55,6 +61,7 @@ public class BotMain {
         cfg = new JConfig();
 
         randomResponse = new RandomResponse(settingsManager);
+        inventoryCache = new MemberInventoryCacheImpl();
 
         CommandClientBuilder client = new CommandClientBuilder();
         client.setOwnerId(cfg.getOwnerId());
@@ -137,6 +144,29 @@ public class BotMain {
                 new LickCommand(),
                 new ShipCommand());
 
+        //Shop
+        //Most store commands are subcommands.
+        if (cfg.isShopEnabled()) {
+            client.addCommands(
+                    new BuyCommand(waiter),
+                    new CoinsCommand(),
+                    new SetRoleCommand(waiter),
+                    new UseItemCommand(waiter));
+        }
+
+        //Debug
+        //Currently mostly only store-based commands. It is assumed you know what your doing when using these.
+        if (cfg.isDebugMode()) {
+            client.addCommands(
+                    new GiveCoinsCmd(),
+                    new GiveItemCommand(),
+                    new GiveRoleCommand(),
+                    new GiveVIPCommand(),
+                    new SetCoinCommand(),
+                    new SetLevelCommand());
+        }
+
+
         try {
 
             if (cfg.isShardingEnabled()) {
@@ -151,6 +181,7 @@ public class BotMain {
                         .setContextEnabled(true)
                         .setEnableShutdownHook(true);
                 if (x86) builder.setAudioSendFactory(new NativeAudioSendFactory());
+                if (cfg.isShopEnabled()) builder.addEventListeners(new ShopTokenListener());
 
                 builder.build();
 
@@ -163,6 +194,8 @@ public class BotMain {
                         .setAutoReconnect(true)
                         .setEnableShutdownHook(true);
                 if (x86) builder.setAudioSendFactory(new NativeAudioSendFactory());
+                if (cfg.isShopEnabled()) builder.addEventListeners(new ShopTokenListener());
+
                 builder.build();
             }
         }

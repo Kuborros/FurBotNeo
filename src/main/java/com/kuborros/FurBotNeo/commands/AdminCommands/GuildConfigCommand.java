@@ -42,12 +42,14 @@ public class GuildConfigCommand extends AdminCommand {
 
             embedBuilder.setTitle("Current guild settings: ")
                     .setColor(Color.BLUE)
-                    .addField("Bot name: ", config.getBotName(), false)
-                    .addField("Command prefix(es): ", prefixes, false)
-                    .addField("NSFW Mode: ", config.isNSFW() ? "ON" : "OFF", false)
-                    .addField("Furry Mode: ", config.isFurry() ? "OwO" : "OFF", false)
-                    .addField("New member welcome messages: ", config.isWelcomeMsg() ? "ON" : "OFF", false)
-                    .addField("Selected music channel: ", Objects.requireNonNull(guild.getGuildChannelById(config.getAudioChannel())).getName(), false)
+                    .addField("Bot name: ", "``name=``" + config.getBotName(), false)
+                    .addField("Command prefix(es): ", "``prefix=``" + prefixes, false)
+                    .addField("NSFW Mode: ", "``nsfw=``" + (config.isNSFW() ? "ON" : "OFF"), false)
+                    .addField("Furry Mode: ", "``furry=``" + (config.isFurry() ? "OwO" : "OFF"), false)
+                    .addField("New member welcome messages: ", "``welcome=``" + (config.isWelcomeMsg() ? "ON" : "OFF"), false)
+                    .addField("Selected music channel: ",
+                            "``music=``" + Objects.requireNonNull(guild.getGuildChannelById(config.getAudioChannel())).getId() + " (" + Objects.requireNonNull(guild.getGuildChannelById(config.getAudioChannel())).getName() + ")",
+                            false)
                     .setFooter("To set the options, add key and value to this command!");
 
             if (guild.getIconUrl() != null) {

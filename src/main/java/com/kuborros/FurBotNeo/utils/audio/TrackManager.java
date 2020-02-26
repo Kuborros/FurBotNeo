@@ -82,6 +82,7 @@ public class TrackManager extends AudioEventAdapter {
 
     @Override
     public void onTrackException(AudioPlayer player, AudioTrack track, FriendlyException exception) {
+        assert track != null;
         LOG.warn("Playback error occurred on track: " + track.getInfo().title, exception);
         EmbedBuilder eb = new EmbedBuilder()
                 .setColor(Color.RED)
@@ -93,7 +94,9 @@ public class TrackManager extends AudioEventAdapter {
 
     @Override
     public void onTrackStuck(AudioPlayer player, AudioTrack track, long thresholdMs) {
+        assert track != null;
         LOG.warn("Track " + track.getInfo().title + " stuck for " + thresholdMs + " ms, skipping.");
+        assert player != null;
         player.stopTrack();
     }
 

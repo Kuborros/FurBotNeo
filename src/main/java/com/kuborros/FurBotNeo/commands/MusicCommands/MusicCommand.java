@@ -9,6 +9,7 @@ import com.kuborros.FurBotNeo.utils.audio.AudioPlayerSendHandler;
 import com.kuborros.FurBotNeo.utils.audio.TrackManager;
 import com.kuborros.FurBotNeo.utils.audio.invidious.InvidiousAudioSourceManager;
 import com.kuborros.FurBotNeo.utils.config.FurConfig;
+import com.kuborros.FurBotNeo.utils.store.MemberInventory;
 import com.sedmelluq.discord.lavaplayer.player.AudioLoadResultHandler;
 import com.sedmelluq.discord.lavaplayer.player.AudioPlayer;
 import com.sedmelluq.discord.lavaplayer.player.AudioPlayerManager;
@@ -34,7 +35,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.awt.*;
-import java.sql.SQLException;
 import java.util.List;
 import java.util.*;
 
@@ -52,6 +52,8 @@ abstract class MusicCommand extends Command {
     private static FurConfig config;
     String input;
     private static AudioEventListener audioEventListener;
+
+    protected MemberInventory inventory;
 
     private final int PLAYLIST_LIMIT = 40;
     private static final AudioPlayerManager myManager = new DefaultAudioPlayerManager();
@@ -306,14 +308,18 @@ abstract class MusicCommand extends Command {
     protected void execute(CommandEvent event) {
         guild = event.getGuild();
         client = event.getClient();
-        try {
-            if (db.getBanStatus(event.getMember().getId(), guild.getId())) {
-                event.reply(bannedResponseEmbed());
-                return;
-            }
-        } catch (SQLException e) {
-            LOG.error("Error while contacting database: ", e);
+
+        if (event.getAuthor().isBot()) return;
+
+        inventory = inventoryCache.getInventory(event.getMember().getId(), guild.getId());
+        if (inventory.isBanned()) {
+            event.reply(bannedResponseEmbed());
+            return;
         }
+        //Token award per command use.
+        //Should be tweaked later
+        if (cfg.isShopEnabled()) inventoryCache.setInventory(inventory.addTokens(10));
+
         config = (FurConfig) event.getClient().getSettingsManager().getSettings(guild);
         if (!event.getTextChannel().equals(guild.getTextChannelById(config.getAudioChannel()))) return;
         if (!event.getAuthor().isBot()) {

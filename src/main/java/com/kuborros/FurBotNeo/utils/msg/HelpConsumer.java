@@ -17,6 +17,7 @@ import static com.kuborros.FurBotNeo.BotMain.cfg;
 public class HelpConsumer implements Consumer<CommandEvent> {
 
     boolean isNSFW = true;
+    boolean isShopOn = true;
     Guild guild;
     CommandClient client;
 
@@ -30,6 +31,7 @@ public class HelpConsumer implements Consumer<CommandEvent> {
             FurConfig config = (FurConfig) event.getClient().getSettingsManager().getSettings(guild);
             assert config != null;
             isNSFW = config.isNSFW();
+            isShopOn = cfg.isShopEnabled();
         }
 
         List<Command> commands = client.getCommands();
@@ -43,8 +45,13 @@ public class HelpConsumer implements Consumer<CommandEvent> {
                 if (!Objects.equals(category, command.getCategory())) {
                     category = command.getCategory();
                     catName = category == null ? "No Category" : category.getName();
+                    //Do not show lewds on SFW server
                     if (!catName.contains("Lewd") || isNSFW) builder.append("\n\n  __").append(catName).append("__:\n");
+                    //Point out that shop is disabled on this instance (but keep it shown as a sample of full features)
+                    if (catName.contains("Shop") && !isShopOn)
+                        builder.append("\n").append(client.getWarning()).append("**Shop is disabled by instance owner**\n");
                 }
+                //Not show lewds on SFW server
                 if (!catName.contains("Lewd") || isNSFW) {
                     builder.append("\n`").append(prefix).append(prefix == null ? " " : "").append(command.getName())
                             .append(command.getArguments() == null ? "`" : " " + command.getArguments() + "`")

@@ -117,7 +117,7 @@ public class RandomResponse {
             messageList.addAll(Arrays.asList(
                     "Im sowwy UwU",
                     "*Angry bat noises*",
-                    "I got my tail stuck in the door..."));
+                    "Please dont soup me..."));
         }
         if (config.isNSFW()) {
             messageList.add("That's what you get for lewding me!");
