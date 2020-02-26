@@ -5,7 +5,7 @@
 [![GitHub license](https://img.shields.io/github/license/Kuborros/FurbotNeo?style=flat-square)](https://github.com/Kuborros/FurbotNeo/blob/master/LICENSE)
 # FurbotNeo
 
-An old discord bot made using Java, filled with references and "features".
+A Discord bot made using Java, filled with references and "features".
 
 Mostly learning ground for writing in java it holds basic functionality, as well as music playback and imageboard searches.
 
