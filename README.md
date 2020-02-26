@@ -7,9 +7,9 @@
 
 A Discord bot made using Java, filled with references and "features".
 
-Mostly learning ground for writing in java it holds basic functionality, as well as music playback and imageboard searches.
+Mostly learning ground for writing in java it holds basic functionality, as well as music playback, shop, and imageboard searches.
 
-It uses database to track statistics and per guild configs, in varying state of use or completion.
+It uses database to track statistics, shop inventories and per guild configs.
 
 There is no proper documentation of the code, shamefully commented version of code got lost in transition between pcs.
 
