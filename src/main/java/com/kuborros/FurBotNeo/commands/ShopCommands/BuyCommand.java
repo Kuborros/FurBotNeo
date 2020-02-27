@@ -18,8 +18,7 @@ public class BuyCommand extends ShopCommand {
     public BuyCommand(EventWaiter waiter) {
         this.name = "shop";
         this.children = new Command[]{
-                new BuyItemCommand(waiter), new BuyRoleCommand(waiter), new BuyVipCommand(waiter),
-                new BuyLevelCommand(waiter), new FullInventoryCommand(waiter), new FullRolesCommand(waiter)
+                new BuyItemCommand(waiter), new BuyRoleCommand(waiter), new BuyVipCommand(waiter)
         };
         this.help = "Lets you access _the shop_";
         this.guildOnly = true;
@@ -38,7 +37,7 @@ public class BuyCommand extends ShopCommand {
                     .setDescription(String.format("You currently are level %d and hold %d coins.", inventory.getLevel(), inventory.getBalance()))
                     .addField("Your latest items are: ", getPrettyInventoryItems(), false)
                     .addField("Your latest roles are: ", getPrettyInventoryRoles(), false)
-                    .setFooter("Available store commands are: role, myroles, item, inventory, level, vip");
+                    .setFooter("Available store commands are: role, item, vip");
 
             event.reply(builder.build());
         }

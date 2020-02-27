@@ -157,6 +157,9 @@ public class BotMain {
                         new BuyCommand(waiter),
                         new CoinsCommand(),
                         new SetRoleCommand(waiter),
+                        new FullInventoryCommand(waiter),
+                        new FullRolesCommand(waiter),
+                        new BuyLevelCommand(waiter),
                         new UseItemCommand(waiter));
             }
         }
