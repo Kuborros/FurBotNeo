@@ -2,6 +2,7 @@
 database.*
 target/
 config.*
+items.json
 FurBotNeo.iml
 dependency-reduced-pom.xml
 logs/

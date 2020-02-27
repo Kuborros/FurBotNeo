@@ -37,7 +37,8 @@ public class BuyCommand extends ShopCommand {
                     .setColor(Color.ORANGE)
                     .setDescription(String.format("You currently are level %d and hold %d coins.", inventory.getLevel(), inventory.getBalance()))
                     .addField("Your latest items are: ", getPrettyInventoryItems(), false)
-                    .addField("Your latest roles are: ", getPrettyInventoryRoles(), false);
+                    .addField("Your latest roles are: ", getPrettyInventoryRoles(), false)
+                    .setFooter("Available store commands are: role, myroles, item, inventory, level, vip");
 
             event.reply(builder.build());
         }
