@@ -7,8 +7,11 @@ import com.jagrosh.jdautilities.examples.doc.Author;
 import net.dv8tion.jda.api.Permission;
 import net.dv8tion.jda.api.sharding.ShardManager;
 
+import java.io.IOException;
 import java.time.OffsetDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Objects;
+import java.util.Properties;
 
 @CommandInfo(
         name = "Stats",
@@ -18,8 +21,9 @@ import java.time.format.DateTimeFormatter;
 public class StatsCommand extends AdminCommand {
 
     private final OffsetDateTime start = OffsetDateTime.now();
-    public StatsCommand()
-    {
+    private static final Properties versionInfo = new Properties();
+
+    public StatsCommand() {
         this.name = "stats";
         this.help = "Shows some statistics on the bot";
         this.ownerCommand = true;
@@ -32,6 +36,14 @@ public class StatsCommand extends AdminCommand {
     @Override
     protected void doCommand(CommandEvent event) {
 
+        String version = "0";
+        try {
+            versionInfo.load(Objects.requireNonNull(this.getClass().getClassLoader().getResourceAsStream("version.info")));
+            version = "Release " + versionInfo.getProperty("version");
+        } catch (IOException e) {
+            LOG.warn("IO error occurred while reading version.info", e);
+        }
+
         boolean sharded = event.getJDA().getShardManager() != null;
 
         long totalMb = Runtime.getRuntime().totalMemory() / (1024 * 1024);
@@ -39,7 +51,7 @@ public class StatsCommand extends AdminCommand {
 
         StringBuilder builder = new StringBuilder();
 
-        builder.append("**").append(event.getSelfUser().getName()).append("** statistics:")
+        builder.append("**").append(event.getSelfUser().getName()).append("** ").append(version).append("  statistics:")
                 .append("\nLast Startup: ").append(start.format(DateTimeFormatter.RFC_1123_DATE_TIME))
                 .append("\nMemory: ").append(usedMb).append("Mb / ").append(totalMb).append("Mb")
                 .append("\nResponse Total: ").append(event.getJDA().getResponseTotal());
