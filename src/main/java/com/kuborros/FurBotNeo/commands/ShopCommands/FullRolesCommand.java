@@ -12,11 +12,11 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.awt.*;
-import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 import java.util.concurrent.TimeUnit;
+
+import static com.kuborros.FurBotNeo.BotMain.storeItems;
 
 
 @CommandInfo(
@@ -70,17 +70,7 @@ public class FullRolesCommand extends ShopCommand {
     private String[] getPrettyRoleNames(List<String> items) {
         ArrayList<String> names = new ArrayList<>();
 
-        String json = "";
-
-        if (items.isEmpty()) return new String[]{""};
-
-        try {
-            json = new String(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream("items.json")).readAllBytes(), StandardCharsets.UTF_8);
-        } catch (Exception e) {
-            LOG.error("Things went wrong while loading internal resource: ", e);
-        }
-
-        JSONObject iNames = new JSONObject(json).getJSONObject("roles");
+        JSONObject iNames = storeItems.getRoleInventory();
 
         for (String item : items) {
             if (item.isBlank()) {
