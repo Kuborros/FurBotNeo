@@ -19,6 +19,7 @@ import com.kuborros.FurBotNeo.utils.config.FurrySettingsManager;
 import com.kuborros.FurBotNeo.utils.config.JConfig;
 import com.kuborros.FurBotNeo.utils.msg.HelpConsumer;
 import com.kuborros.FurBotNeo.utils.msg.RandomResponse;
+import com.kuborros.FurBotNeo.utils.store.JShopInventory;
 import com.kuborros.FurBotNeo.utils.store.MemberInventoryCache;
 import com.kuborros.FurBotNeo.utils.store.MemberInventoryCacheImpl;
 import com.sedmelluq.discord.lavaplayer.jdaudp.NativeAudioSendFactory;
@@ -43,6 +44,7 @@ public class BotMain {
     public static final FurrySettingsManager settingsManager = new FurrySettingsManager();
     public static SessionController controller;
     public static MemberInventoryCache inventoryCache;
+    public static JShopInventory storeItems;
 
     public static void main(String[] args) {
 
@@ -147,11 +149,16 @@ public class BotMain {
         //Shop
         //Most store commands are subcommands.
         if (cfg.isShopEnabled()) {
-            client.addCommands(
-                    new BuyCommand(waiter),
-                    new CoinsCommand(),
-                    new SetRoleCommand(waiter),
-                    new UseItemCommand(waiter));
+            //Only initialise items.json if needed.
+            storeItems = new JShopInventory();
+            //If it fails, store will be set to disabled, so we check *again* before adding the commands
+            if (cfg.isShopEnabled()) {
+                client.addCommands(
+                        new BuyCommand(waiter),
+                        new CoinsCommand(),
+                        new SetRoleCommand(waiter),
+                        new UseItemCommand(waiter));
+            }
         }
 
         //Debug

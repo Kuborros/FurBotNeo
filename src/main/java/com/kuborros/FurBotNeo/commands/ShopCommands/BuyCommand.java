@@ -9,9 +9,9 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.awt.*;
-import java.nio.charset.StandardCharsets;
 import java.util.List;
-import java.util.Objects;
+
+import static com.kuborros.FurBotNeo.BotMain.storeItems;
 
 public class BuyCommand extends ShopCommand {
 
@@ -46,7 +46,6 @@ public class BuyCommand extends ShopCommand {
     private String getPrettyInventoryItems() {
         List<String> items = inventory.getOwnedItems();
         StringBuilder inv = new StringBuilder();
-        String json = "";
 
         if (items.isEmpty()) return "None";
 
@@ -54,13 +53,7 @@ public class BuyCommand extends ShopCommand {
             items = items.subList(0, 4);
         }
 
-        try {
-            json = new String(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream("items.json")).readAllBytes(), StandardCharsets.UTF_8);
-        } catch (Exception e) {
-            LOG.error("Things went wrong while loading internal resource: ", e);
-        }
-
-        JSONObject iNames = new JSONObject(json).getJSONObject("items");
+        JSONObject iNames = storeItems.getItemInventory();
 
         for (String item : items) {
             if (item.isBlank()) {
@@ -80,7 +73,6 @@ public class BuyCommand extends ShopCommand {
     private String getPrettyInventoryRoles() {
         List<String> items = inventory.getOwnedRoles();
         StringBuilder inv = new StringBuilder();
-        String json = "";
 
         if (items.isEmpty()) return "None";
 
@@ -88,13 +80,7 @@ public class BuyCommand extends ShopCommand {
             items = items.subList(0, 4);
         }
 
-        try {
-            json = new String(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream("items.json")).readAllBytes(), StandardCharsets.UTF_8);
-        } catch (Exception e) {
-            LOG.error("Things went wrong while loading internal resource: ", e);
-        }
-
-        JSONObject iNames = new JSONObject(json).getJSONObject("roles");
+        JSONObject iNames = storeItems.getRoleInventory();
 
         for (String item : items) {
             if (item.isBlank()) {

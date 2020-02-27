@@ -75,6 +75,10 @@ public class JConfig {
         }
     }
 
+    public void setShopEnabled(boolean enabled) {
+        this.shop_enabled = enabled;
+    }
+
     public String getBotToken() {
         return bot_token;
     }

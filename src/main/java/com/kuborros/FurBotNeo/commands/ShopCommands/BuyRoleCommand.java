@@ -17,12 +17,12 @@ import net.dv8tion.jda.api.exceptions.PermissionException;
 import org.json.JSONObject;
 
 import java.awt.*;
-import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
 import static com.kuborros.FurBotNeo.BotMain.inventoryCache;
+import static com.kuborros.FurBotNeo.BotMain.storeItems;
 
 @CommandInfo(
         name = "Role",
@@ -148,14 +148,7 @@ public class BuyRoleCommand extends ShopCommand {
     }
 
     private void loadRoles() {
-        String json = "";
-
-        try {
-            json = new String(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream("items.json")).readAllBytes(), StandardCharsets.UTF_8);
-        } catch (Exception e) {
-            LOG.error("Things went wrong while loading internal resource: ", e);
-        }
-        JSONObject jsonObj = new JSONObject(json).getJSONObject("roles");
+        JSONObject jsonObj = storeItems.getRoleInventory();
 
         jsonObj.keySet().forEach(keyStr -> {
             JSONObject item = jsonObj.getJSONObject(keyStr);
