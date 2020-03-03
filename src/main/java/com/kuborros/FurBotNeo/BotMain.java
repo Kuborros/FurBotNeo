@@ -132,6 +132,7 @@ public class BotMain {
                 new StatsCommand(),
                 new GuildConfigCommand(),
                 new EvalCommand(),
+                new ReloadItemsCommand(),
                 new ShutdownCommand(),
 
                 //Lewd

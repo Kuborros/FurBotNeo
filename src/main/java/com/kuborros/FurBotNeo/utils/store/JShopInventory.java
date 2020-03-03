@@ -71,4 +71,12 @@ public class JShopInventory {
     public JSONObject getRoleInventory() {
         return roleInventory;
     }
+
+    public void reloadItemsFile() throws IOException {
+        String content = new String(Files.readAllBytes(ITEMSFILE.toPath()));
+        JSONObject items = new JSONObject(content);
+        itemInventory = items.getJSONObject("items");
+        roleInventory = items.getJSONObject("roles");
+    }
+
 }
