@@ -114,6 +114,7 @@ Remaining commands assume: Moderators can kick members, Admins can ban them.
 | :------------ |:--------------:|:----------:| :----------------------------------------:|
 | stats         |  **yes**       |  ----      | Prints backed stats of the bot (ping,mem,etc.) |
 | shutdown      |  **yes**       |  ----      | Shuts down the bot.|
+| reloaditems   |  **yes**       |  ----      | Reloads item definition file, to load new items during runtime.|
 | eval          |  **yes**       |  code      | Directly runs code on the bot. Best only used for debugging.|
 | vote          |   *no*         | time topic | Starts a vote lasting specified amount of time, about given topic.|
 | info          |   *no*         |  mention   | Displays information about server member mentioned. |
