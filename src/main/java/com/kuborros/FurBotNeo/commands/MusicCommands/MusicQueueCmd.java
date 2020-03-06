@@ -5,7 +5,6 @@ import com.jagrosh.jdautilities.command.CommandEvent;
 import com.jagrosh.jdautilities.doc.standard.CommandInfo;
 import com.jagrosh.jdautilities.examples.doc.Author;
 import com.kuborros.FurBotNeo.utils.audio.AudioInfo;
-import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.Permission;
 
 import java.util.ArrayList;
@@ -60,8 +59,6 @@ public class MusicQueueCmd extends MusicCommand{
         builder.build().display(event.getTextChannel());
 
          */
-
-        EmbedBuilder eb = new EmbedBuilder();
 
         if (!hasPlayer(guild) || getTrackManager(guild).getQueuedTracks().isEmpty()) {
             event.reply(sendGenericEmbed("The queue is currently empty!", ""));
