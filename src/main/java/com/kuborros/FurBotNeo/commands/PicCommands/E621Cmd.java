@@ -74,7 +74,7 @@ public class E621Cmd extends PicCommand {
             if (event.getArgs().contains("cheese_grater")) {
                 event.replyWarning("**NO**, you sick fuck!");
                 return;
-            } else api = new E621Api("https://e621.net/post/index.json?tags=");
+            } else api = new E621Api("https://e621.net/posts.json?tags=");
 
         try {
             result = !event.getArgs().isEmpty() ? api.getImageSetTags(event.getArgs()) : api.getImageSetRandom();

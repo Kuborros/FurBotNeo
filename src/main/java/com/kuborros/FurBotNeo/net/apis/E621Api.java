@@ -61,14 +61,16 @@ public E621Api(String url){
                     str.append(scan.nextLine());
                 }
             }
-            JSONArray arr = new JSONArray(str.toString());
+            JSONObject content = new JSONObject(str.toString());
+            JSONArray arr = content.getJSONArray("posts");
             int i = 0;
             while (i < arr.length()) {
                 try {
                     JSONObject obj = arr.getJSONObject(i);
-                    result.add(obj.getString("file_url"));
+                    JSONObject file = obj.getJSONObject("file");
+                    result.add(file.getString("url"));
                 } catch (JSONException e) {
-                    LOG.debug("Picture was missing its file_url");
+                    LOG.debug("Picture was missing it's url");
                 }
                 i++;
             }

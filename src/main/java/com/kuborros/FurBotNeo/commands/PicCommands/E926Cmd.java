@@ -60,7 +60,7 @@ public class E926Cmd extends PicCommand {
                 .setFinalAction(message -> message.clearReactions().queue())
                 .setTimeout(5, TimeUnit.MINUTES);
 
-        api = new E621Api("https://e926.net/post/index.json?tags=");
+        api = new E621Api("https://e926.net/posts.json?tags=");
 
         try {
             result = !event.getArgs().isEmpty() ? api.getImageSetTags(event.getArgs()) : api.getImageSetRandom();
