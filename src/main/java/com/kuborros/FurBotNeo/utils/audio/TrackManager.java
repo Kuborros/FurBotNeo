@@ -29,6 +29,8 @@ public class TrackManager extends AudioEventAdapter {
     private final AudioPlayer player;
     private final Queue<AudioInfo> queue;
 
+    private static boolean retried = false;
+
     private static final Logger LOG = LoggerFactory.getLogger("MusicPlayback");
 
 
@@ -76,20 +78,29 @@ public class TrackManager extends AudioEventAdapter {
         if (queue.isEmpty()) {
             new Thread(() -> g.getAudioManager().closeAudioConnection()).start();
         } else {
-            player.playTrack(queue.element().getTrack());
+            if (endReason.mayStartNext) {
+                player.playTrack(queue.element().getTrack());
+                retried = false;
+            }
         }
     }
 
     @Override
     public void onTrackException(AudioPlayer player, AudioTrack track, FriendlyException exception) {
         assert track != null;
-        LOG.warn("Playback error occurred on track: " + track.getInfo().title, exception);
-        EmbedBuilder eb = new EmbedBuilder()
-                .setColor(Color.RED)
-                .setDescription(RandomResponse.getRandomBaseErrorMessage())
-                .setTitle("\u274C" + " **An playback error has occurred!**")
-                .addField("Exception on playback of track: " + track.getInfo().title, exception.getLocalizedMessage(), false);
-        getTrackInfo(track).getBotchat().sendMessage(eb.build()).queue();
+        if (!retried) {
+            player.playTrack(track);
+            retried = true;
+        } else {
+            LOG.warn("Playback error occurred on track: " + track.getInfo().title, exception);
+            EmbedBuilder eb = new EmbedBuilder()
+                    .setColor(Color.RED)
+                    .setDescription(RandomResponse.getRandomBaseErrorMessage())
+                    .setTitle("\u274C" + " **An playback error has occurred!**")
+                    .addField("Exception on playback of track: " + track.getInfo().title, exception.getLocalizedMessage(), false);
+            getTrackInfo(track).getBotchat().sendMessage(eb.build()).queue();
+            retried = false;
+        }
     }
 
     @Override
