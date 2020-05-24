@@ -20,6 +20,8 @@ public class BuyLevelCommand extends ShopCommand {
     final EventWaiter waiter;
     String authorId;
     int levelcost, level;
+    static boolean badgesOk;
+
 
     public BuyLevelCommand(EventWaiter waiter) {
         this.name = "level";
@@ -28,6 +30,7 @@ public class BuyLevelCommand extends ShopCommand {
         this.botPermissions = new Permission[]{Permission.MESSAGE_EMBED_LINKS};
         this.category = new Command.Category("Shop");
         this.waiter = waiter;
+        badgesOk = doLevelBadgesExist();
     }
 
     @Override
@@ -128,6 +131,12 @@ public class BuyLevelCommand extends ShopCommand {
             } catch (PermissionException ignored) {
             }
         }
+    }
+
+    private boolean doLevelBadgesExist() {
+
+
+        return true;
     }
 
 

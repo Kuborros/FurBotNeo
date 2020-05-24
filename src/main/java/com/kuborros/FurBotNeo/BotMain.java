@@ -23,11 +23,12 @@ import com.kuborros.FurBotNeo.utils.store.JShopInventory;
 import com.kuborros.FurBotNeo.utils.store.MemberInventoryCache;
 import com.kuborros.FurBotNeo.utils.store.MemberInventoryCacheImpl;
 import com.sedmelluq.discord.lavaplayer.jdaudp.NativeAudioSendFactory;
-import net.dv8tion.jda.api.AccountType;
 import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.OnlineStatus;
 import net.dv8tion.jda.api.Permission;
+import net.dv8tion.jda.api.requests.GatewayIntent;
 import net.dv8tion.jda.api.sharding.DefaultShardManagerBuilder;
+import net.dv8tion.jda.api.utils.ChunkingFilter;
 import net.dv8tion.jda.api.utils.SessionController;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -182,9 +183,9 @@ public class BotMain {
 
             if (cfg.isShardingEnabled()) {
 
-                DefaultShardManagerBuilder builder = new DefaultShardManagerBuilder();
-                builder.setToken(cfg.getBotToken())
-                        .setStatus(OnlineStatus.ONLINE)
+                DefaultShardManagerBuilder builder = DefaultShardManagerBuilder.createDefault(cfg.getBotToken());
+                builder.setStatus(OnlineStatus.ONLINE)
+                        .enableIntents(GatewayIntent.GUILD_MEMBERS)
                         .addEventListeners(waiter, client.build(), new LogListener(), new MemberEventListener(), new BotEventListener())
                         .setAutoReconnect(true)
                         .setSessionController(controller)
@@ -198,11 +199,12 @@ public class BotMain {
 
             } else {
 
-                JDABuilder builder = new JDABuilder(AccountType.BOT);
-                builder.setToken(cfg.getBotToken())
-                        .setStatus(OnlineStatus.ONLINE)
+                JDABuilder builder = JDABuilder.createDefault(cfg.getBotToken());
+                builder.setStatus(OnlineStatus.ONLINE)
+                        .enableIntents(GatewayIntent.GUILD_MEMBERS)
                         .addEventListeners(waiter, client.build(), new LogListener(), new MemberEventListener(), new BotEventListener())
                         .setAutoReconnect(true)
+                        .setChunkingFilter(ChunkingFilter.ALL)
                         .setEnableShutdownHook(true);
                 if (x86) builder.setAudioSendFactory(new NativeAudioSendFactory());
                 if (cfg.isShopEnabled()) builder.addEventListeners(new ShopTokenListener());

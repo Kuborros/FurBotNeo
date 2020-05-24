@@ -7,7 +7,6 @@ import com.jagrosh.jdautilities.examples.doc.Author;
 import com.kuborros.FurBotNeo.utils.config.FurConfig;
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.MessageBuilder;
-import net.dv8tion.jda.api.OnlineStatus;
 import net.dv8tion.jda.api.Permission;
 import net.dv8tion.jda.api.entities.Member;
 import net.dv8tion.jda.api.entities.Role;
@@ -30,7 +29,6 @@ public class InfoCommand extends AdminCommand {
     private static final String IDBADGE = "\ud83c\udd94";
     private static final String TIMER1 = "\u23f0";
     private static final String TIMER2 = "\u23f3";
-    private static final String GLOBE = "\ud83c\udf10";
     private static final String HAT = "\ud83c\udfa9";
     private static final String CROWNED = "\ud83d\udc51";
     private static final String ROBOT = "\uD83E\uDD16";
@@ -76,9 +74,6 @@ public class InfoCommand extends AdminCommand {
                     rolebuild.delete(rolebuild.length() - 3, rolebuild.length());
                 } else rolebuild.append("None");
                           roles = rolebuild.toString();
-                        if (member.getOnlineStatus() != OnlineStatus.OFFLINE) {
-                            online = "ONLINE";
-                        }
                         if (member.isOwner()) {
                             ownerguy = CROWNED + " OWNER!";
                         }
@@ -93,7 +88,6 @@ public class InfoCommand extends AdminCommand {
                                         + IDBADGE + "User ID: " + member.getId() + "\n"
                                         + TIMER1 + "Server join date: " + member.getTimeJoined().format(DateTimeFormatter.ofPattern("yyyy-MM-dd  HH:mm:ss")) + "\n"
                                         + TIMER2 + "Discord join date: " + member.getUser().getTimeCreated().format(DateTimeFormatter.ofPattern("yyyy-MM-dd  HH:mm:ss")) + "\n"
-                                + GLOBE + "Status: "+ online +"\n"
                                 + HAT + "Current roles: "+ roles +"\n\n"
                                 , member.getUser().getAvatarUrl()
                                 , ownerguy + bot
