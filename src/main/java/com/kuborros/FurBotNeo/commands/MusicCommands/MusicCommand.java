@@ -321,17 +321,24 @@ abstract class MusicCommand extends Command {
         //Should be tweaked later
         if (cfg.isShopEnabled()) {
             inventoryCache.setInventory(inventory.addTokens(10));
-            isDJ = inventory.getOwnedItems().contains("dj_badge");
+            isDJ = (inventory.getOwnedItems().contains("dj_badge") || inventory.isVIP());
+        } else {
+            //If shop is not enabled we fallback to using roles instead
+            event.getMember().getRoles().forEach(role -> {
+                if (role.getName().contains("Music DJ")) isDJ = true;
+            });
+        }
+
+        if (cfg.isLegacySkipAudio() || event.getAuthor().getId().equals(cfg.getOwnerId())) {
+            isDJ = true;
         }
 
         config = (FurConfig) event.getClient().getSettingsManager().getSettings(guild);
         if (!event.getTextChannel().equals(guild.getTextChannelById(config.getAudioChannel()))) return;
-        if (!event.getAuthor().isBot()) {
-            getPlayer(guild).removeListener(audioEventListener);
-            getPlayer(guild).addListener(audioEventListener);
-            input = event.getArgs();
-            doCommand(event);
-        }
+        getPlayer(guild).removeListener(audioEventListener);
+        getPlayer(guild).addListener(audioEventListener);
+        input = event.getArgs();
+        doCommand(event);
     }
 
     protected MessageEmbed sendErrorEmbed(String msg, Exception e) {

@@ -13,20 +13,23 @@ import net.dv8tion.jda.api.Permission;
 @Author("Kuborros")
 public class MusicSkipCmd extends MusicCommand{
     
-    public MusicSkipCmd()
-    {
+    public MusicSkipCmd() {
         this.name = "skip";
         this.help = "Skips currently played track";
         this.guildOnly = true;
         this.botPermissions = new Permission[]{Permission.MESSAGE_EMBED_LINKS, Permission.VOICE_CONNECT, Permission.VOICE_SPEAK};
-        this.category = new Category("Music");          
-}
+        this.category = new Category("Music");
+    }
+
     @Override
-    public void doCommand(CommandEvent event){
+    public void doCommand(CommandEvent event) {
 
-
-        if (skipTrack(guild)) {
-            event.reply(sendGenericEmbed("Skipped track!", "", ":fast_forward:"));
+        if (isDJ) {
+            if (skipTrack(guild)) {
+                event.reply(sendGenericEmbed("Skipped track!", "", ":fast_forward:"));
+            }
+        } else {
+            //Vote
         }
     }
 }

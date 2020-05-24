@@ -13,20 +13,24 @@ import net.dv8tion.jda.api.Permission;
 @Author("Kuborros")
 public class MusicStopCmd extends MusicCommand{
     
-    public MusicStopCmd()
-    {
+    public MusicStopCmd() {
         this.name = "stop";
         this.help = "Completely stops music playback";
         this.guildOnly = true;
         this.botPermissions = new Permission[]{Permission.MESSAGE_EMBED_LINKS, Permission.VOICE_CONNECT, Permission.VOICE_SPEAK};
-        this.category = new Category("Music");          
-}
+        this.category = new Category("Music");
+    }
+
     @Override
-    public void doCommand(CommandEvent event){
-        getTrackManager(guild).purgeStopQueue();
-        if (skipTrack(guild)) {
-            event.getTextChannel().getManager().setTopic("Music stopped.").queue();
-            event.reply(sendGenericEmbed("Stopped playing!", "", ":stop_button:"));
+    public void doCommand(CommandEvent event) {
+        if (isDJ) {
+            getTrackManager(guild).purgeStopQueue();
+            if (skipTrack(guild)) {
+                event.getTextChannel().getManager().setTopic("Music stopped.").queue();
+                event.reply(sendGenericEmbed("Stopped playing!", "", ":stop_button:"));
+            }
+        } else {
+            event.reply(sendFailEmbed("Only DJs can stop the tracks!", ""));
         }
     }
 }

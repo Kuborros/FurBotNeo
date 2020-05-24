@@ -24,14 +24,20 @@ public class MusicPauseCmd extends MusicCommand{
         this.category = new Category("Music");
 
     }
+
     @Override
-    public void doCommand(CommandEvent event){
-        if (getPlayer(guild).isPaused()) {
-            getPlayer(guild).setPaused(false);
-            event.reply(sendGenericEmbed("Player resumed!", ""));
+    public void doCommand(CommandEvent event) {
+        if (isDJ) {
+            if (getPlayer(guild).isPaused()) {
+                getPlayer(guild).setPaused(false);
+                event.reply(sendGenericEmbed("Player resumed!", ""));
+            } else {
+                getPlayer(guild).setPaused(true);
+                event.reply(sendGenericEmbed("Player paused!", "(Don't forget to unpause it later!)"));
+            }
         } else {
-            getPlayer(guild).setPaused(true);
-            event.reply(sendGenericEmbed("Player paused!", "(Don't forget to unpause it later!)"));
+            event.reply(sendFailEmbed("Only DJs can pause the tracks!", ""));
         }
-    } 
+    }
+
 }

@@ -23,35 +23,39 @@ public class MusicTimeCommand extends MusicCommand {
 
     @Override
     public void doCommand(CommandEvent event) {
-
-        if (isIdle(guild)) {
-            event.reply(sendFailEmbed("No music is being played at the moment!", ""));
-            return;
-        }
-
-        String val = event.getArgs().toUpperCase().trim();
-        boolean min = false;
-        if (val.endsWith("M")) {
-            min = true;
-            val = timeTrim(val);
-        } else if (val.endsWith("S")) {
-            val = timeTrim(val);
-        } else {
-            val = val.trim();
-        }
-        int seconds;
-        try {
-            seconds = (min ? 60 : 1) * Integer.parseInt(val);
-            long milis = (seconds * 1000);
-            long duration = getPlayer(guild).getPlayingTrack().getDuration();
-            if (duration <= milis) {
-                event.reply(sendFailEmbed("This track is not long enough to skip that far!", "Track lenght is " + getTimestamp(duration)));
+        if (isDJ) {
+            if (isIdle(guild)) {
+                event.reply(sendFailEmbed("No music is being played at the moment!", ""));
                 return;
             }
-            getTrackManager(guild).skipToTime(milis);
-            event.reply(sendGenericEmbed("Skipping to: " + seconds + "s!", "", ":fast_forward:"));
-        } catch (NumberFormatException ex) {
-            event.reply(sendFailEmbed("Heeey... That's not a valid number!", "Don't be silly like that."));
+
+            String val = event.getArgs().toUpperCase().trim();
+            boolean min = false;
+            if (val.endsWith("M")) {
+                min = true;
+                val = timeTrim(val);
+            } else if (val.endsWith("S")) {
+                val = timeTrim(val);
+            } else {
+                val = val.trim();
+            }
+            int seconds;
+            try {
+                seconds = (min ? 60 : 1) * Integer.parseInt(val);
+                long milis = (seconds * 1000);
+                long duration = getPlayer(guild).getPlayingTrack().getDuration();
+                if (duration <= milis) {
+                    event.reply(sendFailEmbed("This track is not long enough to skip that far!", "Track lenght is " + getTimestamp(duration)));
+                    return;
+                }
+                getTrackManager(guild).skipToTime(milis);
+                event.reply(sendGenericEmbed("Skipping to: " + seconds + "s!", "", ":fast_forward:"));
+            } catch (NumberFormatException ex) {
+                event.reply(sendFailEmbed("Heeey... That's not a valid number!", "Don't be silly like that."));
+            }
+        } else {
+            //smth
+            event.reply(sendFailEmbed("Only DJs can skip the tracks!", ""));
         }
     }
 
