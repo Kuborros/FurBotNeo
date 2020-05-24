@@ -64,6 +64,7 @@ public class TrackManager extends AudioEventAdapter {
         Guild guild = info.getAuthor().getGuild();
         try {
             vChan = Objects.requireNonNull(Objects.requireNonNull(info.getAuthor().getVoiceState())).getChannel();
+
         } catch (NullPointerException e) {
             player.stopTrack();
         }

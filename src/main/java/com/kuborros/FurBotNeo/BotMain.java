@@ -120,7 +120,7 @@ public class BotMain {
                 new MusicResetCmd(),
                 new MusicShuffleCmd(),
                 new MusicClearCmd(),
-                new MusicSkipCmd(),
+                new MusicSkipCmd(waiter),
                 new MusicStopCmd(),
                 new MusicVolumeCmd(),
 

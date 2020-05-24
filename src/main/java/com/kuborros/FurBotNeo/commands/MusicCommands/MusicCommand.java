@@ -46,6 +46,8 @@ abstract class MusicCommand extends Command {
     private static final Logger LOG = LoggerFactory.getLogger("MusicCommands");
 
     static final String NOTE = ":musical_note:";
+    static final String OKAY = "\u2705";
+    static final String NO = "\u274C";
 
     static Guild guild;
     private static CommandClient client;
@@ -322,12 +324,12 @@ abstract class MusicCommand extends Command {
         if (cfg.isShopEnabled()) {
             inventoryCache.setInventory(inventory.addTokens(10));
             isDJ = (inventory.getOwnedItems().contains("dj_badge") || inventory.isVIP());
-        } else {
-            //If shop is not enabled we fallback to using roles instead
-            event.getMember().getRoles().forEach(role -> {
-                if (role.getName().contains("Music DJ")) isDJ = true;
-            });
         }
+
+
+        event.getMember().getRoles().forEach(role -> {
+            if (role.getName().contains("Music DJ")) isDJ = true;
+        });
 
         if (cfg.isLegacySkipAudio() || event.getAuthor().getId().equals(cfg.getOwnerId())) {
             isDJ = true;
