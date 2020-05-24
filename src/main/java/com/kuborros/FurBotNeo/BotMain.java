@@ -116,7 +116,7 @@ public class BotMain {
                 new MusicTimeCommand(),
                 new MusicInfoCmd(),
                 new MusicPauseCmd(),
-                new MusicQueueCmd(),
+                new MusicQueueCmd(waiter),
                 new MusicResetCmd(),
                 new MusicShuffleCmd(),
                 new MusicClearCmd(),

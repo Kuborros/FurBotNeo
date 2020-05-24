@@ -4,13 +4,13 @@ package com.kuborros.FurBotNeo.commands.MusicCommands;
 import com.jagrosh.jdautilities.command.CommandEvent;
 import com.jagrosh.jdautilities.doc.standard.CommandInfo;
 import com.jagrosh.jdautilities.examples.doc.Author;
+import com.kuborros.FurBotNeo.utils.audio.RequesterInfo;
 import com.sedmelluq.discord.lavaplayer.track.AudioTrack;
 import com.sedmelluq.discord.lavaplayer.track.AudioTrackInfo;
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.Permission;
 
 import java.awt.*;
-import java.util.Optional;
 
 @CommandInfo(
         name = "MusicInfo",
@@ -36,14 +36,14 @@ public class MusicInfoCmd extends MusicCommand {
         } else {
             AudioTrack track = getPlayer(guild).getPlayingTrack();
             AudioTrackInfo info = track.getInfo();
-            String requester = (String) Optional.ofNullable(track.getUserData()).orElse("Unknown");
+            RequesterInfo requester = (RequesterInfo) track.getUserData();
             EmbedBuilder eb = new EmbedBuilder();
             eb.setColor(Color.CYAN)
                     .setTitle(NOTE + "**Current Track Info**")
                     .addField(":cd:  Title", info.title, false)
                     .addField(":stopwatch:  Duration", "`[ " + getTimestamp(track.getPosition()) + " / " + getTimestamp(track.getInfo().length) + " ]`", false)
                     .addField(":microphone:  Channel / Author", info.author, false)
-                    .setFooter("Requested by: " + requester);
+                    .setFooter("Requested by: " + requester.getName());
             event.reply(eb.build());
         }
     }

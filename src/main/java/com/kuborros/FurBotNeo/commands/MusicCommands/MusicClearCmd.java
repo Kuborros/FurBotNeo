@@ -22,6 +22,8 @@ public class MusicClearCmd extends MusicCommand {
 
     @Override
     public void doCommand(CommandEvent event) {
+
+
         if (isIdle(guild)) {
             event.reply(sendFailEmbed("There is no playlist to clear!", "Duh."));
             return;
