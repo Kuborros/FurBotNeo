@@ -24,7 +24,7 @@ public class MusicStopCmd extends MusicCommand{
     @Override
     public void doCommand(CommandEvent event){
         getTrackManager(guild).purgeStopQueue();
-        if (forceSkipTrack(guild)) {
+        if (skipTrack(guild)) {
             event.getTextChannel().getManager().setTopic("Music stopped.").queue();
             event.reply(sendGenericEmbed("Stopped playing!", "", ":stop_button:"));
         }

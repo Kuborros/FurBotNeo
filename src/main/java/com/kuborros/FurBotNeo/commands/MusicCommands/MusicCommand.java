@@ -271,7 +271,7 @@ abstract class MusicCommand extends Command {
         return (!hasPlayer(guild) || getPlayer(guild).getPlayingTrack() == null);
     }
 
-    boolean forceSkipTrack(Guild guild) {
+    boolean skipTrack(Guild guild) {
         if (isIdle(guild)) {
             return false;
         }

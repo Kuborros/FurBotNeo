@@ -23,7 +23,9 @@ public class MusicSkipCmd extends MusicCommand{
 }
     @Override
     public void doCommand(CommandEvent event){
-        if (forceSkipTrack(guild)) {
+
+
+        if (skipTrack(guild)) {
             event.reply(sendGenericEmbed("Skipped track!", "", ":fast_forward:"));
         }
     }
