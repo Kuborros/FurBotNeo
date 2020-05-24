@@ -54,6 +54,7 @@ abstract class MusicCommand extends Command {
     private static AudioEventListener audioEventListener;
 
     protected MemberInventory inventory;
+    protected boolean isDJ = false;
 
     private final int PLAYLIST_LIMIT = 40;
     private static final AudioPlayerManager myManager = new DefaultAudioPlayerManager();
@@ -318,7 +319,10 @@ abstract class MusicCommand extends Command {
         }
         //Token award per command use.
         //Should be tweaked later
-        if (cfg.isShopEnabled()) inventoryCache.setInventory(inventory.addTokens(10));
+        if (cfg.isShopEnabled()) {
+            inventoryCache.setInventory(inventory.addTokens(10));
+            isDJ = inventory.getOwnedItems().contains("dj_badge");
+        }
 
         config = (FurConfig) event.getClient().getSettingsManager().getSettings(guild);
         if (!event.getTextChannel().equals(guild.getTextChannelById(config.getAudioChannel()))) return;

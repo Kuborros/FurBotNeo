@@ -41,6 +41,11 @@
       "pic_url": "",
       "price": 0
     },
+    "dj_badge": {
+      "name": "Music DJ Badge",
+      "pic_url": "",
+      "price": 0
+    },
     "test": {
       "name": "Test item",
       "pic_url": "https://cdn.discordapp.com/attachments/298909392097509377/674664280288919562/MariaToken.png",
