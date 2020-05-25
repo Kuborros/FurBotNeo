@@ -68,7 +68,7 @@ public class JConfig {
                 shopEnabled = bools.get().optBoolean("shop");
                 buyVipEnabled = bools.get().optBoolean("buy_vip");
                 //Version 3 booleans:
-                legacySkipAudio = bools.get().getBoolean("audio_all_can_skip");
+                legacySkipAudio = bools.get().optBoolean("audio_all_can_skip");
 
             }
             //Vesion 3 ints:
