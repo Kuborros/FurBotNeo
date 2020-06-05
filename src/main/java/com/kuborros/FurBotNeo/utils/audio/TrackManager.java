@@ -29,8 +29,6 @@ public class TrackManager extends AudioEventAdapter {
     private final AudioPlayer player;
     private final Queue<AudioInfo> queue;
 
-    private static boolean retried = false;
-
     private static final Logger LOG = LoggerFactory.getLogger("MusicPlayback");
 
 
@@ -64,7 +62,6 @@ public class TrackManager extends AudioEventAdapter {
         Guild guild = info.getAuthor().getGuild();
         try {
             vChan = Objects.requireNonNull(Objects.requireNonNull(info.getAuthor().getVoiceState())).getChannel();
-
         } catch (NullPointerException e) {
             player.stopTrack();
         }
@@ -76,23 +73,17 @@ public class TrackManager extends AudioEventAdapter {
     @Override
     public void onTrackEnd(AudioPlayer player, AudioTrack track, AudioTrackEndReason endReason) {
         Guild g = Objects.requireNonNull(queue.poll()).getAuthor().getGuild();
-        if (queue.isEmpty()) {
+        if (queue.isEmpty() || !endReason.mayStartNext) {
+            player.stopTrack();
             new Thread(() -> g.getAudioManager().closeAudioConnection()).start();
         } else {
-            if (endReason.mayStartNext) {
-                player.playTrack(queue.element().getTrack());
-                retried = false;
-            }
+            player.playTrack(queue.element().getTrack());
         }
     }
 
     @Override
     public void onTrackException(AudioPlayer player, AudioTrack track, FriendlyException exception) {
         assert track != null;
-        if (!retried) {
-            player.playTrack(track);
-            retried = true;
-        } else {
             LOG.warn("Playback error occurred on track: " + track.getInfo().title, exception);
             EmbedBuilder eb = new EmbedBuilder()
                     .setColor(Color.RED)
@@ -100,9 +91,7 @@ public class TrackManager extends AudioEventAdapter {
                     .setTitle("\u274C" + " **An playback error has occurred!**")
                     .addField("Exception on playback of track: " + track.getInfo().title, exception.getLocalizedMessage(), false);
             getTrackInfo(track).getBotchat().sendMessage(eb.build()).queue();
-            retried = false;
         }
-    }
 
     @Override
     public void onTrackStuck(AudioPlayer player, AudioTrack track, long thresholdMs) {
