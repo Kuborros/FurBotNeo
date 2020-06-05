@@ -15,6 +15,7 @@ import net.dv8tion.jda.api.exceptions.PermissionException;
 
 import java.awt.*;
 import java.util.List;
+import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
 import static com.kuborros.FurBotNeo.BotMain.cfg;
@@ -64,7 +65,7 @@ public class MusicSkipCmd extends MusicCommand {
         message.addReaction(OKAY).complete();
         message.addReaction(NO).complete();
 
-        VoiceChannel vchan = message.getGuild().getSelfMember().getVoiceState().getChannel();
+        VoiceChannel vchan = Objects.requireNonNull(message.getGuild().getSelfMember().getVoiceState()).getChannel();
         assert vchan != null;
         listening = vchan.getMembers();
         //Detract one, since we also count as a member

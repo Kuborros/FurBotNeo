@@ -6,7 +6,7 @@ import net.dv8tion.jda.api.entities.Guild;
 import net.dv8tion.jda.api.entities.TextChannel;
 import net.dv8tion.jda.api.entities.User;
 import net.dv8tion.jda.api.events.guild.member.GuildMemberJoinEvent;
-import net.dv8tion.jda.api.events.guild.member.GuildMemberLeaveEvent;
+import net.dv8tion.jda.api.events.guild.member.GuildMemberRemoveEvent;
 import net.dv8tion.jda.api.utils.cache.SnowflakeCacheView;
 import org.jetbrains.annotations.NotNull;
 import org.slf4j.Logger;
@@ -250,8 +250,8 @@ public class Database {
     public void updateGuildMembers(GuildMemberJoinEvent event) {
         updateGuildMembers(event.getGuild());        
     }
-    
-    public void updateGuildMembers(GuildMemberLeaveEvent event) {
+
+    public void updateGuildMembers(GuildMemberRemoveEvent event) {
         updateGuildMembers(event.getGuild());
     }
 
