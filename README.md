@@ -62,6 +62,10 @@ When:
 
 * ``"buy_vip" = true``, VIP role will be purchasable using tokens. it is intended to provide extra features for long time community members. If disabled, everyone gets VIP features.
 
+* ``"audio_all_can_skip" = true``, all DJ related features are available to anyone - every user can skip tracks with no vote, and use other usually restricted music commands.
+
+
+``"audio_skip_percent" = 75`` lets you tune the percentage of ``yes`` votes required to skip a track.
 
 ``blacklist_servers`` array alows you to ban guilds from your instance - bot will not join any of the servers added here.
 
@@ -127,18 +131,19 @@ Bot joins same voice channel as user who ran the command.
 
 Music commands are only accepted from dedicated channel to prevent spamming main text channels, and can be set in guild configuration (defaults to any channel with "bot" in name).
 
-| **Command**   |  **Arguments:**   |             **Description:**              |
-| :------------ |:-----------------:| :----------------------------------------:|
-| play          | search or url     | Searches for track and adds it to queue. |
-| playnext      | search or url     | Same as above, but track is forced to be next in queue. |
-| playshuffle   | search or url     | Same as play, but queue gets shuffled after track is added.|
-| volume        | volume (0-1000)   | Sets playback volume for current player.|
-| seek          | timestamp         | Skips playback to given timestamp if possible.|
-| skip          |   ----            | Skips currently played track. |
-| stop          |   ----            | Skips entire queue and stops playback. |
-| shuffle       |   ----            | Shuffles the playback queue. |
-| queue         |   ----            | Prints current queue for the server. |
-| mreset        |   ----            | (debug) Completely resets the player object. |
+| **Command**   |  **Arguments:**   | **DJ Only** |             **Description:**              |
+| :------------ |:-----------------:|:-----------:| :----------------------------------------:|
+| play          | search or url     |:-----------:| Searches for track and adds it to queue. |
+| playnext      | search or url     |:----VIP----:| Same as above, but track is forced to be next in queue. |
+| playshuffle   | search or url     |:----Yes----:| Same as play, but queue gets shuffled after track is added.|
+| volume        | volume (0-1000)   |:----Yes----:| Sets playback volume for current player.|
+| seek          | timestamp         |:----Req----:| Skips playback to given timestamp if possible.|
+| skip          |   ----            |:----yes----:| Skips currently played track. (DJ and person who requested track) |
+| skip          |   ----            |:-----------:| Calls a vote to skip the current track. |
+| stop          |   ----            |:----yes----:| Skips entire queue and stops playback. |
+| shuffle       |   ----            |:-----------:| Shuffles the playback queue. |
+| queue         |   ----            |:-----------:| Prints current queue for the server. |
+| mreset        |   ----            |:----Adm----:| (debug) Completely resets the player object. |
 
 ### Lewd:
 All commands are classified as NSFW as such only work on servers with nsfw flag + nsfw channel.
