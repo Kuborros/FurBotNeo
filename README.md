@@ -133,16 +133,16 @@ Music commands are only accepted from dedicated channel to prevent spamming main
 
 | **Command**   |  **Arguments:**   | **DJ Only** |             **Description:**              |
 | :------------ |:-----------------:|:-----------:| :----------------------------------------:|
-| play          | search or url     |             | Searches for track and adds it to queue. |
+| play          | search or url     |     ---     | Searches for track and adds it to queue. |
 | playnext      | search or url     |     VIP     | Same as above, but track is forced to be next in queue. |
 | playshuffle   | search or url     |     Yes     | Same as play, but queue gets shuffled after track is added.|
 | volume        | volume (0-1000)   |     Yes     | Sets playback volume for current player.|
 | seek          | timestamp         |     Req     | Skips playback to given timestamp if possible.|
 | skip          |   ----            |     Yes     | Skips currently played track. (DJ and person who requested track) |
-| skip          |   ----            |             | Calls a vote to skip the current track. |
+| skip          |   ----            |     ---     | Calls a vote to skip the current track. |
 | stop          |   ----            |     Yes     | Skips entire queue and stops playback. |
-| shuffle       |   ----            |             | Shuffles the playback queue. |
-| queue         |   ----            |             | Prints current queue for the server. |
+| shuffle       |   ----            |     ---     | Shuffles the playback queue. |
+| queue         |   ----            |     ---     | Prints current queue for the server. |
 | mreset        |   ----            |     Adm     | (debug) Completely resets the player object. |
 
 ### Lewd:
