@@ -33,10 +33,10 @@ public class MusicPauseCmd extends MusicCommand{
                 event.reply(sendGenericEmbed("Player resumed!", ""));
             } else {
                 getPlayer(guild).setPaused(true);
-                event.reply(sendGenericEmbed("Player paused!", "(Don't forget to unpause it later!)"));
+                event.reply(sendGenericEmbed("Player paused!", "(Please don't forget to unpause it later!)"));
             }
         } else {
-            event.reply(sendFailEmbed("Only DJs can pause the tracks!", ""));
+            event.reply(sendFailEmbed("Only DJs can pause the tracks!", "That's just a bit too much power for everyone to hold~"));
         }
     }
 

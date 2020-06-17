@@ -5,6 +5,7 @@ import com.jagrosh.jdautilities.command.CommandEvent;
 import com.jagrosh.jdautilities.commons.waiter.EventWaiter;
 import com.jagrosh.jdautilities.doc.standard.CommandInfo;
 import com.jagrosh.jdautilities.examples.doc.Author;
+import com.kuborros.FurBotNeo.utils.audio.RequesterInfo;
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.Permission;
 import net.dv8tion.jda.api.entities.Member;
@@ -44,9 +45,13 @@ public class MusicSkipCmd extends MusicCommand {
     public void doCommand(CommandEvent event) {
 
         if (isIdle(guild)) {
+            sendFailEmbed("Skip what?", "I can't skip a track if we aren't playing any...");
             return;
         }
-        if (isDJ) {
+        //Person who requested the track can always skip it
+        boolean isRequester = (event.getMember().getId().equals(getPlayer(guild).getPlayingTrack().getUserData(RequesterInfo.class).getId()));
+
+        if (isDJ || isRequester) {
             if (skipTrack(guild)) {
                 event.reply(sendGenericEmbed("Skipped track!", "", ":fast_forward:"));
             }
@@ -74,6 +79,7 @@ public class MusicSkipCmd extends MusicCommand {
         if (listeners == 0) {
             skipTrack(guild);
             message.getTextChannel().sendMessage(sendGenericEmbed("Skipped track!", "(Nobody was listening to it anyways...)", ":fast_forward:")).queue();
+            message.clearReactions().queue();
             return;
         }
 

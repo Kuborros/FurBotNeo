@@ -40,7 +40,7 @@ public class MemberEventListener extends ListenerAdapter{
     @Override
     public void onGuildMemberRemove(GuildMemberRemoveEvent event) {
         boolean welcome = Objects.requireNonNull(settingsManager.getSettings(event.getGuild())).isWelcomeMsg();
-        if (event.getMember().getUser().isBot()) return;
+        if (Objects.requireNonNull(event.getMember()).getUser().isBot()) return;
         TextChannel pub = event.getGuild().getDefaultChannel();
         if (welcome) {
             Objects.requireNonNull(pub).sendMessage("Bye, " + event.getMember().getEffectiveName() + "! it was nice (or not) having you with us!").queue();

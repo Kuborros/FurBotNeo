@@ -3,6 +3,7 @@ package com.kuborros.FurBotNeo.commands.MusicCommands;
 import com.jagrosh.jdautilities.command.CommandEvent;
 import com.jagrosh.jdautilities.doc.standard.CommandInfo;
 import com.jagrosh.jdautilities.examples.doc.Author;
+import com.kuborros.FurBotNeo.utils.audio.RequesterInfo;
 import net.dv8tion.jda.api.Permission;
 
 @CommandInfo(
@@ -23,7 +24,11 @@ public class MusicTimeCommand extends MusicCommand {
 
     @Override
     public void doCommand(CommandEvent event) {
-        if (isDJ) {
+
+        //Person who requested the track can seek it to right time
+        boolean isRequester = (event.getMember().getId().equals(getPlayer(guild).getPlayingTrack().getUserData(RequesterInfo.class).getId()));
+
+        if (isDJ || isRequester) {
             if (isIdle(guild)) {
                 event.reply(sendFailEmbed("No music is being played at the moment!", ""));
                 return;
@@ -54,8 +59,7 @@ public class MusicTimeCommand extends MusicCommand {
                 event.reply(sendFailEmbed("Heeey... That's not a valid number!", "Don't be silly like that."));
             }
         } else {
-            //smth
-            event.reply(sendFailEmbed("Only DJs can skip the tracks!", ""));
+            event.reply(sendFailEmbed("Only DJs can change playback timestamp!", "With that power comes responsibility!"));
         }
     }
 

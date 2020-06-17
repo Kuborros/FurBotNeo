@@ -106,16 +106,15 @@ abstract class MusicCommand extends Command {
         return players.containsKey(guild.getId());
     }
 
-    AudioPlayer getPlayer(Guild guild) {
+    synchronized AudioPlayer getPlayer(Guild guild) {
         AudioPlayer p;
         p = hasPlayer(guild) ? players.get(guild.getId()).getKey() : createPlayer(guild);
         return p;
     }
 
     void setVolume(Guild guild, int vol) {
-        AudioPlayer p;
          if (hasPlayer(guild)) {
-            p = players.get(guild.getId()).getKey();
+             AudioPlayer p = players.get(guild.getId()).getKey();
             p.setVolume(vol);
         }
     }

@@ -23,12 +23,15 @@ public class MusicShuffleCmd extends MusicCommand {
 
     @Override
     public void doCommand(CommandEvent event) {
-        if (isIdle(guild)) {
-            event.reply(sendFailEmbed("There is no queue for me to shuffle!", ""));
-            return;
+        if (isDJ) {
+            if (isIdle(guild)) {
+                event.reply(sendFailEmbed("There is no queue for me to shuffle!", ""));
+                return;
+            }
+            getTrackManager(guild).shuffleQueue();
+            event.getTextChannel().sendMessage(sendGenericEmbed("Shuffled queue!", "For better, or for worse~", ":twisted_rightwards_arrows:")).queue();
+        } else {
+            event.reply(sendFailEmbed("Only DJs have the power to shuffle the playlist!", "If you don't like the current track, you can always vote to ``skip`` it!"));
         }
-
-        getTrackManager(guild).shuffleQueue();
-        event.getTextChannel().sendMessage(sendGenericEmbed("Shuffled queue!", "For better, or for worse~", ":twisted_rightwards_arrows:")).queue();
     }
 }

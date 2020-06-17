@@ -31,7 +31,7 @@ public class MusicClearCmd extends MusicCommand {
             getTrackManager(guild).clearQueue();
             event.reply(sendGenericEmbed("Playlist cleared!", ""));
         } else {
-            event.reply(sendFailEmbed("Only DJs can clear the playlist!", ""));
+            event.reply(sendFailEmbed("Only DJs can clear the playlist!", "If you don't like the track, you can always vote to ``skip`` it!"));
         }
     }
 }

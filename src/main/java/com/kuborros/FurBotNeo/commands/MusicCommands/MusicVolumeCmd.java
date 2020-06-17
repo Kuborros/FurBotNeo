@@ -38,7 +38,7 @@ public class MusicVolumeCmd extends MusicCommand{
                 event.reply(sendGenericEmbed(String.format("Volume set to: %d", getPlayer(guild).getVolume()), ""));
             }
         } else {
-            event.reply(sendFailEmbed("Only DJs can change the music volume!", ""));
+            event.reply(sendFailEmbed("Only DJs can change the music volume!", "You all know why it's a thing..."));
         }
     }
 }
