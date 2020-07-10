@@ -193,11 +193,11 @@ _If VIP is disabled, everyone is considered VIP_
 | myroles       | ----           | Check all your owned roles |
 | inventory     | ----           | Check all your owned items |
 | role          | ----           | Set your current active role |
+| level         | ----           | Spend your tokens to level up!  (or just check your level) |
 | shop          | ----           | Base shop interface, lists some of your items, level, and token balance |
 | ----          | item           | Purchase items here |
 | ----          | role           | Purchase roles here |
 | ----          | vip            | Purchase vip status here (if enabled) |
-| ----          | level          | Spend your tokens to level up!  (or just check your level i guess) |
 | tokens        | ----           | Check your token balance |
 | ----          | give           | Give your tokens away to mentioned user |
 
