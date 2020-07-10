@@ -131,6 +131,8 @@ Bot joins same voice channel as user who ran the command.
 
 Music commands are only accepted from dedicated channel to prevent spamming main text channels, and can be set in guild configuration (defaults to any channel with "bot" in name).
 
+DJ members are people who own DJ badge. This restriction can be disabled in instance configuration.
+
 | **Command**   |  **Arguments:**   | **DJ Only** |             **Description:**              |
 | :------------ |:-----------------:|:-----------:| :----------------------------------------:|
 | play          | search or url     |     ---     | Searches for track and adds it to queue. |
@@ -176,7 +178,6 @@ _If VIP is disabled, everyone is considered VIP_
 | myroles       | ----           | Check all your owned roles |
 | inventory     | ----           | Check all your owned items |
 | role          | ----           | Set your current active role |
-| item          | ----           | Use your owned item (WIP) |
 | shop          | ----           | Base shop interface, lists some of your items, level, and token balance |
 | ----          | item           | Purchase items here |
 | ----          | role           | Purchase roles here |
