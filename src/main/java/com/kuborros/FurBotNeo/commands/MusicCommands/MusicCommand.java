@@ -313,29 +313,29 @@ abstract class MusicCommand extends Command {
 
         if (event.getAuthor().isBot()) return;
 
+        String audioChan = config.getAudioChannel();
+        //If audio is set to 0, it means it's disabled or we have pulled default config. As such we should end parsing the command now.
+        if (audioChan.equals("0")) return;
+
         inventory = inventoryCache.getInventory(event.getMember().getId(), guild.getId());
         if (inventory.isBanned()) {
             event.reply(bannedResponseEmbed());
             return;
         }
-        //Token award per command use.
-        //Should be tweaked later
+        //Token award per command use and item check.
         if (cfg.isShopEnabled()) {
             inventoryCache.setInventory(inventory.addTokens(10));
+            //DJ role is assigned using special item - even if store is disabled it can be still awarded to members.
             isDJ = (inventory.getOwnedItems().contains("dj_badge") || inventory.isVIP());
         }
 
-
-        event.getMember().getRoles().forEach(role -> {
-            if (role.getName().contains("Music DJ")) isDJ = true;
-        });
-
+        //Owner is always considered DJ, even if he decides to drop his vip status. When skipping by everyone is enabled they are all DJ.
         if (cfg.isLegacySkipAudio() || event.getAuthor().getId().equals(cfg.getOwnerId())) {
             isDJ = true;
         }
 
         config = (FurConfig) event.getClient().getSettingsManager().getSettings(guild);
-        if (!event.getTextChannel().equals(guild.getTextChannelById(config.getAudioChannel()))) return;
+        if (!event.getTextChannel().equals(guild.getTextChannelById(audioChan))) return;
         getPlayer(guild).removeListener(audioEventListener);
         getPlayer(guild).addListener(audioEventListener);
         input = event.getArgs();
