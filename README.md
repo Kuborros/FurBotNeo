@@ -82,7 +82,7 @@ Running the command with no parameters will list all available config options an
 
 * ``prefix``: Sets your custom per-guild command prefix. Eg. ``!!``
 
-* ``nsfw``: Enables the NSFW features: Notably commands from left category and nsfw image searches.
+* ``nsfw``: Enables the NSFW features: Notably commands from lewd category and nsfw image searches.
 
 * ``furry``: Enables more lighthearted responses to some commands and references to default bot avatar (A bat furry girl).
 
@@ -168,7 +168,6 @@ All commands are classified as NSFW as such only work on servers with nsfw flag 
 
 On SFW servers NSFW commands are fully hidden and do not produce a response.
 
-Guildcfg key is ``nsfw``
 
 | **Command**   |  **Arguments:**   |             **Description:**              |
 | :------------ |:-----------------:| :----------------------------------------:|
