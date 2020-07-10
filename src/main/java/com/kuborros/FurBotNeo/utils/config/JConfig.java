@@ -72,7 +72,7 @@ public class JConfig {
 
             }
             //Vesion 3 ints:
-            skipPercent = config.optInt("");
+            skipPercent = config.optInt("audio_skip_percent");
 
             //Default int values
             if (skipPercent == 0) skipPercent = 75;
