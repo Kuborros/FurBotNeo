@@ -75,6 +75,22 @@ Per-guild configuration is available from ``guildcfg`` command.
 Running the command with no parameters will list all available config options and their current values.
 
 
+**Current options are:**
+
+
+* ``name``: Sets the bot name used across the server. Also changes how bot refers to itself in the commands.
+
+* ``prefix``: Sets your custom per-guild command prefix. Eg. ``!!``
+
+* ``nsfw``: Enables the NSFW features: Notably commands from left category and nsfw image searches.
+
+* ``furry``: Enables more lighthearted responses to some commands and references to default bot avatar (A bat furry girl).
+
+* ``welcome``: Enables welocm message on memebers joining the guild. Somewhat a leftover from when discord did not do it by itself.
+
+* ``music``: Selects channel intended for music commands. Both _mentioning the channel_ and inputting its ID are valid parameters.
+
+
 ## Supported chat commands:
 
 ### General:
