@@ -82,10 +82,6 @@ public class BotEventListener extends ListenerAdapter{
             leaveWithMsg(guild, "Your guild has been banned from this bot instance.");
             return;
         }
-        if (!guild.checkVerification()) {
-            LOG.warn("...But my verification level is too low to do anything there!");
-            return;
-        }
         if (!guild.getDefaultChannel().canTalk()) {
             LOG.warn("...But i can't write on it's default channel? This ~might~ be a problem!");
             return;

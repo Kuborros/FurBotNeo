@@ -24,18 +24,21 @@ public class MusicVolumeCmd extends MusicCommand{
 }
     @Override
     public void doCommand(CommandEvent event){
-        if (event.getArgs().isEmpty()) {
-            event.reply(sendFailEmbed("Please set valid volume!", "Correct values are anywhere from 0 (muted) to 1000 (horrible noise)"));
-        } else {
-            int vol = 100;
-            try {
-                vol = Integer.decode(event.getArgs());
+        if (isDJ) {
+            if (event.getArgs().isEmpty()) {
+                event.reply(sendFailEmbed("Please set valid volume!", "Correct values are anywhere from 0 (muted) to 1000 (horrible noise)"));
+            } else {
+                int vol = 100;
+                try {
+                    vol = Integer.decode(event.getArgs());
+                } catch (NumberFormatException e) {
+                    event.reply(sendFailEmbed("Please type in a valid number!", "Correct values are anywhere from 0 (muted) to 1000 (horrible noise)"));
                 }
-            catch (NumberFormatException e) {
-                event.reply(sendFailEmbed("Please type in a valid number!", "Correct values are anywhere from 0 (muted) to 1000 (horrible noise)"));
+                setVolume(guild, vol);
+                event.reply(sendGenericEmbed(String.format("Volume set to: %d", getPlayer(guild).getVolume()), ""));
             }
-            setVolume(guild, vol);
-            event.reply(sendGenericEmbed(String.format("Volume set to: %d", getPlayer(guild).getVolume()), ""));
-            }
+        } else {
+            event.reply(sendFailEmbed("Only DJs can change the music volume!", "You all know why it's a thing..."));
+        }
     }
 }

@@ -10,9 +10,11 @@ import net.dv8tion.jda.api.events.message.react.MessageReactionAddEvent;
 import net.dv8tion.jda.api.exceptions.PermissionException;
 
 import java.awt.*;
+import java.util.Arrays;
 import java.util.concurrent.TimeUnit;
 
 import static com.kuborros.FurBotNeo.BotMain.inventoryCache;
+import static com.kuborros.FurBotNeo.BotMain.storeItems;
 
 @SuppressWarnings("ConstantConditions")
 public class BuyLevelCommand extends ShopCommand {
@@ -20,6 +22,8 @@ public class BuyLevelCommand extends ShopCommand {
     final EventWaiter waiter;
     String authorId;
     int levelcost, level;
+    static boolean badgesOk;
+
 
     public BuyLevelCommand(EventWaiter waiter) {
         this.name = "level";
@@ -28,6 +32,7 @@ public class BuyLevelCommand extends ShopCommand {
         this.botPermissions = new Permission[]{Permission.MESSAGE_EMBED_LINKS};
         this.category = new Command.Category("Shop");
         this.waiter = waiter;
+        badgesOk = doLevelBadgesExist();
     }
 
     @Override
@@ -91,35 +96,37 @@ public class BuyLevelCommand extends ShopCommand {
                     .setDescription(String.format("Your next level-up will cost you %d tokens!", levelCost(level))) //Note that level var gets increased here!
                     .setThumbnail(event.getUser().getEffectiveAvatarUrl());
             //Leveling rewards
-            switch (level) {
-                case 10:
-                    inventoryCache.setInventory(inventory.addToInventory("lvl10"));
-                    builder.addField("You got a loot drop!", "Level 10 badge", true);
-                    break;
-                case 25:
-                    inventoryCache.setInventory(inventory.addToInventory("lvl25"));
-                    builder.addField("You got a loot drop!", "Level 25 badge", true);
-                    break;
-                case 50:
-                    inventoryCache.setInventory(inventory.addToInventory("lvl50"));
-                    builder.addField("You got a loot drop!", "Level 50 badge", true);
-                    break;
-                case 100:
-                    inventoryCache.setInventory(inventory.addToInventory("lvl100"));
-                    builder.addField("You got a loot drop!", "Level 100 badge", true);
-                    break;
-                case 250:
-                    inventoryCache.setInventory(inventory.addToInventory("lvl250"));
-                    builder.addField("You got a loot drop!", "Level 250 badge", true);
-                    break;
-                case 500:
-                    inventoryCache.setInventory(inventory.addToInventory("lvl500"));
-                    builder.addField("You got a loot drop!", "Level 500 badge", true);
-                    break;
-                case 1000:
-                    inventoryCache.setInventory(inventory.addToInventory("lvl1000"));
-                    builder.addField("You got a loot drop!", "Level 1000 badge", true);
-                    break;
+            if (badgesOk) {
+                switch (level) {
+                    case 10:
+                        inventoryCache.setInventory(inventory.addToInventory("lvl10"));
+                        builder.addField("You got a loot drop!", "Level 10 badge", true);
+                        break;
+                    case 25:
+                        inventoryCache.setInventory(inventory.addToInventory("lvl25"));
+                        builder.addField("You got a loot drop!", "Level 25 badge", true);
+                        break;
+                    case 50:
+                        inventoryCache.setInventory(inventory.addToInventory("lvl50"));
+                        builder.addField("You got a loot drop!", "Level 50 badge", true);
+                        break;
+                    case 100:
+                        inventoryCache.setInventory(inventory.addToInventory("lvl100"));
+                        builder.addField("You got a loot drop!", "Level 100 badge", true);
+                        break;
+                    case 250:
+                        inventoryCache.setInventory(inventory.addToInventory("lvl250"));
+                        builder.addField("You got a loot drop!", "Level 250 badge", true);
+                        break;
+                    case 500:
+                        inventoryCache.setInventory(inventory.addToInventory("lvl500"));
+                        builder.addField("You got a loot drop!", "Level 500 badge", true);
+                        break;
+                    case 1000:
+                        inventoryCache.setInventory(inventory.addToInventory("lvl1000"));
+                        builder.addField("You got a loot drop!", "Level 1000 badge", true);
+                        break;
+                }
             }
 
             try {
@@ -128,6 +135,12 @@ public class BuyLevelCommand extends ShopCommand {
             } catch (PermissionException ignored) {
             }
         }
+    }
+
+    //If these are not present we do not give out the items
+    private boolean doLevelBadgesExist() {
+        String[] badges = {"lvl10", "lvl25", "lvl50", "lvl100", "lvl250", "lvl500", "lvl1000"};
+        return storeItems.getItemInventory().keySet().containsAll(Arrays.asList(badges));
     }
 
 

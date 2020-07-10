@@ -86,7 +86,6 @@ public class RandomResponse {
 
         ArrayList<String> messageList = new ArrayList<>(Arrays.asList(
                 "You can't order me like that~.",
-                "I don't listen to users you, silly.",
                 "Your attempt at using 'Very sad kitty eyes' has failed.",
                 "Well... No.",
                 "Nice try.",

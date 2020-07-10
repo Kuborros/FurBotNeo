@@ -42,6 +42,7 @@ import java.util.function.Function;
  * using reactions and make selections.
  *
  * @author John Grosh
+ * @author Kuborros
  */
 public class SelectionTitleDialog extends Menu {
     public static final String UP = "\uD83D\uDD3C";

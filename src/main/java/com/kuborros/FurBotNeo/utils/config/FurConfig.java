@@ -16,12 +16,14 @@ public class FurConfig implements GuildSettingsProvider {
     private final boolean isNSFW;
     private final String audioChannel;
 
+
+    //Fallback configuration
     FurConfig() {
         this.botName = "FurryBot";
         this.audioChannel = "0";
         this.isFurry = true;
-        this.welcomeMsg = true;
-        this.isNSFW = true;
+        this.welcomeMsg = false;
+        this.isNSFW = false;
     }
 
     FurConfig(String botName, boolean welcomeMsg, boolean isFurry, boolean isNSFW, String prefix, String audioChannel) {

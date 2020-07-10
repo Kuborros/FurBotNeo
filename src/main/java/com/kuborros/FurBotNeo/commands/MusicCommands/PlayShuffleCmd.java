@@ -25,15 +25,19 @@ public class PlayShuffleCmd extends MusicCommand {
     @Override
     public void doCommand(CommandEvent event) {
 
-        this.input = (input != null && input.startsWith("http")) ? input : "ytsearch: " + input;
+        if (isDJ) {
+            this.input = (input != null && input.startsWith("http")) ? input : "ytsearch: " + input;
 
-        if (event.getArgs().isEmpty()) {
-            event.reply(sendFailEmbed("Please include a valid search.", "\"Valid\" means supported url, or a search term (that will be searched on youtube)"));
-        } else {
-            loadTrack(input, event.getMember(), event.getMessage());
-            getTrackManager(guild).shuffleQueue();
-            if (getPlayer(guild).isPaused())
-                getPlayer(guild).setPaused(false);
+            if (event.getArgs().isEmpty()) {
+                event.reply(sendFailEmbed("Please include a valid search.", "\"Valid\" means supported url, or a search term (that will be searched on youtube)"));
+            } else {
+                loadTrack(input, event.getMember(), event.getMessage());
+                getTrackManager(guild).shuffleQueue();
+                if (getPlayer(guild).isPaused())
+                    getPlayer(guild).setPaused(false);
             }
+        } else {
+            event.reply(sendFailEmbed("Only DJs can shuffle the playlist while adding a new track!", "With that power comes responsibility!"));
+        }
     }
 }

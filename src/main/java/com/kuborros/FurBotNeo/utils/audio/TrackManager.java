@@ -38,7 +38,7 @@ public class TrackManager extends AudioEventAdapter {
     }
 
     public void queue(AudioTrack track, Member author, TextChannel botchat) {
-        track.setUserData(author.getEffectiveName());
+        track.setUserData(new RequesterInfo(author));
         AudioInfo info = new AudioInfo(track, author, botchat);
         queue.add(info);
 
@@ -73,7 +73,8 @@ public class TrackManager extends AudioEventAdapter {
     @Override
     public void onTrackEnd(AudioPlayer player, AudioTrack track, AudioTrackEndReason endReason) {
         Guild g = Objects.requireNonNull(queue.poll()).getAuthor().getGuild();
-        if (queue.isEmpty()) {
+        if (queue.isEmpty() || !endReason.mayStartNext) {
+            player.stopTrack();
             new Thread(() -> g.getAudioManager().closeAudioConnection()).start();
         } else {
             player.playTrack(queue.element().getTrack());
@@ -83,14 +84,14 @@ public class TrackManager extends AudioEventAdapter {
     @Override
     public void onTrackException(AudioPlayer player, AudioTrack track, FriendlyException exception) {
         assert track != null;
-        LOG.warn("Playback error occurred on track: " + track.getInfo().title, exception);
-        EmbedBuilder eb = new EmbedBuilder()
-                .setColor(Color.RED)
-                .setDescription(RandomResponse.getRandomBaseErrorMessage())
-                .setTitle("\u274C" + " **An playback error has occurred!**")
-                .addField("Exception on playback of track: " + track.getInfo().title, exception.getLocalizedMessage(), false);
-        getTrackInfo(track).getBotchat().sendMessage(eb.build()).queue();
-    }
+            LOG.warn("Playback error occurred on track: " + track.getInfo().title, exception);
+            EmbedBuilder eb = new EmbedBuilder()
+                    .setColor(Color.RED)
+                    .setDescription(RandomResponse.getRandomBaseErrorMessage())
+                    .setTitle("\u274C" + " **An playback error has occurred!**")
+                    .addField("Exception on playback of track: " + track.getInfo().title, exception.getLocalizedMessage(), false);
+            getTrackInfo(track).getBotchat().sendMessage(eb.build()).queue();
+        }
 
     @Override
     public void onTrackStuck(AudioPlayer player, AudioTrack track, long thresholdMs) {

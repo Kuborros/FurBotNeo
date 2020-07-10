@@ -62,6 +62,10 @@ When:
 
 * ``"buy_vip" = true``, VIP role will be purchasable using tokens. it is intended to provide extra features for long time community members. If disabled, everyone gets VIP features.
 
+* ``"audio_all_can_skip" = true``, all DJ related features are available to anyone - every user can skip tracks with no vote, and use other usually restricted music commands.
+
+
+``"audio_skip_percent" = 75`` lets you tune the percentage of ``yes`` votes required to skip a track.
 
 ``blacklist_servers`` array alows you to ban guilds from your instance - bot will not join any of the servers added here.
 
@@ -69,6 +73,22 @@ When:
 
 Per-guild configuration is available from ``guildcfg`` command.
 Running the command with no parameters will list all available config options and their current values.
+
+
+**Current options are:**
+
+
+* ``name``: Sets the bot name used across the server. Also changes how bot refers to itself in the commands.
+
+* ``prefix``: Sets your custom per-guild command prefix. Eg. ``!!``
+
+* ``nsfw``: Enables the NSFW features: Notably commands from lewd category and nsfw image searches.
+
+* ``furry``: Enables more lighthearted responses to some commands and references to default bot avatar (A bat furry girl).
+
+* ``welcome``: Enables welocm message on memebers joining the guild. Somewhat a leftover from when discord did not do it by itself.
+
+* ``music``: Selects channel intended for music commands. Both _mentioning the channel_ and inputting its ID are valid parameters.
 
 
 ## Supported chat commands:
@@ -127,25 +147,27 @@ Bot joins same voice channel as user who ran the command.
 
 Music commands are only accepted from dedicated channel to prevent spamming main text channels, and can be set in guild configuration (defaults to any channel with "bot" in name).
 
-| **Command**   |  **Arguments:**   |             **Description:**              |
-| :------------ |:-----------------:| :----------------------------------------:|
-| play          | search or url     | Searches for track and adds it to queue. |
-| playnext      | search or url     | Same as above, but track is forced to be next in queue. |
-| playshuffle   | search or url     | Same as play, but queue gets shuffled after track is added.|
-| volume        | volume (0-1000)   | Sets playback volume for current player.|
-| seek          | timestamp         | Skips playback to given timestamp if possible.|
-| skip          |   ----            | Skips currently played track. |
-| stop          |   ----            | Skips entire queue and stops playback. |
-| shuffle       |   ----            | Shuffles the playback queue. |
-| queue         |   ----            | Prints current queue for the server. |
-| mreset        |   ----            | (debug) Completely resets the player object. |
+DJ members are people who own DJ badge. This restriction can be disabled in instance configuration.
+
+| **Command**   |  **Arguments:**   | **DJ Only** |             **Description:**              |
+| :------------ |:-----------------:|:-----------:| :----------------------------------------:|
+| play          | search or url     |     ---     | Searches for track and adds it to queue. |
+| playnext      | search or url     |     VIP     | Same as above, but track is forced to be next in queue. |
+| playshuffle   | search or url     |     Yes     | Same as play, but queue gets shuffled after track is added.|
+| volume        | volume (0-1000)   |     Yes     | Sets playback volume for current player.|
+| seek          | timestamp         |     Req     | Skips playback to given timestamp if possible.|
+| skip          |   ----            |     Yes     | Skips currently played track. (DJ and person who requested track) |
+| skip          |   ----            |     ---     | Calls a vote to skip the current track. |
+| stop          |   ----            |     Yes     | Skips entire queue and stops playback. |
+| shuffle       |   ----            |     ---     | Shuffles the playback queue. |
+| queue         |   ----            |     ---     | Prints current queue for the server. |
+| mreset        |   ----            |     Adm     | (debug) Completely resets the player object. |
 
 ### Lewd:
 All commands are classified as NSFW as such only work on servers with nsfw flag + nsfw channel.
 
 On SFW servers NSFW commands are fully hidden and do not produce a response.
 
-Guildcfg key is ``nsfw``
 
 | **Command**   |  **Arguments:**   |             **Description:**              |
 | :------------ |:-----------------:| :----------------------------------------:|
@@ -171,7 +193,6 @@ _If VIP is disabled, everyone is considered VIP_
 | myroles       | ----           | Check all your owned roles |
 | inventory     | ----           | Check all your owned items |
 | role          | ----           | Set your current active role |
-| item          | ----           | Use your owned item (WIP) |
 | level         | ----           | Spend your tokens to level up!  (or just check your level) |
 | shop          | ----           | Base shop interface, lists some of your items, level, and token balance |
 | ----          | item           | Purchase items here |

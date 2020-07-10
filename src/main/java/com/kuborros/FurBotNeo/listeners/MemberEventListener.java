@@ -5,7 +5,7 @@ package com.kuborros.FurBotNeo.listeners;
 import com.kuborros.FurBotNeo.utils.config.FurConfig;
 import net.dv8tion.jda.api.entities.TextChannel;
 import net.dv8tion.jda.api.events.guild.member.GuildMemberJoinEvent;
-import net.dv8tion.jda.api.events.guild.member.GuildMemberLeaveEvent;
+import net.dv8tion.jda.api.events.guild.member.GuildMemberRemoveEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -38,9 +38,9 @@ public class MemberEventListener extends ListenerAdapter{
     }
 
     @Override
-    public void onGuildMemberLeave(GuildMemberLeaveEvent event) {
+    public void onGuildMemberRemove(GuildMemberRemoveEvent event) {
         boolean welcome = Objects.requireNonNull(settingsManager.getSettings(event.getGuild())).isWelcomeMsg();
-        if (event.getMember().getUser().isBot()) return;
+        if (Objects.requireNonNull(event.getMember()).getUser().isBot()) return;
         TextChannel pub = event.getGuild().getDefaultChannel();
         if (welcome) {
             Objects.requireNonNull(pub).sendMessage("Bye, " + event.getMember().getEffectiveName() + "! it was nice (or not) having you with us!").queue();

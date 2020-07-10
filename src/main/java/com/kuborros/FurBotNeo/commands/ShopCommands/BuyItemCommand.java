@@ -140,8 +140,8 @@ public class BuyItemCommand extends ShopCommand {
             EmbedBuilder builder = new EmbedBuilder()
                     .setColor(Color.ORANGE)
                     .setTitle(String.format("Congratulations on your purchase of %s, %s!", currItem.getItemName(), Objects.requireNonNull(event.getUser()).getName()))
-                    .setDescription("Enjoy your new product~")
-                    .setThumbnail(currItem.getUrl());
+                    .setDescription("Enjoy your new thingie~");
+            if (!currItem.getUrl().isBlank()) builder.setThumbnail(currItem.getUrl());
             try {
                 message.editMessage(builder.build()).queue();
                 message.clearReactions().queue();

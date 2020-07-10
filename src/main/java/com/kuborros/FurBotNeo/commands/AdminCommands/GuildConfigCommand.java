@@ -79,7 +79,10 @@ public class GuildConfigCommand extends AdminCommand {
                 success = db.updateGuildWelcomeMsg(value.equals("true"), guild);
                 break;
             case "music":
-                success = db.updateGuildAudio(value, guild);
+                if (event.getMessage().getMentionedChannels().isEmpty()) {
+                    success = db.updateGuildAudio(value, guild);
+                } else
+                    success = db.updateGuildAudio(event.getMessage().getMentionedChannels().get(0).getId(), guild);
                 break;
             default:
                 event.replyWarning("Provided setting name is not valid!");

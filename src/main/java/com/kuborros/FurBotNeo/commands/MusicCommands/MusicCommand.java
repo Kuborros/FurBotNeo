@@ -46,6 +46,8 @@ abstract class MusicCommand extends Command {
     private static final Logger LOG = LoggerFactory.getLogger("MusicCommands");
 
     static final String NOTE = ":musical_note:";
+    static final String OKAY = "\u2705";
+    static final String NO = "\u274C";
 
     static Guild guild;
     private static CommandClient client;
@@ -54,6 +56,7 @@ abstract class MusicCommand extends Command {
     private static AudioEventListener audioEventListener;
 
     protected MemberInventory inventory;
+    protected boolean isDJ = false;
 
     private final int PLAYLIST_LIMIT = 40;
     private static final AudioPlayerManager myManager = new DefaultAudioPlayerManager();
@@ -103,16 +106,15 @@ abstract class MusicCommand extends Command {
         return players.containsKey(guild.getId());
     }
 
-    AudioPlayer getPlayer(Guild guild) {
+    synchronized AudioPlayer getPlayer(Guild guild) {
         AudioPlayer p;
         p = hasPlayer(guild) ? players.get(guild.getId()).getKey() : createPlayer(guild);
         return p;
     }
 
     void setVolume(Guild guild, int vol) {
-        AudioPlayer p;
          if (hasPlayer(guild)) {
-            p = players.get(guild.getId()).getKey();
+             AudioPlayer p = players.get(guild.getId()).getKey();
             p.setVolume(vol);
         }
     }
@@ -271,7 +273,7 @@ abstract class MusicCommand extends Command {
         return (!hasPlayer(guild) || getPlayer(guild).getPlayingTrack() == null);
     }
 
-    boolean forceSkipTrack(Guild guild) {
+    boolean skipTrack(Guild guild) {
         if (isIdle(guild)) {
             return false;
         }
@@ -311,23 +313,33 @@ abstract class MusicCommand extends Command {
 
         if (event.getAuthor().isBot()) return;
 
+        String audioChan = config.getAudioChannel();
+        //If audio is set to 0, it means it's disabled or we have pulled default config. As such we should end parsing the command now.
+        if (audioChan.equals("0")) return;
+
         inventory = inventoryCache.getInventory(event.getMember().getId(), guild.getId());
         if (inventory.isBanned()) {
             event.reply(bannedResponseEmbed());
             return;
         }
-        //Token award per command use.
-        //Should be tweaked later
-        if (cfg.isShopEnabled()) inventoryCache.setInventory(inventory.addTokens(10));
+        //Token award per command use and item check.
+        if (cfg.isShopEnabled()) {
+            inventoryCache.setInventory(inventory.addTokens(10));
+            //DJ role is assigned using special item - even if store is disabled it can be still awarded to members.
+            isDJ = (inventory.getOwnedItems().contains("dj_badge"));
+        }
+
+        //Owner is always considered DJ. When skipping by everyone is enabled they are all DJ.
+        if (cfg.isLegacySkipAudio() || event.getAuthor().getId().equals(cfg.getOwnerId())) {
+            isDJ = true;
+        }
 
         config = (FurConfig) event.getClient().getSettingsManager().getSettings(guild);
-        if (!event.getTextChannel().equals(guild.getTextChannelById(config.getAudioChannel()))) return;
-        if (!event.getAuthor().isBot()) {
-            getPlayer(guild).removeListener(audioEventListener);
-            getPlayer(guild).addListener(audioEventListener);
-            input = event.getArgs();
-            doCommand(event);
-        }
+        if (!event.getTextChannel().equals(guild.getTextChannelById(audioChan))) return;
+        getPlayer(guild).removeListener(audioEventListener);
+        getPlayer(guild).addListener(audioEventListener);
+        input = event.getArgs();
+        doCommand(event);
     }
 
     protected MessageEmbed sendErrorEmbed(String msg, Exception e) {
