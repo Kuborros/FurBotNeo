@@ -326,10 +326,10 @@ abstract class MusicCommand extends Command {
         if (cfg.isShopEnabled()) {
             inventoryCache.setInventory(inventory.addTokens(10));
             //DJ role is assigned using special item - even if store is disabled it can be still awarded to members.
-            isDJ = (inventory.getOwnedItems().contains("dj_badge") || inventory.isVIP());
+            isDJ = (inventory.getOwnedItems().contains("dj_badge"));
         }
 
-        //Owner is always considered DJ, even if he decides to drop his vip status. When skipping by everyone is enabled they are all DJ.
+        //Owner is always considered DJ. When skipping by everyone is enabled they are all DJ.
         if (cfg.isLegacySkipAudio() || event.getAuthor().getId().equals(cfg.getOwnerId())) {
             isDJ = true;
         }
