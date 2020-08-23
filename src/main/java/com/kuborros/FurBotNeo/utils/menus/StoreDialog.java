@@ -1,5 +1,5 @@
 /*
- * Copyright 2016-2018 John Grosh (jagrosh) & Kaidan Gustave (TheMonitorLizard)
+ * Copyright © 2020 Kuborros (kuborros@users.noreply.github.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -293,7 +293,7 @@ public class StoreDialog extends Menu {
      *
      * @author John Grosh
      */
-    @SuppressWarnings({"UnusedReturnValue", "unused"})
+    @SuppressWarnings({"unused"})
     public static class Builder extends Menu.Builder<Builder, StoreDialog> {
         private List<ShopItem> choices = new LinkedList<>();
         private String leftEnd = "";

@@ -1,4 +1,20 @@
 
+/*
+ * Copyright © 2020 Kuborros (kuborros@users.noreply.github.com)
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package com.kuborros.FurBotNeo.net.apis;
 
 
@@ -56,42 +72,41 @@ public class GelApi {
 
     private List<String> getGelPicSet(Request rq) throws IllegalArgumentException, ParserConfigurationException, SAXException, IOException, NoImgException {
         try (Response response = client.newCall(rq).execute()) {
-        String tempUrl;
+            String tempUrl;
 
             if (!response.isSuccessful()) throw new IOException("Received error response code: " + response);
             InputSource source = new InputSource(Objects.requireNonNull(response.body()).byteStream());
-        
-        DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
-	    DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
+
+            DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
             Document doc = dBuilder.parse(source);
 
-	    doc.getDocumentElement().normalize();
+            doc.getDocumentElement().normalize();
 
 
-	NodeList nList = doc.getElementsByTagName("post");
+            NodeList nList = doc.getElementsByTagName("post");
 
 
-	for (int temp = 0; temp < nList.getLength(); temp++) {
+            for (int temp = 0; temp < nList.getLength(); temp++) {
 
-		Node nNode = nList.item(temp);
+                Node nNode = nList.item(temp);
 
-		if (nNode.getNodeType() == Node.ELEMENT_NODE) {
+                if (nNode.getNodeType() == Node.ELEMENT_NODE) {
 
-			Element eElement = (Element) nNode;
-            tempUrl = eElement.getAttribute("file_url");
-			urls.add(tempUrl.startsWith("https:") ? tempUrl : "https:" + tempUrl);
+                    Element eElement = (Element) nNode;
+                    tempUrl = eElement.getAttribute("file_url");
+                    urls.add(tempUrl.startsWith("https:") ? tempUrl : "https:" + tempUrl);
                 }
-        }
-           urls.removeIf(s -> s.contains(".webm"));
+            }
+            urls.removeIf(s -> s.contains(".webm"));
 
-           if (urls.isEmpty()) {
-               throw new NoImgException();
-           }
-        return urls;
-       }
-       catch (IOException | ParserConfigurationException | SAXException  ex) {
-           LOG.error("Error occurred while retrieving images: ", ex);
-          throw ex;
-       }
+            if (urls.isEmpty()) {
+                throw new NoImgException();
+            }
+            return urls;
+        } catch (IOException | ParserConfigurationException | SAXException ex) {
+            LOG.error("Error occurred while retrieving images: ", ex);
+            throw ex;
+        }
     }
 }

@@ -1,3 +1,19 @@
+/*
+ * Copyright © 2020 Kuborros (kuborros@users.noreply.github.com)
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package com.kuborros.FurBotNeo;
 
 import com.jagrosh.jdautilities.command.CommandClientBuilder;
@@ -60,6 +76,7 @@ public class BotMain {
 
         db = new Database();
         db.createTables();
+
 
         cfg = new JConfig();
 
@@ -212,13 +229,11 @@ public class BotMain {
 
                 builder.build();
             }
-        }
-        catch (IllegalArgumentException e) {
+        } catch (IllegalArgumentException e) {
             LOG.error("Error occurred while starting: ", e);
             LOG.error("Please check if your discord bot token is in the configuration file, as this is most common cause of this error.");
             System.exit(101);
-        }
-        catch (LoginException e) {
+        } catch (LoginException e) {
             LOG.error("Stored token was rejected!", e);
             LOG.error("Please double-check your token.");
             System.exit(102);
