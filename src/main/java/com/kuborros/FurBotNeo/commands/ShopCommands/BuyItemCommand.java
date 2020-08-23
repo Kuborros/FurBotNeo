@@ -65,7 +65,7 @@ public class BuyItemCommand extends ShopCommand {
                 .setDefaultEnds("", "")
                 .setSelectedEnds("**", "**")
                 .setSelectionConsumer(this::buyItem)
-                .setText(String.format("**Items for sale avaible for %s:**", event.getMember().getEffectiveName()))
+                .setText(String.format("**Items for sale available for %s:**", event.getMember().getEffectiveName()))
                 .setCanceled(message -> message.clearReactions().queue())
                 .setTimeout(5, TimeUnit.MINUTES);
 

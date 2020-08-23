@@ -12,6 +12,7 @@ import net.dv8tion.jda.api.MessageBuilder;
 import net.dv8tion.jda.api.Permission;
 import net.dv8tion.jda.api.entities.Member;
 import net.dv8tion.jda.api.entities.Message;
+import net.dv8tion.jda.api.entities.PrivateChannel;
 import net.dv8tion.jda.api.events.message.react.MessageReactionAddEvent;
 import net.dv8tion.jda.api.exceptions.PermissionException;
 import org.json.JSONObject;
@@ -37,6 +38,7 @@ public class GrantItemCommand extends ShopCommand {
     Member author, target;
     StoreDialog storeDialog;
     MemberInventory targetInventory;
+    PrivateChannel priv;
 
     public GrantItemCommand(EventWaiter waiter) {
         this.name = "grantitem";
@@ -73,13 +75,15 @@ public class GrantItemCommand extends ShopCommand {
                 .setDefaultEnds("", "")
                 .setSelectedEnds("**", "**")
                 .setSelectionConsumer(this::buyItem)
-                .setText(String.format("**Items  avaible for %s:**", target.getEffectiveName()))
+                .setText(String.format("**Items  available for %s:**", target.getEffectiveName()))
                 .setCanceled(message -> message.clearReactions().queue())
                 .setTimeout(5, TimeUnit.MINUTES);
 
         builder.addChoices(availableItems);
         storeDialog = builder.build();
-        storeDialog.display(event.getAuthor().openPrivateChannel().complete());
+        priv = event.getAuthor().openPrivateChannel().complete();
+        priv.sendMessage("Due to recent discord limitations, i cannot *remove* reactions, so i will need to spam you a bit... sorry uwu").complete();
+        storeDialog.display(priv);
 
     }
 
@@ -105,30 +109,29 @@ public class GrantItemCommand extends ShopCommand {
             if (!noPreview) builder.setThumbnail(currItem.getUrl());
             canBuy = true;
         }
-        message.editMessage(new MessageBuilder().setEmbed(builder.build()).setContent("").build()).queue();
+        message.delete().complete();
+        message = priv.sendMessage(new MessageBuilder().setEmbed(builder.build()).setContent("").build()).complete();
         if (canBuy) awaitResponse(message);
-        else message.clearReactions().complete();
     }
 
     private void awaitResponse(Message message) {
 
-        message.clearReactions().complete();
         message.addReaction(OKAY).complete();
         message.addReaction(NO).complete();
 
         waiter.waitForEvent(MessageReactionAddEvent.class,
-                event -> checkReaction(event, message, author.getId()),
+                event -> checkReaction(event, message),
                 event -> handleMessageReactionAddAction(event, message),
                 5, TimeUnit.MINUTES, () -> message.clearReactions().queue());
     }
 
-    private boolean checkReaction(MessageReactionAddEvent event, Message message, String authorId) {
+    private boolean checkReaction(MessageReactionAddEvent event, Message message) {
         if (event.getMessageIdLong() != message.getIdLong())
             return false;
         switch (event.getReactionEmote().getName()) {
             case OKAY:
             case NO:
-                return (Objects.requireNonNull(event.getMember())).getId().equals(authorId);
+                return !Objects.requireNonNull(event.getUser()).isBot();
             default:
                 return false;
         }
@@ -137,11 +140,11 @@ public class GrantItemCommand extends ShopCommand {
     private void handleMessageReactionAddAction(MessageReactionAddEvent event, Message message) {
 
         if (event.getReaction().getReactionEmote().getName().equals(NO)) {
-            message.clearReactions().queue();
+            message.delete().queue();
             return;
         }
         if (event.getReaction().getReactionEmote().getName().equals(OKAY)) {
-            inventoryCache.setInventory(targetInventory.addToInventory(currItem.getDbName()).spendTokens(currItem.getValue()));
+            inventoryCache.setInventory(targetInventory.addToInventory(currItem.getDbName()));
             EmbedBuilder builder = new EmbedBuilder()
                     .setColor(Color.ORANGE)
                     .setTitle(String.format("%s has been granted to %s!", currItem.getItemName(), Objects.requireNonNull(target.getEffectiveName())))
@@ -149,7 +152,6 @@ public class GrantItemCommand extends ShopCommand {
             if (!currItem.getUrl().isBlank()) builder.setThumbnail(currItem.getUrl());
             try {
                 message.editMessage(builder.build()).queue();
-                message.clearReactions().queue();
             } catch (PermissionException ignored) {
             }
         }

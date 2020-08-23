@@ -63,7 +63,7 @@ public class BuyRoleCommand extends ShopCommand {
                 .setDefaultEnds("", "")
                 .setSelectedEnds("**", "**")
                 .setSelectionConsumer(this::buyItem)
-                .setText(String.format("**Roles for sale avaible for %s:**", event.getMember().getEffectiveName()))
+                .setText(String.format("**Roles for sale available for %s:**", event.getMember().getEffectiveName()))
                 .setCanceled(message -> message.clearReactions().queue())
                 .setTimeout(5, TimeUnit.MINUTES);
 
