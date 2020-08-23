@@ -158,6 +158,8 @@ public class BotMain {
                 client.addCommands(
                         new BuyCommand(waiter),
                         new CoinsCommand(),
+                        new GrantItemCommand(waiter),
+                        new GrantRoleCommand(waiter),
                         new SetRoleCommand(waiter),
                         new FullInventoryCommand(waiter),
                         new FullRolesCommand(waiter),
