@@ -1,4 +1,20 @@
 
+/*
+ * Copyright © 2020 Kuborros (kuborros@users.noreply.github.com)
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package com.kuborros.FurBotNeo.commands.AdminCommands;
 
 import com.jagrosh.jdautilities.command.CommandEvent;
@@ -23,7 +39,7 @@ import java.util.Objects;
 )
 @Author("Kuborros")
 public class InfoCommand extends AdminCommand {
-    
+
     //Emotes start
     private static final String NAMETAG = "\ud83d\udcdb";
     private static final String IDBADGE = "\ud83c\udd94";
@@ -34,10 +50,9 @@ public class InfoCommand extends AdminCommand {
     private static final String ROBOT = "\uD83E\uDD16";
     private static final String FURRY = "\uD83D\uDC3E";
     //Emotes end
-    
-    
-     public InfoCommand()
-    {
+
+
+    public InfoCommand() {
         this.name = "info";
         this.help = "Shows info about specific user";
         this.guildOnly = true;
@@ -73,29 +88,29 @@ public class InfoCommand extends AdminCommand {
                 if (rolebuild.length() > 3) {
                     rolebuild.delete(rolebuild.length() - 3, rolebuild.length());
                 } else rolebuild.append("None");
-                          roles = rolebuild.toString();
-                        if (member.isOwner()) {
-                            ownerguy = CROWNED + " OWNER!";
-                        }
-                        if (member.getUser().isBot()) {
-                            bot = me ? FURRY : ROBOT;
-                            bot += "    A BOT!";
-                        }
-                        name = me ? Objects.requireNonNull(config).getBotName() : member.getEffectiveName();
+                roles = rolebuild.toString();
+                if (member.isOwner()) {
+                    ownerguy = CROWNED + " OWNER!";
+                }
+                if (member.getUser().isBot()) {
+                    bot = me ? FURRY : ROBOT;
+                    bot += "    A BOT!";
+                }
+                name = me ? Objects.requireNonNull(config).getBotName() : member.getEffectiveName();
 
-                        sendEmbed(event, "Data collected by NSA about: " + name, "What we know: \n"
+                sendEmbed(event, "Data collected by NSA about: " + name, "What we know: \n"
                                 + NAMETAG + "Full Discord name: " + member.getEffectiveName() + "#" + member.getUser().getDiscriminator() + "\n"
-                                        + IDBADGE + "User ID: " + member.getId() + "\n"
-                                        + TIMER1 + "Server join date: " + member.getTimeJoined().format(DateTimeFormatter.ofPattern("yyyy-MM-dd  HH:mm:ss")) + "\n"
-                                        + TIMER2 + "Discord join date: " + member.getUser().getTimeCreated().format(DateTimeFormatter.ofPattern("yyyy-MM-dd  HH:mm:ss")) + "\n"
-                                + HAT + "Current roles: "+ roles +"\n\n"
-                                , member.getUser().getAvatarUrl()
-                                , ownerguy + bot
-                        );
-                        rolebuild.delete(0, rolebuild.length());
-                    });
-         }
-        
+                                + IDBADGE + "User ID: " + member.getId() + "\n"
+                                + TIMER1 + "Server join date: " + member.getTimeJoined().format(DateTimeFormatter.ofPattern("yyyy-MM-dd  HH:mm:ss")) + "\n"
+                                + TIMER2 + "Discord join date: " + member.getUser().getTimeCreated().format(DateTimeFormatter.ofPattern("yyyy-MM-dd  HH:mm:ss")) + "\n"
+                                + HAT + "Current roles: " + roles + "\n\n"
+                        , member.getUser().getAvatarUrl()
+                        , ownerguy + bot
+                );
+                rolebuild.delete(0, rolebuild.length());
+            });
+        }
+
     }
 
     private void sendEmbed(CommandEvent event, String title, String description, String imgUrl, String footer) {

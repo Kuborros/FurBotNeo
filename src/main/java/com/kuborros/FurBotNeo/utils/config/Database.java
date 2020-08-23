@@ -1,3 +1,19 @@
+/*
+ * Copyright © 2020 Kuborros (kuborros@users.noreply.github.com)
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package com.kuborros.FurBotNeo.utils.config;
 
 import com.kuborros.FurBotNeo.utils.store.MemberInventory;
@@ -53,68 +69,68 @@ public class Database {
         } catch (SQLException ignored) {
         }
     }
-    
+
     public void createTables() {
 
-      try {
-          stat = conn.createStatement();
+        try {
+            stat = conn.createStatement();
 
-          String guild = "CREATE TABLE IF NOT EXISTS Guilds " +
+            String guild = "CREATE TABLE IF NOT EXISTS Guilds " +
 
-                  "(guild_id TEXT UNIQUE PRIMARY KEY NOT NULL, " +
+                    "(guild_id TEXT UNIQUE PRIMARY KEY NOT NULL, " +
 
-                  " music_id TEXT NOT NULL, " +
+                    " music_id TEXT NOT NULL, " +
 
-                  " name TEXT NOT NULL, " +
+                    " name TEXT NOT NULL, " +
 
-                  " members INTEGER, " +
+                    " members INTEGER, " +
 
-                  " bot_name TEXT NOT NULL, " +
+                    " bot_name TEXT NOT NULL, " +
 
-                  " bot_prefix TEXT NOT NULL, " +
+                    " bot_prefix TEXT NOT NULL, " +
 
-                  " isNSFW BOOLEAN DEFAULT FALSE, " +
+                    " isNSFW BOOLEAN DEFAULT FALSE, " +
 
-                  " isFurry BOOLEAN DEFAULT TRUE, " +
+                    " isFurry BOOLEAN DEFAULT TRUE, " +
 
-                  " welcomeMsg BOOLEAN DEFAULT FALSE)";
+                    " welcomeMsg BOOLEAN DEFAULT FALSE)";
 
-          stat.executeUpdate(guild);
-          
-          String shop = "CREATE TABLE IF NOT EXISTS Shop " +
+            stat.executeUpdate(guild);
 
-                  "(id INTEGER PRIMARY KEY AUTOINCREMENT," +
+            String shop = "CREATE TABLE IF NOT EXISTS Shop " +
 
-                  " member_id TEXT NOT NULL," +
+                    "(id INTEGER PRIMARY KEY AUTOINCREMENT," +
 
-                  " guild_id TEXT NOT NULL, " +
+                    " member_id TEXT NOT NULL," +
 
-                  " balance INTEGER DEFAULT 0, " +
+                    " guild_id TEXT NOT NULL, " +
 
-                  " level INTEGER DEFAULT 0, " +
+                    " balance INTEGER DEFAULT 0, " +
 
-                  " items_owned TEXT DEFAULT 'not_a_null'," +
+                    " level INTEGER DEFAULT 0, " +
 
-                  " role_owned TEXT DEFAULT 'not_a_null'," +
+                    " items_owned TEXT DEFAULT 'not_a_null'," +
 
-                  " currItem TEXT DEFAULT 'user_badge'," +
+                    " role_owned TEXT DEFAULT 'not_a_null'," +
 
-                  " currRole TEXT DEFAULT 'default'," +
+                    " currItem TEXT DEFAULT 'user_badge'," +
 
-                  " isVIP BOOLEAN DEFAULT FALSE," +
+                    " currRole TEXT DEFAULT 'default'," +
 
-                  " isBanned BOOLEAN DEFAULT FALSE) ";
+                    " isVIP BOOLEAN DEFAULT FALSE," +
 
-          stat.executeUpdate(shop);
+                    " isBanned BOOLEAN DEFAULT FALSE) ";
 
-          String count = "CREATE TABLE IF NOT EXISTS CommandStats " +
+            stat.executeUpdate(shop);
 
-                  "(user_id TEXT UNIQUE PRIMARY KEY NOT NULL) ";
+            String count = "CREATE TABLE IF NOT EXISTS CommandStats " +
 
-          stat.executeUpdate(count);
+                    "(user_id TEXT UNIQUE PRIMARY KEY NOT NULL) ";
 
-      } catch (SQLException e){
-          LOG.error("Failure while creating database tables: ", e);
+            stat.executeUpdate(count);
+
+        } catch (SQLException e) {
+            LOG.error("Failure while creating database tables: ", e);
         }
     }
 
@@ -246,9 +262,9 @@ public class Database {
             return false;
         }
     }
-     
+
     public void updateGuildMembers(GuildMemberJoinEvent event) {
-        updateGuildMembers(event.getGuild());        
+        updateGuildMembers(event.getGuild());
     }
 
     public void updateGuildMembers(GuildMemberRemoveEvent event) {
@@ -256,22 +272,22 @@ public class Database {
     }
 
     private void updateGuildMembers(Guild guild) {
-    int members = guild.getMembers().size();
-    try {    
+        int members = guild.getMembers().size();
+        try {
             stat = conn.createStatement();
             stat.executeUpdate("UPDATE Guilds SET members=" + members + " WHERE guild_id=" + guild.getId());
-        } catch (SQLException e){
-        LOG.error("Failure while updating member counts: ", e);
+        } catch (SQLException e) {
+            LOG.error("Failure while updating member counts: ", e);
         }
     }
 
     boolean guildNeedsUpdate(Guild guild) {
         return needsUpdate.get(guild.getId());
     }
-    
+
     public void setCommandStats(JDA jda) {
         List<User> users = jda.getUsers();
-        try {    
+        try {
             stat = conn.createStatement();
             for (User user : users) {
                 stat.addBatch("INSERT OR IGNORE INTO CommandStats (user_id) VALUES (" + user.getId() + ")");
@@ -281,23 +297,23 @@ public class Database {
             LOG.debug("Possibly harmless exception:", e);
         }
     }
-    
+
     public void registerCommand(String command) {
-        try {    
+        try {
             stat = conn.createStatement();
             stat.executeUpdate("ALTER TABLE CommandStats ADD COLUMN " + command + " INTEGER DEFAULT 0");
         } catch (SQLException e) {
             LOG.debug("Possibly harmless exception:", e);
         }
     }
-    
+
     public void updateCommandStats(String memberID, String command) {
-       try {    
+        try {
             stat = conn.createStatement();
             stat.executeUpdate("UPDATE CommandStats SET " + command + "=" + command + " + 1 WHERE user_id=" + memberID);
-       } catch (SQLException e) {
-           LOG.debug("Possibly harmless exception:", e);
-       }
+        } catch (SQLException e) {
+            LOG.debug("Possibly harmless exception:", e);
+        }
     }
 
     public Map<String, String> getCommandStats(String memberID) throws SQLException{

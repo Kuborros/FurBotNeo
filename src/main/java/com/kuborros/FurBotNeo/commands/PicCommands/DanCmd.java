@@ -1,4 +1,20 @@
 
+/*
+ * Copyright © 2020 Kuborros (kuborros@users.noreply.github.com)
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package com.kuborros.FurBotNeo.commands.PicCommands;
 
 import com.jagrosh.jdautilities.command.CommandEvent;
@@ -72,15 +88,15 @@ public class DanCmd extends PicCommand {
         api = new DanApi("https://danbooru.donmai.us/posts.json?random=true&limit=100");
 
 
-            try {
-                result = event.getArgs().isEmpty() ? api.getImageSetRandom() : api.getImageSetTags(event.getArgs());
-                builder.setUrls(result.toArray(new String[0]));
-            } catch (NoImgException e) {
-                event.replyWarning("No results found!");
-                return;
-            } catch (IOException e) {
-                event.reply(errorResponseEmbed(e));
-            }
+        try {
+            result = event.getArgs().isEmpty() ? api.getImageSetRandom() : api.getImageSetTags(event.getArgs());
+            builder.setUrls(result.toArray(new String[0]));
+        } catch (NoImgException e) {
+            event.replyWarning("No results found!");
+            return;
+        } catch (IOException e) {
+            event.reply(errorResponseEmbed(e));
+        }
         builder.build().display(event.getTextChannel());
     }
 }
