@@ -53,7 +53,7 @@ public class JConfig {
             }
             if (ownerId.equals("0")) {
                 //Non-fatal, we can continue but at degraded functionality
-                LOG.warn("Owner id in configuration set to 0! That means noone can use owner-specific features! Functionality will be degraded when option is not set.");
+                LOG.warn("Owner id in configuration set to 0! That means nobody can use owner-specific features! Functionality will be degraded when option is not set.");
             }
 
             //Remaining options are optional, and do not need to exist in config file to work - they will use default values if not present.
