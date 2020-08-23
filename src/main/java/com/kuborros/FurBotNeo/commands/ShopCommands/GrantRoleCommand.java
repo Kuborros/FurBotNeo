@@ -61,6 +61,12 @@ public class GrantRoleCommand extends ShopCommand {
             return;
         } else target = event.getMessage().getMentionedMembers().get(0);
 
+        if (target.getUser().isBot()) {
+            event.replyWarning("Bots have no colored roles, silly!");
+            return;
+        }
+
+
         author = event.getMember();
         targetInventory = inventoryCache.getInventory(target.getId(), guild.getId());
 
@@ -115,12 +121,12 @@ public class GrantRoleCommand extends ShopCommand {
         message.addReaction(NO).complete();
 
         waiter.waitForEvent(MessageReactionAddEvent.class,
-                event -> checkReaction(event, message, author.getId()),
+                event -> checkReaction(event, message),
                 event -> handleMessageReactionAddAction(event, message),
                 5, TimeUnit.MINUTES, () -> message.clearReactions().queue());
     }
 
-    private boolean checkReaction(MessageReactionAddEvent event, Message message, String authorId) {
+    private boolean checkReaction(MessageReactionAddEvent event, Message message) {
         if (event.getMessageIdLong() != message.getIdLong())
             return false;
         switch (event.getReactionEmote().getName()) {

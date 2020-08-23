@@ -61,6 +61,11 @@ public class GrantItemCommand extends ShopCommand {
             return;
         } else target = event.getMessage().getMentionedMembers().get(0);
 
+        if (target.getUser().isBot()) {
+            event.replyWarning("Bots have no inventory, silly!");
+            return;
+        }
+
         author = event.getMember();
         targetInventory = inventoryCache.getInventory(target.getId(), guild.getId());
 
