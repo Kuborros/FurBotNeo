@@ -200,4 +200,6 @@ _If VIP is disabled, everyone is considered VIP_
 | ----          | vip            | Purchase vip status here (if enabled) |
 | tokens        | ----           | Check your token balance |
 | ----          | give           | Give your tokens away to mentioned user |
+| grantitem     | ----           | \[Admin only\] Grant an item to mentioned user for free! |
+| grantrole     | ----           | \[Admin only\] Grant a role to mentioned user for free! |
 
