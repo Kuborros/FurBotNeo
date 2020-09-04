@@ -326,9 +326,10 @@ abstract class MusicCommand extends Command {
     protected void execute(CommandEvent event) {
         guild = event.getGuild();
         client = event.getClient();
-
+        config = (FurConfig) event.getClient().getSettingsManager().getSettings(guild);
+        
         if (event.getAuthor().isBot()) return;
-
+        
         String audioChan = config.getAudioChannel();
         //If audio is set to 0, it means it's disabled or we have pulled default config. As such we should end parsing the command now.
         if (audioChan.equals("0")) return;
@@ -350,7 +351,6 @@ abstract class MusicCommand extends Command {
             isDJ = true;
         }
 
-        config = (FurConfig) event.getClient().getSettingsManager().getSettings(guild);
         if (!event.getTextChannel().equals(guild.getTextChannelById(audioChan))) return;
         getPlayer(guild).removeListener(audioEventListener);
         getPlayer(guild).addListener(audioEventListener);
