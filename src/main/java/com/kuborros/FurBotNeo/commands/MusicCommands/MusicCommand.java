@@ -74,7 +74,7 @@ abstract class MusicCommand extends Command {
     protected MemberInventory inventory;
     protected boolean isDJ = false;
 
-    private final int PLAYLIST_LIMIT = 40;
+    private static final int PLAYLIST_LIMIT = 40;
     private static final AudioPlayerManager myManager = new DefaultAudioPlayerManager();
     private static final Map<String, Map.Entry<AudioPlayer, TrackManager>> players = new HashMap<>();
 

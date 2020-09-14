@@ -37,7 +37,7 @@ import java.util.Scanner;
 
 class InvidiousAudioGetReference {
 
-    private final Logger LOG = LoggerFactory.getLogger("Invidious URL Json");
+    private static final Logger LOG = LoggerFactory.getLogger("Invidious URL Json");
     private final String apiUrl;
     private final OkHttpClient client = new OkHttpClient();
 
