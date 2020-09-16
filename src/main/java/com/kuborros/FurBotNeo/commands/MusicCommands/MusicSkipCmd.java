@@ -31,6 +31,7 @@ import net.dv8tion.jda.api.events.message.react.MessageReactionAddEvent;
 import net.dv8tion.jda.api.exceptions.PermissionException;
 
 import java.awt.*;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
 import java.util.concurrent.TimeUnit;
@@ -45,6 +46,7 @@ import static com.kuborros.FurBotNeo.BotMain.cfg;
 public class MusicSkipCmd extends MusicCommand {
 
     private final EventWaiter waiter;
+    static LinkedList<String> activeVotes;
     List<Member> listening;
     int listeners, yesVotes = 0;
 
@@ -71,6 +73,8 @@ public class MusicSkipCmd extends MusicCommand {
             if (skipTrack(guild)) {
                 event.reply(sendGenericEmbed("Skipped track!", "", ":fast_forward:"));
             }
+        } else if (activeVotes.contains(guild.getId())) {
+            event.reply(sendGenericEmbed("Vote is already in progress!", ""));
         } else {
             EmbedBuilder builder = new EmbedBuilder()
                     .setTitle(String.format("Voting to skip track: %s", getPlayer(guild).getPlayingTrack().getInfo().title))
@@ -81,6 +85,8 @@ public class MusicSkipCmd extends MusicCommand {
     }
 
     private void awaitResponse(Message message) {
+
+        activeVotes.add(guild.getId());
 
         message.clearReactions().complete();
         message.addReaction(OKAY).complete();
@@ -96,6 +102,7 @@ public class MusicSkipCmd extends MusicCommand {
             skipTrack(guild);
             message.getTextChannel().sendMessage(sendGenericEmbed("Skipped track!", "(Nobody was listening to it anyways...)", ":fast_forward:")).queue();
             message.clearReactions().queue();
+            activeVotes.remove(guild.getId());
             return;
         }
 
@@ -132,7 +139,7 @@ public class MusicSkipCmd extends MusicCommand {
                         .setTitle(":fast_forward: Skipped track!")
                         .setColor(Color.CYAN)
                         .setDescription("");
-
+                activeVotes.remove(guild.getId());
                 if (skipTrack(guild)) {
                     try {
                         message.editMessage(builder.build()).queue();
