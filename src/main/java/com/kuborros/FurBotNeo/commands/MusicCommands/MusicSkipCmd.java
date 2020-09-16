@@ -31,7 +31,7 @@ import net.dv8tion.jda.api.events.message.react.MessageReactionAddEvent;
 import net.dv8tion.jda.api.exceptions.PermissionException;
 
 import java.awt.*;
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.concurrent.TimeUnit;
@@ -46,7 +46,7 @@ import static com.kuborros.FurBotNeo.BotMain.cfg;
 public class MusicSkipCmd extends MusicCommand {
 
     private final EventWaiter waiter;
-    static LinkedList<String> activeVotes;
+    static ArrayList<String> activeVotes;
     List<Member> listening;
     int listeners, yesVotes = 0;
 
@@ -57,6 +57,7 @@ public class MusicSkipCmd extends MusicCommand {
         this.botPermissions = new Permission[]{Permission.MESSAGE_EMBED_LINKS, Permission.VOICE_CONNECT, Permission.VOICE_SPEAK};
         this.category = new Category("Music");
         this.waiter = waiter;
+        activeVotes = new ArrayList<>(20); //If you end up running much more servers than 20, consider bumping this
     }
 
     @Override
