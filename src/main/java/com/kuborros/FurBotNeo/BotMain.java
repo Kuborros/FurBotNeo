@@ -46,6 +46,7 @@ import net.dv8tion.jda.api.requests.GatewayIntent;
 import net.dv8tion.jda.api.sharding.DefaultShardManagerBuilder;
 import net.dv8tion.jda.api.utils.ChunkingFilter;
 import net.dv8tion.jda.api.utils.SessionController;
+import net.dv8tion.jda.api.utils.SessionControllerAdapter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -82,6 +83,7 @@ public class BotMain {
 
         randomResponse = new RandomResponse(settingsManager);
         inventoryCache = new MemberInventoryCacheImpl();
+        controller = new SessionControllerAdapter();
 
         CommandClientBuilder client = new CommandClientBuilder();
         client.setOwnerId(cfg.getOwnerId());

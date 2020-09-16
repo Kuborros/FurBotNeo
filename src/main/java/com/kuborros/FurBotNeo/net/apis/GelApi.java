@@ -44,7 +44,7 @@ public class GelApi {
 
     private final List<String> urls = new ArrayList<>(100);
     private final String url;
-    private final Logger LOG = LoggerFactory.getLogger("ImageBoardApi");
+    private static final Logger LOG = LoggerFactory.getLogger("ImageBoardApi");
     private final OkHttpClient client = new OkHttpClient();
 
     public GelApi(String baseUrl) {

@@ -30,7 +30,7 @@ import java.util.Objects;
 import java.util.Scanner;
 
 class InvidiousAudioSearch {
-    private final Logger LOG = LoggerFactory.getLogger("Invidious URL Json");
+    private static final Logger LOG = LoggerFactory.getLogger("Invidious URL Json");
     private final String apiUrl; //Example URL: https://www.invidio.us/api/v1/search/?q=gaben&fields=videoId,title&pretty=1
     private final OkHttpClient client = new OkHttpClient();
 

@@ -37,7 +37,7 @@ import java.util.Scanner;
 public class DanApi {
 
     private final String url;
-    private final Logger LOG = LoggerFactory.getLogger("ImageBoardApi");
+    private static final Logger LOG = LoggerFactory.getLogger("ImageBoardApi");
     private final List<String> results = new ArrayList<>(100);
     private final OkHttpClient client = new OkHttpClient();
 
