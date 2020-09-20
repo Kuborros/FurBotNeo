@@ -39,6 +39,8 @@ Project can also be ran directly without repackaging with
 mvn exec:java
 ```
 
+**Java 15 note: Nashorn JS engine used for eval command is no longer included. When compiled with JDK 15 the command will not function.**
+
 ## Libraries used:
 
 * [JDA](https://github.com/DV8FromTheWorld/JDA)
