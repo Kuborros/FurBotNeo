@@ -245,7 +245,8 @@ public class StoreDialog extends Menu {
                 case CANCEL:
                     cancel.accept(message);
                     return;
-
+                default:
+                    break;
             }
             try {
                 event.getReaction().removeReaction(Objects.requireNonNull(event.getUser())).queue();
@@ -293,7 +294,6 @@ public class StoreDialog extends Menu {
      *
      * @author John Grosh
      */
-    @SuppressWarnings({"unused"})
     public static class Builder extends Menu.Builder<Builder, StoreDialog> {
         private List<ShopItem> choices = new LinkedList<>();
         private String leftEnd = "";
@@ -303,7 +303,6 @@ public class StoreDialog extends Menu {
         private boolean numberItems = false;
         private String defaultLeft = "";
         private String defaultRight = "";
-        private boolean loop = true;
         private BiFunction<Integer, Integer, Color> color = (page, pages) -> null;
         private BiFunction<Integer, Integer, String> text = (page, pages) -> null;
         private BiConsumer<Message, Integer> selection;
@@ -329,7 +328,7 @@ public class StoreDialog extends Menu {
             Checks.check(selection != null, "Must provide a selection consumer");
 
             return new StoreDialog(waiter, users, roles, timeout, unit, choices, leftEnd, rightEnd, itemsPerPage, showPageNumbers, numberItems,
-                    defaultLeft, defaultRight, color, loop, selection, cancel, text);
+                    defaultLeft, defaultRight, color, true, selection, cancel, text);
         }
 
         /**
@@ -439,18 +438,6 @@ public class StoreDialog extends Menu {
         }
 
         /**
-         * Sets if moving up when at the top selection jumps to the bottom, and visa-versa.
-         *
-         * @param loop {@code true} if pressing up while at the top selection should loop
-         *             to the bottom, {@code false} if it should not
-         * @return This builder
-         */
-        public Builder useLooping(boolean loop) {
-            this.loop = loop;
-            return this;
-        }
-
-        /**
          * Sets a {@link BiConsumer BiConsumer} action to perform once a selection is made.
          * <br>The {@link Message Message} provided is the one used to display
          * the menu and the {@link Integer Integer} is that of the selection made by the user,
@@ -473,16 +460,6 @@ public class StoreDialog extends Menu {
          */
         public Builder setCanceled(Consumer<Message> cancel) {
             this.cancel = cancel;
-            return this;
-        }
-
-        /**
-         * Clears the choices to be shown.
-         *
-         * @return This builder
-         */
-        public Builder clearChoices() {
-            this.choices.clear();
             return this;
         }
 

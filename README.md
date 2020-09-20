@@ -9,17 +9,17 @@ A Discord bot made using Java, filled with references and "features".
 
 Mostly learning ground for writing in java it holds basic functionality, as well as music playback, shop, and imageboard searches.
 
-It uses database to track statistics, shop inventories and per guild configs.
+It uses a database to track statistics, shop inventories and per guild configs.
 
 There is no proper documentation of the code, shamefully commented version of code got lost in transition between pcs.
 
 If this code helps you learn something that's great :3
-And if you think its really bad.. well we all have to start somewhere, and skilled advice will be appreciated!
+And if you think its actually bad... well we all have to start somewhere, and skilled advice will be appreciated!
 
 If using code from this repository, please mention me in the comments.
 
-By default operates in SFW mode restricting access to more risky commands.
-To change it use command ``!guildcfg nsfw true`` (replace "!" with used prefix).
+By default, it operates in SFW mode restricting access to more risky commands.
+To change it, use the command ``!guildcfg nsfw true`` (replace the "!" with used prefix).
 
 ## Compilation instructions: 
 
@@ -33,7 +33,7 @@ mvn package
 ```
 Output .jars will be placed in ``target`` directory.
 
-Project is set so it can be ran directly without repackaging with 
+Project can also be ran directly without repackaging with 
 
 ```bash
 mvn exec:java
@@ -54,20 +54,20 @@ All **global** configuration options reside in ``config.json``. The file is auto
 Filling in *owner id* (obtained from discord client in developer mode) is also recommended. Remaining options are safe to remain in default settings unless needed.
 
 When:
-* ``"invidio" = true``, invidio.us will be used to proxy youtube links and searches. Best used when google hands out another banwave. Do note however, that this method is noticably slower than querying youtube directly.
+* ``"invidio" = true`` - invidio.us will be used to proxy youtube links and searches. Best used when google hands out another banwave. Do note however, that this method is noticably slower than querying youtube directly.
 
-* ``"shard" = true``, sharding will be used to handle bigger guild numbers. This feature is not completely tested.
+* ``"shard" = true`` - sharding will be used to handle bigger guild numbers. This feature has not been completely tested.
 
-* ``"shop" = true``, shop features will be enabled, as will token earnings for chatting.
+* ``"shop" = true`` - shop features will be enabled, as will token earnings for chatting.
 
-* ``"buy_vip" = true``, VIP role will be purchasable using tokens. it is intended to provide extra features for long time community members. If disabled, everyone gets VIP features.
+* ``"buy_vip" = true`` - VIP role will be purchasable using tokens. it is intended to provide extra features for long time community members. If disabled, everyone gets VIP features.
 
-* ``"audio_all_can_skip" = true``, all DJ related features are available to anyone - every user can skip tracks with no vote, and use other usually restricted music commands.
+* ``"audio_all_can_skip" = true`` - all DJ related features are available to anyone - every user can skip tracks with no vote, and use other usually restricted music commands.
 
 
-``"audio_skip_percent" = 75`` lets you tune the percentage of ``yes`` votes required to skip a track.
+``"audio_skip_percent" = 75`` - lets you tune the percentage of ``yes`` votes required to skip a track.
 
-``blacklist_servers`` array alows you to ban guilds from your instance - bot will not join any of the servers added here.
+``blacklist_servers`` - array alows you to ban guilds from your instance - bot will not join any of the servers added here.
 
 ### Local:
 
@@ -78,17 +78,17 @@ Running the command with no parameters will list all available config options an
 **Current options are:**
 
 
-* ``name``: Sets the bot name used across the server. Also changes how bot refers to itself in the commands.
+* ``name``: Sets the bot name used across the server. It also changes how bot refers to itself in the commands.
 
 * ``prefix``: Sets your custom per-guild command prefix. Eg. ``!!``
 
-* ``nsfw``: Enables the NSFW features: Notably commands from lewd category and nsfw image searches.
+* ``nsfw``: Enables the NSFW features: Notably commands from the lewd category and nsfw image searches.
 
 * ``furry``: Enables more lighthearted responses to some commands and references to default bot avatar (A bat furry girl).
 
 * ``welcome``: Enables welocm message on memebers joining the guild. Somewhat a leftover from when discord did not do it by itself.
 
-* ``music``: Selects channel intended for music commands. Both _mentioning the channel_ and inputting its ID are valid parameters.
+* ``music``: Selects the channel intended for music commands. Both _mentioning the channel_ and inputting its ID are valid parameters.
 
 
 ## Supported chat commands:
@@ -109,7 +109,7 @@ Mostly simple chat commands.
 ### Images:
 NSFW commands only work on servers with nsfw setting enabled, and on channels marked as nsfw.
 
-Results are displayed as single embed with controlls.
+Results are being displayed as single embed with controlls.
 
 On SFW servers NSFW commands are fully hidden and do not produce a response.
 
