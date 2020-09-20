@@ -60,7 +60,7 @@ public class MusicTimeCommand extends MusicCommand {
             } else {
                 val = val.trim();
             }
-            int seconds;
+            long seconds;
             try {
                 seconds = (min ? 60 : 1) * Integer.parseInt(val);
                 long milis = (seconds * 1000);
