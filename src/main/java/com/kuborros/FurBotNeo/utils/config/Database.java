@@ -189,8 +189,11 @@ public class Database {
 
     public boolean updateGuildBotName(String name, Guild guild) {
         try {
-            stat = conn.createStatement();
-            stat.executeUpdate("UPDATE Guilds SET bot_name = '" + name + "' WHERE guild_id = " + guild.getId());
+            String sql = "UPDATE Guilds SET bot_name = ? WHERE guild_id = ?";
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, name);
+            pstmt.setString(2, guild.getName());
+            pstmt.executeUpdate();
             needsUpdate.put(guild.getId(), true);
             guild.getSelfMember().modifyNickname(name).complete();
             return true;
@@ -202,8 +205,11 @@ public class Database {
 
     public boolean updateGuildPrefix(String prefix, Guild guild) {
         try {
-            stat = conn.createStatement();
-            stat.executeUpdate("UPDATE Guilds SET bot_prefix = '" + prefix + "' WHERE guild_id = " + guild.getId());
+            String sql = "UPDATE Guilds SET bot_prefix = ? WHERE guild_id = ?";
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, prefix);
+            pstmt.setString(2, guild.getName());
+            pstmt.executeUpdate();
             needsUpdate.put(guild.getId(), true);
             return true;
         } catch (SQLException e) {
@@ -214,8 +220,11 @@ public class Database {
 
     public boolean updateGuildAudio(String audio, Guild guild) {
         try {
-            stat = conn.createStatement();
-            stat.executeUpdate("UPDATE Guilds SET music_id = '" + audio + "' WHERE guild_id = " + guild.getId());
+            String sql = "UPDATE Guilds SET music_id = ? WHERE guild_id = ?";
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, audio);
+            pstmt.setString(2, guild.getName());
+            pstmt.executeUpdate();
             needsUpdate.put(guild.getId(), true);
             return true;
         } catch (SQLException e) {
@@ -227,8 +236,11 @@ public class Database {
     public boolean updateGuildIsNSFW(boolean gai, Guild guild) {
         try {
             String nsfw = gai ? "1" : "0";
-            stat = conn.createStatement();
-            stat.executeUpdate("UPDATE Guilds SET isNSFW = '" + nsfw + "' WHERE guild_id = " + guild.getId());
+            String sql = "UPDATE Guilds SET isNSFW = ? WHERE guild_id = ?";
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, nsfw);
+            pstmt.setString(2, guild.getName());
+            pstmt.executeUpdate();
             needsUpdate.put(guild.getId(), true);
             return true;
         } catch (SQLException e) {
@@ -240,8 +252,11 @@ public class Database {
     public boolean updateGuildWelcomeMsg(boolean hai, Guild guild) {
         try {
             String welcome = hai ? "1" : "0";
-            stat = conn.createStatement();
-            stat.executeUpdate("UPDATE Guilds SET welcomeMsg = '" + welcome + "' WHERE guild_id = " + guild.getId());
+            String sql = "UPDATE Guilds SET welcomeMsg = ? WHERE guild_id = ?";
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, welcome);
+            pstmt.setString(2, guild.getName());
+            pstmt.executeUpdate();
             needsUpdate.put(guild.getId(), true);
             return true;
         } catch (SQLException e) {
@@ -253,8 +268,11 @@ public class Database {
     public boolean updateGuildIsFurry(boolean furfags, Guild guild) {
         try {
             String furry = furfags ? "1" : "0";
-            stat = conn.createStatement();
-            stat.executeUpdate("UPDATE Guilds SET isNSFW = '" + furry + "' WHERE guild_id = " + guild.getId());
+            String sql = "UPDATE Guilds SET isNSFW = ? WHERE guild_id = ?";
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, furry);
+            pstmt.setString(2, guild.getName());
+            pstmt.executeUpdate();
             needsUpdate.put(guild.getId(), true);
             return true;
         } catch (SQLException e) {
@@ -274,8 +292,11 @@ public class Database {
     private void updateGuildMembers(Guild guild) {
         int members = guild.getMembers().size();
         try {
-            stat = conn.createStatement();
-            stat.executeUpdate("UPDATE Guilds SET members=" + members + " WHERE guild_id=" + guild.getId());
+            String sql = "UPDATE Guilds SET members= ? WHERE guild_id= ?";
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1, members);
+            pstmt.setString(2, guild.getName());
+            pstmt.executeUpdate();
         } catch (SQLException e) {
             LOG.error("Failure while updating member counts: ", e);
         }
@@ -396,17 +417,20 @@ public class Database {
 
         try {
             stat = conn.createStatement();
-            stat.executeUpdate(
-                    "UPDATE Shop SET (balance,level,items_owned,role_owned,currItem,currRole,isVIP,isBanned)=(" +
-                            inventory.getBalance() + "," +
-                            inventory.getLevel() + "," +
-                            "'" + items + "'" + "," +
-                            "'" + roles + "'" + "," +
-                            "'" + inventory.getCurrentItem() + "'" + "," +
-                            "'" + inventory.getCurrentRole() + "'" + "," +
-                            inventory.isVIP() + "," +
-                            inventory.isBanned() +
-                            ") WHERE member_id=" + inventory.getMemberId() + " AND guild_id=" + inventory.getGuildId());
+            String sql = "UPDATE Shop SET (balance,level,items_owned,role_owned,currItem,currRole,isVIP,isBanned) = (?,?,?,?,?,?,?,?)" +
+                    "WHERE member_id= ? AND guild_id= ?";
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1, inventory.getBalance());
+            pstmt.setInt(2, inventory.getLevel());
+            pstmt.setString(3, items);
+            pstmt.setString(4, roles);
+            pstmt.setString(5, inventory.getCurrentItem());
+            pstmt.setString(6, inventory.getCurrentRole());
+            pstmt.setBoolean(7, inventory.isVIP());
+            pstmt.setBoolean(8, inventory.isBanned());
+            pstmt.setString(9, inventory.getMemberId());
+            pstmt.setString(10, inventory.getGuildId());
+            pstmt.executeUpdate();
         } catch (SQLException e) {
             LOG.error("Exception while writing user inventory:", e);
         }

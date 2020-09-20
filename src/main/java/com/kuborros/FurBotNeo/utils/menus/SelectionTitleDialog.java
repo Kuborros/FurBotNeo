@@ -179,7 +179,8 @@ public class SelectionTitleDialog extends Menu {
                 case CANCEL:
                     cancel.accept(message);
                     return;
-
+                default:
+                    return;
             }
             try {
                 event.getReaction().removeReaction(Objects.requireNonNull(event.getUser())).queue();
@@ -291,20 +292,6 @@ public class SelectionTitleDialog extends Menu {
         }
 
         /**
-         * Sets the title of {@link EmbedBuilder embed} to be displayed
-         * when the {@link SelectionTitleDialog SelectionDialog} is built.
-         *
-         * <p>This is displayed directly above the embed.
-         *
-         * @param text The Message content to be displayed above the embed when the SelectionDialog is built
-         * @return This builder
-         */
-        public Builder setTitle(String text) {
-            this.title = i -> text;
-            return this;
-        }
-
-        /**
          * Sets the text of the {@link Message Message} to be displayed
          * relative to the current selection number as determined by the provided
          * {@link Function Function}.
@@ -316,6 +303,20 @@ public class SelectionTitleDialog extends Menu {
          */
         public Builder setText(Function<Integer, String> text) {
             this.text = text;
+            return this;
+        }
+
+        /**
+         * Sets the title of {@link EmbedBuilder embed} to be displayed
+         * when the {@link SelectionTitleDialog SelectionDialog} is built.
+         *
+         * <p>This is displayed directly above the embed.
+         *
+         * @param text The Message content to be displayed above the embed when the SelectionDialog is built
+         * @return This builder
+         */
+        public Builder setTitle(String text) {
+            this.title = i -> text;
             return this;
         }
 
@@ -387,16 +388,6 @@ public class SelectionTitleDialog extends Menu {
         }
 
         /**
-         * Clears the choices to be shown.
-         *
-         * @return This builder
-         */
-        public Builder clearChoices() {
-            this.choices.clear();
-            return this;
-        }
-
-        /**
          * Sets the String choices to be shown as selections.
          *
          * @param choices The String choices to show
@@ -404,17 +395,6 @@ public class SelectionTitleDialog extends Menu {
          */
         public Builder setChoices(String... choices) {
             this.choices.clear();
-            this.choices.addAll(Arrays.asList(choices));
-            return this;
-        }
-
-        /**
-         * Adds String choices to be shown as selections.
-         *
-         * @param choices The String choices to add
-         * @return This builder
-         */
-        public Builder addChoices(String... choices) {
             this.choices.addAll(Arrays.asList(choices));
             return this;
         }
