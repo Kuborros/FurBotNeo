@@ -142,6 +142,8 @@ public class BuyLevelCommand extends ShopCommand {
                         inventoryCache.setInventory(inventory.addToInventory("lvl1000"));
                         builder.addField("You got a loot drop!", "Level 1000 badge", true);
                         break;
+                    default:
+                        break;
                 }
             }
 
