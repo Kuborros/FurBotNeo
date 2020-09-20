@@ -3,6 +3,7 @@
 [![GitHub forks](https://img.shields.io/github/forks/Kuborros/FurbotNeo?style=flat-square)](https://github.com/Kuborros/FurbotNeo/network)
 [![GitHub stars](https://img.shields.io/github/stars/Kuborros/FurbotNeo?style=flat-square)](https://github.com/Kuborros/FurbotNeo/stargazers)
 [![GitHub license](https://img.shields.io/github/license/Kuborros/FurbotNeo?style=flat-square)](https://github.com/Kuborros/FurbotNeo/blob/master/LICENSE)
+[![CodeFactor](https://www.codefactor.io/repository/github/kuborros/furbotneo/badge)](https://www.codefactor.io/repository/github/kuborros/furbotneo)
 # FurbotNeo
 
 A Discord bot made using Java, filled with references and "features".
