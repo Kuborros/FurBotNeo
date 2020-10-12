@@ -14,8 +14,11 @@ If applicable, add screenshots to help explain your problem.
 ### Required:
 **Stacktrace**
  If present, otherwise printed Exception.
+ 
  (Preferably the stacktrace should be posted on pastebin and link provided here.)
-
+ 
+ If nothing shows up, mention that too.
+ 
 ### Optional:
 **Guild (Server) information:**
  - Members: [10]
