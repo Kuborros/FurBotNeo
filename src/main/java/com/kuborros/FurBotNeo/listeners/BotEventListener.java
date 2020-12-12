@@ -100,7 +100,6 @@ public class BotEventListener extends ListenerAdapter{
         }
         if (!guild.getDefaultChannel().canTalk()) {
             LOG.warn("...But i can't write on it's default channel? This ~might~ be a problem!");
-            return;
         }
         db.setGuild(guild);
     }

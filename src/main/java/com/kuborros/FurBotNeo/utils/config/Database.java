@@ -439,9 +439,13 @@ public class Database {
     FurConfig getGuildConfig(Guild guild) throws SQLException {
         stat = conn.createStatement();
         ResultSet rs = stat.executeQuery("SELECT * FROM Guilds WHERE guild_id=" + guild.getId());
-
-        return new FurConfig(rs.getString(5), rs.getBoolean(9), rs.getBoolean(8), rs.getBoolean(7), rs.getString(6), rs.getString(2));
-
+        if (!rs.isClosed()) {
+            return new FurConfig(rs.getString(5), rs.getBoolean(9), rs.getBoolean(8), rs.getBoolean(7), rs.getString(6), rs.getString(2));
+        } else {
+            //Try to readd the guild.
+            setGuild(guild);
+            return getGuildConfig(guild);
+        }
     }
 
     @Deprecated
