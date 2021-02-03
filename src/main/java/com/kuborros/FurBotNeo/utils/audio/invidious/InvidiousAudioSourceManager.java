@@ -17,7 +17,7 @@
 package com.kuborros.FurBotNeo.utils.audio.invidious;
 
 import com.sedmelluq.discord.lavaplayer.container.*;
-import com.sedmelluq.discord.lavaplayer.player.DefaultAudioPlayerManager;
+import com.sedmelluq.discord.lavaplayer.player.AudioPlayerManager;
 import com.sedmelluq.discord.lavaplayer.source.AudioSourceManager;
 import com.sedmelluq.discord.lavaplayer.source.ProbingAudioSourceManager;
 import com.sedmelluq.discord.lavaplayer.tools.FriendlyException;
@@ -71,7 +71,7 @@ public class InvidiousAudioSourceManager extends ProbingAudioSourceManager imple
     }
 
     @Override
-    public AudioItem loadItem(DefaultAudioPlayerManager manager, AudioReference reference) {
+    public AudioItem loadItem(AudioPlayerManager manager, AudioReference reference) {
         AudioReference httpReference = getAsHttpReference(reference);
         if (httpReference == null) {
             return null;
