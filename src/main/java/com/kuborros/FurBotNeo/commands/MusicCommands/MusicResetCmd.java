@@ -35,7 +35,7 @@ public class MusicResetCmd extends MusicCommand {
         this.ownerCommand = true;
         this.guildOnly = true;
         this.userPermissions = new Permission[]{Permission.KICK_MEMBERS};
-        this.botPermissions = new Permission[]{Permission.MESSAGE_EMBED_LINKS, Permission.VOICE_CONNECT, Permission.VOICE_SPEAK};
+        this.botPermissions = new Permission[]{Permission.MESSAGE_EMBED_LINKS, Permission.VOICE_CONNECT, Permission.VOICE_SPEAK,Permission.MANAGE_CHANNEL};
         this.category = new Category("Music");
     }
 

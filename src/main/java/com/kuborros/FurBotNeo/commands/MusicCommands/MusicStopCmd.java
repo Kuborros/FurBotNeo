@@ -33,7 +33,7 @@ public class MusicStopCmd extends MusicCommand{
         this.name = "stop";
         this.help = "Completely stops music playback";
         this.guildOnly = true;
-        this.botPermissions = new Permission[]{Permission.MESSAGE_EMBED_LINKS, Permission.VOICE_CONNECT, Permission.VOICE_SPEAK};
+        this.botPermissions = new Permission[]{Permission.MESSAGE_EMBED_LINKS, Permission.VOICE_CONNECT, Permission.VOICE_SPEAK,Permission.MANAGE_CHANNEL};
         this.category = new Category("Music");
     }
 

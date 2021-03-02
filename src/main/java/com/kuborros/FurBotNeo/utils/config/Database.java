@@ -192,7 +192,7 @@ public class Database {
             String sql = "UPDATE Guilds SET bot_name = ? WHERE guild_id = ?";
             PreparedStatement pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, name);
-            pstmt.setString(2, guild.getName());
+            pstmt.setString(2, guild.getId());
             pstmt.executeUpdate();
             needsUpdate.put(guild.getId(), true);
             guild.getSelfMember().modifyNickname(name).complete();
@@ -208,7 +208,7 @@ public class Database {
             String sql = "UPDATE Guilds SET bot_prefix = ? WHERE guild_id = ?";
             PreparedStatement pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, prefix);
-            pstmt.setString(2, guild.getName());
+            pstmt.setString(2, guild.getId());
             pstmt.executeUpdate();
             needsUpdate.put(guild.getId(), true);
             return true;
@@ -223,7 +223,7 @@ public class Database {
             String sql = "UPDATE Guilds SET music_id = ? WHERE guild_id = ?";
             PreparedStatement pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, audio);
-            pstmt.setString(2, guild.getName());
+            pstmt.setString(2, guild.getId());
             pstmt.executeUpdate();
             needsUpdate.put(guild.getId(), true);
             return true;
@@ -239,7 +239,7 @@ public class Database {
             String sql = "UPDATE Guilds SET isNSFW = ? WHERE guild_id = ?";
             PreparedStatement pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, nsfw);
-            pstmt.setString(2, guild.getName());
+            pstmt.setString(2, guild.getId());
             pstmt.executeUpdate();
             needsUpdate.put(guild.getId(), true);
             return true;
@@ -255,7 +255,7 @@ public class Database {
             String sql = "UPDATE Guilds SET welcomeMsg = ? WHERE guild_id = ?";
             PreparedStatement pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, welcome);
-            pstmt.setString(2, guild.getName());
+            pstmt.setString(2, guild.getId());
             pstmt.executeUpdate();
             needsUpdate.put(guild.getId(), true);
             return true;
@@ -271,7 +271,7 @@ public class Database {
             String sql = "UPDATE Guilds SET isNSFW = ? WHERE guild_id = ?";
             PreparedStatement pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, furry);
-            pstmt.setString(2, guild.getName());
+            pstmt.setString(2, guild.getId());
             pstmt.executeUpdate();
             needsUpdate.put(guild.getId(), true);
             return true;
@@ -295,7 +295,7 @@ public class Database {
             String sql = "UPDATE Guilds SET members= ? WHERE guild_id= ?";
             PreparedStatement pstmt = conn.prepareStatement(sql);
             pstmt.setInt(1, members);
-            pstmt.setString(2, guild.getName());
+            pstmt.setString(2, guild.getId());
             pstmt.executeUpdate();
         } catch (SQLException e) {
             LOG.error("Failure while updating member counts: ", e);
