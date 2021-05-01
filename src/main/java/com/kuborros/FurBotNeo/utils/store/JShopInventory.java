@@ -58,7 +58,7 @@ public class JShopInventory {
     private JSONObject loadOrCreateFile() {
         if (ITEMSFILE.canRead()) {
             try {
-                String content = new String(Files.readAllBytes(ITEMSFILE.toPath()));
+                String content = Files.readString(ITEMSFILE.toPath());
                 return new JSONObject(content);
             } catch (IOException e) {
                 LOG.error("Loading items file failed: ", e);

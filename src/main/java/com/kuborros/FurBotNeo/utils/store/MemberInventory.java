@@ -151,10 +151,6 @@ public class MemberInventory {
         return level;
     }
 
-    public boolean isVIP() {
-        return VIP;
-    }
-
     public boolean isBanned() {
         //Owner is never banned, even if db says so, to avoid permament lockout
         if (memberId.equals(cfg.getOwnerId())) return false;

@@ -20,7 +20,6 @@ import com.jagrosh.jdautilities.command.CommandClientBuilder;
 import com.jagrosh.jdautilities.commons.waiter.EventWaiter;
 import com.jagrosh.jdautilities.examples.command.AboutCommand;
 import com.kuborros.FurBotNeo.commands.AdminCommands.*;
-import com.kuborros.FurBotNeo.commands.DebugCommands.*;
 import com.kuborros.FurBotNeo.commands.GeneralCommands.*;
 import com.kuborros.FurBotNeo.commands.LewdCommands.*;
 import com.kuborros.FurBotNeo.commands.MusicCommands.*;
@@ -181,16 +180,6 @@ public class BotMain {
                         new SetRoleCommand(waiter),
                         new FullRolesCommand(waiter));
             }
-        }
-
-        //Debug
-        //Currently mostly only store-based commands. It is assumed you know what your doing when using these.
-        if (cfg.isDebugMode()) {
-            client.addCommands(
-                    new GiveCoinsCmd(),
-                    new GiveRoleCommand(),
-                    new GiveVIPCommand(),
-                    new SetCoinCommand());
         }
 
 

@@ -100,6 +100,7 @@ public class SetRoleCommand extends ShopCommand {
     private void setSelectedRole(Message message, int selection) {
         String selectedRole = roleInfo.keySet().toArray(new String[0])[selection - 1];
         Guild guild = sender.getGuild();
+        roleInfo.remove("Bot DJ");
         //Take previous roles away, if member has one.
         for (String role : roleInfo.keySet()) {
             try {
