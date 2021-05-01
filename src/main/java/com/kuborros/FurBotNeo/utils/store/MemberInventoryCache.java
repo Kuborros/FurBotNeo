@@ -28,10 +28,4 @@ public interface MemberInventoryCache {
 
     void setInventory(MemberInventory inventory);
 
-    void expireInventory(String id);
-
-    default void expireInventory(MemberInventory inventory) {
-        expireInventory(inventory.uId);
-    }
-
 }

@@ -28,18 +28,21 @@ import net.dv8tion.jda.api.entities.Guild;
 import net.dv8tion.jda.api.entities.Member;
 import net.dv8tion.jda.api.entities.Message;
 import net.dv8tion.jda.api.entities.Role;
+import net.dv8tion.jda.api.exceptions.PermissionException;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.awt.*;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
 import static com.kuborros.FurBotNeo.BotMain.inventoryCache;
 
-@SuppressWarnings("ConstantConditions")
 @CommandInfo(
         name = "role",
         description = "Sets your active role."
@@ -101,15 +104,19 @@ public class SetRoleCommand extends ShopCommand {
         for (String role : roleInfo.keySet()) {
             try {
                 //As a positive (i hope) side effect will always regenerate all roles that exist in users inventory but not in guild.
-                guild.removeRoleFromMember(sender, findGuildRole(guild, role)).queue();
+                guild.removeRoleFromMember(sender, findGuildRole(guild, role)).complete();
             } catch (Exception e) {
                 LOG.error("Ohno.", e);
             }
         }
         //Give member their new role.
         try {
-            guild.addRoleToMember(sender, findGuildRole(guild, selectedRole)).reason("Store role use.").queue();
-            inventoryCache.setInventory(inventory.setCurrentRole(roles.get(selection)));
+            guild.addRoleToMember(sender, findGuildRole(guild, selectedRole)).complete();
+            inventoryCache.setInventory(inventory.setCurrentRole(roles.get(selection-1)));
+            EmbedBuilder builder = new EmbedBuilder()
+                    .setDescription("Enjoy your new color~");
+            message.editMessage(builder.build()).complete();
+            message.clearReactions().complete();
         } catch (Exception e) {
             LOG.error("Ohno.", e);
         }
@@ -122,7 +129,7 @@ public class SetRoleCommand extends ShopCommand {
         String json = "";
 
         try {
-            json = new String(getClass().getClassLoader().getResourceAsStream("items.json").readAllBytes(), StandardCharsets.UTF_8);
+            json = Files.readString(Path.of("items.json"));
         } catch (Exception e) {
             LOG.error("Things went wrong while loading internal resource: ", e);
         }

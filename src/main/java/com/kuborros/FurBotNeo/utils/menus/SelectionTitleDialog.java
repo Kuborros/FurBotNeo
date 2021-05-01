@@ -175,7 +175,7 @@ public class SelectionTitleDialog extends Menu {
                     break;
                 case SELECT:
                     success.accept(message, selection);
-                    break;
+                    return;
                 case CANCEL:
                     cancel.accept(message);
                     return;

@@ -55,10 +55,5 @@ public class MemberInventoryCacheImpl implements MemberInventoryCache {
         new Thread(inventory::sync).start();
     }
 
-    @Override
-    public void expireInventory(String id) {
-        cache.expireAt(id, ExpiryTimeValues.NOW);
-    }
-
 }
 

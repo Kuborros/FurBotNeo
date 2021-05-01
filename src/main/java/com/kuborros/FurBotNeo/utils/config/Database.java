@@ -404,17 +404,16 @@ public class Database {
 
         try {
             stat = conn.createStatement();
-            String sql = "UPDATE Shop SET (balance,level,role_owned,currRole,isVIP,isBanned) = (?,?,?,?,?,?)" +
+            String sql = "UPDATE Shop SET (balance,level,role_owned,currRole,isBanned) = (?,?,?,?,?)" +
                     "WHERE member_id= ? AND guild_id= ?";
             PreparedStatement pstmt = conn.prepareStatement(sql);
             pstmt.setInt(1, inventory.getBalance());
             pstmt.setInt(2, inventory.getLevel());
             pstmt.setString(3, roles);
             pstmt.setString(4, inventory.getCurrentRole());
-            pstmt.setBoolean(5, inventory.isVIP());
-            pstmt.setBoolean(6, inventory.isBanned());
-            pstmt.setString(7, inventory.getMemberId());
-            pstmt.setString(8, inventory.getGuildId());
+            pstmt.setBoolean(5, inventory.isBanned());
+            pstmt.setString(6, inventory.getMemberId());
+            pstmt.setString(7, inventory.getGuildId());
             pstmt.executeUpdate();
         } catch (SQLException e) {
             LOG.error("Exception while writing user inventory:", e);

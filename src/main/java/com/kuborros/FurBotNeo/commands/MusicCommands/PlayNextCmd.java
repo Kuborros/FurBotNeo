@@ -40,8 +40,6 @@ public class PlayNextCmd extends MusicCommand {
 
     @Override
     public void doCommand(CommandEvent event) {
-
-        if (inventory.isVIP()) {
             this.input = (input != null && input.startsWith("http")) ? input : "ytsearch: " + input;
 
             if (event.getArgs().isEmpty()) {
@@ -52,8 +50,5 @@ public class PlayNextCmd extends MusicCommand {
                     getPlayer(guild).setPaused(false);
                 }
             }
-        } else {
-            event.reply(sendFailEmbed("You are not a vip!", "Only vip members can skip the queue!"));
-        }
     }
 }
