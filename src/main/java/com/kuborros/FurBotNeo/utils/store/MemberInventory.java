@@ -26,11 +26,10 @@ public class MemberInventory {
     final String memberId;
     final String guildId;
     final String uId;
-    final ArrayList<String> ownedItems;
     final ArrayList<String> ownedRoles;
     int balance, level;
     boolean VIP, banned;
-    String currentItem, currentRole;
+    String currentRole;
 
     //Initialises empty inventory
     public MemberInventory(String memberId, String guildId) {
@@ -39,8 +38,6 @@ public class MemberInventory {
         this.uId = memberId + "," + guildId;
         this.banned = false;
         this.ownedRoles = new ArrayList<>();
-        this.ownedItems = new ArrayList<>();
-        this.currentItem = "";
         this.currentRole = "";
         if (cfg.isDebugMode()) {
             //If in debug mode, give all new users unholy amount of tokens for testing
@@ -57,15 +54,13 @@ public class MemberInventory {
     }
 
     //Initialise inventory with existing data
-    public MemberInventory(String memberId, String guildId, int balance, int level, ArrayList<String> ownedItems, ArrayList<String> ownedRoles, String currItem, String currRole, boolean vip, boolean banned) {
+    public MemberInventory(String memberId, String guildId, int balance, int level, ArrayList<String> ownedRoles, String currRole, boolean vip, boolean banned) {
         this.memberId = memberId;
         this.guildId = guildId;
         this.uId = memberId + "," + guildId;
         this.balance = balance;
         this.level = level;
-        this.ownedItems = ownedItems;
         this.ownedRoles = ownedRoles;
-        this.currentItem = currItem;
         this.currentRole = currRole;
         this.banned = banned;
         if (cfg.isBuyVipEnabled()) this.VIP = vip;
@@ -77,19 +72,8 @@ public class MemberInventory {
     }
 
     //All add/remove methods return MemberInventory for easy chaining
-    public MemberInventory addToInventory(String item) {
-        //Prevent copies of items in case it somehow slips trough.
-        if (!ownedItems.contains(item)) ownedItems.add(item);
-        return this;
-    }
-
     public MemberInventory addToRoles(String item) {
-        ownedRoles.add(item);
-        return this;
-    }
-
-    public MemberInventory removeFromInventory(String item) {
-        ownedItems.remove(item);
+        if (!ownedRoles.contains(item)) ownedRoles.add(item);
         return this;
     }
 
@@ -138,15 +122,6 @@ public class MemberInventory {
         return this;
     }
 
-    public String getCurrentItem() {
-        return currentItem;
-    }
-
-    public MemberInventory setCurrentItem(String item) {
-        this.currentItem = item;
-        return this;
-    }
-
     public MemberInventory setCurrentRole(String role) {
         this.currentRole = role;
         return this;
@@ -162,10 +137,6 @@ public class MemberInventory {
 
     public String getCurrentRole() {
         return currentRole;
-    }
-
-    public ArrayList<String> getOwnedItems() {
-        return ownedItems;
     }
 
     public ArrayList<String> getOwnedRoles() {

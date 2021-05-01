@@ -177,12 +177,9 @@ public class BotMain {
                 client.addCommands(
                         new BuyCommand(waiter),
                         new CoinsCommand(),
-                        new GrantItemCommand(waiter),
                         new GrantRoleCommand(waiter),
                         new SetRoleCommand(waiter),
-                        new FullInventoryCommand(waiter),
-                        new FullRolesCommand(waiter),
-                        new BuyLevelCommand(waiter));
+                        new FullRolesCommand(waiter));
             }
         }
 
@@ -191,11 +188,9 @@ public class BotMain {
         if (cfg.isDebugMode()) {
             client.addCommands(
                     new GiveCoinsCmd(),
-                    new GiveItemCommand(),
                     new GiveRoleCommand(),
                     new GiveVIPCommand(),
-                    new SetCoinCommand(),
-                    new SetLevelCommand());
+                    new SetCoinCommand());
         }
 
 

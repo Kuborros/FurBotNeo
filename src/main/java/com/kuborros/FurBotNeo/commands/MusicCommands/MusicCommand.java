@@ -342,8 +342,8 @@ abstract class MusicCommand extends Command {
         //Token award per command use and item check.
         if (cfg.isShopEnabled()) {
             inventoryCache.setInventory(inventory.addTokens(10));
-            //DJ role is assigned using special item - even if store is disabled it can be still awarded to members.
-            isDJ = (inventory.getOwnedItems().contains("dj_badge"));
+            //DJ role is a special role, not in the shop.
+            isDJ = (inventory.getOwnedRoles().contains("dj"));
         }
 
         //Owner is always considered DJ. When skipping by everyone is enabled they are all DJ.

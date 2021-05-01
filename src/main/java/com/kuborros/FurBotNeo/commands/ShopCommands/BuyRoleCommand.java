@@ -171,7 +171,7 @@ public class BuyRoleCommand extends ShopCommand {
             int value = item.getInt("price");
             // Roles with value 0 are not for sale.
             if (value > 0) {
-                availableRoles.add(new ShopItem(keyStr, item.getString("name"), item.getString("role_color"), value, ShopItem.ItemType.ROLE));
+                availableRoles.add(new ShopItem(keyStr, item.getString("name"), item.getString("role_color"), value));
             }
         });
     }

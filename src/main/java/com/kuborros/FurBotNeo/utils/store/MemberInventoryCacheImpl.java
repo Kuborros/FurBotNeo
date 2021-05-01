@@ -20,7 +20,7 @@ package com.kuborros.FurBotNeo.utils.store;
 import org.cache2k.Cache;
 import org.cache2k.Cache2kBuilder;
 import org.cache2k.expiry.ExpiryTimeValues;
-import org.cache2k.integration.CacheLoader;
+import org.cache2k.io.CacheLoader;
 
 import static com.kuborros.FurBotNeo.BotMain.db;
 
@@ -33,12 +33,9 @@ public class MemberInventoryCacheImpl implements MemberInventoryCache {
         cache = new Cache2kBuilder<String, MemberInventory>() {
         }
                 .name("MemberInventories")
-                .loader(new CacheLoader<>() {
-                    @Override
-                    public MemberInventory load(final String key) {
-                        String[] id = key.split(",");
-                        return db.memberGetInventory(id[0], id[1]);
-                    }
+                .loader(key -> {
+                    String[] id = key.split(",");
+                    return db.memberGetInventory(id[0], id[1]);
                 })
                 .eternal(true)
                 .build();

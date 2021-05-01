@@ -109,11 +109,7 @@ public class Database {
 
                     " level INTEGER DEFAULT 0, " +
 
-                    " items_owned TEXT DEFAULT 'not_a_null'," +
-
-                    " role_owned TEXT DEFAULT 'not_a_null'," +
-
-                    " currItem TEXT DEFAULT 'user_badge'," +
+                    " role_owned TEXT DEFAULT 'default'," +
 
                     " currRole TEXT DEFAULT 'default'," +
 
@@ -377,13 +373,11 @@ public class Database {
     //Get whole inventory
     public MemberInventory memberGetInventory(String memberId, String guildId) {
         try {
-            ArrayList<String> items = new ArrayList<>();
             ArrayList<String> roles = new ArrayList<>();
             stat = conn.createStatement();
             ResultSet rs = stat.executeQuery("SELECT * FROM Shop WHERE member_id=" + memberId + " AND guild_id=" + guildId);
-            Collections.addAll(items, rs.getString(6).split(","));
-            Collections.addAll(roles, rs.getString(7).split(","));
-            return new MemberInventory(memberId, guildId, rs.getInt(4), rs.getInt(5), items, roles, rs.getString(8), rs.getString(9), rs.getBoolean(10), rs.getBoolean(11));
+            Collections.addAll(roles, rs.getString(6).split(","));
+            return new MemberInventory(memberId, guildId, rs.getInt(4), rs.getInt(5), roles, rs.getString(7), rs.getBoolean(8), rs.getBoolean(9));
         } catch (SQLException | NullPointerException e) {
             if (addMemberToStore(memberId, guildId)) {
                 //They might just not exist in store database!
@@ -398,15 +392,8 @@ public class Database {
 
     //Set whole inventory at once
     public void memberSetInventory(MemberInventory inventory) {
-        String items, roles;
+        String roles;
         StringBuilder builder = new StringBuilder();
-        if (inventory.getOwnedItems().isEmpty()) {
-            items = "";
-        } else {
-            inventory.getOwnedItems().forEach(item -> builder.append(item).append(","));
-            items = builder.toString();
-            builder.delete(0, builder.length());
-        }
         if (inventory.getOwnedRoles().isEmpty()) {
             roles = "";
         } else {
@@ -417,19 +404,17 @@ public class Database {
 
         try {
             stat = conn.createStatement();
-            String sql = "UPDATE Shop SET (balance,level,items_owned,role_owned,currItem,currRole,isVIP,isBanned) = (?,?,?,?,?,?,?,?)" +
+            String sql = "UPDATE Shop SET (balance,level,role_owned,currRole,isVIP,isBanned) = (?,?,?,?,?,?)" +
                     "WHERE member_id= ? AND guild_id= ?";
             PreparedStatement pstmt = conn.prepareStatement(sql);
             pstmt.setInt(1, inventory.getBalance());
             pstmt.setInt(2, inventory.getLevel());
-            pstmt.setString(3, items);
-            pstmt.setString(4, roles);
-            pstmt.setString(5, inventory.getCurrentItem());
-            pstmt.setString(6, inventory.getCurrentRole());
-            pstmt.setBoolean(7, inventory.isVIP());
-            pstmt.setBoolean(8, inventory.isBanned());
-            pstmt.setString(9, inventory.getMemberId());
-            pstmt.setString(10, inventory.getGuildId());
+            pstmt.setString(3, roles);
+            pstmt.setString(4, inventory.getCurrentRole());
+            pstmt.setBoolean(5, inventory.isVIP());
+            pstmt.setBoolean(6, inventory.isBanned());
+            pstmt.setString(7, inventory.getMemberId());
+            pstmt.setString(8, inventory.getGuildId());
             pstmt.executeUpdate();
         } catch (SQLException e) {
             LOG.error("Exception while writing user inventory:", e);
@@ -442,7 +427,7 @@ public class Database {
         if (!rs.isClosed()) {
             return new FurConfig(rs.getString(5), rs.getBoolean(9), rs.getBoolean(8), rs.getBoolean(7), rs.getString(6), rs.getString(2));
         } else {
-            //Try to readd the guild.
+            //Try to re-add the guild.
             setGuild(guild);
             return getGuildConfig(guild);
         }

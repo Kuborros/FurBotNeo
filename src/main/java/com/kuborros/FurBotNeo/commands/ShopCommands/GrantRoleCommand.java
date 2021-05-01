@@ -177,7 +177,7 @@ public class GrantRoleCommand extends ShopCommand {
         JSONObject jsonObj = storeItems.getRoleInventory();
         jsonObj.keySet().forEach(keyStr -> {
             JSONObject item = jsonObj.getJSONObject(keyStr);
-            availableRoles.add(new ShopItem(keyStr, item.getString("name"), item.getString("role_color"), item.getInt("price"), ShopItem.ItemType.ROLE));
+            availableRoles.add(new ShopItem(keyStr, item.getString("name"), item.getString("role_color"), item.getInt("price")));
         });
     }
 }

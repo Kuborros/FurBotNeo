@@ -24,22 +24,15 @@ public class ShopItem {
 
     final String dbName;
     final String itemName;
-    final ItemType type;
     final int value;
     String url;
 
-    public ShopItem(String dbName, String itemName, String data, int value, ItemType type) {
+    public ShopItem(String dbName, String itemName, String data, int value) {
         this.dbName = dbName;
         this.itemName = itemName;
         this.value = value;
-        if (type == ItemType.ITEM) {
-            this.url = data;
-            this.color = Color.BLACK;
-        } else if (type == ItemType.ROLE) {
-            this.url = "";
-            this.color = Color.decode(data);
-        }
-        this.type = type;
+        this.url = "";
+        this.color = Color.decode(data);
     }
 
     public Color getColor() {
@@ -61,10 +54,4 @@ public class ShopItem {
     public int getValue() {
         return value;
     }
-
-    public ItemType getType() {
-        return type;
-    }
-
-    public enum ItemType {ITEM, ROLE}
 }

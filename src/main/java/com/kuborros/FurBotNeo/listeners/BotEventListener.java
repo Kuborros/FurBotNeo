@@ -111,7 +111,7 @@ public class BotEventListener extends ListenerAdapter{
     }
 
     @Override
-    public void onReconnect(@Nonnull ReconnectedEvent event) {
+    public void onReconnected(@Nonnull ReconnectedEvent event) {
         LOG.info("Connection to discord servers restored!");
     }
 

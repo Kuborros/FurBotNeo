@@ -35,7 +35,6 @@ public class JShopInventory {
     static final Logger LOG = LoggerFactory.getLogger("ShopILoader");
     private static final File ITEMSFILE = new File("items.json");
 
-    JSONObject itemInventory;
     JSONObject roleInventory;
 
 
@@ -51,7 +50,6 @@ public class JShopInventory {
             return;
         }
         //If we got here it means file at least exists.
-        itemInventory = fileOpt.get().getJSONObject("items");
         roleInventory = fileOpt.get().getJSONObject("roles");
 
     }
@@ -80,10 +78,6 @@ public class JShopInventory {
         }
     }
 
-    public JSONObject getItemInventory() {
-        return itemInventory;
-    }
-
     public JSONObject getRoleInventory() {
         return roleInventory;
     }
@@ -91,7 +85,6 @@ public class JShopInventory {
     public void reloadItemsFile() throws IOException {
         String content = new String(Files.readAllBytes(ITEMSFILE.toPath()));
         JSONObject items = new JSONObject(content);
-        itemInventory = items.getJSONObject("items");
         roleInventory = items.getJSONObject("roles");
     }
 
