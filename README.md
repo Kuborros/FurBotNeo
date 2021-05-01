@@ -138,7 +138,6 @@ Remaining commands assume: Moderators can kick members, Admins can ban them.
 | stats         |  **yes**       |  ----      | Prints backed stats of the bot (ping,mem,etc.) |
 | shutdown      |  **yes**       |  ----      | Shuts down the bot.|
 | reloaditems   |  **yes**       |  ----      | Reloads item definition file, to load new items during runtime.|
-| eval          |  **yes**       |  code      | Directly runs code on the bot. Best only used for debugging.|
 | vote          |   *no*         | time topic | Starts a vote lasting specified amount of time, about given topic.|
 | info          |   *no*         |  mention   | Displays information about server member mentioned. |
 | guildcfg      |   *no*         |  key value | Sets per-guild settings. When ran without arguments, it will print available options, and their values.|
@@ -183,26 +182,19 @@ On SFW servers NSFW commands are fully hidden and do not produce a response.
 | pet           | mention           | *Pat,pat on the head* |
 
 ### Shop: 
-Commands that allow users to gain and spend BatTokens, to purchase badges, coloured roles, and more.
-
+Commands that allow users to gain and spend Tokens/Coins to purchase coloured roles.
 Tokens are earned automatically by partaking in chatting and using commands.
 
-Store and vip functionality can be disabled per-instance to save up on memory.
-
-_If VIP is disabled, everyone is considered VIP_
+Store functionality can be disabled per-instance to save up on memory.
 
 | **Command**   |  **Subcommand:**   |             **Description:**              |
 | :------------ |:-----------------:| :----------------------------------------:|
 | myroles       | ----           | Check all your owned roles |
-| inventory     | ----           | Check all your owned items |
 | role          | ----           | Set your current active role |
 | level         | ----           | Spend your tokens to level up!  (or just check your level) |
 | shop          | ----           | Base shop interface, lists some of your items, level, and token balance |
-| ----          | item           | Purchase items here |
 | ----          | role           | Purchase roles here |
-| ----          | vip            | Purchase vip status here (if enabled) |
-| tokens        | ----           | Check your token balance |
+| coins         | ----           | Check your token balance |
 | ----          | give           | Give your tokens away to mentioned user |
-| grantitem     | ----           | \[Admin only\] Grant an item to mentioned user for free! |
 | grantrole     | ----           | \[Admin only\] Grant a role to mentioned user for free! |
 
