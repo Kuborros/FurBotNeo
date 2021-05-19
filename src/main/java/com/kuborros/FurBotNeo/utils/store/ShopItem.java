@@ -20,12 +20,11 @@ import java.awt.*;
 
 public class ShopItem {
 
-    Color color;
-
+    final Color color;
     final String dbName;
     final String itemName;
     final int value;
-    String url;
+    final String url;
 
     public ShopItem(String dbName, String itemName, String data, int value) {
         this.dbName = dbName;

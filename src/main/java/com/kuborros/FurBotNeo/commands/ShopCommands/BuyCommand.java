@@ -50,7 +50,7 @@ public class BuyCommand extends ShopCommand {
                     .setTitle(String.format("Inventory of %s.", event.getMember().getEffectiveName()))
                     .setThumbnail(event.getMember().getUser().getEffectiveAvatarUrl())
                     .setColor(Color.ORANGE)
-                    .setDescription(String.format("You currently are level %d and hold %d coins.", inventory.getLevel(), inventory.getBalance()))
+                    .setDescription(String.format("You currently hold %d coins.", inventory.getBalance()))
                     .addField("Your latest roles are: ", getPrettyInventoryRoles(), false)
                     .setFooter("Available store commands are: role");
             event.reply(builder.build());

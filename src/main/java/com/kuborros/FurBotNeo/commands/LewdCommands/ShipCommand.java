@@ -94,27 +94,27 @@ public class ShipCommand extends LewdCommand {
 
         if (level == 100) {
             return " *a match made in heaven*! ❤";
-        } else if ((level <= 99) && (level > 90)) {
+        } else if (level > 90) {
             return " propably planning a wedding already :3";
-        } else if ((level <= 90) && (level > 80)) {
+        } else if (level > 80) {
             return " in close possibility of marriage!";
-        } else if ((level <= 80) && (level > 70)) {
+        } else if (level > 70) {
             return " together forever~!";
-        } else if ((level <= 70) && (level > 60)) {
+        } else if (level > 60) {
             return " in for a long relationship.";
-        } else if ((level <= 60) && (level > 50)) {
+        } else if (level > 50) {
             return "... **kissing right now!**";
-        } else if ((level <= 50) && (level > 40)) {
+        } else if (level > 40) {
             return " definietly a couple!";
-        } else if ((level <= 40) && (level > 30)) {
+        } else if (level > 30) {
             return " close to being a couple!";
-        } else if ((level <= 30) && (level > 20)) {
+        } else if (level > 20) {
             return " friends with benefits!";
-        } else if ((level <= 20) && (level > 10)) {
+        } else if (level > 10) {
             return " in the realm of *friendzone*! UwU";
-        } else if ((level <= 10) && (level >= 0)) {
+        } else {
             return " not even friends...";
-        } else return " so far away they broke the love machine!";
+        }
 
     }
 }

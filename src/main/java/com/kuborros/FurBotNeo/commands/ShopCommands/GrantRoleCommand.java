@@ -103,7 +103,6 @@ public class GrantRoleCommand extends ShopCommand {
 
         builder.addChoices(availableRoles);
         priv = event.getAuthor().openPrivateChannel().complete();
-        priv.sendMessage("Due to recent discord limitations, i cannot *remove* reactions, so you will need to do it yourself... sorry uwu").complete();
         storeDialog.display(priv);
 
     }

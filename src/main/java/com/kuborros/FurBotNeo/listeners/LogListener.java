@@ -24,6 +24,8 @@ import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.concurrent.atomic.AtomicReference;
+
 
 public class LogListener extends ListenerAdapter{
 
@@ -33,8 +35,20 @@ public class LogListener extends ListenerAdapter{
     public void onMessageReceived(MessageReceivedEvent event) {
         User author = event.getAuthor();
         Message message = event.getMessage();
-        String msg = message.getContentStripped();
-        if (msg.isEmpty() || event.getAuthor().isBot()) return;
+        AtomicReference<String> msg = new AtomicReference<>(message.getContentStripped());
+        if (!message.getEmbeds().isEmpty()) {
+            message.getEmbeds().forEach( messageEmbed -> {
+                if (!messageEmbed.isEmpty()) {
+                    msg.set(msg.get() + messageEmbed.getUrl());
+                }
+            });
+
+        }
+        if (!message.getAttachments().isEmpty()) {
+            message.getAttachments().forEach(attachment -> msg.set(String.format("%s \n Included attachment of type %s, with url %s",msg.get(),attachment.getContentType(),attachment.getUrl())));
+        }
+
+        if (msg.get().isEmpty() || event.getAuthor().isBot()) return;
 
         if (event.isFromType(ChannelType.TEXT)) {
             TextChannel textChannel = event.getTextChannel();
@@ -44,11 +58,11 @@ public class LogListener extends ListenerAdapter{
             if (message.isWebhookMessage()) name = author.getName();
             else name = member != null ? member.getEffectiveName() : "Name Unavailable";
 
-            LOG.info("[{}] ({}): {}", textChannel.getName(), name, msg);
+            LOG.info("[{}] ({}): {}", textChannel.getName(), name, msg.get());
         } else if (event.isFromType(ChannelType.PRIVATE)) {
-            LOG.info("[PRIV] ({}): {}", author.getName(), msg);
+            LOG.info("[PRIV] ({}): {}", author.getName(), msg.get());
         } else if (event.isFromType(ChannelType.GROUP)) {
-            LOG.info("[GRP] ({}): {}", author.getName(), msg);
+            LOG.info("[GRP] ({}): {}", author.getName(), msg.get());
         }
     }
 }

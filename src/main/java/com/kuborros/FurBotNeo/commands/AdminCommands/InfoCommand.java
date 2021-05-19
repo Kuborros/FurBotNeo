@@ -73,7 +73,6 @@ public class InfoCommand extends AdminCommand {
             List<User> mentionedUsers = event.getMessage().getMentionedUsers();
             mentionedUsers.forEach((User user) -> {
                 String roles;
-                String online = "OFFLINE";
                 String ownerguy = "";
                 String bot = "";
                 Member member = guild.getMember(user);

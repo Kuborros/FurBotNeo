@@ -150,7 +150,6 @@ public class BotMain {
                 new BotUnBanCmd(),
                 new StatsCommand(),
                 new GuildConfigCommand(),
-                //new EvalCommand(),
                 new ReloadItemsCommand(),
                 new ShutdownCommand(),
 

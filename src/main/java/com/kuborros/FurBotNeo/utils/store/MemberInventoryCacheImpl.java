@@ -19,8 +19,6 @@ package com.kuborros.FurBotNeo.utils.store;
 
 import org.cache2k.Cache;
 import org.cache2k.Cache2kBuilder;
-import org.cache2k.expiry.ExpiryTimeValues;
-import org.cache2k.io.CacheLoader;
 
 import static com.kuborros.FurBotNeo.BotMain.db;
 

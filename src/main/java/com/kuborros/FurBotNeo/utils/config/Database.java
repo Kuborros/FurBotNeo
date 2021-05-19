@@ -377,7 +377,7 @@ public class Database {
             stat = conn.createStatement();
             ResultSet rs = stat.executeQuery("SELECT * FROM Shop WHERE member_id=" + memberId + " AND guild_id=" + guildId);
             Collections.addAll(roles, rs.getString(6).split(","));
-            return new MemberInventory(memberId, guildId, rs.getInt(4), rs.getInt(5), roles, rs.getString(7), rs.getBoolean(8), rs.getBoolean(9));
+            return new MemberInventory(memberId, guildId, rs.getInt(4), roles, rs.getString(7), rs.getBoolean(8), rs.getBoolean(9));
         } catch (SQLException | NullPointerException e) {
             if (addMemberToStore(memberId, guildId)) {
                 //They might just not exist in store database!

@@ -61,7 +61,7 @@ public class BadJokeCmd extends GeneralCommand {
         boolean guildNSFW = config.isNSFW();
 
         Request request = new Request.Builder()
-                .url("http://api.icndb.com/jokes/random")
+                .url("https://api.icndb.com/jokes/random")
                 .header("User-Agent", "FurryBotNeo/1.0")
                 .addHeader("Accept", "application/json")
                 .build();

@@ -481,6 +481,7 @@ public class StoreDialog extends Menu {
          * @param choices The String choices to add
          * @return This builder
          */
+        @SuppressWarnings("UnusedReturnValue")
         public Builder addChoices(List<ShopItem> choices) {
             this.choices.addAll(choices);
             return this;
