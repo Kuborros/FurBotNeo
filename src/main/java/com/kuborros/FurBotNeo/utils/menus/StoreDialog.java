@@ -282,7 +282,7 @@ public class StoreDialog extends Menu {
         ebuilder.setColor(color.apply(pageNum, pages));
         if (showPageNumbers)
             ebuilder.setFooter("Page " + pageNum + "/" + pages, null);
-        mbuilder.setEmbed(ebuilder.build());
+        mbuilder.setEmbeds(ebuilder.build());
         if (text != null)
             mbuilder.append(text.apply(pageNum, pages));
         return mbuilder.build();

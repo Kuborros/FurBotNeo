@@ -67,7 +67,7 @@ public class CommandStatCmd extends LewdCommand {
             builder.append("\n");
             map.forEach((k, v) -> builder.append("``").append(k).append("`` used **").append(v).append("** times\n\n"));
             event.getChannel().sendMessage(
-                    new MessageBuilder().setEmbed(
+                    new MessageBuilder().setEmbeds(
                             new EmbedBuilder().setTitle(String.format("How many times %s nutted to:", user.getName()), null).setDescription(builder.toString()).setColor(Color.yellow).build()
                     ).build()).queue();
         } catch (SQLException e) {

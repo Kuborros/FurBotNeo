@@ -96,7 +96,7 @@ abstract class MusicCommand extends Command {
                 if (tracks.size() > 1) {
                     eb.addField("Next Track", "`(" + getTimestamp(tracks.get(1).getTrack().getDuration()) + ")`  " + tracks.get(1).getTrack().getInfo().title, false);
                 }
-                Objects.requireNonNull(guild.getTextChannelById(config.getAudioChannel())).sendMessage(eb.build()).queue();
+                Objects.requireNonNull(guild.getTextChannelById(config.getAudioChannel())).sendMessageEmbeds(eb.build()).queue();
             }
         };
 
@@ -158,7 +158,7 @@ abstract class MusicCommand extends Command {
 
     void loadTrackNext(String identifier, Member author, Message msg) {
         if (Objects.requireNonNull(author.getVoiceState()).getChannel() == null) {
-            msg.getChannel().sendMessage(sendFailEmbed("You are not in a voice channel!", "I cannot join you, if you aren't there~")).queue();
+            msg.getChannel().sendMessageEmbeds(sendFailEmbed("You are not in a voice channel!", "I cannot join you, if you aren't there~")).queue();
             return;
         }
 
@@ -173,7 +173,7 @@ abstract class MusicCommand extends Command {
             public void trackLoaded(AudioTrack track) {
 
                 if (!isIdle(guild)) {
-                    Objects.requireNonNull(botchat).sendMessage(sendGenericEmbed("**Added Track**",
+                    Objects.requireNonNull(botchat).sendMessageEmbeds(sendGenericEmbed("**Added Track**",
                             "`(" + getTimestamp(track.getDuration()) + ")`  " + track.getInfo().title)
                     ).queue();
                 }
@@ -196,7 +196,7 @@ abstract class MusicCommand extends Command {
                 } else {
                     TextChannel botchat = guild.getTextChannelById(config.getAudioChannel());
 
-                    Objects.requireNonNull(botchat).sendMessage(sendGenericEmbed("**Added Playlist**",
+                    Objects.requireNonNull(botchat).sendMessageEmbeds(sendGenericEmbed("**Added Playlist**",
                             "`(" + "Tracks: " + playlist.getTracks().size() + ")`  " + playlist.getName())
                     ).queue();
 
@@ -214,14 +214,14 @@ abstract class MusicCommand extends Command {
 
             @Override
             public void noMatches() {
-                Objects.requireNonNull(botchat).sendMessage(sendFailEmbed("**Search failed**", "No playable tracks have been found!")).queue();
+                Objects.requireNonNull(botchat).sendMessageEmbeds(sendFailEmbed("**Search failed**", "No playable tracks have been found!")).queue();
             }
 
             @Override
             public void loadFailed(FriendlyException exception) {
                 LOG.warn("Error loading track: ", exception);
                 if (exception.severity != FriendlyException.Severity.FAULT) {
-                    Objects.requireNonNull(botchat).sendMessage(sendErrorEmbed("**Error while fetching music:**", exception)).queue();
+                    Objects.requireNonNull(botchat).sendMessageEmbeds(sendErrorEmbed("**Error while fetching music:**", exception)).queue();
                 }
             }
         });
@@ -229,7 +229,7 @@ abstract class MusicCommand extends Command {
 
     void loadTrack(String identifier, Member author, Message msg) {
         if (Objects.requireNonNull(author.getVoiceState()).getChannel() == null) {
-            msg.getChannel().sendMessage(sendFailEmbed("You are not in a voice channel!", "I cannot join you, if you aren't there~")).queue();
+            msg.getChannel().sendMessageEmbeds(sendFailEmbed("You are not in a voice channel!", "I cannot join you, if you aren't there~")).queue();
             return;
         }
 
@@ -244,7 +244,7 @@ abstract class MusicCommand extends Command {
             public void trackLoaded(AudioTrack track) {
 
                 if (!isIdle(guild)) {
-                    Objects.requireNonNull(botchat).sendMessage(sendGenericEmbed("**Added Track**",
+                    Objects.requireNonNull(botchat).sendMessageEmbeds(sendGenericEmbed("**Added Track**",
                             "`(" + getTimestamp(track.getDuration()) + ")`  " + track.getInfo().title)
                     ).queue();
                 }
@@ -259,7 +259,7 @@ abstract class MusicCommand extends Command {
                     trackLoaded(playlist.getTracks().get(0));
                 } else {
 
-                    Objects.requireNonNull(botchat).sendMessage(sendGenericEmbed("**Added Playlist**",
+                    Objects.requireNonNull(botchat).sendMessageEmbeds(sendGenericEmbed("**Added Playlist**",
                             "`(" + "Tracks: " + playlist.getTracks().size() + ")`  " + playlist.getName())
                     ).queue();
 
@@ -271,14 +271,14 @@ abstract class MusicCommand extends Command {
 
             @Override
             public void noMatches() {
-                Objects.requireNonNull(botchat).sendMessage(sendFailEmbed("**Search failed**", "No playable tracks have been found!")).queue();
+                Objects.requireNonNull(botchat).sendMessageEmbeds(sendFailEmbed("**Search failed**", "No playable tracks have been found!")).queue();
             }
 
             @Override
             public void loadFailed(FriendlyException exception) {
                 LOG.warn("Error loading track: ", exception);
                 if (exception.severity != FriendlyException.Severity.FAULT) {
-                    Objects.requireNonNull(botchat).sendMessage(sendErrorEmbed("**Error while fetching music:**", exception)).queue();
+                    Objects.requireNonNull(botchat).sendMessageEmbeds(sendErrorEmbed("**Error while fetching music:**", exception)).queue();
                 }
             }
         });

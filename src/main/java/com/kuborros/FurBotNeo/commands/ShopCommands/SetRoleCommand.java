@@ -113,7 +113,7 @@ public class SetRoleCommand extends ShopCommand {
             inventoryCache.setInventory(inventory.setCurrentRole(roles.get(selection-1)));
             EmbedBuilder builder = new EmbedBuilder()
                     .setDescription("Enjoy your new color~");
-            message.editMessage(builder.build()).complete();
+            message.editMessageEmbeds(builder.build()).complete();
             message.clearReactions().complete();
         } catch (Exception e) {
             LOG.error("Ohno.", e);

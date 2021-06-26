@@ -45,7 +45,7 @@ public class MusicShuffleCmd extends MusicCommand {
                 return;
             }
             getTrackManager(guild).shuffleQueue();
-            event.getTextChannel().sendMessage(sendGenericEmbed("Shuffled queue!", "For better, or for worse~", ":twisted_rightwards_arrows:")).queue();
+            event.getTextChannel().sendMessageEmbeds(sendGenericEmbed("Shuffled queue!", "For better, or for worse~", ":twisted_rightwards_arrows:")).queue();
         } else {
             event.reply(sendFailEmbed("Only DJs have the power to shuffle the playlist!", "If you don't like the current track, you can always vote to ``skip`` it!"));
         }

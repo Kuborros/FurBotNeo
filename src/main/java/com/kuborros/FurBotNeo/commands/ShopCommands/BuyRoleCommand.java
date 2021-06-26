@@ -114,7 +114,7 @@ public class BuyRoleCommand extends ShopCommand {
                     .setColor(currRole.getColor());
             canBuy = true;
         }
-        message.editMessage(new MessageBuilder().setEmbed(builder.build()).setContent("").build()).queue();
+        message.editMessage(new MessageBuilder().setEmbeds(builder.build()).setContent("").build()).queue();
         if (canBuy) awaitResponse(message);
         else message.clearReactions().complete();
     }
@@ -156,7 +156,7 @@ public class BuyRoleCommand extends ShopCommand {
                     .setTitle(String.format("Congratulations on your purchase of %s, %s!", currRole.getItemName(), Objects.requireNonNull(event.getUser()).getName()))
                     .setDescription("Enjoy your new color~");
             try {
-                message.editMessage(builder.build()).queue();
+                message.editMessageEmbeds(builder.build()).queue();
                 message.clearReactions().queue();
             } catch (PermissionException ignored) {
             }

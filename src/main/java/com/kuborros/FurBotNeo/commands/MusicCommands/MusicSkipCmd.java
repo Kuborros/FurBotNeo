@@ -81,7 +81,7 @@ public class MusicSkipCmd extends MusicCommand {
                     .setTitle(String.format("Voting to skip track: %s", getPlayer(guild).getPlayingTrack().getInfo().title))
                     .setColor(Color.CYAN);
 
-            awaitResponse(event.getTextChannel().sendMessage(builder.build()).complete());
+            awaitResponse(event.getTextChannel().sendMessageEmbeds(builder.build()).complete());
         }
     }
 
@@ -101,7 +101,7 @@ public class MusicSkipCmd extends MusicCommand {
         //If bot is only one on the vc just skip the track with no voting
         if (listeners == 0) {
             skipTrack(guild);
-            message.getTextChannel().sendMessage(sendGenericEmbed("Skipped track!", "(Nobody was listening to it anyways...)", ":fast_forward:")).queue();
+            message.getTextChannel().sendMessageEmbeds(sendGenericEmbed("Skipped track!", "(Nobody was listening to it anyways...)", ":fast_forward:")).queue();
             message.clearReactions().queue();
             activeVotes.remove(guild.getId());
             return;
@@ -143,7 +143,7 @@ public class MusicSkipCmd extends MusicCommand {
                 activeVotes.remove(guild.getId());
                 if (skipTrack(guild)) {
                     try {
-                        message.editMessage(builder.build()).queue();
+                        message.editMessageEmbeds(builder.build()).queue();
                         message.clearReactions().queue();
                     } catch (PermissionException ignored) {
                     }
@@ -154,7 +154,7 @@ public class MusicSkipCmd extends MusicCommand {
                         .setColor(Color.CYAN)
                         .setDescription(String.format("Voted yes: %d out of %d", yesVotes, listeners));
                 try {
-                    message.editMessage(builder.build()).queue();
+                    message.editMessageEmbeds(builder.build()).queue();
                 } catch (PermissionException ignored) {
                 }
             }

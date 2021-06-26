@@ -126,7 +126,7 @@ public class GrantRoleCommand extends ShopCommand {
             canBuy = true;
         }
         message.delete().queue();
-        message = priv.sendMessage(new MessageBuilder().setEmbed(builder.build()).setContent("").build()).complete();
+        message = priv.sendMessage(new MessageBuilder().setEmbeds(builder.build()).setContent("").build()).complete();
         if (canBuy) awaitResponse(message);
     }
 
@@ -166,7 +166,7 @@ public class GrantRoleCommand extends ShopCommand {
                     .setTitle(String.format("Role %s has been granted to %s!", currRole.getItemName(), Objects.requireNonNull(target).getEffectiveName()))
                     .setDescription("Hopefully they like it~");
             try {
-                message.editMessage(builder.build()).queue();
+                message.editMessageEmbeds(builder.build()).queue();
             } catch (PermissionException ignored) {
             }
         }

@@ -202,7 +202,7 @@ public class SelectionTitleDialog extends Menu {
         String content = text.apply(selection);
         if (content != null)
             mbuilder.append(content);
-        return mbuilder.setEmbed(new EmbedBuilder()
+        return mbuilder.setEmbeds(new EmbedBuilder()
                 .setTitle(title.apply(selection))
                 .setColor(color.apply(selection))
                 .setDescription(sbuilder.toString())

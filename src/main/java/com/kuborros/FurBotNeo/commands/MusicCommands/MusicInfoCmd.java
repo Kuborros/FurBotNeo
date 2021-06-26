@@ -48,7 +48,7 @@ public class MusicInfoCmd extends MusicCommand {
     public void doCommand(CommandEvent event) {
 
         if (!hasPlayer(guild) || getPlayer(guild).getPlayingTrack() == null) {
-            event.getTextChannel().sendMessage(sendGenericEmbed("No music currently playing!", "")).queue();
+            event.getTextChannel().sendMessageEmbeds(sendGenericEmbed("No music currently playing!", "")).queue();
         } else {
             AudioTrack track = getPlayer(guild).getPlayingTrack();
             AudioTrackInfo info = track.getInfo();

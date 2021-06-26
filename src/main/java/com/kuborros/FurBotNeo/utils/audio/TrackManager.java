@@ -89,7 +89,7 @@ public class TrackManager extends AudioEventAdapter {
     @Override
     public void onTrackEnd(AudioPlayer player, AudioTrack track, AudioTrackEndReason endReason) {
         Guild g = Objects.requireNonNull(queue.poll()).getAuthor().getGuild();
-        if (queue.isEmpty() || !endReason.mayStartNext) {
+        if (queue.isEmpty()) {
             player.stopTrack();
             new Thread(() -> g.getAudioManager().closeAudioConnection()).start();
         } else {
@@ -106,7 +106,7 @@ public class TrackManager extends AudioEventAdapter {
                 .setDescription(RandomResponse.getRandomBaseErrorMessage())
                 .setTitle("\u274C" + " **An playback error has occurred!**")
                 .addField("Exception on playback of track: " + track.getInfo().title, exception.getLocalizedMessage(), false);
-        getTrackInfo(track).getBotchat().sendMessage(eb.build()).queue();
+        getTrackInfo(track).getBotchat().sendMessageEmbeds(eb.build()).queue();
     }
 
     @Override

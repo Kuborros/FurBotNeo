@@ -114,7 +114,7 @@ public class InfoCommand extends AdminCommand {
 
     private void sendEmbed(CommandEvent event, String title, String description, String imgUrl, String footer) {
         event.getChannel().sendMessage(
-                new MessageBuilder().setEmbed(
+                new MessageBuilder().setEmbeds(
                         new EmbedBuilder().setTitle(title, null).setThumbnail(imgUrl).setDescription(description).setColor(Color.BLUE).setFooter(footer, null).build()
                 ).build()).queue();
     }
