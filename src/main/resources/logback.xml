@@ -17,7 +17,7 @@
         <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
             <fileNamePattern>./logs/archives/furrybot-%d{dd.MM.yyyy}.%i.log</fileNamePattern>
             <maxFileSize>50MB</maxFileSize>
-            <maxHistory>60</maxHistory>
+            <maxHistory>240</maxHistory>
             <totalSizeCap>2GB</totalSizeCap>
         </rollingPolicy>
     </appender>
